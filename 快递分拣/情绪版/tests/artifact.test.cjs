@@ -1,0 +1,4 @@
+const {test}=require('node:test'),a=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const html=fs.readFileSync(path.join(__dirname,'../../就差一件下班-情绪互动版.html'),'utf8');
+test('variant storage is isolated and all scripts parse',()=>{a.equal(html.includes('bysl-parcel-prototype-v1'),false);a.equal(html.includes("id:'parcel-sorting'"),false);a.ok(html.includes("id:'parcel-last-one-v1'"));for(const s of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(s[1]);});
+test('actual file is transparent, standalone and only exposes three viewer actions',()=>{a.ok(html.includes('background:transparent!important'));a.equal((html.match(/data-effect="/g)||[]).length,3);a.ok(!/(?:src|href)=["']https?:/i.test(html));a.ok(!html.includes('__BACKGROUND__'));});

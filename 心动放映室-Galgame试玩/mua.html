@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>心动放映室 · 主播的小小表情戏</title>
+  <link rel="stylesheet" href="mua.css">
+</head>
+<body>
+  <script>if(new URLSearchParams(location.search).get('preview')==='1')document.body.classList.add('preview');</script>
+  <main class="app-shell">
+    <header class="page-header preview-only">
+      <div class="heading-copy">
+        <p class="eyebrow" lang="ja">ひとくちの、ときめき。</p>
+        <h1>把每一刻，都演成心动<span>。</span></h1>
+        <p class="subtitle">主播自己演，特效陪你接戏。一个表情、一个动作，都有小小的回应。</p>
+      </div>
+      <div class="little-note" aria-hidden="true"><span>今日も、きみに。</span><i>小小心意 · 随时放映</i></div>
+    </header>
+
+    <section class="preview-frame" aria-label="心动放映室">
+      <div class="frame-caption preview-only">
+        <span class="frame-title"><i aria-hidden="true"></i>心动放映室 <span class="caption-divider">/</span> 今日的小小表情戏</span>
+        <span id="state" class="state">准备好心动</span>
+      </div>
+      <div id="stage" class="stage">
+        <img id="scene" src="preview-scene.png" alt="动漫风格直播示意画面" draggable="false">
+        <canvas id="fx" width="1280" height="720" aria-label="动漫互动特效"></canvas>
+        <button id="aim" class="mouth-aim preview-only" type="button" aria-label="嘴巴准心" title="拖动到嘴巴的位置">
+          <span class="aim-mark" aria-hidden="true"><i></i></span>
+          <span class="aim-label">嘴巴准心</span>
+        </button>
+      </div>
+      <div class="image-caption preview-only"><span>示意画面 · 直播时叠在你的画面上</span><span class="caption-detail">每一个小动作，都值得被接住。</span></div>
+    </section>
+
+    <section class="moments preview-only" aria-label="手动表情特效">
+      <div class="moment-heading"><p>今天，想演哪一幕？</p><span>配合表情，点一下就登场。</span></div>
+      <div class="moment-grid">
+        <button id="play" class="moment-card featured" type="button" data-moment="mua"><span class="moment-symbol" aria-hidden="true">吻</span><span class="moment-copy"><strong>Mua 小飞吻</strong><small>嘟嘴，送出一声 Mua。</small></span><kbd>M</kbd></button>
+        <button class="moment-card" type="button" data-moment="blush"><span class="moment-symbol" aria-hidden="true">照</span><span class="moment-copy"><strong>害羞脸红</strong><small>轻轻低头，藏一点害羞。</small></span><kbd>B</kbd></button>
+        <button class="moment-card" type="button" data-moment="sparkle"><span class="moment-symbol" aria-hidden="true">✧</span><span class="moment-copy"><strong>眼边星光</strong><small>眨眨眼，让眼神亮起来。</small></span><kbd>S</kbd></button>
+        <button class="moment-card" type="button" data-moment="question"><span class="moment-symbol" aria-hidden="true">?</span><span class="moment-copy"><strong>歪头疑惑</strong><small>歪一歪头，嗯？再说一次。</small></span><kbd>Q</kbd></button>
+        <button class="moment-card" type="button" data-moment="heartbeat"><span class="moment-symbol" aria-hidden="true">怦</span><span class="moment-copy"><strong>怦然心动</strong><small>手放心口，被你说中了。</small></span><kbd>H</kbd></button>
+        <button class="moment-card" type="button" data-moment="headpat"><span class="moment-symbol" aria-hidden="true">撫</span><span class="moment-copy"><strong>摸摸头</strong><small>低一点头，接住温柔摸摸。</small></span><kbd>P</kbd></button>
+      </div>
+      <div class="sequence-row"><span class="sequence-note">也可以，把这份心意连起来。</span><button id="scene-sweet" class="sequence-button" type="button" title="快捷键 G"><span>一键小剧场</span><small>星光 → 脸红 → Mua</small><kbd>G</kbd></button></div>
+    </section>
+
+    <section class="control-bar preview-only" aria-label="放映控制与特效定位">
+      <div class="play-controls">
+        <button id="pause" class="quiet-button" type="button">暂停</button>
+        <button id="clear" class="quiet-button" type="button">清场</button>
+        <label class="aim-toggle"><input id="show-aim" type="checkbox" checked><span>显示准心</span></label>
+      </div>
+      <div class="calibration-controls">
+        <label class="anchor-picker" for="anchor">定位 <select id="anchor"><option value="mouth">嘴巴</option><option value="headTop">头顶</option><option value="cheekL">左脸</option><option value="cheekR">右脸</option><option value="chest">胸口</option></select></label>
+        <div class="coordinates" role="group" aria-label="特效定位百分比">
+          <label for="x">横向 <span><input id="x" type="number" min="0" max="100" step="0.1" value="67" inputmode="decimal" aria-label="定位横向位置百分比"><i>%</i></span></label>
+          <label for="y">纵向 <span><input id="y" type="number" min="0" max="100" step="0.1" value="35.8" inputmode="decimal" aria-label="定位纵向位置百分比"><i>%</i></span></label>
+        </div>
+      </div>
+    </section>
+    <footer class="page-footer preview-only">
+      <p>选部位校准位置，按卡片快捷键开演。空格暂停，Esc 清场。</p>
+      <p id="status" role="status" aria-live="polite" aria-atomic="true">今天的心动，由你开场。</p>
+    </footer>
+  </main>
+  <script src="mua-art.js"></script>
+  <script src="mua-heart-renderer.js"></script>
+  <script src="anime-moments.js"></script>
+  <script src="mua.js"></script>
+</body>
+</html>

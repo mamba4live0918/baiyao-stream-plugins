@@ -1,0 +1,141 @@
+[
+  {
+    "id": "thief_crowd_normal",
+    "group": "customers",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. A single comically sneaky but CUTE harmless young adult thief FRONT-FACING HALF-BODY BUST head-to-chest, same proportions and silhouette scale as style reference. Warm tan skin, dark navy knit beanie, soft black eye mask, black-and-cream horizontal striped shirt. Eyes glance sideways, small mischievous smile. Both hands out of frame. Head60% of bust. Entire hair/hat and torso fit cleanly inside portrait11:13canvas with5% margin; bottom straight chest crop94%height. Display110x130, eventualPNG220x260. Do not include coins, sack, tools, badge or any other person.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-499fe211-1a6f-4ad1-b99b-fff60c897be8.png",
+    "output_hint": "Generated images are saved to C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f as C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-499fe211-1a6f-4ad1-b99b-fff60c897be8.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "selected": true,
+    "rawPath": "raw/customers/thief_crowd_normal.png"
+  },
+  {
+    "id": "customer_steam",
+    "group": "customers",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. Exactly TWO small separate stylized curving white steam wisps puffing upward from an angry cartoon person's head, arranged side by side. Smoke ONLY, do not draw head/person or cloudface. Soft creamwhite solid curls with mutedgray singlecelshadow and darkbrown inkline. A compact rectangular effect sprite50x40 logical, final100x80, actualtransparent between andaroundwisps.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-a8fa3cc4-db64-48db-930c-5c3fbda8e1a8.png",
+    "output_hint": "Generated images are saved to C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f as C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-a8fa3cc4-db64-48db-930c-5c3fbda8e1a8.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "selected": true,
+    "rawPath": "raw/customers/customer_steam.png"
+  },
+  {
+    "id": "badge",
+    "group": "ui",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. ONE small wide blank customer chest name badge, warm cream roundedrectangle with caramel shadow at loweredge and darkbrown double-outline, tiny simplified blank clasp at top center. NO necklace straps and absolutely NO marks or text on its spacious empty cream writing area. Frontal view, wide70x24 logical ratio, final140x48. Badge fills85% width and80%height leavingtransparent margin.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-f0548206-db6f-43df-8443-3b1f6cccf596.png",
+    "output_hint": "Generated images are saved to C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f as C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-f0548206-db6f-43df-8443-3b1f6cccf596.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "selected": false,
+    "rawPath": null
+  },
+  {
+    "id": "bubble",
+    "group": "ui",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. ONE blank rounded speech/order bubble with a small downward-pointing tail centered along bottomedge. Spacious entirely EMPTY cream-white inside, thick darkbrown clean outline, subtle singlehardshadow lower-right rim, tinywhitehighlight.90x50 logical ratio, final180x100. No icons, letters,numbers,dots or facialfeatures inside. Sprite onlytransparent.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-3bd5c3a8-63e0-468b-a5c7-bc5c48f797a8.png",
+    "output_hint": "Generated images are saved to C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f as C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-3bd5c3a8-63e0-468b-a5c7-bc5c48f797a8.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+    "selected": false,
+    "rawPath": null
+  },
+  {
+    "id": "badge",
+    "group": "ui",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. Draw ONLY an isolated blank customer chest name badge, no human/animal/body/hands of any kind. One wide warm cream rounded rectangle with caramel singlecelshadow at loweredge, darkbrown doubleoutline, a tiny centered clasp. Front orthographic view. Spacious completely blank creamcenter NOmarks/dashes/words. Ratio70:24, logical70x24. Entire silhouetteinsidecanvas5%transparentpadding. Do not draw any character from earlier context or any other object.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-cf0ae3fe-99dd-45fe-852d-e6b1cdfdf628.png",
+    "selected": true,
+    "rawPath": "raw/ui/badge.png"
+  },
+  {
+    "id": "bubble",
+    "group": "ui",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. Draw ONLY a single blank order speech bubble, absolutely NO person/animal/hands/body. Wide rounded rectangle with a small centered downward tail, spacious EMPTY solid creamwhite inside, darkbrown outline, flat lower-right rimshadow. Logical90x50 ratio. No icons, NO dots, no letters, NO face or anything inside or outside bubble. Fullsilhouette with5%transparentpadding. Do not draw character fromearliercontext.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-41f9b595-3eeb-4ec7-ba46-4d84efe4d7e2.png",
+    "selected": true,
+    "rawPath": "raw/ui/bubble.png"
+  },
+  {
+    "id": "thief_crowd_stunned",
+    "group": "customers",
+    "prompt": "Edit ONLY facial expression of this exact thief bust sprite. Preserve pixel-identical canvas size and character position, scale, silhouette, hat, hair, skin color, clothes, pose, all shadows and outlines outsideface. Replace both eyes with small clear cartoon X marks in the black mask, mouth a small wobbly stunned shape, a harmlesscomicallydazedexpression. NOstars/numbers or extras. Keepactualalpha background, nolettering. Samebustfrontalscale110x130 logical. No changes tobody.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-d8deabfd-c9a8-4493-99ec-7b6aaaee7e55.png",
+    "selected": true,
+    "rawPath": "raw/customers/thief_crowd_stunned.png"
+  },
+  {
+    "id": "coin_jar",
+    "group": "props",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. ONE squat round warm ochre ceramic coin jar, front view slightly looking down at its oval opening. Broad belly, narrow neck, dark open EMPTY mouth; no coins yet, no lid. Small entirely BLANK cream label on belly, no marks. Stable flat bottom and cute simple silhouette. Logical140x150, fullsprite within90%canvas. Jar mouth centered at50%horizontal and24%vertical, usable for later separatecoinlayer. Isolatedobject only, absolutelyNO humansorhands.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-6de40cc4-a826-49b5-87dd-b0831ccd0b46.png",
+    "selected": true,
+    "rawPath": "raw/props/coin_jar.png"
+  },
+  {
+    "id": "coin",
+    "group": "props",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. ONE small cartoon antique copper/gold coin with a simple square hole through its center. Front face slightly tilted10degrees with darkbrown outline and a simple flat inner bevel. NO symbols, NO words, NO numerals, NOcurrency signs or embossedmarks. Logical26x26, fullcircle within85%canvas, transparent squarehole andoutside. Onlyonecoin, nohuman/scene.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-7a6824c1-1620-4790-9172-2da1de46200f.png",
+    "selected": true,
+    "rawPath": "raw/props/coin.png"
+  },
+  {
+    "id": "extinguisher",
+    "group": "props",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. ONE cute red portable fire extinguisher, upright, clearly legible dark handle and squeezelever at top, short black hose curving to right with a small nozzle pointing down. Broadsimplebottle, entirely blank small creamlabel. No text, symbol, pictogramorlogo. Front3/4barely view, logical50x140 tallnarrowratio, fullobject visible withtransparentpadding; nohumanhand orbackground.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-c3589a07-0cb3-4739-966d-bf151abcf1bb.png",
+    "selected": true,
+    "rawPath": "raw/props/extinguisher.png"
+  },
+  {
+    "id": "trash_can",
+    "group": "props",
+    "prompt": "Production game sprite for the same cute cozy flat2D chibi street-food game. Dark brown #49372d uniform ink outline about3-4px when shown at requested logical size, solid flat pastel fills, ONE hard-edged shadow layer, tiny white highlights, light from upper left. Actual alpha-transparent background, crisp edge, no white/gray halo, no ground or scene. Absolutely NO lettering, numbers, symbols, logos, brands, labels, watermark or frame around canvas. ONE cute compact mint-blue cylindrical metal trash bin with matching hinged/tilted lid on top, simple dark brown outlines, dark openingvisible, two subtle vertical ribs and onehardcelshadow. No recyclinglogo, text,pictogramorface. Frontslightlyaboveview, logical80x100 ratio, fullobjectvisible withtransparentmargin. No garbagecomingout,noperson, nofloor.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-c0bfc421-4c48-4c25-9160-597fcaa66441.png",
+    "selected": true,
+    "rawPath": "raw/props/trash_can.png"
+  },
+  {
+    "id": "coin_jar_top",
+    "group": "props",
+    "prompt": "Create a SEPARATE transparent overlay layer aligned exactly with this input jar's canvas. Keep the exact input image pixel dimensions, framing, and empty transparent margin. DELETE the entire ceramic jar, label, outline, neck, rim and alljarbody so these are completelytransparent. Draw ONLY a small mound of THREE plain cartoon round gold coins with squareholes protruding out of the former jar opening, centered horizontally at50%canvas, located between12% and28%canvasheight, totalmoundwidth about40%canvaswidth. Coins sit exactly on the input jar's mouth for later layering. Do notrecenter coins in canvas, the lower70%canvas mustremainemptytransparent. Sameuniformdarkbrowninkflatcelstyle, white tinyhighlights, NOsymbols,text,numerals,lettersorlogos. NOjar itself, no bowl,no human. GenuinealphaPNG.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-b743b8bc-6f6e-4562-98af-59e415fcb6e8.png",
+    "selected": true,
+    "rawPath": "raw/props/coin_jar_top.png"
+  },
+  {
+    "id": "stamp_frame_green",
+    "group": "ui",
+    "prompt": "A single EMPTY rubber-stamp ink impression outline on genuine alpha-transparent background. Wide horizontal roundedrectangle doubleborder, aspect200:80, flat green ink only with subtle naturally uneven rubber-stamp edges. Borderhas smallspeckledgaps, inside ENTIRELY transparent and BLANK. Nothing fillscenter. No words, letters, numerals, symbols, stars, humans, label background or embossed3Dframe. About4pxthick outerline and1.5pxinnerline atlogical200x80, margins10px. Two rectangular rounded ink lines only, readable cute cartoon gameresult stamp asset; not a physical stamp tool, not a signboard, not a button. Actualtransparentinsideandoutside.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-9fd11a2f-fe74-4932-a358-4ccef57f218e.png",
+    "selected": true,
+    "rawPath": "raw/ui/stamp_frame_green.png"
+  },
+  {
+    "id": "stamp_frame_red",
+    "group": "ui",
+    "prompt": "A single EMPTY rubber-stamp ink impression outline on genuine alpha-transparent background. Wide horizontal roundedrectangle doubleborder, aspect200:80, flat red ink only with subtle naturally uneven rubber-stamp edges. Borderhas smallspeckledgaps, inside ENTIRELY transparent and BLANK. Nothing fillscenter. No words, letters, numerals, symbols, stars, humans, label background or embossed3Dframe. About4pxthick outerline and1.5pxinnerline atlogical200x80, margins10px. Two rectangular rounded ink lines only, readable cute cartoon gameresult stamp asset; not a physical stamp tool, not a signboard, not a button. Actualtransparentinsideandoutside.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-c73e964b-5720-4cac-bac4-d7a08e5a5d87.png",
+    "selected": true,
+    "rawPath": "raw/ui/stamp_frame_red.png"
+  },
+  {
+    "id": "stamp_frame_purple",
+    "group": "ui",
+    "prompt": "A single EMPTY rubber-stamp ink impression outline on genuine alpha-transparent background. Wide horizontal roundedrectangle doubleborder, aspect200:80, flat purple ink only with subtle naturally uneven rubber-stamp edges. Borderhas smallspeckledgaps, inside ENTIRELY transparent and BLANK. Nothing fillscenter. No words, letters, numerals, symbols, stars, humans, label background or embossed3Dframe. About4pxthick outerline and1.5pxinnerline atlogical200x80, margins10px. Two rectangular rounded ink lines only, readable cute cartoon gameresult stamp asset; not a physical stamp tool, not a signboard, not a button. Actualtransparentinsideandoutside.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-eeecfe86-ef83-4a3b-aff8-383c4dfd8f4d.png",
+    "selected": true,
+    "rawPath": "raw/ui/stamp_frame_purple.png"
+  }
+]

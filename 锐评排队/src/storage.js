@@ -1,0 +1,7 @@
+(function(root){'use strict';
+ const DB='bysl-review-queue-v1';let dbPromise;
+ function open(){if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{let req;try{req=indexedDB.open(DB,1);}catch(e){reject(e);return;}const timer=setTimeout(()=>reject(Error('存储连接超时，请关闭旧页面后重试')),5000);req.onupgradeneeded=()=>req.result.createObjectStore('snapshots');req.onerror=()=>{clearTimeout(timer);reject(req.error);};req.onblocked=()=>{clearTimeout(timer);reject(Error('存储升级受阻，请关闭旧页面'));};req.onsuccess=()=>{clearTimeout(timer);const db=req.result;db.onversionchange=()=>{db.close();dbPromise=null;};resolve(db);};}).catch(e=>{dbPromise=null;throw e;});return dbPromise;}
+ async function read(){const db=await open();return new Promise((resolve,reject)=>{const tx=db.transaction('snapshots','readonly'),r=tx.objectStore('snapshots').get('main');r.onsuccess=()=>resolve(r.result??null);r.onerror=()=>reject(r.error);tx.onabort=()=>reject(tx.error||Error('读取中断'));});}
+ async function write(snapshot){const text=JSON.stringify(snapshot);if(text.length>28000000)throw Error('存档过大，请导出备份并减少上传图片');const db=await open();return new Promise((resolve,reject)=>{let tx;try{tx=db.transaction('snapshots','readwrite');tx.objectStore('snapshots').put(snapshot,'main');}catch(e){reject(e);return;}tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error||Error('保存中断'));tx.onerror=()=>reject(tx.error||Error('保存失败'));});}
+ root.ReviewStorage={read,write};
+})(globalThis);

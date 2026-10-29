@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="BYSL"><meta name="description" content="BYSL 锐评排队 · 独立透明直播插件"><title>锐评候场室 · 操作页</title><style>:root{color-scheme:normal;font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;color:#17313a;background:transparent;font-synthesis:none;--accent:#86e4c4;--card-rgb:19,39,45;--card-opacity:.88;--card-text:#f6f8f7;--card-border:#86e4c4;--radius:22px;--gap:12px}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;background:transparent}body{overflow:hidden}button,input,select,textarea{font:inherit}button,input,select,textarea{border:1px solid #d9e2e4;border-radius:8px}button{cursor:pointer;background:#fff;color:#17313a;padding:10px 13px;font-size:13px;line-height:1.4}button:hover{border-color:#6fae9c;background:#eff8f4}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #249377;outline-offset:2px}button.primary{background:#86e4c4;border-color:#86e4c4;color:#123b32;font-weight:700}button.danger{color:#b54e57}button.small{padding:6px 9px;font-size:12px}button.icon-button{font-size:27px;padding:0 6px;border:0;background:none}input,select,textarea{padding:9px 10px;color:#17313a;background:#fff;min-width:0;width:100%;font-size:13px}input[type=checkbox]{width:auto;accent-color:#329b7d}input[type=range]{padding:0;border:0;accent-color:#42be9a;min-width:60px}input[type=color]{padding:3px;width:38px;height:34px;flex:none}textarea{resize:vertical;min-height:68px}label{font-size:12px;color:#526971;display:block}label>input,label>select,label>textarea{margin-top:6px}h2,h3,p{margin-top:0}h3{font-size:16px;margin-bottom:14px}p{line-height:1.75}small,.muted{font-size:12px;color:#70858b;line-height:1.65}.hint{font-size:12px;line-height:1.7;color:#70858b;margin:10px 0}.row{display:flex;align-items:center;gap:10px}.row.between{justify-content:space-between}.row.wrap{flex-wrap:wrap}.grow{flex:1;min-width:0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.stack{display:grid;gap:12px}.section{padding:22px 0;border-bottom:1px solid #e8eef0}.section:first-child{padding-top:0}.section:last-child{border-bottom:0}#canvas{position:fixed;inset:0;overflow:auto}body.editing #canvas{right:480px;background:transparent}
+#stage{position:absolute;left:8%;top:8%;width:380px;max-width:calc(100% - 32px);color:var(--card-text);isolation:isolate;padding:14px 8px 24px}.stage-heading{text-align:center;margin-bottom:22px;position:relative;z-index:1}.stage-heading h1{font-size:32px;line-height:1.35;font-weight:900;letter-spacing:1px;margin:0 0 12px;color:var(--card-text);text-shadow:0 2px 0 var(--card-border),2px 0 0 rgb(var(--card-rgb)),-2px 0 0 rgb(var(--card-rgb)),0 -2px 0 rgb(var(--card-rgb)),0 4px 8px #0004;overflow-wrap:anywhere}#waiting-count{display:inline-block;font-size:13px;font-weight:600;padding:7px 16px;border-radius:30px;background:rgba(var(--card-rgb),var(--card-opacity));color:var(--card-text);border:1px solid var(--card-border)}#cards{display:flex;flex-direction:column;gap:var(--gap);position:relative;z-index:1}.review-card{border:1px solid var(--card-border);border-radius:var(--radius);background:rgba(var(--card-rgb),var(--card-opacity));padding:18px 20px;box-shadow:0 6px 20px #0000000d;display:flex;align-items:center;gap:16px;min-width:0;position:relative;overflow:hidden}.review-card.current{border:2px solid var(--accent);display:block;padding:22px;box-shadow:0 0 24px color-mix(in srgb,var(--accent) 14%,transparent)}.current-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.state-tag{font-size:12px;font-weight:700;line-height:1.4;padding:6px 13px;border-radius:30px;background:var(--accent);color:rgb(var(--card-rgb))}.equalizer{height:24px;display:flex;align-items:center;gap:3px;color:var(--accent)}.equalizer i{display:block;width:3px;height:50%;background:currentColor;border-radius:2px;animation:wave 1s ease-in-out infinite alternate}.equalizer i:nth-child(2){height:85%;animation-delay:-.4s}.equalizer i:nth-child(3){height:65%;animation-delay:-.7s}.equalizer i:nth-child(4){height:100%;animation-delay:-.2s}.person-line{display:flex;align-items:center;gap:18px;min-width:0}.avatar{width:56px;height:56px;flex:0 0 56px;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--accent) 70%,#fff);border:2px solid var(--card-border);color:rgb(var(--card-rgb));font-size:24px;font-weight:700;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.current .avatar{width:76px;height:76px;flex-basis:76px;font-size:32px}.person-name{font-size:19px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5}.current .person-name{font-size:23px}.ticket{font-size:11px;letter-spacing:.6px;opacity:.75;display:block;margin-top:4px}.card-badges{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}.badge{font-size:10px;padding:3px 7px;border:1px solid currentColor;border-radius:20px;line-height:1.3}.badge.priority{background:#ffe4ad;color:#795a22;border:0}.source{font-size:11px;opacity:.75;margin-top:5px;overflow-wrap:anywhere}.empty-card{display:grid;place-items:center;text-align:center;min-height:145px;gap:12px;font-size:14px}.empty-card .empty-symbol{font-size:33px;color:var(--accent)}.more-card{text-align:center;background:rgba(var(--card-rgb),var(--card-opacity));border-radius:30px;padding:8px;font-size:12px;border:1px solid var(--card-border)}#stage.horizontal{width:auto!important;max-width:none;right:2%;}#stage.horizontal .stage-heading{text-align:left}#stage.horizontal #cards{flex-direction:row;flex-wrap:wrap;align-items:stretch}#stage.horizontal .review-card{width:var(--configured-width);min-height:130px}#stage.horizontal .review-card.current{width:var(--configured-width)}#stage.horizontal .current-top{margin-bottom:12px}.sticker{position:absolute;color:var(--accent);user-select:none;touch-action:none;line-height:1;display:grid;place-items:center;pointer-events:none;filter:drop-shadow(0 2px 1px #0003);transform-origin:center}.sticker img{display:block;max-width:100%;max-height:100%;object-fit:contain;pointer-events:none}.edit-stickers .sticker{pointer-events:auto;cursor:move;outline:1px dashed #167a67;outline-offset:4px}.edit-stickers .sticker.selected{outline:2px solid #249377}.edit-stickers #stage{outline:1px dashed #60847a;outline-offset:5px}.launcher{position:fixed;left:18px;bottom:18px;z-index:15;opacity:0;transition:opacity .15s;background:#fff;color:#17313a;box-shadow:0 3px 15px #0002}.launcher:hover,.launcher:focus-visible{opacity:1}#preview-label{display:none}body.editing #preview-label{display:block;position:fixed;bottom:20px;left:24px;font-size:11px;color:#7b8d87;pointer-events:none}#panel{position:fixed;z-index:20;right:0;top:0;width:480px;max-width:100%;height:100dvh;background:#fff;box-shadow:-10px 0 50px #23352c12;display:flex;flex-direction:column}#panel[hidden]{display:none}.panel-header{display:flex;align-items:center;justify-content:space-between;padding:24px 26px 18px}.panel-header h2{font-size:26px;letter-spacing:-1px;margin:0 0 6px}.connection{display:flex;gap:6px;align-items:center;font-size:10px;color:#7b8d91}.connection i{width:6px;height:6px;border-radius:100%;background:#c3c8ca}.connection i.on{background:#36b58d}#tabs{display:flex;gap:2px;justify-content:space-between;padding:0 22px;border-bottom:1px solid #e6ecee}#tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;padding:12px 9px;font-size:13px;color:#5d737b}#tabs button[aria-selected=true]{color:#168068;border-bottom-color:#6bdbb8;background:#edf9f3}#panel-content{overflow:auto;flex:1;padding:24px 26px;scrollbar-width:thin}.panel-footer{padding:17px 24px 22px;border-top:1px solid #e8eef0;display:flex;gap:10px;background:#fff}.panel-footer .primary{flex:1;text-align:left;display:flex;justify-content:space-between;font-size:16px;padding:13px 18px}.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.theme-choice{text-align:left;min-height:58px;border-radius:9px;padding:12px 13px;position:relative;overflow:hidden;background:var(--sw-bg);color:var(--sw-text);border:1px solid var(--sw-border);font-weight:600;display:flex;align-items:center;justify-content:space-between;font-size:12px}.theme-choice::after{content:attr(data-motif);font-size:44px;position:absolute;right:26px;top:0;opacity:.16;color:var(--sw-accent)}.theme-choice:hover{background:var(--sw-bg);border-color:var(--sw-accent)}.theme-choice[aria-checked=true]{outline:2px solid #41c9a4;outline-offset:1px}.theme-choice .radio{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--sw-text);background:transparent}.theme-choice[aria-checked=true] .radio{border:4px solid #2bb98c;background:#fff}.colors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.color-field{margin-top:6px;display:flex;align-items:center;gap:3px;border:1px solid #dfe6e8;border-radius:7px;padding:4px}.color-field input[type=color]{border:0;width:26px;height:27px;padding:0;margin:0}.color-field input[type=text]{width:57px;border:0;padding:0;font-size:10px;margin:0;font-family:monospace}.opacity-line{display:flex;gap:14px;align-items:center}.opacity-line output{font-size:15px;font-variant-numeric:tabular-nums;min-width:44px}.control-row{padding:11px 0;border-bottom:1px solid #e9eef0}.person-row{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #e9eef0}.person-row .avatar{--accent:#86e4c4;--card-border:#b2d5c8;--card-rgb:19,39,45;width:40px;height:40px;flex-basis:40px;font-size:17px}.person-row .name{font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.actions{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}.actions button{padding:5px 7px;font-size:11px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.rule{border-bottom:1px solid #e3eaed;padding:16px 0}.rule:first-of-type{padding-top:0}.rule .grid2{margin:10px 0}.warning{font-size:12px;line-height:1.6;background:#fff0ce;color:#725b23;padding:10px 20px}.notice{padding:12px 14px;background:#f0f8f4;border-radius:8px;font-size:12px;color:#43665a;line-height:1.7}.blank{padding:24px 12px;text-align:center;color:#8a9b9f;font-size:13px;line-height:1.8}.mini-sticker{font-size:22px;width:28px;text-align:center;color:#299b7c}.mini-sticker img{max-width:28px;max-height:28px}.sticker-controls{padding:14px;background:#f6f9f7;border-radius:8px;margin-top:8px}.checkline{display:flex;align-items:center;gap:7px;font-size:12px}#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;background:#16382e;color:#f4fff8;padding:12px 20px;border-radius:10px;box-shadow:0 6px 20px #0002;font-size:13px;max-width:min(600px,90vw);line-height:1.6;pointer-events:none}dialog{width:min(520px,calc(100vw - 28px));border:1px solid #dce6e0;border-radius:16px;padding:26px;color:#17313a;box-shadow:0 15px 80px #0003;max-height:90vh}dialog::backdrop{background:#10241c55}dialog h3{font-size:20px}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}.portrait-preview{width:64px;height:64px;object-fit:cover;border-radius:50%}.help details{border-bottom:1px solid #e7ecea;padding:14px 0;font-size:13px}.help summary{cursor:pointer;font-weight:700}.help details p{margin:12px 0 0;font-size:12px}.help ol{padding-left:20px;line-height:1.9;font-size:12px}.preview-users{max-height:170px;overflow:auto;margin-top:12px}html[data-theme=pixel] .review-card{box-shadow:4px 4px 0 #0005}html[data-theme=neon] .review-card{box-shadow:inset 0 0 16px #b37aff11,0 0 8px #b37aff22}html[data-theme=gold] .review-card{border-top-width:3px}html[data-theme=cream] .review-card{border-style:dashed}html[data-theme=sakura] .review-card{border-bottom-width:3px}html[data-motion=off] .equalizer i{animation:none}@keyframes wave{to{transform:scaleY(.4)}}@media(prefers-reduced-motion:reduce){html[data-motion=system] .equalizer i{animation:none}}@media(max-width:850px){#panel{width:430px}body.editing #canvas{right:430px}#stage{width:min(var(--configured-width),calc(100% - 24px));left:8%}body.editing #stage .person-name{font-size:17px}body.editing #stage .avatar{width:42px;height:42px;flex-basis:42px}body.editing #stage .review-card{padding:14px}body.editing #stage .stage-heading h1{font-size:24px}}@media(max-width:620px){body.editing #canvas{right:0;opacity:.2;pointer-events:none}#panel{width:100%;box-shadow:none}#panel-content{padding:20px}.panel-header{padding:18px 20px 14px}.panel-header h2{font-size:23px}#tabs{padding:0 14px}.panel-footer{padding:12px 20px 18px}#preview-label{display:none!important}.colors-grid{gap:5px}.color-field input[type=text]{width:51px}#stage{max-width:calc(100vw - 28px)}body:not(.editing) #stage.horizontal{right:12px;max-width:calc(100vw - 24px)}#toast{bottom:80px}}
+
+.stage-heading h1{-webkit-text-stroke:2px rgb(var(--card-rgb));paint-order:stroke fill;text-shadow:0 3px 0 rgb(var(--card-rgb)),0 5px 12px #0002}
+
+.state-tag{max-width:calc(100% - 42px);white-space:normal;overflow-wrap:anywhere}.current-top{gap:12px}.equalizer{flex-shrink:0}
+
+.live-queue-actions{width:100%;position:relative;z-index:10}.current .live-queue-actions{margin-top:18px;padding-top:14px;border-top:1px solid var(--card-border)}.live-next{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:42px;padding:10px 14px;border:1px solid var(--accent);border-radius:calc(var(--radius) / 2);background:rgba(var(--card-rgb),var(--card-opacity));color:var(--card-text);font-size:14px;font-weight:700;touch-action:manipulation}.live-next span{color:var(--accent);font-size:18px}.live-next:hover:not(:disabled){background:rgb(var(--card-rgb));color:var(--card-text);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.live-next:disabled{opacity:.5}.live-next:focus-visible{outline-color:var(--accent)}#stage.horizontal #cards>.live-queue-actions{width:var(--configured-width);max-width:100%}
+
+/* V4: ornaments belong to card borders, never to the stage. */
+.review-card{overflow:visible;isolation:isolate}.card-stickers{position:absolute;pointer-events:none;z-index:3}.sticker{left:0;top:0;pointer-events:none}.edit-stickers .sticker{outline:none;pointer-events:none;cursor:default}.edit-stickers .sticker.is-editable{pointer-events:auto;cursor:grab;outline:1px dashed var(--accent);outline-offset:3px}.edit-stickers .sticker.is-editable.selected{outline:2px solid var(--accent)}.edit-stickers #stage{outline:none}.edit-stickers [data-card-kind]{outline:none}.decoration-sample{border-style:dashed}.decoration-sample small{color:var(--card-text);opacity:.7}.card-stickers .sticker img{max-width:100%;max-height:100%}
+
+#panel,dialog{color-scheme:light}html,body,#canvas{background-color:transparent}#canvas{background-image:none}
+
+/* V7: movable/scalable overlay and a readable, independently sized console. */
+#stage{transform-origin:top left;transform:scale(var(--stage-scale,1));touch-action:none}#stage.horizontal{right:auto;width:var(--stage-base-width)!important;max-width:none}.stage-heading,.review-card{cursor:grab}.stage-transforming,.stage-transforming .review-card,.stage-transforming .stage-heading{cursor:grabbing}.stage-handle{position:absolute;z-index:100;width:30px;height:30px;padding:0;display:grid;place-items:center;border-radius:7px;border:1px solid var(--accent);background:rgb(var(--card-rgb));color:var(--card-text);font-size:22px;line-height:1;opacity:0;pointer-events:auto;touch-action:none;transform:scale(var(--handle-scale,1));transition:opacity .12s}.stage-move{left:0;top:0;transform-origin:top left;cursor:move}.stage-resize{right:0;bottom:0;transform-origin:bottom right;cursor:nwse-resize}#stage:hover>.stage-handle,#stage:focus-within>.stage-handle,.stage-transforming>.stage-handle{opacity:1}.stage-handle:hover{background:rgb(var(--card-rgb));color:var(--accent);border-color:var(--accent)}.stage-handle:focus-visible{outline:2px solid var(--accent)}
+:root{--ui-font-size:18px;--panel-width:calc(var(--ui-font-size)*32 + 24px)}#panel{width:var(--panel-width);max-width:100vw;font-size:var(--ui-font-size)}body.editing #canvas{right:min(var(--panel-width),100vw)}#panel button,#panel input,#panel select,#panel textarea,dialog button,dialog input,dialog select,dialog textarea{font-size:var(--ui-font-size)}#panel label,dialog label{font-size:calc(var(--ui-font-size) - 1px)}#panel input:not([type=checkbox]):not([type=range]):not([type=color]),#panel select,dialog input,dialog select{min-height:44px}#panel h3{font-size:calc(var(--ui-font-size) + 3px)}#panel .hint,#panel .muted,#panel small,#panel .notice,#panel .blank,#panel .help details p,#panel .help ol{font-size:calc(var(--ui-font-size) - 2px);line-height:1.75}#panel .help details,#panel .help summary{font-size:var(--ui-font-size)}#panel .person-row .name{font-size:var(--ui-font-size)}#panel .actions{max-width:220px}#panel .actions button{font-size:calc(var(--ui-font-size) - 2px);min-height:34px;padding:7px 10px}#panel .small{font-size:calc(var(--ui-font-size) - 2px);padding:8px 11px}#tabs button{font-size:var(--ui-font-size);padding:14px 12px}.panel-header h2{font-size:calc(var(--ui-font-size) + 12px)}.connection{font-size:calc(var(--ui-font-size) - 3px)}.panel-tools{display:flex;align-items:center;gap:7px}.panel-tools button{min-width:38px;min-height:38px;padding:5px}.panel-footer{gap:12px}.panel-footer .primary{font-size:calc(var(--ui-font-size) + 2px);min-height:52px}.theme-choice{min-height:70px;font-size:var(--ui-font-size)}.color-field input[type=text]{font-size:calc(var(--ui-font-size) - 2px)!important;width:78px;min-width:0}.color-field input[type=color]{width:30px;height:32px}.colors-grid{gap:10px}.opacity-line output{font-size:var(--ui-font-size);min-width:52px}.mini-sticker{width:32px;flex:0 0 32px}dialog{font-size:var(--ui-font-size);width:min(620px,calc(100vw - 28px))}dialog .hint{font-size:calc(var(--ui-font-size) - 2px)}
+@media(max-width:1000px){#panel{width:min(var(--panel-width),100vw - 260px)}body.editing #canvas{right:min(var(--panel-width),100vw - 260px)}.colors-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:740px){#panel{width:100%;max-width:100vw}body.editing #canvas{right:0;opacity:.15;pointer-events:none}#tabs{padding:0 10px}#tabs button{padding:12px 7px;font-size:calc(var(--ui-font-size) - 1px)}.panel-header{padding:16px}.panel-tools{gap:4px}.panel-tools button{min-width:34px}.panel-header h2{font-size:calc(var(--ui-font-size) + 6px)}#panel-content{padding:20px 16px}.panel-footer{padding:12px 16px}.theme-choice{min-height:66px}.color-field input[type=text]{width:82px}#panel .actions{max-width:160px}}
+
+.queue-current-ring{position:absolute;inset:-3px;border:3px solid var(--accent);border-radius:inherit;pointer-events:none;z-index:8;box-shadow:0 0 18px color-mix(in srgb,var(--accent) 32%,transparent)}html[data-motion=off] .queue-current-ring{display:none}#stage .live-next:active:not(:disabled){filter:brightness(1.12)}
+
+.rule>.row>input{flex:1;width:auto;min-width:0}.rule .checkline{flex-shrink:0;white-space:nowrap}
+
+/* V9: stream identity is readable in full, including unbroken account strings. */
+#stage .person-name,#panel .person-row .name{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;word-break:normal;max-width:100%}
+#panel .person-row small{display:block;white-space:normal;overflow-wrap:anywhere;word-break:normal;max-width:100%}
+#panel .person-row .hint{overflow-wrap:anywhere}
+
+#stage .queue-position{display:block;margin-top:7px;font-size:13px;line-height:1.6;letter-spacing:0;color:var(--card-text);white-space:normal;overflow-wrap:anywhere}#stage .current .queue-position{font-size:14px}#panel .queue-position-note{margin-top:4px;color:#436b60}
+
+/* V5: each theme changes the card construction, type, avatar, label and action. */
+#stage .review-card::before,#stage .review-card::after{content:"";position:absolute;pointer-events:none;z-index:-1;box-sizing:border-box}
+#stage .review-card::before{inset:8px;border-radius:calc(var(--radius) - 5px);opacity:var(--card-opacity)}
+#stage .review-card::after{inset:0;border-radius:inherit}
+#stage .current-top{position:relative}.sticker svg{width:100%;height:100%;pointer-events:none;display:block}.mini-sticker svg{width:28px;height:28px}.theme-choice::after{display:none}.theme-choice .theme-mark{width:30px;height:30px;opacity:.65;position:absolute;right:32px;color:var(--sw-accent);--accent:var(--sw-accent);--card-border:var(--sw-border);--card-text:var(--sw-text);--card-rgb:24,35,37}.ornament-choice{width:58px;height:58px;display:grid;place-items:center;--accent:#57ad94;--card-border:#527b6c;--card-text:#fff4de;--card-rgb:25,45,40}.ornament-choice svg{width:36px;height:36px}
+#stage .current .person-line>.grow{max-width:100%}
+#stage .state-tag{color:var(--card-text);background:transparent;border:1px solid var(--accent)}
+html[data-theme=glass] #stage .review-card{border-width:1px;box-shadow:inset 0 1px 0 #ffffff55,0 6px 22px #0001;backdrop-filter:blur(7px)}
+html[data-theme=glass] #stage .review-card::before{inset:5px;border:1px solid var(--card-border);background:linear-gradient(130deg,#ffffff13 0 18%,transparent 18% 78%,#ffffff0a 78%)}
+html[data-theme=glass] #stage .current .person-line{flex-direction:column;text-align:center;gap:10px}
+html[data-theme=glass] #stage .current-top{justify-content:center}
+html[data-theme=glass] #stage .current-top .equalizer{position:absolute;right:0}
+html[data-theme=glass] #stage .avatar{outline:1px solid var(--accent);outline-offset:4px;border-width:2px;box-shadow:inset 0 0 0 3px #ffffff33}
+html[data-theme=glass] #stage .ticket{border:1px solid var(--card-border);border-radius:20px;padding:3px 12px;display:inline-block}
+html[data-theme=glass] #stage .live-next{border-radius:30px;box-shadow:inset 0 1px 0 #ffffff44;background:linear-gradient(#ffffff12,#ffffff03),rgba(var(--card-rgb),var(--card-opacity))}
+html[data-theme=cream] #stage{font-family:"Microsoft YaHei","PingFang SC",sans-serif}
+html[data-theme=cream] #stage .review-card{border:1px solid var(--card-border);box-shadow:2px 4px 0 color-mix(in srgb,var(--card-border) 25%,transparent);padding:22px}
+html[data-theme=cream] #stage .review-card::before{inset:7px;border:1px dashed var(--accent);background-image:radial-gradient(var(--card-border) .6px,transparent .8px);background-size:9px 9px}
+html[data-theme=cream] #stage .current .person-line{flex-direction:column;text-align:center;gap:12px}
+html[data-theme=cream] #stage .current-top{justify-content:center}
+html[data-theme=cream] #stage .equalizer{display:none}
+html[data-theme=cream] #stage .state-tag{border-style:dashed;border-radius:9px;font-family:Georgia,"KaiTi",serif;font-size:15px;letter-spacing:2px;background:color-mix(in srgb,var(--accent) 10%,transparent)}
+html[data-theme=cream] #stage .avatar{border:3px solid var(--card-border);outline:2px solid var(--card-text);outline-offset:3px;background:rgb(var(--card-rgb));color:var(--card-text);border-radius:43% 43% 47% 47%}
+html[data-theme=cream] #stage .person-name{font-weight:900;letter-spacing:1px}
+html[data-theme=cream] #stage .ticket{font-family:Georgia,serif;font-style:italic}
+html[data-theme=cream] #stage .live-next{border:2px dashed var(--accent);border-radius:25px;background:color-mix(in srgb,var(--accent) 15%,rgb(var(--card-rgb)));justify-content:center}
+html[data-theme=cream] #stage .live-queue-actions{border-top-style:dashed}
+html[data-theme=neon] #stage{font-family:"Bahnschrift","Microsoft YaHei",sans-serif}
+html[data-theme=neon] #stage .review-card{border:2px solid var(--card-border);box-shadow:5px 5px 0 color-mix(in srgb,var(--accent) 24%,transparent),inset 0 0 20px color-mix(in srgb,var(--accent) 6%,transparent);padding:22px}
+html[data-theme=neon] #stage .review-card::before{inset:6px;border-left:3px solid var(--accent);border-right:1px solid var(--accent);border-top:1px solid var(--card-border);background:repeating-linear-gradient(0deg,transparent 0 5px,color-mix(in srgb,var(--accent) 5%,transparent) 5px 6px)}
+html[data-theme=neon] #stage .review-card::after{width:48px;height:5px;inset:auto 16px -3px auto;background:var(--accent);box-shadow:-230px 0 0 var(--card-border)}
+html[data-theme=neon] #stage .current .person-line{flex-direction:column;text-align:center;gap:13px}
+html[data-theme=neon] #stage .state-tag{border:2px solid var(--accent);border-radius:0;letter-spacing:3px;font-weight:900;background:rgb(var(--card-rgb));box-shadow:3px 2px 0 var(--card-border)}
+html[data-theme=neon] #stage .avatar{border-radius:0;border:3px solid var(--accent);outline:2px solid var(--card-border);outline-offset:4px;box-shadow:inset 4px 4px 0 #ffffff22}
+html[data-theme=neon] #stage .ticket{font-family:Consolas,monospace;letter-spacing:3px;color:var(--accent);font-size:12px}
+html[data-theme=neon] #stage .live-next{border-radius:0;border:2px solid var(--accent);box-shadow:3px 3px 0 var(--card-border);font-family:Consolas,"Microsoft YaHei",monospace;letter-spacing:2px}
+html[data-theme=pixel] #stage{font-family:Consolas,"SimHei",monospace}
+html[data-theme=pixel] #stage .review-card{border:4px solid var(--card-border);box-shadow:5px 5px 0 rgb(var(--card-rgb));padding:23px}
+html[data-theme=pixel] #stage .review-card::before{inset:4px;border:2px solid var(--card-text);background:repeating-linear-gradient(90deg,transparent 0 7px,#ffffff03 7px 8px)}
+html[data-theme=pixel] #stage .review-card::after{inset:10px auto auto 10px;width:5px;height:5px;background:var(--card-text);box-shadow:0 0 0 2px var(--card-border)}
+html[data-theme=pixel] #stage .current .person-line{flex-direction:column;text-align:center;gap:12px}
+html[data-theme=pixel] #stage .state-tag{border-radius:0;background:var(--card-text);color:rgb(var(--card-rgb));border:3px double rgb(var(--card-rgb));font-size:15px}
+html[data-theme=pixel] #stage .avatar{border-radius:0;border:4px solid var(--card-text);outline:3px solid var(--card-border);outline-offset:2px;background:rgb(var(--card-rgb));color:var(--card-text);image-rendering:pixelated}
+html[data-theme=pixel] #stage .person-name{font-family:Consolas,"SimHei",monospace;letter-spacing:2px;text-shadow:2px 2px 0 rgb(var(--card-rgb))}
+html[data-theme=pixel] #stage .ticket{font-family:Consolas,monospace;letter-spacing:2px}
+html[data-theme=pixel] #stage .live-next{border-radius:0;border:3px double var(--card-text);font-size:16px;box-shadow:3px 3px 0 var(--card-border)}
+html[data-theme=pixel] #stage .live-queue-actions{border-top:2px dashed var(--card-border)}
+html[data-theme=sakura] #stage{font-family:Georgia,"KaiTi","Microsoft YaHei",serif}
+html[data-theme=sakura] #stage .review-card{border-radius:30px 12px 30px 12px;border:1px solid var(--accent);box-shadow:2px 3px 0 color-mix(in srgb,var(--accent) 18%,transparent);padding:23px}
+html[data-theme=sakura] #stage .review-card::before{border:1px solid var(--card-border);border-radius:24px 7px 24px 7px;background:repeating-linear-gradient(0deg,transparent 0 27px,color-mix(in srgb,var(--accent) 9%,transparent) 27px 28px)}
+html[data-theme=sakura] #stage .current .person-line{flex-direction:column;align-items:center;text-align:center;gap:12px}
+html[data-theme=sakura] #stage .state-tag{border-radius:7px;border:1px dashed var(--accent);font-size:15px;letter-spacing:4px}
+html[data-theme=sakura] #stage .equalizer{height:17px}
+html[data-theme=sakura] #stage .avatar{border:3px double var(--accent);outline:1px solid var(--card-border);outline-offset:4px}
+html[data-theme=sakura] #stage .ticket{font-style:italic;font-family:Georgia,serif;letter-spacing:2px}
+html[data-theme=sakura] #stage .live-next{border-radius:28px;border:3px double var(--accent);font-family:Georgia,"KaiTi",serif;font-size:17px;justify-content:center;letter-spacing:2px}
+html[data-theme=ocean] #stage .review-card{border-radius:var(--radius);border:2px solid var(--accent);box-shadow:inset 0 0 0 4px rgb(var(--card-rgb));padding:23px}
+html[data-theme=ocean] #stage .review-card::before{inset:5px;border:1px solid var(--card-border);border-radius:calc(var(--radius) - 6px);background:radial-gradient(ellipse at bottom,transparent 55%,color-mix(in srgb,var(--accent) 9%,transparent) 56% 57%,transparent 58%),repeating-radial-gradient(circle at 20% 70%,transparent 0 26px,color-mix(in srgb,var(--accent) 4%,transparent) 27px 28px)}
+html[data-theme=ocean] #stage .current .person-line{flex-direction:column;text-align:center;gap:13px}
+html[data-theme=ocean] #stage .current-top{justify-content:center}
+html[data-theme=ocean] #stage .equalizer{position:absolute;right:2px;height:16px}
+html[data-theme=ocean] #stage .avatar{border:5px solid var(--card-border);outline:2px dashed var(--accent);outline-offset:4px;box-shadow:0 0 0 7px rgb(var(--card-rgb));background:rgb(var(--card-rgb));color:var(--card-text)}
+html[data-theme=ocean] #stage .state-tag{border:3px double var(--card-border);border-radius:25px;font-family:Georgia,"Microsoft YaHei",serif}
+html[data-theme=ocean] #stage .ticket{font-family:Consolas,monospace;letter-spacing:3px}
+html[data-theme=ocean] #stage .live-next{border-radius:30px;border:3px double var(--accent);justify-content:center}
+html[data-theme=sunset] #stage{font-family:"Bahnschrift","Microsoft YaHei",sans-serif}
+html[data-theme=sunset] #stage .review-card{border:3px solid var(--accent);border-radius:8px;padding:22px;box-shadow:4px 4px 0 color-mix(in srgb,var(--card-border) 28%,transparent)}
+html[data-theme=sunset] #stage .review-card::before{inset:5px;border:1px solid var(--card-text);border-radius:2px;background:repeating-linear-gradient(-45deg,transparent 0 5px,color-mix(in srgb,var(--accent) 6%,transparent) 5px 8px)}
+html[data-theme=sunset] #stage .current-top{padding-bottom:14px;margin-bottom:18px;border-bottom:2px dashed var(--card-border);justify-content:center}
+html[data-theme=sunset] #stage .equalizer{display:none}
+html[data-theme=sunset] #stage .state-tag{font-size:18px;border-radius:0;background:var(--accent);color:rgb(var(--card-rgb));border:3px double rgb(var(--card-rgb));letter-spacing:2px}
+html[data-theme=sunset] #stage .avatar{border:3px solid var(--accent);outline:1px solid var(--card-text);outline-offset:3px}
+html[data-theme=sunset] #stage .person-name{font-size:21px;font-weight:900;letter-spacing:1px}
+html[data-theme=sunset] #stage .ticket{font-family:Consolas,monospace;font-size:12px;font-weight:700;letter-spacing:2px}
+html[data-theme=sunset] #stage .live-queue-actions{border-top:2px dashed var(--card-border)}
+html[data-theme=sunset] #stage .live-next{border-radius:2px;border:4px double var(--accent);font-size:16px;font-weight:900;justify-content:center;letter-spacing:1px}
+html[data-theme=gold] #stage{font-family:Georgia,"Songti SC","SimSun",serif}
+html[data-theme=gold] #stage .review-card{border:1px solid var(--card-border);border-radius:7px;padding:24px;box-shadow:inset 0 0 0 4px rgb(var(--card-rgb)),0 5px 15px #0002}
+html[data-theme=gold] #stage .review-card::before{inset:6px;border:3px double var(--accent);border-radius:2px;background:repeating-linear-gradient(80deg,transparent 0 4px,#ffffff02 4px 5px)}
+html[data-theme=gold] #stage .current .person-line{flex-direction:column;text-align:center;gap:14px}
+html[data-theme=gold] #stage .current-top{justify-content:center}
+html[data-theme=gold] #stage .equalizer{display:none}
+html[data-theme=gold] #stage .state-tag{border-radius:0;border:3px double var(--accent);font-weight:400;font-size:18px;letter-spacing:4px}
+html[data-theme=gold] #stage .avatar{border:4px double var(--accent);outline:1px solid var(--card-border);outline-offset:5px;background:rgb(var(--card-rgb));color:var(--accent)}
+html[data-theme=gold] #stage .person-name{font-family:Georgia,"Songti SC","SimSun",serif;font-weight:700;letter-spacing:2px}
+html[data-theme=gold] #stage .ticket{font-family:Georgia,serif;font-style:italic;letter-spacing:3px;font-size:12px}
+html[data-theme=gold] #stage .live-queue-actions{border-top:1px solid var(--accent)}
+html[data-theme=gold] #stage .live-next{font-family:Georgia,"Songti SC","SimSun",serif;border:3px double var(--accent);border-radius:25px;justify-content:center;font-size:16px;letter-spacing:2px}
+.theme-choice[data-theme=cream]{border-style:dashed;border-radius:16px}.theme-choice[data-theme=neon]{border-radius:2px;box-shadow:inset 3px 0 var(--sw-accent)}.theme-choice[data-theme=pixel]{border-radius:0;border-width:3px;border-style:double;font-family:Consolas,"SimHei",monospace}.theme-choice[data-theme=sakura]{border-radius:16px 5px;font-family:Georgia,"KaiTi",serif}.theme-choice[data-theme=ocean]{border-radius:25px;border-style:double;border-width:3px}.theme-choice[data-theme=sunset]{border:3px double var(--sw-accent);border-radius:4px}.theme-choice[data-theme=gold]{border:3px double var(--sw-accent);font-family:Georgia,"SimSun",serif}
+</style><script>// Keep the transparent iframe in the embedder's used color scheme. A mismatch
+// can make Chromium paint an opaque canvas even when CSS backgrounds are clear.
+(function(root){
+ 'use strict';
+ const html=document.documentElement;
+ let frame=null,host=null,capture=!!root.obsstudio;
+ try{frame=root.frameElement;if(frame){host=root.parent;capture=capture||!!host.obsstudio;}}catch(_){frame=null;host=null;}
+ function sync(){
+  let scheme='normal';
+  try{if(frame&&host){const declared=host.getComputedStyle(frame).colorScheme;const dark=/\bdark\b/.test(declared),light=/\blight\b/.test(declared);scheme=dark&&(!light||host.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':light?'light':'normal';}}catch(_){}
+  html.style.colorScheme=scheme;
+ }
+ sync();
+ let observer=null,media=null;
+ function connect(){
+  if(!host||!frame)return;
+  observer?.disconnect();observer=new MutationObserver(sync);
+  const options={attributes:true,attributeFilter:['style','class','data-theme']};
+  observer.observe(frame,options);observer.observe(host.document.documentElement,options);if(host.document.body)observer.observe(host.document.body,options);
+  media=host.matchMedia('(prefers-color-scheme: dark)');media.addEventListener?.('change',sync);
+ }
+ try{connect();}catch(_){}
+ root.addEventListener('load',sync);
+ root.addEventListener('pagehide',()=>{observer?.disconnect();media?.removeEventListener?.('change',sync);});
+ root.addEventListener('pageshow',e=>{if(e.persisted){sync();try{connect();}catch(_){}}});
+ root.ReviewSurface=Object.freeze({capture,sync});
+})(window);
+</script></head>
+<body>
+<!-- BYSL · 锐评候场室 · 单文件签名 / v1.9.0 / 2026-09-20 -->
+<span hidden aria-hidden="true" data-bysl-signature="review-queue-v1">BYSL</span>
+<main id="canvas" aria-label="透明直播画面">
+ <section id="stage" aria-label="锐评队列"><button id="stage-move" class="stage-handle stage-move" type="button" aria-label="拖动整个队列" title="按住拖动整个队列；方向键微调">✥</button><header class="stage-heading"><h1 id="stage-title">锐评候场室</h1><span id="waiting-count"></span></header><div id="cards"></div><button id="stage-resize" class="stage-handle stage-resize" type="button" aria-label="缩放整个队列" title="按住等比例调整大小；方向键微调">↘</button></section>
+ <button id="open-panel" class="launcher" title="打开控制台，也可双击空白处或按 Esc">☷ 控制台</button>
+ <div id="preview-label">透明画面 · 关闭控制台即可上屏</div>
+</main>
+<aside id="panel" aria-label="主播控制台" hidden>
+ <header class="panel-header"><div><h2>控制台</h2><div class="connection"><i id="connection-dot"></i><span id="connection-status">正在启动</span></div></div><div class="panel-tools"><button id="menu-smaller" type="button" aria-label="缩小控制台字号" title="缩小控制台字号">A−</button><button id="menu-larger" type="button" aria-label="放大控制台字号" title="放大控制台字号">A＋</button><button id="close-panel" class="icon-button" aria-label="关闭控制台">×</button></div></header>
+ <nav id="tabs" aria-label="控制台分类"></nav>
+ <div id="storage-warning" class="warning" hidden></div>
+ <div id="panel-content"></div>
+ <footer class="panel-footer"><button id="next-btn" class="primary">完成并下一位 <span>→</span></button><button id="finish-btn">只完成</button></footer>
+</aside>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="modal"><div id="modal-content"></div></dialog>
+<input id="image-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+<input id="backup-file" type="file" accept=".json,application/json" hidden>
+<script>(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ReviewThemes=api;})(globalThis,function(){
+  'use strict';
+  const themes=[
+    {id:'glass',name:'简约玻璃',accent:'#86e4c4',background:'#13272d',text:'#f6f8f7',border:'#86e4c4',radius:22,motif:'✦'},
+    {id:'cream',name:'奶油手账',accent:'#d99a68',background:'#fff3de',text:'#624737',border:'#d7b998',radius:34,motif:'✿'},
+    {id:'neon',name:'霓虹电玩',accent:'#b7ff56',background:'#211438',text:'#f4eeff',border:'#b37aff',radius:3,motif:'⚡'},
+    {id:'pixel',name:'暗黑像素',accent:'#ed848e',background:'#1b2024',text:'#e8e5de',border:'#879795',radius:0,motif:'✚'},
+    {id:'sakura',name:'樱花来信',accent:'#c85987',background:'#fff0f5',text:'#733e58',border:'#e4a3be',radius:30,motif:'❀'},
+    {id:'ocean',name:'深海蓝调',accent:'#78cfff',background:'#112e50',text:'#edf7ff',border:'#639dcc',radius:58,motif:'◇'},
+    {id:'sunset',name:'落日橘光',accent:'#ffd08a',background:'#703e39',text:'#fff2e4',border:'#ffba86',radius:8,motif:'☀'},
+    {id:'gold',name:'纸感黑金',accent:'#e3c082',background:'#252320',text:'#f7eddc',border:'#bda277',radius:7,motif:'✧'}
+  ];
+  const artBodies={
+    'glass-1':'<path d="M32 3 40 23 60 32 40 41 32 61 24 41 4 32 24 23Z" fill="var(--accent)"/><path d="m32 12 5 16 15 4-15 4-5 16-5-16-15-4 15-4Z" fill="var(--card-text)" opacity=".7"/><path d="M32 12v40M12 32h40" opacity=".5"/>',
+    'glass-2':'<circle cx="32" cy="32" r="21" fill="rgba(var(--card-rgb),.7)"/><ellipse cx="32" cy="32" rx="29" ry="10" fill="none" transform="rotate(-28 32 32)"/><circle cx="48" cy="16" r="6" fill="var(--accent)"/><circle cx="24" cy="26" r="5" fill="var(--card-text)" opacity=".55"/>',
+    'cream-1':'<circle cx="15" cy="15" r="10" fill="#f4c999"/><circle cx="49" cy="15" r="10" fill="#f4c999"/><path d="M7 34C7 10 57 10 57 34v7C56 59 8 59 7 41Z" fill="#ffe4bf"/><ellipse cx="32" cy="42" rx="13" ry="10" fill="#fff5df" stroke="none"/><g fill="#6f4a31" stroke="none"><circle cx="22" cy="31" r="2.5"/><circle cx="42" cy="31" r="2.5"/><ellipse cx="32" cy="38" rx="4" ry="3"/></g><path d="M32 41v4m-5 0q5 5 10 0" fill="none" stroke="#6f4a31"/><g fill="#edab9c" stroke="none"><ellipse cx="15" cy="39" rx="5" ry="3"/><ellipse cx="49" cy="39" rx="5" ry="3"/></g>',
+    'cream-2':'<path d="M29 27Q8 5 6 18v27q10 11 23-9m6-9Q56 5 58 18v27Q48 56 35 36" fill="var(--accent)"/><path d="m27 37-8 22 12-7 6 7 3-22" fill="var(--card-text)"/><rect x="25" y="24" width="14" height="18" rx="5" fill="#ffe7d2"/><path d="m11 24 12 8-12 9m42-17-12 8 12 9" fill="none" opacity=".7"/>',
+    'neon-1':'<path d="m35 3-24 34h19l-5 24L55 24H36L43 3Z" fill="var(--accent)"/><path d="m31 18-9 13h18l-4 14" fill="none" stroke="var(--card-text)"/>',
+    'neon-2':'<path d="M11 19h42l7 27-8 6-10-10H22L12 52l-8-6Z" fill="rgb(var(--card-rgb))"/><path d="M15 31h14m-7-7v14" stroke="var(--accent)" stroke-width="5"/><g fill="var(--accent)"><circle cx="44" cy="28" r="3"/><circle cx="51" cy="35" r="3"/></g><path d="m28 20 4-9h12" fill="none"/>',
+    'pixel-1':'<path d="M16 7h32v7h7v29h-8v14h-9v-8H26v8h-9V43H9V14h7Z" fill="var(--card-text)"/><path d="M17 23h12v13H17zm20 0h12v13H37zm-9 16h9v7h-9z" fill="rgb(var(--card-rgb))" stroke="none"/>',
+    'pixel-2':'<path d="M6 12h16v7h20v-7h16v23h-7v8h-8v8H32v8h-1v-8H21v-8h-8v-8H6Z" fill="var(--accent)"/><path d="M13 19h8v8h-8z" fill="var(--card-text)" stroke="none"/>',
+    'sakura-1':'<g fill="var(--accent)"><path d="M32 31Q11 21 14 10q12-5 18 15Q37 4 49 9q6 12-11 22Q59 23 61 36q-5 12-23 1Q48 57 35 61q-13-2-6-23Q9 50 3 38q0-13 22-7Z"/></g><circle cx="32" cy="32" r="7" fill="#ffdf86" stroke="none"/><path d="m32 17 0 8m13 4-7 1m0 10 4 7m-18-6-5 4m1-16 7 1" stroke="var(--card-text)" stroke-width="1.4"/>',
+    'sakura-2':'<rect x="5" y="14" width="54" height="40" rx="4" fill="var(--card-text)"/><path d="m7 16 25 20 25-20M7 52l20-18m30 18L38 34" fill="none" stroke="var(--accent)"/><path d="M32 43c-17-9-11-20 0-12 11-8 17 3 0 12" fill="var(--accent)" stroke="none"/>',
+    'ocean-1':'<circle cx="32" cy="11" r="7" fill="none"/><path d="M32 18v40M18 26h28M8 39q0 17 24 19 24-2 24-19M5 47l3-10 10 4m28 0 10-4 3 10" fill="none" stroke="var(--accent)" stroke-width="5"/>',
+    'ocean-2':'<path d="M28 56 6 34Q0 15 16 15 20 0 32 8 45 0 49 15 64 15 58 34L37 56Z" fill="var(--accent)"/><path d="m32 51-16-30m16 30V13m0 38 17-30m-17 30L8 32m24 19 25-19" fill="none" stroke="rgb(var(--card-rgb))" stroke-width="1.5"/><path d="M24 54h16v7H24Z" fill="var(--card-text)"/>',
+    'sunset-1':'<circle cx="32" cy="32" r="15" fill="var(--accent)"/><path d="M32 3v8m0 42v8M3 32h8m42 0h8M11 11l6 6m30 30 6 6m0-42-6 6M17 47l-6 6M21 5l3 8m16 38 3 8M5 21l8 3m38 16 8 3M43 5l-3 8M24 51l-3 8M5 43l8-3m38-16 8-3" fill="none" stroke="var(--accent)" stroke-width="3"/>',
+    'sunset-2':'<path d="M3 51 24 16 39 36l9-13 13 28Z" fill="var(--accent)"/><path d="m15 32 9-16 10 15-10-4Zm27 0 6-9 6 10-6-3Z" fill="var(--card-text)" stroke="none"/><path d="M4 58h56" stroke="var(--card-text)"/>',
+    'gold-1':'<path d="M27 58Q1 42 17 9m20 49Q63 42 47 9" fill="none"/><g fill="var(--accent)"><ellipse cx="15" cy="17" rx="5" ry="9" transform="rotate(-30 15 17)"/><ellipse cx="10" cy="31" rx="5" ry="9" transform="rotate(-50 10 31)"/><ellipse cx="16" cy="45" rx="5" ry="9" transform="rotate(-55 16 45)"/><ellipse cx="49" cy="17" rx="5" ry="9" transform="rotate(30 49 17)"/><ellipse cx="54" cy="31" rx="5" ry="9" transform="rotate(50 54 31)"/><ellipse cx="48" cy="45" rx="5" ry="9" transform="rotate(55 48 45)"/></g><path d="m32 16 4 10 11 1-8 7 2 11-9-6-9 6 2-11-8-7 11-1Z" fill="var(--card-text)"/>',
+    'gold-2':'<path d="m32 3 8 5 10 0 4 9 7 7-3 10 1 10-9 5-6 9-11-1-10 4-7-8-10-4 0-10-4-9 6-8 3-10 11-1Z" fill="var(--accent)"/><circle cx="32" cy="32" r="19" fill="rgb(var(--card-rgb))"/><circle cx="32" cy="32" r="15" fill="none"/><path d="m32 20 3 8 9 1-7 6 2 9-7-5-7 5 2-9-7-6 9-1Z" fill="var(--accent)" stroke="none"/>'
+  };
+  const artNames={'glass-1':'水晶星芒','glass-2':'星环','cream-1':'奶油小熊','cream-2':'蝴蝶结','neon-1':'能量闪电','neon-2':'电玩手柄','pixel-1':'像素骷髅','pixel-2':'像素爱心','sakura-1':'樱花','sakura-2':'情书信封','ocean-1':'船锚','ocean-2':'贝壳','sunset-1':'复古太阳','sunset-2':'落日山峰','gold-1':'月桂徽章','gold-2':'火漆印章'};
+  function ornament(id){if(!Object.prototype.hasOwnProperty.call(artBodies,id))return '';return '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;width:100%;height:100%;overflow:visible"><g stroke="var(--card-border)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+artBodies[id]+'</g></svg>';}
+  function ornamentName(id){return artNames[id]||'主题装饰';}
+  const clone=v=>JSON.parse(JSON.stringify(v));
+  function defaults(){
+    const template=(t,type)=>[{id:t.id+'-'+type+'-1',kind:'builtin',value:t.id+'-1',edge:'top',position:91,width:type==='current'?46:30,rotation:12,z:2,hidden:false},{id:t.id+'-'+type+'-2',kind:'builtin',value:t.id+'-2',edge:'left',position:87,width:type==='current'?32:24,rotation:-12,z:2,hidden:false}];
+    return Object.fromEntries(themes.map(t=>[t.id,{accent:t.accent,background:t.background,text:t.text,border:t.border,opacity:88,decorations:{current:template(t,'current'),waiting:template(t,'waiting')}}]));
+  }
+  function settings(){return {theme:'glass',title:'锐评候场室',reviewingLabel:'正在评价',layout:'vertical',width:380,gap:12,visible:5,x:8,y:8,scale:1,menuFont:18,showEmpty:true,showSource:false,motion:'system',skins:defaults()};}
+  const color=v=>typeof v==='string'&&/^#[\da-f]{6}$/i.test(v);
+  const safeImage=v=>typeof v==='string'&&((/^https?:\/\//i.test(v)&&v.length<=4096)||(/^data:image\/(png|jpeg|webp|gif);base64,[a-z\d+/=\s]+$/i.test(v)&&v.length<=3000000));
+  const record=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
+  const edges=['top','right','bottom','left'];
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  function clampStagePosition({x,y,width,height,canvasWidth,canvasHeight}){
+    if(![x,y,width,height,canvasWidth,canvasHeight].every(Number.isFinite)||width<0||height<0||canvasWidth<=0||canvasHeight<=0)throw Error('整组位置或画布尺寸无效');
+    const bound=(size,canvas)=>size>=canvas?0:Math.min(90,(canvas-size)/canvas*100);
+    return {x:clamp(x,0,bound(width,canvasWidth)),y:clamp(y,0,bound(height,canvasHeight))};
+  }
+  function resizeStageScale({startScale,width,height,dx,dy}){
+    if(![startScale,width,height,dx,dy].every(Number.isFinite)||startScale<.5||startScale>2.5||width<=0||height<=0)throw Error('整组缩放参数无效');
+    // Project physical pointer movement onto the unscaled stage diagonal.
+    // Normalize dimensions before multiplying so large finite sizes stay safe.
+    const magnitude=Math.max(width,height),w=width/magnitude,h=height/magnitude;
+    const delta=((dx*w/2+dy*h/2)/magnitude)*(2/(w*w+h*h));
+    return Math.round((clamp(startScale+delta,.5,2.5)+Number.EPSILON)*100)/100;
+  }
+  function geometry(width,height,radius,border){
+    if(!Number.isFinite(width)||width<=0||!Number.isFinite(height)||height<=0||!Number.isFinite(radius)||radius<0||!Number.isFinite(border)||border<0||border>Math.min(width,height))throw Error('卡片边框尺寸无效');
+    const inset=border/2;
+    const start=Math.max(inset,Math.min(radius,Math.min(width,height)/2));
+    return {inset,start,width,height};
+  }
+  // Coordinates are local to the border box. Percentages increase left-to-right
+  // on top/bottom, and top-to-bottom on left/right, between rounded tangencies.
+  function edgePoint(edge,position,width,height,radius=0,border=1){
+    if(!edges.includes(edge)||!Number.isFinite(position)||position<0||position>100)throw Error('挂件边缘位置无效');
+    const g=geometry(width,height,radius,border);
+    if(edge==='top'||edge==='bottom')return {x:g.start+(width-2*g.start)*(position/100),y:edge==='top'?g.inset:height-g.inset};
+    return {x:edge==='left'?g.inset:width-g.inset,y:g.start+(height-2*g.start)*(position/100)};
+  }
+  function snapEdge(x,y,width,height,radius=0,border=1){
+    if(!Number.isFinite(x)||!Number.isFinite(y))throw Error('拖动位置无效');
+    const g=geometry(width,height,radius,border);
+    let nearest=null;
+    for(const edge of edges){
+      const horizontal=edge==='top'||edge==='bottom';
+      const span=(horizontal?width:height)-2*g.start;
+      const coordinate=clamp(horizontal?x:y,g.start,(horizontal?width:height)-g.start);
+      const position=span>0?clamp((coordinate-g.start)/span*100,0,100):50;
+      const point=edgePoint(edge,position,width,height,radius,border);
+      const distance=Math.hypot(x-point.x,y-point.y);
+      if(nearest===null||distance<nearest.distance)nearest={edge,position,distance};
+    }
+    return {edge:nearest.edge,position:nearest.position};
+  }
+  function decorationList(raw,legacy=false){
+    if(!Array.isArray(raw)||raw.length>24)throw Error('每种卡片模板最多 24 个挂件');
+    const ids=new Set();
+    return raw.map(a=>{
+      if(!record(a)||typeof a.id!=='string'||!a.id.trim()||a.id.length>100||ids.has(a.id))throw Error('挂件编号无效');ids.add(a.id);
+      if(!['text','image','builtin'].includes(a.kind)||(a.kind==='builtin'&&!Object.prototype.hasOwnProperty.call(artBodies,a.value))||(a.kind==='image'&&!safeImage(a.value))||(a.kind==='text'&&(typeof a.value!=='string'||a.value.length>12)))throw Error('挂件内容无效');
+      for(const [k,min,max]of [['width',16,400],['rotation',-180,180],['z',0,9]])if(!Number.isFinite(a[k])||a[k]<min||a[k]>max)throw Error('挂件大小、旋转或层级无效');
+      if(typeof a.hidden!=='boolean')throw Error('挂件显示设置须为布尔值');
+      let anchor;
+      if(legacy){
+        if(!Number.isFinite(a.x)||a.x< -20||a.x>120||!Number.isFinite(a.y)||a.y< -20||a.y>120)throw Error('旧版挂件位置无效');
+        anchor=snapEdge(a.x,a.y,100,100,0,0);
+      }else{
+        if(!edges.includes(a.edge)||!Number.isFinite(a.position)||a.position<0||a.position>100)throw Error('挂件须位于卡片边框');
+        anchor={edge:a.edge,position:a.position};
+      }
+      const out={id:a.id,kind:a.kind,value:a.value,...anchor,width:a.width,rotation:a.rotation,z:a.z,hidden:a.hidden};
+      if(a.name!==undefined){if(typeof a.name!=='string'||a.name.length>100)throw Error('挂件名称无效');out.name=a.name;}
+      return out;
+    });
+  }
+  function validate(raw){
+    if(!raw||typeof raw!=='object'||!themes.some(t=>t.id===raw.theme))throw Error('主题设置无效');
+    const s=settings();s.theme=raw.theme;
+    if(raw.scale!==undefined){if(!Number.isFinite(raw.scale)||raw.scale<.5||raw.scale>2.5)throw Error('整组缩放须在 0.5–2.5 倍');s.scale=raw.scale;}
+    if(raw.menuFont!==undefined){if(!Number.isInteger(raw.menuFont)||raw.menuFont<16||raw.menuFont>28)throw Error('菜单字号须为 16–28 的整数');s.menuFont=raw.menuFont;}
+    if(raw.reviewingLabel!==undefined){if(typeof raw.reviewingLabel!=='string'||!raw.reviewingLabel.trim()||raw.reviewingLabel.length>20)throw Error('评价状态文字须为 1–20 个字符');s.reviewingLabel=raw.reviewingLabel.trim();}
+    const nums={width:[240,760],gap:[0,40],visible:[1,20],x:[0,90],y:[0,90]};
+    for(const [k,[min,max]]of Object.entries(nums)){if(!Number.isFinite(raw[k])||raw[k]<min||raw[k]>max)throw Error('布局数值无效：'+k);s[k]=raw[k];}
+    if(!['vertical','horizontal'].includes(raw.layout)||!['on','system','off'].includes(raw.motion))throw Error('布局或动画设置无效');
+    s.layout=raw.layout;s.motion=raw.motion;s.title=String(raw.title||'').slice(0,40);s.showEmpty=raw.showEmpty!==false;s.showSource=raw.showSource===true;
+    for(const t of themes){const skin=raw.skins&&raw.skins[t.id];if(!skin)throw Error('缺少主题配置');
+      for(const k of ['accent','background','text','border']){if(!color(skin[k]))throw Error('主题颜色无效');s.skins[t.id][k]=skin[k];}
+      if(!Number.isFinite(skin.opacity)||skin.opacity<0||skin.opacity>100)throw Error('不透明度须在 0–100%');s.skins[t.id].opacity=skin.opacity;
+      if(Object.prototype.hasOwnProperty.call(skin,'decorations')){
+        if(!record(skin.decorations))throw Error('卡片挂件模板格式无效');
+        s.skins[t.id].decorations={current:decorationList(skin.decorations.current),waiting:decorationList(skin.decorations.waiting)};
+      }else{
+        const migrated=decorationList(skin.stickers,true);
+        s.skins[t.id].decorations={current:migrated,waiting:clone(migrated)};
+      }
+      for(const kind of ['current','waiting'])for(const a of s.skins[t.id].decorations[kind]){const match=a.id.match(new RegExp('^'+t.id+'(?:-current|-waiting)?-([12])$'));if(match&&a.kind==='text'&&a.value===t.motif){a.kind='builtin';a.value=t.id+'-'+match[1];}}
+    }return s;
+  }
+  return {themes,defaults,settings,validate,color,safeImage,clone,ornament,ornamentName,edgePoint,snapEdge,clampStagePosition,resizeStageScale};
+});
+</script><script>/* ReviewEngine v1 — dependency-free UMD / CommonJS immutable queue.
+ * createState(): {version:1,current:null,waiting:[],history:[],serial:0,
+ *   revision:0,profiles:[],pending:[],undo:null}. Optional paused:true is
+ * persisted after finish({advance:false}); start clears it.
+ * Person: {key,uid,name,avatar,note}. key is required, stable and supplied by
+ * the caller; missing platform IDs require unique anonymous caller keys.
+ * Entry adds {id,ticket,round,priority,source,joinedAt}; history adds
+ * {status:'completed'|'removed',endedAt}. Profiles are separate bookmarks.
+ * apply(state,action) validates and returns a fresh state (including no-ops),
+ * or throws a Chinese error. join/repeat/priority: person, opportunities=1
+ * (repeat only, 1..20), source='', now=Date.now(). First arrival starts unless
+ * paused. Ordinary duplicates are no-ops. Priority promotes earliest waiting
+ * opportunity into a FIFO priority block without preempting current. repeat
+ * always adds ordinary opportunities at the entire waiting queue's end.
+ * finish: advance boolean (default true), now; start; remove: id, now
+ * (removing current pauses until start, avoiding accidental queue jumping);
+ * move: id,direction (-1|1), within same priority class; edit: id,name?,note?;
+ * profile: person (upsert); forgetProfile:key; pendingAdd:gift,reason;
+ * pendingRemove:id; undo. Stored bookmark fields override future gift fields.
+ * Undo compensates latest finish, retains later arrivals/profiles/pending,
+ * and rejects after conflicting queue edits/start. Completion replaces the
+ * prior undo with a new one. Undo is a single level, not a state snapshot.
+ * validate(raw) strips unknown fields; rejects invalid records/unsafe avatar
+ * URLs/nonfinite numbers/duplicate IDs; returns deep-owned bounded data.
+ * Limits: active 500, history 2000, profiles 500, pending 200; no silent loss.
+ */
+(function(root,factory){
+ 'use strict';
+ if(typeof module==='object'&&module.exports) module.exports=factory();
+ else root.ReviewEngine=factory();
+})(typeof globalThis!=='undefined'?globalThis:this,function(){
+ 'use strict';
+ const LIMIT={active:500,history:2000,profiles:500,pending:200};
+ const fail=m=>{throw new Error(m);};
+ const object=(v,label)=>{if(!v||typeof v!=='object'||Array.isArray(v))fail(label+'格式无效');return v;};
+ function str(v,label,max,required=false){if(v===undefined&&!required)return '';if(typeof v!=='string'||v.length>max||(required&&!v.trim()))fail(label+'格式或长度无效');return v;}
+ function integer(v,label,min=0,max=Number.MAX_SAFE_INTEGER-1){if(!Number.isSafeInteger(v)||v<min||v>max)fail(label+'必须是有效整数');return v;}
+ function bool(v,label){if(typeof v!=='boolean')fail(label+'必须是布尔值');return v;}
+ function stamp(v){if(typeof v!=='number'||!Number.isFinite(v)||v<0||v>8640000000000000)fail('时间无效');return v;}
+ function avatar(v){v=str(v,'头像',2800000);if(v&&!/^(https?:\/\/[^\s]+|data:image\/(?:png|jpeg|webp|gif);base64,[a-zA-Z0-9+/=\r\n]+)$/i.test(v))fail('头像地址无效，仅允许 HTTP(S) 或内嵌图片');return v;}
+ function person(v){object(v,'用户');return {key:str(v.key,'用户标识',200,true),uid:str(v.uid,'用户 ID',200),name:str(v.name,'昵称',200),avatar:avatar(v.avatar),note:str(v.note,'备注',2000)};}
+ function entry(v,historical){object(v,'排队记录');const p=person(v);p.id=str(v.id,'记录 ID',200,true);p.ticket=integer(v.ticket,'排队编号',1);p.round=integer(v.round,'机会次数',1);p.priority=bool(v.priority,'优先状态');p.source=str(v.source,'来源',200);p.joinedAt=stamp(v.joinedAt);if(historical){if(v.status!=='completed'&&v.status!=='removed')fail('历史状态无效');p.status=v.status;p.endedAt=stamp(v.endedAt);}return p;}
+ function list(v,label,max,map){if(!Array.isArray(v)||v.length>max)fail(label+'格式无效或超过 '+max+' 条上限');return v.map(map);}
+ function jsonValue(v,depth=0,budget={n:0}){
+  if(++budget.n>2000||depth>8)fail('待处理礼物内容过大或层级过深');
+  if(v===null||typeof v==='boolean')return v;
+  if(typeof v==='string')return str(v,'礼物字段',10000);
+  if(typeof v==='number'){if(!Number.isFinite(v))fail('礼物数值无效');return v;}
+  if(Array.isArray(v))return v.map(x=>jsonValue(x,depth+1,budget));
+  object(v,'礼物');const out={};for(const k of Object.keys(v)){if(['__proto__','constructor','prototype'].includes(k))fail('礼物字段无效');if(k.length>200)fail('礼物字段过长');out[k]=jsonValue(v[k],depth+1,budget);}return out;
+ }
+ function pending(v){object(v,'待处理记录');const gift=jsonValue(v.gift);if(JSON.stringify(gift).length>64000)fail('待处理礼物过大');return {id:str(v.id,'待处理 ID',200,true),gift,reason:str(v.reason,'待处理原因',1000,true)};}
+ function createState(){return {version:1,current:null,waiting:[],history:[],serial:0,revision:0,profiles:[],pending:[],undo:null};}
+ function validate(raw){
+  object(raw,'存档');if(raw.version!==1)fail('不支持此存档版本');
+  const s=createState();s.serial=integer(raw.serial,'序号');s.revision=integer(raw.revision,'修订号');
+  s.current=raw.current===null?null:entry(raw.current,false);
+  s.waiting=list(raw.waiting,'等待队列',LIMIT.active,x=>entry(x,false));
+  if(s.waiting.length+(s.current?1:0)>LIMIT.active)fail('活动队列超过 500 条上限');
+  s.history=list(raw.history,'历史',LIMIT.history,x=>entry(x,true));
+  s.profiles=list(raw.profiles,'资料',LIMIT.profiles,person);s.pending=list(raw.pending,'待处理',LIMIT.pending,pending);
+  if(raw.paused!==undefined)s.paused=bool(raw.paused,'暂停状态');
+  if(s.paused&&s.current)fail('暂停状态与正在评价记录冲突');
+  const ids=new Set(),tickets=new Set();for(const p of [s.current,...s.waiting,...s.history].filter(Boolean)){if(ids.has(p.id)||tickets.has(p.ticket))fail('存在重复排队记录');if(p.ticket>s.serial)fail('排队序号超出存档序号');ids.add(p.id);tickets.add(p.ticket);}
+  let ordinary=false;for(const p of s.waiting){if(!p.priority)ordinary=true;else if(ordinary)fail('优先队列顺序无效');}
+  for(const [items,field,label] of [[s.profiles,'key','收藏资料'],[s.pending,'id','待处理记录']]){const seen=new Set();for(const p of items){if(seen.has(p[field]))fail(label+'重复');seen.add(p[field]);}}
+  if(raw.undo!==null){const u=object(raw.undo,'撤销记录');s.undo={entry:entry(u.entry,false),nextId:u.nextId===null?null:str(u.nextId,'撤销下一位 ID',200,true),previousPaused:bool(u.previousPaused,'撤销暂停状态'),historyId:str(u.historyId,'撤销历史 ID',200,true),valid:bool(u.valid,'撤销状态')};
+   if(s.undo.valid){const h=s.history.find(p=>p.id===s.undo.historyId);if(!h||h.status!=='completed'||h.id!==s.undo.entry.id||JSON.stringify(entry(h,false))!==JSON.stringify(s.undo.entry)||(s.current?.id||null)!==s.undo.nextId)fail('撤销记录与队列不一致');}
+  }
+  return s;
+ }
+ function apply(raw,action){
+  const s=validate(raw);object(action,'操作');const type=action.type;
+  const now=()=>stamp(action.now===undefined?Date.now():action.now);
+  const active=()=>[s.current,...s.waiting].filter(Boolean);
+  const invalidate=()=>{if(s.undo)s.undo.valid=false;};
+  const changed=()=>{s.revision=integer(s.revision+1,'修订号');return s;};
+  const capacity=n=>{if(active().length+n>LIMIT.active)fail('活动队列最多 500 条，请先处理现有记录');};
+  const priorityEnd=()=>{const i=s.waiting.findIndex(p=>!p.priority);return i<0?s.waiting.length:i;};
+  const add=(p,priority,time)=>{
+   s.serial=integer(s.serial+1,'序号',1);const records=[...active(),...s.history];
+   const round=integer(1+Math.max(0,...records.filter(x=>x.key===p.key).map(x=>x.round)),'机会次数',1);
+   let id='q-'+s.serial;const ids=new Set(records.map(x=>x.id));let suffix=0;while(ids.has(id))id='q-'+s.serial+'-'+(++suffix);
+   const e={...p,id,ticket:s.serial,round,priority,source:str(action.source,'来源',200),joinedAt:time};
+   if(!s.current&&!s.paused){s.current=e;if(s.undo&&s.undo.valid)s.undo.nextId=e.id;}
+   else if(priority)s.waiting.splice(priorityEnd(),0,e);else s.waiting.push(e);
+  };
+  const historyAdd=(p,status,time)=>{if(s.history.length>=LIMIT.history)fail('历史最多 2000 条，请先导出并整理记录');s.history.push({...p,status,endedAt:time});};
+  if(type==='join'||type==='repeat'||type==='priority'){
+   let p=person(action.person);const saved=s.profiles.find(x=>x.key===p.key);if(saved)p={...saved};
+   const time=now();const opportunities=integer(action.opportunities===undefined?1:action.opportunities,'机会数',1,20);
+   if(type!=='repeat'&&opportunities!==1)fail('普通排队和插队每次只处理一次机会');
+   str(action.source,'来源',200);
+   if(type==='join'&&active().some(x=>x.key===p.key))return s;
+   if(type==='priority'){const i=s.waiting.findIndex(x=>x.key===p.key);if(i>=0){if(s.waiting[i].priority)return s;invalidate();const e=s.waiting.splice(i,1)[0];e.priority=true;s.waiting.splice(priorityEnd(),0,e);return changed();}}
+   const count=type==='repeat'?opportunities:1;capacity(count);for(let i=0;i<count;i++)add(p,type==='priority',time);return changed();
+  }
+  if(type==='finish'){
+   if(!s.current)fail('当前没有正在评价的观众');const advance=action.advance===undefined?true:bool(action.advance,'自动下一位');
+   const e=s.current;const previousPaused=!!s.paused;historyAdd(e,'completed',now());s.current=advance?(s.waiting.shift()||null):null;s.paused=!advance;
+   s.undo={entry:e,nextId:s.current?.id||null,previousPaused,historyId:e.id,valid:true};return changed();
+  }
+  if(type==='start'){if(s.current)return s;if(!s.waiting.length)fail('等待队列为空');invalidate();s.current=s.waiting.shift();s.paused=false;return changed();}
+  if(type==='undo'){
+   const u=s.undo;if(!u||!u.valid)fail('无法撤销：没有可撤销完成，或队列已发生冲突修改');
+   if((s.current?.id||null)!==u.nextId)fail('无法撤销：当前观众已变化');capacity(1);
+   const i=s.history.findIndex(x=>x.id===u.historyId&&x.status==='completed');if(i<0)fail('无法撤销：完成记录已变化');
+   if(s.current){const e=s.current;if(e.priority)s.waiting.unshift(e);else s.waiting.splice(priorityEnd(),0,e);}
+   s.current=u.entry;s.history.splice(i,1);s.paused=u.previousPaused;s.undo=null;return changed();
+  }
+  if(type==='remove'||type==='move'||type==='edit'){
+   const id=str(action.id,'记录 ID',200,true);const i=s.waiting.findIndex(x=>x.id===id);const isCurrent=s.current?.id===id;const e=isCurrent?s.current:s.waiting[i];if(!e)fail('找不到这条排队记录');
+   if(type==='remove'){historyAdd(e,'removed',now());if(isCurrent){s.current=null;s.paused=true;}else s.waiting.splice(i,1);invalidate();return changed();}
+   if(type==='move'){if(isCurrent)fail('正在评价的观众不能移动');if(action.direction!==-1&&action.direction!==1)fail('移动方向无效');const j=i+action.direction;if(j<0||j>=s.waiting.length)return s;if(e.priority!==s.waiting[j].priority)fail('不能跨越优先区移动');[s.waiting[i],s.waiting[j]]=[s.waiting[j],s.waiting[i]];invalidate();return changed();}
+   if(action.name!==undefined)e.name=str(action.name,'昵称',200);if(action.note!==undefined)e.note=str(action.note,'备注',2000);invalidate();return changed();
+  }
+  if(type==='profile'){const p=person(action.person);const i=s.profiles.findIndex(x=>x.key===p.key);if(i<0){if(s.profiles.length>=LIMIT.profiles)fail('收藏资料最多 500 条');s.profiles.push(p);}else s.profiles[i]=p;return changed();}
+  if(type==='forgetProfile'){const key=str(action.key,'用户标识',200,true);const i=s.profiles.findIndex(x=>x.key===key);if(i<0)return s;s.profiles.splice(i,1);return changed();}
+  if(type==='pendingAdd'){if(s.pending.length>=LIMIT.pending)fail('待处理记录最多 200 条');const id='p-'+(s.revision+1);if(s.pending.some(p=>p.id===id))fail('待处理记录编号冲突');s.pending.push(pending({id,gift:action.gift,reason:action.reason}));return changed();}
+  if(type==='pendingRemove'){const id=str(action.id,'待处理 ID',200,true);const i=s.pending.findIndex(x=>x.id===id);if(i<0)return s;s.pending.splice(i,1);return changed();}
+  fail('未知操作类型');
+ }
+ function queuePosition(state,id){
+  if(state.current?.id===id)return {position:1,ahead:0};
+  const index=state.waiting.findIndex(entry=>entry.id===id);
+  if(index<0)return null;
+  const position=index+1+(state.current?1:0);
+  return {position,ahead:position-1};
+ }
+ return Object.freeze({createState,apply,validate,queuePosition});
+});
+</script><script>(function (root, factory) {
+  const api = factory(root);
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.ReviewTransport = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (root) {
+  'use strict';
+  const MAX_COUNT = 10000;
+  const MAX_TEXT = 256;
+  const MAX_TRACKED = 2048;
+  const DEFAULT_TTL = 120000;
+  const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+
+  function first(sources, keys, includeNull = false) {
+    for (const source of sources) {
+      if (!record(source)) continue;
+      for (const key of keys) {
+        if (source[key] !== undefined && (includeNull || source[key] !== null)) return source[key];
+      }
+    }
+    return undefined;
+  }
+
+  function text(value, fallback = '') {
+    if (typeof value === 'number') return Number.isSafeInteger(value) && value >= 0 ? String(value) : fallback;
+    if (typeof value !== 'string') return fallback;
+    const trimmed = value.trim();
+    return trimmed && trimmed.length <= MAX_TEXT ? trimmed : fallback;
+  }
+
+  function avatarValue(value) {
+    if (record(value)) value = value.url_list || value.urlList || value.urls || value.url;
+    if (Array.isArray(value)) {
+      for (const candidate of value.slice(0, 10)) {
+        const url = avatarValue(candidate);
+        if (url) return url;
+      }
+      return '';
+    }
+    if (typeof value !== 'string') return '';
+    const url = value.trim();
+    if (!url || url.length > 4096 || /[\u0000-\u0020\u007f]/.test(url)) return '';
+    if (/^https?:\/\/[^/\s?#]+(?:[/?#]|$)/i.test(url)) return url;
+    return /^data:image\/(?:png|jpeg|gif|webp);base64,[a-z0-9+/]+={0,2}$/i.test(url) ? url : '';
+  }
+
+  function quantityText(value) {
+    if (value === null) return 'null';
+    if (typeof value === 'string') return value.replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, 100);
+    if (['number', 'boolean', 'bigint'].includes(typeof value)) return String(value).slice(0, 100);
+    return Array.isArray(value) ? '[数组]' : '[无效数量类型]';
+  }
+
+  // Matches installed Songlan 3.5.7 plugin-viewer.html sendTestEvent exactly:
+  // the host simulator supplies neither stable user IDs nor event IDs.
+  function createTestGift({ nickName, giftName, count } = {}) {
+    return { nickName: nickName || '测试用户', avatarUrl: '', giftName: giftName || '小心心', count: Number(count) || 1, giftIcon: '' };
+  }
+
+  function normalizeGift(message, trusted = false) {
+    if (!record(message)) return null;
+    if (!trusted) {
+      const type = first([message], ['type', 'msgType', 'method']);
+      if (typeof type !== 'string' && typeof type !== 'number') return null;
+      const kind = String(type).toLowerCase();
+      if (!kind.includes('gift') && kind !== '2') return null;
+    }
+    const data = record(message.data) ? message.data : null;
+    const messageGift = record(message.gift) ? message.gift : null;
+    const dataGift = data && record(data.gift) ? data.gift : null;
+    const sources = [message, messageGift, dataGift, data];
+    const rawName = first([message], ['giftName']) ?? first([messageGift, dataGift, data], ['giftName', 'name']) ?? message.name;
+    if (typeof rawName !== 'string') return null;
+    const name = text(rawName);
+    if (!name) return null;
+    const rawCount = first(sources, ['giftCount', 'count', 'comboCount', 'repeatCount', 'num'], true);
+    const validCountType = rawCount === undefined || typeof rawCount === 'number' || (typeof rawCount === 'string' && /^\d+$/.test(rawCount.trim()));
+    const numeric = rawCount === undefined ? 1 : validCountType ? Number(rawCount) : NaN;
+    const quantityIssue = !Number.isSafeInteger(numeric) || numeric < 1 ? '礼物数量不是有效正整数' : numeric > MAX_COUNT ? '礼物数量超过单次 10000 上限' : '';
+    const count = quantityIssue ? 0 : numeric;
+    const users = [message.user, data && data.user, message.userInfo, data && data.userInfo];
+    const top = [message, data];
+    const userId = text(first(users, ['id', 'userId', 'uid', 'user_id']) ?? first(top, ['userId', 'uid', 'user_id']));
+    // A top-level name is the gift name in several protocols, never a username.
+    const nickname = text(first(users, ['nickname', 'nickName', 'displayName', 'name', 'username', 'userName']) ?? first(top, ['nickname', 'nickName', 'displayName', 'username', 'userName']));
+    const avatar = avatarValue(first(users.concat(top), ['avatar', 'avatarUrl', 'avatar_url', 'avatar_thumb', 'avatarThumb', 'avatar_medium', 'avatarMedium', 'headImgUrl', 'head_img_url']));
+    const eventId = text(first(sources, ['eventId', 'event_id', 'msgId', 'msg_id']), null);
+    const comboId = text(first(sources, ['comboId', 'combo_id']), null);
+    const cumulative = comboId !== null && first(sources, ['isCumulative']) === true;
+    const gift = { name, count, eventId, userId, nickname, avatar, comboId, cumulative };
+    // Recognized gifts with bad quantities remain actionable; unrelated/malformed
+    // message shapes and types are the only messages discarded by this normalizer.
+    if (quantityIssue) { gift.quantityIssue = quantityIssue; gift.rawCount = quantityText(rawCount); }
+    return gift;
+  }
+
+  function remember(map, key, value) {
+    map.delete(key);
+    map.set(key, value);
+    while (map.size > MAX_TRACKED) map.delete(map.keys().next().value);
+  }
+
+  function createReceiver(onGift, options = {}) {
+    const now = typeof options.now === 'function' ? options.now : Date.now;
+    const ttl = Number.isFinite(options.ttl) && options.ttl >= 0 ? options.ttl : DEFAULT_TTL;
+    const seenEvents = new Map();
+    const comboTotals = new Map();
+    const fresh = (time, current) => Number.isFinite(time) && time >= 0 && time <= current && current - time < ttl;
+    const validTotal = total => Number.isInteger(total) && total >= 1 && total <= MAX_COUNT;
+    function validKey(key, combo) {
+      if (typeof key !== 'string' || key.length > 2200) return false;
+      try {
+        const parts = JSON.parse(key);
+        if (!Array.isArray(parts) || parts.length !== (combo ? 4 : 5)) return false;
+        if (parts[0] !== 'id' && parts[0] !== 'nickname') return false;
+        return parts.slice(1).every((part, i) => typeof part === 'string' && part.length <= MAX_TEXT && part.trim() === part && (i === 0 || (!combo && i === 2) || part.length > 0));
+      } catch (_) { return false; }
+    }
+    const saved = options.savedState;
+    if (record(saved) && saved.version === 1 && Array.isArray(saved.seenEvents) && Array.isArray(saved.comboTotals)) {
+      const current = now();
+      for (const entry of saved.seenEvents.slice(-MAX_TRACKED)) {
+        if (record(entry) && validKey(entry.id, false) && fresh(entry.time, current) &&
+            (validTotal(entry.total) || (entry.quantityIssue === true && entry.total === 0))) {
+          const item = { time: entry.time, total: entry.total };
+          if (entry.quantityIssue === true) item.quantityIssue = true;
+          remember(seenEvents, entry.id, item);
+        }
+      }
+      for (const entry of saved.comboTotals.slice(-MAX_TRACKED)) {
+        if (record(entry) && validKey(entry.id, true) && fresh(entry.time, current) && validTotal(entry.total)) {
+          remember(comboTotals, entry.id, { time: entry.time, total: entry.total });
+        }
+      }
+    }
+
+    function exportState() {
+      const current = now();
+      const entries = map => Array.from(map, ([id, item]) => ({ id, total: item.total, time: item.time, ...(item.quantityIssue === true ? { quantityIssue: true } : {}) })).filter(item => fresh(item.time, current));
+      return { version: 1, seenEvents: entries(seenEvents), comboTotals: entries(comboTotals) };
+    }
+
+    function receive(message, trusted = false) {
+      const gift = normalizeGift(message, trusted);
+      if (!gift) return false;
+      const current = now();
+      const identity = gift.userId ? ['id', gift.userId] : ['nickname', gift.nickname];
+      const namespace = identity.concat(gift.name);
+      const eventKey = gift.eventId === null ? null : JSON.stringify(namespace.concat(gift.cumulative ? gift.comboId : '', gift.eventId));
+      const eventPrior = eventKey === null ? null : seenEvents.get(eventKey);
+      const freshEvent = eventPrior && fresh(eventPrior.time, current);
+      if (gift.quantityIssue) {
+        if (freshEvent && (!gift.cumulative || eventPrior.quantityIssue === true)) return false;
+        if (eventKey !== null) remember(seenEvents, eventKey, { total: freshEvent ? eventPrior.total : 0, time: current, quantityIssue: true });
+        if (typeof onGift === 'function') onGift(gift);
+        return true;
+      }
+      if (!gift.cumulative && freshEvent) return false;
+      let previousTotal = 0;
+      if (gift.cumulative) {
+        const comboKey = JSON.stringify(namespace.concat(gift.comboId));
+        const comboPrior = comboTotals.get(comboKey);
+        previousTotal = Math.max(freshEvent ? eventPrior.total : 0, comboPrior && fresh(comboPrior.time, current) ? comboPrior.total : 0);
+        remember(comboTotals, comboKey, { total: Math.max(previousTotal, gift.count), time: current });
+      }
+      if (eventKey !== null) remember(seenEvents, eventKey, { total: Math.max(previousTotal, gift.count), time: current });
+      if (gift.cumulative) {
+        if (gift.count <= previousTotal) return false;
+        gift.count -= previousTotal;
+      }
+      if (typeof onGift === 'function') onGift(gift);
+      return true;
+    }
+    return { receive, exportState };
+  }
+
+  function connect(options = {}) {
+    const environment = options.root || root;
+    const receiver = createReceiver(options.onGift, { savedState: options.savedState, now: options.now, ttl: options.ttl });
+    let stopped = false;
+    let sdkActive = false;
+    let socket = null;
+    let reconnectTimer = null;
+    let sdkTimer = null;
+    let unsubscribe = null;
+    let lastStatus = '';
+    function status(message) {
+      if (message === lastStatus) return;
+      lastStatus = message;
+      if (typeof options.onStatus === 'function') options.onStatus(message);
+    }
+    function clearReconnect() {
+      if (reconnectTimer !== null) environment.clearTimeout(reconnectTimer);
+      reconnectTimer = null;
+    }
+    function closeSocket() {
+      const previous = socket;
+      socket = null;
+      if (!previous) return;
+      previous.onopen = previous.onmessage = previous.onclose = previous.onerror = null;
+      try { previous.close(); } catch (_) { /* An unusable socket is already detached. */ }
+    }
+    function trySdk() {
+      if (stopped || sdkActive) return sdkActive;
+      const sdk = environment.SonglanPlugin;
+      if (!sdk || typeof sdk.onGift !== 'function') return false;
+      // A successful registration is the health signal exposed by this SDK.
+      let registrationValid = true;
+      sdkActive = true;
+      try {
+        const result = sdk.onGift(function (message) {
+          if (!stopped && sdkActive && registrationValid) receiver.receive(message, true);
+        });
+        if (typeof result === 'function') unsubscribe = result;
+      } catch (_) {
+        registrationValid = false;
+        sdkActive = false;
+        return false;
+      }
+      clearReconnect();
+      if (sdkTimer !== null) environment.clearInterval(sdkTimer);
+      sdkTimer = null;
+      closeSocket();
+      status('菘蓝已连接');
+      return true;
+    }
+    function scheduleReconnect() {
+      if (stopped || sdkActive || reconnectTimer !== null) return;
+      status('等待礼物连接');
+      reconnectTimer = environment.setTimeout(function () {
+        reconnectTimer = null;
+        if (!trySdk()) openSocket();
+      }, 3000);
+    }
+    function openSocket() {
+      if (stopped || sdkActive || (socket && (socket.readyState === 0 || socket.readyState === 1))) return;
+      if (typeof environment.WebSocket !== 'function') { status('本地测试'); return; }
+      status('礼物连接中');
+      let current;
+      // Installed Songlan 3.5.7 server.js:97, plugin-viewer.html:175.
+      try { current = new environment.WebSocket('ws://localhost:9910'); }
+      catch (_) { scheduleReconnect(); return; }
+      socket = current;
+      current.onopen = function () {
+        if (stopped || sdkActive || socket !== current) return;
+        try { current.send(JSON.stringify({ action: 'identify', module: '自定义插件' })); }
+        catch (_) { closeSocket(); scheduleReconnect(); return; }
+        status('本地礼物已连接');
+      };
+      current.onmessage = function (event) {
+        if (stopped || sdkActive || socket !== current) return;
+        let message;
+        try { message = JSON.parse(event.data); } catch (_) { return; }
+        receiver.receive(message);
+      };
+      current.onclose = function () {
+        if (socket !== current) return;
+        closeSocket();
+        scheduleReconnect();
+      };
+      current.onerror = function () {
+        if (socket !== current || stopped || sdkActive) return;
+        // Some hosts never issue close after error. Detach first and retry ourselves.
+        closeSocket();
+        scheduleReconnect();
+      };
+    }
+    if (!trySdk()) {
+      openSocket();
+      sdkTimer = environment.setInterval(trySdk, 500);
+    }
+    function cleanup() {
+      if (stopped) return;
+      stopped = true;
+      clearReconnect();
+      if (sdkTimer !== null) environment.clearInterval(sdkTimer);
+      sdkTimer = null;
+      closeSocket();
+      if (unsubscribe) { try { unsubscribe(); } catch (_) { /* Cleanup stays idempotent. */ } }
+      unsubscribe = null;
+      status('已断开');
+    }
+    cleanup.receive = function (message, trusted = false) { return stopped ? false : receiver.receive(message, trusted); };
+    cleanup.exportState = receiver.exportState;
+    return cleanup;
+  }
+  return { normalizeGift, createTestGift, createReceiver, connect };
+});
+</script><script>(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./engine.js'), require('./themes.js'), require('./transport.js'));
+  else root.ReviewModel = factory(root.ReviewEngine, root.ReviewThemes, root.ReviewTransport);
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (E, T, Transport) {
+  'use strict';
+  const fail = message => { throw new Error(message); };
+  const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const normalizeName = name => name.normalize('NFKC').trim().toLowerCase();
+  function string(value, label, max, required = false) {
+    if (typeof value !== 'string' || value.length > max || (required && !value.trim())) fail(label + '格式或长度无效');
+    return value;
+  }
+  function integer(value, label, min, max) {
+    if (!Number.isSafeInteger(value) || value < min || value > max) fail(label + '必须是 ' + min + '–' + max + ' 的整数');
+    return value;
+  }
+  function defaultRules() {
+    return [{ id: 'default-fan-badge', name: '粉丝团灯牌', kind: 'join', min: 1, opportunities: 1, enabled: true }];
+  }
+  function create() {
+    return { version: 1, engine: E.createState(), settings: T.settings(), rules: defaultRules(), ruleDefaultsVersion: 1, receipts: {}, transport: null, giftsEnabled: true, identityMode: 'display' };
+  }
+  function identityKey(gift, mode = 'display') {
+    if (typeof gift.userId === 'string' && gift.userId) return 'uid:' + gift.userId;
+    if (mode !== 'display' || typeof gift.nickname !== 'string' || !gift.nickname) return '';
+    // FNV-1a 128 over an unambiguous exact nickname/avatar pair. This key is
+    // explicitly LOCAL display identity, never a substitute platform user ID.
+    const input = JSON.stringify([gift.nickname, typeof gift.avatar === 'string' ? gift.avatar : '']);
+    let hash = 0x6c62272e07bb014262b821756295c58dn;
+    const prime = 0x0000000001000000000000000000013bn;
+    const mask = (1n << 128n) - 1n;
+    for (let i = 0; i < input.length; i++) {
+      const code = input.charCodeAt(i);
+      hash = ((hash ^ BigInt(code & 255)) * prime) & mask;
+      hash = ((hash ^ BigInt(code >>> 8)) * prime) & mask;
+    }
+    return 'display:' + hash.toString(16).padStart(32, '0');
+  }
+  function validateSettings(raw) {
+    if (!record(raw)) fail('主题设置格式无效');
+    string(raw.title, '标题', 40);
+    if (typeof raw.showEmpty !== 'boolean' || typeof raw.showSource !== 'boolean') fail('显示设置须为布尔值');
+    if (!record(raw.skins)) fail('主题配置无效');
+    for (const theme of T.themes) {
+      const skin = raw.skins[theme.id];
+      if (!record(skin)) fail('主题挂件格式无效');
+      const templates = Object.prototype.hasOwnProperty.call(skin, 'decorations')
+        ? record(skin.decorations) ? [skin.decorations.current, skin.decorations.waiting] : [null]
+        : [skin.stickers];
+      for (const template of templates) {
+        if (!Array.isArray(template)) fail('主题挂件模板格式无效');
+        for (const sticker of template) if (!record(sticker) || typeof sticker.hidden !== 'boolean') fail('挂件显示设置须为布尔值');
+      }
+    }
+    return T.validate(raw);
+  }
+  function validate(raw) {
+    if (!record(raw) || raw.version !== 1) fail('不支持此存档格式或版本');
+    const doc = create();
+    doc.engine = E.validate(raw.engine);
+    doc.settings = validateSettings(raw.settings);
+    if (typeof raw.giftsEnabled !== 'boolean') fail('礼物开关须为布尔值');
+    doc.giftsEnabled = raw.giftsEnabled;
+    if (raw.identityMode !== undefined && raw.identityMode !== 'display' && raw.identityMode !== 'strict') fail('用户识别方式无效');
+    doc.identityMode = raw.identityMode === undefined ? 'display' : raw.identityMode;
+    if (raw.ruleDefaultsVersion !== undefined && raw.ruleDefaultsVersion !== 0 && raw.ruleDefaultsVersion !== 1) fail('默认礼物规则版本无效');
+    if (!Array.isArray(raw.rules) || raw.rules.length > 30) fail('礼物规则最多 30 条');
+    // Upgrade empty pre-default configurations once. Marker 1 respects an
+    // intentional later deletion, and existing custom rules are never replaced.
+    const rules = raw.ruleDefaultsVersion !== 1 && raw.rules.length === 0 ? defaultRules() : raw.rules;
+    const ids = new Set();
+    const enabledNames = new Set();
+    doc.rules = rules.map(rawRule => {
+      if (!record(rawRule)) fail('礼物规则格式无效');
+      const id = string(rawRule.id, '规则编号', 100, true);
+      const name = string(rawRule.name, '礼物名称', 200, true);
+      if (ids.has(id)) fail('规则编号重复');
+      ids.add(id);
+      if (!['join', 'priority', 'repeat'].includes(rawRule.kind)) fail('礼物玩法无效');
+      if (typeof rawRule.enabled !== 'boolean') fail('规则开关须为布尔值');
+      const key = normalizeName(name);
+      if (!key) fail('礼物名称不能为空');
+      if (rawRule.enabled && enabledNames.has(key)) fail('同一礼物不能同时启用多条规则');
+      if (rawRule.enabled) enabledNames.add(key);
+      return { id, name, kind: rawRule.kind, min: integer(rawRule.min, '触发礼物数', 1, 9999), opportunities: integer(rawRule.opportunities, '机会数', 1, 20), enabled: rawRule.enabled };
+    });
+    if (!record(raw.receipts) || Object.keys(raw.receipts).length > 4000) fail('礼物累计记录格式无效或超过 4000 条');
+    for (const key of Object.keys(raw.receipts)) {
+      string(key, '礼物累计标识', 500, true);
+      if (['__proto__', 'constructor', 'prototype'].includes(key)) fail('礼物累计标识无效');
+      doc.receipts[key] = integer(raw.receipts[key], '礼物累计余数', 0, 9998);
+    }
+    // Transport owns its versioned bookkeeping schema; unknown fields never survive.
+    doc.transport = raw.transport !== null && Transport && typeof Transport.createReceiver === 'function'
+      ? Transport.createReceiver(null, { savedState: raw.transport }).exportState() : null;
+    return doc;
+  }
+  function normalizedGift(raw) {
+    if (!record(raw) || typeof raw.name !== 'string' || !raw.name.trim() || raw.name.length > 256) return null;
+    const quantityIssue = typeof raw.quantityIssue === 'string' && raw.quantityIssue.trim() && raw.quantityIssue.length <= 200 ? raw.quantityIssue.replace(/[\u0000-\u001f\u007f]/g, ' ').trim() : '';
+    if (!quantityIssue && (!Number.isSafeInteger(raw.count) || raw.count < 1 || raw.count > 10000)) return null;
+    const text = (value, max = 256) => typeof value === 'string' && value.length <= max ? value.trim() : '';
+    const gift = { name: raw.name.trim(), count: quantityIssue ? 0 : raw.count, userId: text(raw.userId), nickname: text(raw.nickname), avatar: text(raw.avatar, 4096), eventId: text(raw.eventId) || null, comboId: text(raw.comboId) || null, cumulative: raw.cumulative === true };
+    if (quantityIssue) {
+      gift.quantityIssue = quantityIssue;
+      gift.rawCount = typeof raw.rawCount === 'string' ? raw.rawCount.replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, 100) : '[原数量不可用]';
+    }
+    return gift;
+  }
+  function route(rawDoc, rawGift) {
+    const doc = validate(rawDoc);
+    const gift = normalizedGift(rawGift);
+    if (!doc.giftsEnabled || !gift) return doc;
+    const rule = doc.rules.find(item => item.enabled && normalizeName(item.name) === normalizeName(gift.name));
+    if (!rule) return doc;
+    const opportunitiesFor = total => rule.kind === 'repeat' ? Math.floor(total / rule.min) * rule.opportunities : 1;
+    function pending(reason, requestedOpportunities, awardReady = false) {
+      doc.engine = E.apply(doc.engine, { type: 'pendingAdd', gift: { ...gift, requestedKind: rule.kind, requestedOpportunities, awardReady, ruleId: rule.id, threshold: rule.min }, reason });
+      return validate(doc);
+    }
+    if (gift.quantityIssue) return pending('礼物数量异常：' + gift.quantityIssue + '。原数量：' + gift.rawCount + '；请核对并手动填写有效数量后再处理。', 0);
+    if (!gift.nickname || (!gift.userId && doc.identityMode === 'strict')) return pending('缺少稳定用户 ID 或昵称，请核对赠送者后手动处理。', opportunitiesFor(gift.count));
+    if (gift.userId.length > 196 || gift.nickname.length > 200) return pending('用户 ID 或昵称超过队列长度上限，请核对资料后手动处理。', opportunitiesFor(gift.count));
+    const personKey = identityKey(gift, doc.identityMode);
+    // Preserve prior platform-ID receipt keys; only fallback uses the local key.
+    const receiptKey = JSON.stringify([rule.id, gift.userId || personKey]);
+    if (receiptKey.length > 500) return pending('用户累计标识过长，请核对资料后手动处理。', opportunitiesFor(gift.count));
+    const previous = Object.prototype.hasOwnProperty.call(doc.receipts, receiptKey) ? doc.receipts[receiptKey] : 0;
+    const total = previous + gift.count;
+    const requestedOpportunities = opportunitiesFor(total);
+    if (!Object.prototype.hasOwnProperty.call(doc.receipts, receiptKey) && Object.keys(doc.receipts).length >= 4000) return pending('礼物累计记录已满，请先整理记录，再按礼物数量和门槛核对处理。', requestedOpportunities);
+    doc.receipts[receiptKey] = total % rule.min;
+    if (total < rule.min) return validate(doc);
+    if (rule.kind === 'repeat' && requestedOpportunities > 20) return pending('本批已获得 ' + requestedOpportunities + ' 次机会，超过单次 20 次上限；整批保留，请分批处理。', requestedOpportunities, true);
+    const person = { key: personKey, uid: gift.userId, name: gift.nickname, avatar: gift.avatar, note: '' };
+    try {
+      doc.engine = E.apply(doc.engine, { type: rule.kind, person, opportunities: requestedOpportunities, source: rule.name });
+    } catch (error) {
+      return pending('自动排队未完成：' + String(error.message || error).slice(0, 650) + '；整批保留，请核对后处理。', requestedOpportunities, true);
+    }
+    return validate(doc);
+  }
+  return { create, defaultRules, validate, route, identityKey };
+});
+</script><script>(function(root){'use strict';
+ const DB='bysl-review-queue-v1';let dbPromise;
+ function open(){if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{let req;try{req=indexedDB.open(DB,1);}catch(e){reject(e);return;}const timer=setTimeout(()=>reject(Error('存储连接超时，请关闭旧页面后重试')),5000);req.onupgradeneeded=()=>req.result.createObjectStore('snapshots');req.onerror=()=>{clearTimeout(timer);reject(req.error);};req.onblocked=()=>{clearTimeout(timer);reject(Error('存储升级受阻，请关闭旧页面'));};req.onsuccess=()=>{clearTimeout(timer);const db=req.result;db.onversionchange=()=>{db.close();dbPromise=null;};resolve(db);};}).catch(e=>{dbPromise=null;throw e;});return dbPromise;}
+ async function read(){const db=await open();return new Promise((resolve,reject)=>{const tx=db.transaction('snapshots','readonly'),r=tx.objectStore('snapshots').get('main');r.onsuccess=()=>resolve(r.result??null);r.onerror=()=>reject(r.error);tx.onabort=()=>reject(tx.error||Error('读取中断'));});}
+ async function write(snapshot){const text=JSON.stringify(snapshot);if(text.length>28000000)throw Error('存档过大，请导出备份并减少上传图片');const db=await open();return new Promise((resolve,reject)=>{let tx;try{tx=db.transaction('snapshots','readwrite');tx.objectStore('snapshots').put(snapshot,'main');}catch(e){reject(e);return;}tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error||Error('保存中断'));tx.onerror=()=>reject(tx.error||Error('保存失败'));});}
+ root.ReviewStorage={read,write};
+})(globalThis);
+</script><script>(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.ReviewMotion=api;})(globalThis,function(){
+ 'use strict';
+ function allowed(mode,reduced){return mode==='on'||(mode==='system'&&!reduced);}
+ function plan(before,after){const old=new Map(before.map((p,i)=>[p.id,{...p,index:i}])),next=new Set(after.map(p=>p.id));return {entering:after.filter(p=>!old.has(p.id)).slice(0,21).map(p=>p.id),moving:after.filter((p,i)=>old.has(p.id)&&old.get(p.id).index!==i).slice(0,21).map(p=>p.id),removed:before.filter(p=>!next.has(p.id)).map(p=>p.id),current:after.find(p=>p.current&&!old.get(p.id)?.current)?.id||null};}
+ function create(stage,cards){
+  const running=new Set();
+  function cancel(){for(const a of [...running])a.cancel();running.clear();}
+  function animate(node,frames,options,finish){if(typeof node.animate!=='function'){finish?.();return;}const a=node.animate(frames,options);running.add(a);let done=false;const complete=()=>{if(done)return;done=true;running.delete(a);finish?.();};a.onfinish=()=>{complete();a.cancel();};a.oncancel=complete;}
+  function capture(){return [...cards.querySelectorAll('[data-entry]')].map(node=>({id:node.dataset.entry,current:node.classList.contains('current'),rect:node.getBoundingClientRect()}));}
+  function play(before){const after=capture(),changes=plan(before,after),old=new Map(before.map(p=>[p.id,p])),entering=new Set(changes.entering);const scale=stage.getBoundingClientRect().width/stage.offsetWidth||1;
+   for(const node of [...cards.querySelectorAll('[data-entry]')].slice(0,21)){const id=node.dataset.entry,r=node.getBoundingClientRect(),prior=old.get(id);let frames=null,kind='';
+    if(entering.has(id)){kind='enter';frames=[{opacity:0,transform:'translateY(14px) scale(.98)'},{opacity:1,transform:'none'}];}
+    else if(prior){const x=(prior.rect.x-r.x)/scale,y=(prior.rect.y-r.y)/scale;if(Math.abs(x)+Math.abs(y)>1){kind='reorder';frames=[{transform:`translate(${x}px,${y}px)`},{transform:'none'}];}}
+    if(frames){node.dataset.motionEvent=kind;animate(node,frames,{duration:340,easing:'cubic-bezier(.2,.75,.2,1)',fill:'both'},()=>delete node.dataset.motionEvent);}
+    if(id===changes.current){const ring=document.createElement('div');ring.className='queue-current-ring';ring.setAttribute('aria-hidden','true');node.append(ring);animate(ring,[{opacity:.9},{opacity:0}],{duration:650,easing:'ease-out',fill:'both'},()=>ring.remove());}
+   }
+  }
+  function preview(){cancel();for(const node of [...cards.querySelectorAll('.review-card')].slice(0,21))animate(node,[{opacity:.45,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:420,easing:'ease-out',fill:'both'});}
+  return {cancel,capture,play,preview};
+ }
+ return {allowed,plan,create};
+});
+</script><script>(async function(){
+'use strict';
+const E=ReviewEngine,T=ReviewThemes,M=ReviewModel,S=ReviewStorage,$=id=>document.getElementById(id),clone=T.clone;
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uuid=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+const names={join:'普通排队',priority:'插队',repeat:'再次锐评'};
+let doc=M.create(),tab='queue',opened=false,editStickers=false,selectedSticker='',stickerTarget='current',testGiftId='',serial=0,queue=Promise.resolve(),transport=null,toastTimer,uploadTarget=null,uploadToken=0,backupToken=0,corruptRaw=null,storageError='',lostGifts=[];
+let fresh=true,pendingWrites=0,stageGesture=null,pendingStagePlacement=null,stagePlacementSequence=0,suppressDoubleClickUntil=0;
+try{const saved=await S.read();if(saved!==null){try{doc=M.validate(saved);fresh=false;}catch(e){corruptRaw=saved;storageError='旧存档异常，已保留原记录。本页暂时使用新队列，请先导出原记录后再恢复保存。';}}}catch(e){storageError='浏览器存储不可用，本页可临时使用。关闭页面前请导出备份。';}
+function notify(text){$('toast').textContent=text;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4200);}
+function warning(){const box=$('storage-warning');box.hidden=!storageError&&!lostGifts.length;box.textContent=[storageError,lostGifts.length?'有 '+lostGifts.length+' 条礼物未能处理，请到队列页补录。':''].filter(Boolean).join(' ');}
+function transact(change,{asset=false,repaint=true,message=''}={}){
+ pendingWrites++;const task=queue.then(async()=>{let next=change(clone(doc));next=M.validate(next);if(corruptRaw!==null&&asset)throw Error('请先处理异常旧存档，再保存图片');
+  try{if(corruptRaw!==null)throw Error('原存档受保护');await S.write(next);storageError='';}catch(e){if(asset)throw Error('图片未替换：'+e.message);storageError=corruptRaw!==null?'旧存档已保护，本页更改仅临时保留。请先导出原记录，再恢复保存。':'保存失败，本页更改临时保留；关闭前请导出备份。'+e.message;}
+  doc=next;serial++;warning();renderStage();renderFooter();if(repaint&&opened)renderPanel();if(message)notify(message);return true;
+ });queue=task.catch(e=>{notify(e.message);warning();}).finally(()=>{pendingWrites--;});return task.catch(()=>false);
+}
+function action(a,message=''){return transact(d=>{d.engine=E.apply(d.engine,a);return d;},{message});}
+const active=()=>[doc.engine.current,...doc.engine.waiting].filter(Boolean);
+function personById(id){return [...active(),...doc.engine.history].find(p=>p.id===id)||doc.engine.profiles.find(p=>p.key===id);}
+function resolved(p){const saved=doc.engine.profiles.find(x=>x.key===p.key);return saved?{...p,...saved}:p;}
+function person(p){return {key:p.key,uid:p.uid||'',name:p.name||'',avatar:p.avatar||'',note:p.note||''};}
+function avatar(p,cls=''){return `<div class="avatar ${cls}">${p.avatar&&T.safeImage(p.avatar)?`<img src="${esc(p.avatar)}" alt="${esc(p.name)}的头像" referrerpolicy="no-referrer" loading="lazy">`:esc(Array.from(p.name||'?')[0])}</div>`;}
+document.addEventListener('error',e=>{if(e.target instanceof HTMLImageElement&&e.target.closest('.avatar')){const parent=e.target.parentElement;parent.textContent=Array.from(e.target.alt.replace(/的头像$/,'')||'?')[0];parent.title='头像暂时无法加载，可在资料中重新上传';}},true);
+function liveControl(){return `<div class="live-queue-actions"><button id="live-next" class="live-next" type="button" data-action="live-next" ${!doc.engine.current&&!doc.engine.waiting.length?'disabled':''}>${doc.engine.current?'完成并下一位':'开始下一位'} <span aria-hidden="true">→</span></button></div>`;}
+const edgeNames={top:'上边',right:'右边',bottom:'下边',left:'左边'};
+const cardKindNames={current:'正在评价卡片',waiting:'等待卡片'};
+function ornamentContent(a){return a.kind==='image'?`<img src="${esc(a.value)}" alt="装饰挂件" draggable="false">`:a.kind==='builtin'?T.ornament(a.value):esc(a.value);}
+function ornamentLabel(a){return a.kind==='builtin'?T.ornamentName(a.value):a.kind==='image'?'图片挂件':'装饰 '+a.value;}
+function cardDecorations(kind){const list=doc.settings.skins[doc.settings.theme].decorations[kind];return `<div class="card-stickers" aria-label="${cardKindNames[kind]}装饰">${list.filter(a=>!a.hidden).map(a=>`<div class="sticker${selectedSticker===a.id&&stickerTarget===kind?' selected':''}${editStickers&&opened&&stickerTarget===kind?' is-editable':''}" data-sticker="${esc(a.id)}" data-edge="${a.edge}" data-position="${a.position}" aria-label="边缘装饰 ${esc(ornamentLabel(a))}" style="width:${a.width}px;height:${a.width}px;font-size:${a.width}px;transform:translate(-50%,-50%) rotate(${a.rotation}deg);z-index:${a.z}">${ornamentContent(a)}</div>`).join('')}</div>`;}
+function cardGeometry(card){const rect=card.getBoundingClientRect(),css=getComputedStyle(card);return {width:card.offsetWidth,height:card.offsetHeight,scaleX:rect.width/card.offsetWidth,scaleY:rect.height/card.offsetHeight,radius:Math.max(...['TopLeft','TopRight','BottomRight','BottomLeft'].map(k=>parseFloat(css['border'+k+'Radius'])||0)),border:Math.min(...['Top','Right','Bottom','Left'].map(side=>parseFloat(css['border'+side+'Width'])||0)),left:parseFloat(css.borderLeftWidth)||0,top:parseFloat(css.borderTopWidth)||0};}
+function positionCardDecorations(){for(const card of $('cards').querySelectorAll('[data-card-kind]')){const g=cardGeometry(card),layer=card.querySelector('.card-stickers');if(!layer||g.width<=0||g.height<=0)continue;Object.assign(layer.style,{left:-g.left+'px',top:-g.top+'px',width:g.width+'px',height:g.height+'px'});for(const el of layer.querySelectorAll('[data-sticker]')){const point=T.edgePoint(el.dataset.edge,Number(el.dataset.position),g.width,g.height,g.radius,g.border);el.style.left=point.x+'px';el.style.top=point.y+'px';}}}
+const cardObserver=typeof ResizeObserver==='function'?new ResizeObserver(positionCardDecorations):null;
+window.addEventListener('resize',positionCardDecorations);
+function positionLabel(id){const rank=E.queuePosition(doc.engine,id);if(!rank)return '';return doc.engine.current?.id===id?'当前第 1 位':`排队第 ${rank.position} 位 · 前面还有 ${rank.ahead} 位`;}
+function card(raw,current){const p=resolved(raw);return `<article class="review-card${current?' current':''}" data-entry="${esc(p.id)}" data-card-kind="${current?'current':'waiting'}">${current?'<div class="current-top"><span class="state-tag">'+esc(doc.settings.reviewingLabel)+'</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div><div class="person-line">':''}${avatar(p)}<div class="grow"><div class="person-name" title="${esc(p.name)}">${esc(p.name||'待补昵称')}</div><span class="ticket" title="入队编号，不随插队改变">编号 ${String(p.ticket).padStart(3,'0')}</span><span class="queue-position">${positionLabel(raw.id)}</span>${p.priority||p.round>1?`<div class="card-badges">${p.priority?'<span class="badge priority">优先</span>':''}${p.round>1?`<span class="badge">第 ${p.round} 次锐评</span>`:''}</div>`:''}${doc.settings.showSource?`<div class="source">${esc(p.source)}</div>`:''}</div>${current?'</div>'+liveControl():''}${cardDecorations(current?'current':'waiting')}</article>`;}
+const queueMotion=ReviewMotion.create($('stage'),$('cards')),motionPreference=matchMedia('(prefers-reduced-motion: reduce)');let renderedMotionContext=null;
+function motionEnabled(){return ReviewMotion.allowed(doc.settings.motion,motionPreference.matches);}
+motionPreference.addEventListener?.('change',()=>{if(!motionEnabled())queueMotion.cancel();});
+function renderStage(){const s=doc.settings,t=T.themes.find(t=>t.id===s.theme),skin=s.skins[s.theme],root=document.documentElement;root.dataset.theme=s.theme;root.dataset.motion=s.motion;const motionContext=[s.theme,s.layout,s.width,s.scale,s.visible,s.x,s.y,s.menuFont,opened].join('|'),shouldAnimate=motionEnabled()&&renderedMotionContext&&renderedMotionContext.revision!==doc.engine.revision&&renderedMotionContext.key===motionContext&&!stageGesture&&!pendingStagePlacement&&!editStickers,before=shouldAnimate?queueMotion.capture():null;queueMotion.cancel();
+ const rgb=skin.background.match(/\w\w/g).map(n=>parseInt(n,16)).join(',');for(const [k,v]of Object.entries({'--accent':skin.accent,'--card-rgb':rgb,'--card-opacity':skin.opacity/100,'--card-text':skin.text,'--card-border':skin.border,'--radius':t.radius+'px','--gap':s.gap+'px','--configured-width':s.width+'px'}))root.style.setProperty(k,v);
+ const stage=$('stage');document.documentElement.style.setProperty('--ui-font-size',s.menuFont+'px');stage.style.width=s.width+'px';stage.style.setProperty('--stage-base-width',Math.max(s.width,$('canvas').clientWidth-32)+'px');stage.classList.toggle('horizontal',s.layout==='horizontal');placeStage(stageGesture?.preview||pendingStagePlacement||s);$('stage-title').textContent=s.title;$('waiting-count').textContent='等待 '+doc.engine.waiting.length+' 位';
+ let content=doc.engine.current?card(doc.engine.current,true):(s.showEmpty||(opened&&editStickers&&stickerTarget==='current'))?`<div class="review-card empty-card" data-card-kind="current"><span class="empty-symbol">${t.motif}</span><span>${doc.engine.waiting.length?'准备好了，就开始下一位':'等待下一位来赴约'}</span>${cardDecorations('current')}</div>`:'';
+ if(!doc.engine.current)content+=liveControl();
+ content+=doc.engine.waiting.slice(0,s.visible).map(p=>card(p,false)).join('');if(doc.engine.waiting.length>s.visible)content+=`<div class="more-card">还有 ${doc.engine.waiting.length-s.visible} 位在等待</div>`;if(opened&&editStickers&&stickerTarget==='waiting'&&!doc.engine.waiting.length)content+=`<div class="review-card empty-card decoration-sample" data-card-kind="waiting"><span>等待卡片装饰预览</span><small>新加入的等待观众会使用这套装饰</small>${cardDecorations('waiting')}</div>`;$('cards').innerHTML=content;
+ cardObserver?.disconnect();positionCardDecorations();for(const card of $('cards').querySelectorAll('[data-card-kind]'))cardObserver?.observe(card);
+ document.body.classList.toggle('edit-stickers',editStickers&&opened);if(before)queueMotion.play(before);renderedMotionContext={revision:doc.engine.revision,key:motionContext};}
+function renderFooter(){for(const id of ['next-btn','live-next']){const b=$(id);if(!b)continue;b.disabled=nextBusy||(!doc.engine.current&&!doc.engine.waiting.length);b.innerHTML=(doc.engine.current?'完成并下一位':'开始下一位')+' <span aria-hidden="true">→</span>';b.setAttribute('aria-busy',String(nextBusy));}$('finish-btn').disabled=nextBusy||!doc.engine.current;}
+function openPanel(){opened=true;$('panel').hidden=false;document.body.classList.add('editing');renderPanel();renderStage();}
+function closePanel(){opened=false;editStickers=false;$('panel').hidden=true;document.body.classList.remove('editing','edit-stickers');renderStage();$('open-panel').blur();}
+$('open-panel').onclick=openPanel;$('close-panel').onclick=closePanel;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('modal').open){$('modal').close();return;}opened?closePanel():openPanel();}});
+$('canvas').addEventListener('dblclick',e=>{if(Date.now()>suppressDoubleClickUntil&&!e.target.closest('button'))openPanel();});
+let lastNext=0,nextBusy=false;
+async function advanceQueue(){if(nextBusy||Date.now()-lastNext<550||(!doc.engine.current&&!doc.engine.waiting.length))return;lastNext=Date.now();nextBusy=true;renderFooter();const expectedId=doc.engine.current?.id||null;try{await transact(d=>{if((d.engine.current?.id||null)!==expectedId)throw Error('当前观众已变化，请核对后再点下一位');d.engine=E.apply(d.engine,expectedId?{type:'finish',advance:true}:{type:'start'});return d;},{message:expectedId?'已完成，队列已更新':'已开始评价'});}finally{nextBusy=false;renderFooter();}}
+$('next-btn').onclick=advanceQueue;$('finish-btn').onclick=()=>action({type:'finish',advance:false},'已完成，等待你开始下一位');
+const tabs=[['queue','队列'],['gifts','礼物'],['profiles','资料'],['appearance','外观'],['history','记录'],['help','说明']];
+function renderPanel(){$('panel-content').dataset.editTheme=doc.settings.theme;$('panel-content').dataset.editCardKind=stickerTarget;const scroll=$('panel-content').scrollTop;$('tabs').innerHTML=tabs.map(([k,n])=>`<button data-tab="${k}" aria-selected="${tab===k}">${n}${k==='queue'&&doc.engine.pending.length?' · '+doc.engine.pending.length:''}</button>`).join('');$('panel-content').innerHTML=({queue:queuePanel,gifts:giftsPanel,profiles:profilesPanel,appearance:appearancePanel,history:historyPanel,help:helpPanel}[tab])();if(tab==='gifts')refreshGiftTestControls();$('panel-content').scrollTop=scroll;}
+function button(a,label,id='',extra=''){return `<button type="button" data-action="${a}" data-id="${esc(id)}" ${extra}>${label}</button>`;}
+function personRow(raw,mode){const p=resolved(raw),current=doc.engine.current?.id===raw.id;return `<div class="person-row">${avatar(p)}<div class="grow"><div class="name" title="${esc(p.name)}">${esc(p.name||'待补昵称')}</div><small>${mode==='profile'?(p.uid?'ID '+esc(p.uid):(p.key.startsWith('display:')?'昵称＋头像识别 · 无平台 ID':'手动保存 · 无平台 ID')):(current?'正在评价':'No. '+String(raw.ticket).padStart(3,'0'))+(raw.priority?' · 优先':'')+(raw.round>1?' · 第 '+raw.round+' 次':'')}${mode==='history'?' · '+(raw.status==='completed'?'已评价':'已移除'):''}</small>${mode==='queue'?`<small class="queue-position-note">${positionLabel(raw.id)}</small>`:''}${p.note?`<div class="hint">${esc(p.note)}</div>`:''}</div><div class="actions">${mode==='queue'?`${!current?button('up','↑',raw.id,'aria-label="上移"')+button('down','↓',raw.id,'aria-label="下移"'):''}${button('edit-person','编辑',raw.id)}${button('save-person','收藏',raw.id)}${button('remove','移除',raw.id)}`:mode==='profile'?button('repeat-person','排队',p.key)+button('edit-person','编辑',p.key)+button('upload-avatar','头像',p.key)+button('forget-person','取消收藏',p.key):button('repeat-person','再次排队',raw.id)+button('save-person','收藏',raw.id)}</div></div>`;}
+function queuePanel(){return `<div class="section"><div class="row between"><h3 style="margin:0">当前队列</h3><span class="muted">${active().length} 个机会</span></div><div class="toolbar">${button('manual','＋ 手动添加')}${button('undo','撤销上次完成','','class="small" '+(!doc.engine.undo?.valid?'disabled':''))}</div>${active().length?active().map(p=>personRow(p,'queue')).join(''):'<div class="blank">这里还没有观众<br>配置礼物或手动添加第一位</div>'}</div><div class="section"><h3>待处理礼物 <span class="muted">${doc.engine.pending.length+lostGifts.length} 条</span></h3><p class="hint">身份缺失或机会过多时保留在这里，核对后补入。不会猜测观众身份。</p>${doc.engine.pending.map(p=>`<div class="control-row"><b>${esc(p.gift.nickname||'待补昵称')}</b><div class="hint">${esc(p.gift.name||'礼物')} × ${esc(p.gift.count??1)} · ${esc(p.reason)}</div><div class="actions">${button('resolve-pending','核对并补入',p.id)}${button('dismiss-pending','忽略',p.id)}</div></div>`).join('')}${lostGifts.length?'<div class="notice">未处理消息仍保留在本页，请先导出以免丢失。</div>'+button('export-lost','导出未处理礼物'):''}</div><div class="section"><h3>模拟测试</h3><p class="hint">使用模拟观众演练；测试会写入当前队列，可随后移除。礼物名称及数量在「礼物」页测试。</p><div class="toolbar">${button('test-join','＋ 普通排队')}${button('test-priority','↟ 插队')}${button('test-repeat','↻ 再次锐评')}</div></div>`;}
+function refreshGiftTestControls(){const select=$('test-rule'),send=$('panel-content').querySelector('[data-action="send-test-gift"]'),hint=$('test-gift-help');if(!select||!send)return;const enabled=doc.rules.filter(r=>r.enabled);if(!enabled.some(r=>r.id===testGiftId))testGiftId=enabled[0]?.id||'';select.innerHTML=(enabled.length?'':'<option value="" disabled selected>暂无已启用的礼物规则</option>')+doc.rules.map(r=>`<option value="${esc(r.id)}" ${r.id===testGiftId?'selected':''} ${r.enabled?'':'disabled'}>${esc(r.name)} · ${names[r.kind]}${r.enabled?'':'（未启用）'}</option>`).join('');select.value=testGiftId;select.disabled=!enabled.length;send.disabled=!doc.giftsEnabled||!enabled.length;hint.textContent=!doc.rules.length?'没有已保存的规则。点击「恢复默认灯牌排队」，或在上方添加并保存。':!enabled.length?'规则都未启用。请勾选上方「启用」并保存，或恢复默认灯牌排队。':!doc.giftsEnabled?'自动接收已关闭；先开启上方开关再发送模拟礼物。':'选择已启用、已保存的礼物测试；上方规则修改后需先保存。';}
+function giftsPanel(){return `<div class="section"><h3>用户识别</h3><label>菘蓝没有用户 ID 时<select id="identity-mode"><option value="display" ${doc.identityMode==='display'?'selected':''}>按昵称＋头像自动排队</option><option value="strict" ${doc.identityMode==='strict'?'selected':''}>严格模式：留待人工确认</option></select></label><p class="hint">优先使用平台 ID。菘蓝当前未提供 ID 时，用昵称与头像建立本地记录；头像为空时按昵称识别。同名同头像无法区分，改名或换头像会视为新记录。该本地标识不是平台 ID。</p></div><div class="section"><div class="row between"><h3 style="margin:0">礼物触发规则</h3><label class="checkline"><input type="checkbox" id="gift-enabled" ${doc.giftsEnabled?'checked':''}>自动接收</label></div><p class="hint">礼物名按全角/半角、大小写归一后精确匹配；每条规则的数量门槛独立累计。默认 1 个粉丝团灯牌加入普通队列；普通排队不重复占位，再次锐评新增队尾机会。</p><div id="rules">${doc.rules.map(r=>`<div class="rule" data-rule="${esc(r.id)}"><div class="row"><input aria-label="礼物名称" data-rule-field="name" value="${esc(r.name)}" maxlength="100" placeholder="填写平台礼物名称"><label class="checkline"><input data-rule-field="enabled" type="checkbox" ${r.enabled?'checked':''}>启用</label>${button('delete-rule','×',r.id,'aria-label="删除规则"')}</div><div class="grid2"><label>作用<select data-rule-field="kind">${Object.entries(names).map(([k,n])=>`<option value="${k}" ${k===r.kind?'selected':''}>${n}</option>`).join('')}</select></label><label>每多少个礼物触发一次<input type="number" data-rule-field="min" min="1" max="9999" value="${r.min}"></label></div>${r.kind==='repeat'?`<label>每次触发增加的机会<input type="number" min="1" max="20" data-rule-field="opportunities" value="${r.opportunities}"></label>`:''}<div class="hint">${r.kind==='priority'?'先来先插队；正在评价不变。':r.kind==='repeat'?'同一人可获得多个机会，全部排到队尾。':'已经在队列的观众不会重复入列。'}</div></div>`).join('')||'<div class="blank">尚未配置礼物，默认不触发自动排队</div>'}</div><div class="toolbar">${button('add-rule','＋ 添加规则','',''+(doc.rules.length>=30?'disabled':''))}${button('save-rules','保存礼物规则','','class="primary"')}</div><p class="hint">修改后点击保存生效；调整规则会清零该规则未达门槛的累计数。</p></div><div class="section"><h3>菘蓝格式模拟礼物</h3><p id="test-gift-help" class="hint"></p><div class="toolbar">${button('add-default-rule','恢复默认灯牌排队','','class="small"')}</div><p class="hint">与安装版菘蓝模拟器一致：nickName、avatarUrl、giftName、count、giftIcon；不添加它没有的用户 ID 或事件 ID。</p><div class="stack"><label>礼物<select id="test-rule">${doc.rules.map(r=>`<option value="${esc(r.id)}">${esc(r.name)} · ${names[r.kind]}</option>`).join('')}</select></label><div class="grid2"><label>观众昵称<input id="test-nickname" value="测试小熊" maxlength="100"></label></div><label>礼物数量<input id="test-count" type="number" min="1" max="10000" value="1"></label>${button('send-test-gift','发送模拟礼物','','class="primary"')}</div><p class="hint">消息通过与真实礼物相同的适配和规则处理流程。</p></div>`;}
+function profilesPanel(){return `<div class="section"><div class="row between"><h3 style="margin:0">用户资料库</h3><span class="muted">${doc.engine.profiles.length} / 500</span></div><p class="hint">保存昵称、头像和私人备注。收藏别名优先显示；平台 ID 用于区分同名观众。图片保存在当前浏览器，换电脑请导出备份。</p><div class="toolbar">${button('new-profile','＋ 保存用户')}${button('export','导出完整备份')}${button('import','导入备份')}</div>${doc.engine.profiles.map(p=>personRow(p,'profile')).join('')||'<div class="blank">收藏队列中的用户，或手动保存资料</div>'}</div>`;}
+function appearancePanel(){const s=doc.settings,skin=s.skins[s.theme];return `<div class="section"><h3>上屏文字</h3><div class="stack"><label>主标题<input id="s-title" maxlength="40" value="${esc(s.title)}" placeholder="例如：锐评候场室"></label><label>评价状态文字<input id="s-reviewingLabel" maxlength="20" value="${esc(s.reviewingLabel)}" placeholder="例如：正在评价"></label></div><p class="hint">修改后移开输入框即可保存并更新画面，所有主题共用。状态文字最多 20 个字符。</p></div><div class="section"><h3>动画效果</h3><label>队列动态效果<select id="s-motion"><option value="system" ${s.motion==='system'?'selected':''}>跟随系统</option><option value="on" ${s.motion==='on'?'selected':''}>开启</option><option value="off" ${s.motion==='off'?'selected':''}>关闭</option></select></label><p class="hint">入队轻滑入、插队平滑换位、下一位短暂高亮。关闭后不播放队列动画；跟随系统时尊重减少动画设置。</p>${button('preview-motion','预览动画','','class="small"')}</div><div class="section"><h3>主题风格</h3><div class="theme-grid">${T.themes.map(t=>`<button class="theme-choice" role="radio" aria-checked="${s.theme===t.id}" data-theme="${t.id}" data-motif="${t.motif}" style="--sw-bg:${t.background};--sw-text:${t.text};--sw-border:${t.border};--sw-accent:${t.accent}">${t.name}<span class="theme-mark">${T.ornament(t.id+'-1')}</span><span class="radio"></span></button>`).join('')}</div></div><div class="section"><h3>自定义配色</h3><div class="colors-grid">${[['accent','主色'],['background','卡片底色'],['text','文字颜色'],['border','描边颜色']].map(([k,n])=>`<label>${n}<span class="color-field"><input type="color" data-color="${k}" value="${skin[k]}" aria-label="${n}"><input type="text" data-color-text="${k}" value="${skin[k]}" maxlength="7" aria-label="${n}色值"></span></label>`).join('')}</div><div class="row between" style="margin-top:22px"><h3 style="margin-bottom:12px">卡片不透明度</h3>${button('reset-colors','恢复主题配色','','class="small"')}</div><div class="opacity-line"><input id="opacity" type="range" min="0" max="100" value="${skin.opacity}" aria-label="卡片不透明度"><output id="opacity-value">${skin.opacity}%</output></div><p class="hint">只改变卡片底色，文字与头像保持清晰。配色按主题分别保存。</p></div>${decorationsPanel()}<div class="section"><h3>画面布局</h3><div class="stack"><p class="hint">直接拖动标题或卡片空白处移动整组；拖右下角箭头等比例放大或缩小。按钮和挂件编辑不会拖动整组。</p><div class="grid2"><label>队列整体大小（倍）<input id="s-scale" type="number" min="0.5" max="2.5" step="0.05" value="${s.scale}"></label><label>控制台字号 px<input id="s-menuFont" type="number" min="16" max="28" step="1" value="${s.menuFont}"></label></div><div class="grid2"><label>卡片排列<select id="s-layout"><option value="vertical" ${s.layout==='vertical'?'selected':''}>竖向</option><option value="horizontal" ${s.layout==='horizontal'?'selected':''}>横向</option></select></label><label>卡片宽度 px<input id="s-width" type="number" min="240" max="760" value="${s.width}"></label><label>间距 px<input id="s-gap" type="number" min="0" max="40" value="${s.gap}"></label><label>显示等待卡片数<input id="s-visible" type="number" min="1" max="20" value="${s.visible}"></label><label>左侧距离 %<input id="s-x" type="number" min="0" max="90" value="${s.x}"></label><label>顶部距离 %<input id="s-y" type="number" min="0" max="90" value="${s.y}"></label></div><label class="checkline"><input id="s-showEmpty" type="checkbox" ${s.showEmpty?'checked':''}>没有当前观众时显示等候提示</label><label class="checkline"><input id="s-showSource" type="checkbox" ${s.showSource?'checked':''}>卡片显示礼物来源</label>${button('reset-position','复位画面位置')}</div></div>`;}
+function decorationsPanel(){const list=doc.settings.skins[doc.settings.theme].decorations[stickerTarget],st=list.find(a=>a.id===selectedSticker);return `<div class="section"><h3>卡片边缘装饰</h3><label>正在设置<select id="sticker-target"><option value="current" ${stickerTarget==='current'?'selected':''}>正在评价卡片</option><option value="waiting" ${stickerTarget==='waiting'?'selected':''}>等待卡片（所有等待者共用）</option></select></label><p class="hint">${stickerTarget==='current'?'观众进入评价时，自动使用这套装饰。':'现在及新加入的所有等待卡片，自动使用这套装饰。'}每个主题的两套装饰分别保存。</p><div class="row between"><span class="muted">${list.length} / 24 个挂件</span><div class="row">${button('add-sticker','＋ 添加','','class="small"')}${button('toggle-edit',editStickers?'完成编辑':'沿边调整','','class="small"')}</div></div><p class="hint">挂件中心固定在边框上。拖动只会沿边吸附，不能放入卡片内部或离开边缘。圆角处贴合直线边段。</p>${list.map((a,i)=>`<div class="row control-row"><span class="mini-sticker">${ornamentContent(a)}</span><button class="grow small" data-action="select-sticker" data-id="${esc(a.id)}" style="text-align:left">${esc(ornamentLabel(a))} ${i+1} · ${edgeNames[a.edge]}</button>${button('toggle-sticker',a.hidden?'显示':'隐藏',a.id,'class="small"')}${button('delete-sticker','×',a.id,'class="small" aria-label="删除挂件"')}</div>`).join('')}${st?`<div class="sticker-controls"><div class="grid2"><label>所在边框<select data-sticker-field="edge">${Object.entries(edgeNames).map(([k,n])=>`<option value="${k}" ${st.edge===k?'selected':''}>${n}</option>`).join('')}</select></label><label>沿边位置 %<input type="number" data-sticker-field="position" min="0" max="100" step="0.1" value="${st.position}"></label>${[['width','大小 px',16,400],['rotation','旋转 °',-180,180],['z','层级',0,9]].map(([k,n,min,max])=>`<label>${n}<input type="number" data-sticker-field="${k}" min="${min}" max="${max}" value="${st[k]}"></label>`).join('')}${st.kind==='text'?`<label>装饰文字<input data-sticker-field="value" maxlength="12" value="${esc(st.value)}"></label>`:''}</div><div class="toolbar">${button('replace-sticker','替换图片',st.id,'class="small"')}</div></div>`:''}<div class="toolbar">${button('reset-stickers','恢复这类卡片的默认装饰','','class="small"')}</div></div>`;}
+function historyPanel(){return `<div class="section"><div class="row between"><h3 style="margin:0">已结束记录</h3><span class="muted">${doc.engine.history.filter(p=>p.status==='completed').length} 次已评价</span></div><div class="toolbar">${button('export-history','导出记录 TXT')}${button('clear-history','清空记录','','class="danger"')}</div><p class="hint">最近记录在上方。完成与移除分别记录，直播画面不展示这里的私人备注。</p>${doc.engine.history.slice().reverse().map(p=>personRow(p,'history')).join('')||'<div class="blank">完成第一位锐评后，记录会出现在这里</div>'}</div>`;}
+function helpPanel(){return `<div class="help"><h3>锐评候场室 · 1.9</h3><p class="hint">一个 HTML 即可运行。主题、代码与默认挂件都已内置。</p><details open><summary>首次使用</summary><ol><li>在原有菘蓝插件宿主中导入此 HTML，沿用礼物通道。</li><li>默认已配置1个粉丝团灯牌普通排队。可在「礼物」修改名称和门槛，或添加插队、再次锐评规则，修改后点击保存。</li><li>先用模拟礼物演练；再送一份真实礼物核对用户信息与数量。</li><li>到「外观」选择主题并调整卡片、配色和挂件。</li><li>关闭控制台进入透明展示。双击空白处或按 Esc 恢复控制台；左下角悬停也能打开。</li></ol></details><details><summary>排队、插队和再次锐评</summary><p>普通排队每人只保留一个活动位置。插队排入等待优先区，多人插队按先后排序，不打断当前。再次锐评按规则增加机会，全部排到队尾。同一人可同时有多张机会卡。</p><p>当前评价卡片底部的「完成并下一位」无需打开控制台，点击后将当前移入历史并开始下一位；「只完成」暂停开始，直到手动点击开始下一位。移除当前也会暂停。移除不算已评价。</p><p>同一用户同一规则的礼物数量累计到门槛后触发；修改规则会清零该规则余数。单条再评超过 20 个机会会保留待处理，分批补入；最多 500 个活动机会、2000 条历史。</p></details><details><summary>头像、资料与备份</summary><p>收藏保存用户名、平台 ID、头像和私人备注。远程头像链接可能过期；资料编辑中可尝试保存本地副本，或直接上传头像。浏览器禁止跨域读取时会提示，不会假装已经永久保存。</p><p>上传支持 PNG/JPEG/WebP/GIF，单张最多 1.5MB、最长边 4096px。静态头像和挂件原文件内嵌保存；透明 PNG 保留透明度。GIF 可用但文件较大。</p><p>资料页「导出完整备份」包含队列、记录、规则、配色与已保存的图片。导入先预览并确认；预览期间数据变化须重新读取。浏览器存储拒绝时本页仍可临时使用，关闭前导出备份。</p></details><details><summary>透明画面与挂件</summary><p>页面空白区域始终透明，不再铺设棋盘格。OBS 首次加载默认进入展示模式；在 OBS 浏览器源的「交互」窗口双击空白处或按 Esc 打开控制台，设置完成后关闭控制台。卡片自身的底色通过不透明度单独调整。普通窗口采集可能显示浏览器底色。</p><p>不透明度 0–100% 只控制卡片底色，文字、头像和边框独立显示。八种主题分别保存配色，并分别保存正在评价卡片与等待卡片的装饰，每类 0–24 个。拖动标题或卡片空白处移动整个队列，右下角箭头等比缩放；控制台顶部 A−／A＋调整菜单字号。沿边调整时，挂件中心始终吸附边框；也可指定上／右／下／左边及沿边百分比。大小、旋转和层级可调。所有等待卡片共用等待模板，开始评价时自动换用评价模板。</p></details><details><summary>礼物接入与测试范围</summary><p>优先 SonglanPlugin.onGift；没有 SDK 时尝试 ws://localhost:9910，连接失败自动重试。没有昵称的礼物进入待处理。默认优先按平台 ID 识别，菘蓝未提供 ID 时按昵称＋头像识别（同名同头像无法区分）；严格模式下，无 ID 也进入待处理。</p><p>仅按明确事件 ID 去重，累计连击仅在消息带 comboId 与 isCumulative:true 时计算增量。真实平台若使用其他字段或累计协议，需要核对实际消息后适配。连击数量请先小额实测。</p><p>同一个队列请仅打开一个活动插件实例。不同浏览器或宿主的存储相互独立，需要手动备份迁移。</p></details><details><summary>版本记录</summary><p>1.9 · 2026-09-20：卡片和后台队列显示实时排位及前方人数；正在评价者算第1位，第一张等待卡片为第2位、前面1位。无人正在评价时第一张等待卡片为第1位、前面0位。插队、完成、移除和调整顺序自动更新。入队编号独立保留；同一观众的多次机会分别计位。</p><p>1.8 · 2026-09-20：长昵称取消单行省略，当前评价和等待卡片按完整文字自动换行、增高；控制台队列、历史和资料库同样完整显示长昵称与用户ID，支持连续英文、数字与表情。</p><p>1.7 · 2026-09-16：默认1个粉丝团灯牌普通排队，旧版空规则首次自动补入；用户删除后不会自动恢复。模拟下拉框明确显示无规则或未启用状态，可恢复默认规则。新增入队、换位和当前高亮动画，在外观中开启、关闭或跟随系统。</p><p>1.6 · 2026-09-16：整组队列支持拖动和右下角等比缩放，关闭控制台也能调整，位置与大小自动保存。挂件按未缩放卡片坐标计算，缩放后仍贴边。控制台默认18px，顶部A−／A＋可调到16–28px。保留1.5透明底修复。</p><p>1.5 · 2026-09-16：修复嵌套网页明暗模式不一致时的白底；页面空白区域不再铺预览底纹；OBS 首次加载默认透明展示，控制台可通过「交互」手动打开。增加父页面透底像素验证。</p><p>1.4 · 2026-09-16：八主题新增独立卡片结构、边框、头像框、排版和16个内置图形挂件。安装版菘蓝实际模拟格式已核对，无用户ID时支持昵称＋头像本地识别及严格模式；修正直连端口为9910并发送模块身份声明。原默认符号升级为图形，保留上传图片与自定义文字位置。</p><p>1.3 · 2026-09-16：挂件改为吸附卡片边框，只能沿边调整。「正在评价」和「等待」各有独立装饰模板，新卡片自动复用，开始评价时自动切换模板。旧版挂件保留并吸附到最近边缘，分别复制到两类模板，可再单独修改。</p><p>1.2 · 2026-09-16：在正在评价卡片底部增加「完成并下一位」，关闭控制台后可以直接操作。暂停时队列显示「开始下一位」，空队列按钮禁用。控制台与队列按钮共用防连点和保存中保护。</p><p>1.1 · 2026-09-16：新增「外观 → 上屏文字」，支持修改主标题和评价状态标签。兼容旧备份，旧记录未设置状态标签时显示「正在评价」。升级建议先导出备份；换文件或宿主后如未自动恢复，可导入备份。</p><p>1.0 · 2026-09-16：首次发布。新增礼物排队、优先插队、重复锐评、评价历史、用户资料库、八主题、自定义配色、不透明度与自由挂件。隐藏署名只用于标识作者，不发送数据。</p></details><div class="section"><h3>存储维护</h3><div class="toolbar">${button('export','导出完整备份')}${button('import','导入备份')}${corruptRaw!==null?button('export-corrupt','导出异常原记录'):''}${button('retry-storage','重新尝试保存')}</div><p class="hint">备份文件含用户资料，请妥善保存。新页面没有演示观众，默认启用1个粉丝团灯牌加入普通队列。</p></div></div>`;}
+function modal(html){$('modal-content').innerHTML=html;if(!$('modal').open)$('modal').showModal();}
+function confirmAction(title,description,fn){modal(`<h3>${esc(title)}</h3><p>${esc(description)}</p><div class="modal-actions"><button id="cancel-dialog">取消</button><button id="confirm-dialog" class="primary">确认</button></div>`);$('cancel-dialog').onclick=()=>$('modal').close();$('confirm-dialog').onclick=async()=>{const ok=await fn();if(ok!==false)$('modal').close();};}
+function personDialog(p=null,{profile=false,pending=null}={}){p=p?resolved(p):{key:'',uid:'',name:'',avatar:'',note:''};modal(`<h3>${pending?'核对并补入':profile?'保存用户资料':p.id?'编辑观众':'手动添加观众'}</h3><div class="stack"><label>昵称<input id="p-name" maxlength="200" value="${esc(p.name)}" required></label><label>平台用户 ID（可留空）<input id="p-uid" maxlength="180" value="${esc(p.uid)}" ${p.key?'readonly':''}></label><label>私人备注<textarea id="p-note" maxlength="2000">${esc(p.note)}</textarea></label>${!profile&&!p.id?`<div class="grid2"><label>加入方式<select id="p-kind">${Object.entries(names).map(([k,n])=>`<option value="${k}" ${pending?.gift.requestedKind===k?'selected':''}>${n}</option>`).join('')}</select></label><label>再评机会数<input id="p-opportunities" type="number" min="1" max="20" value="${Math.min(20,pending?.gift.requestedOpportunities||1)}"></label></div>`:''}${p.avatar?`<div class="row">${avatar(p)}<div class="grow hint">${p.avatar.startsWith('data:')?'头像已内嵌保存':'当前为远程头像链接，建议保存本地副本'}</div>${p.key?button('cache-avatar','保存本地副本',p.key,'class="small"'):''}</div>`:''}${pending?.gift.quantityIssue?`<label>原始数量：${esc(pending.gift.rawCount)}。核对后的礼物数量<input id="p-corrected-count" type="number" min="1" max="10000" value=""></label>`:''}${pending?`<div class="notice">${esc(pending.reason)}${!pending.gift.awardReady?'；核对后将按原规则重新累计数量，不直接发放机会。':''}${pending.gift.requestedOpportunities>20?'；此次最多补入 20 个，剩余机会继续保留待处理。':''}</div>`:''}</div><div class="modal-actions"><button id="cancel-person">取消</button><button id="submit-person" class="primary">${profile||p.id?'保存':'加入队列'}</button></div>`);
+ $('cancel-person').onclick=()=>$('modal').close();$('submit-person').onclick=async()=>{if($('submit-person').disabled)return;const name=$('p-name').value.trim(),uid=$('p-uid').value.trim(),note=$('p-note').value;if(!name){notify('请填写昵称');return;}$('submit-person').disabled=true;const q={key:p.key||(pending?M.identityKey({userId:uid,nickname:name,avatar:p.avatar||''},'display'):(uid?'uid:'+uid:'manual:'+uuid())),uid,name,note,avatar:p.avatar||''};const kind=$('p-kind')?.value||'join',opportunities=Number($('p-opportunities')?.value||1),correctedCount=$('p-corrected-count')?Number($('p-corrected-count').value):null;
+ const ok=await transact(d=>{if(profile){d.engine=E.apply(d.engine,{type:'profile',person:q});}else if(p.id){d.engine=E.apply(d.engine,{type:'edit',id:p.id,name,note});if(d.engine.profiles.some(x=>x.key===q.key))d.engine=E.apply(d.engine,{type:'profile',person:q});}else{if(pending){const live=d.engine.pending.find(x=>x.id===pending.id);if(!live||JSON.stringify(live)!==JSON.stringify(pending))throw Error('这条待处理记录已经变化，请重新核对');if(!live.gift.awardReady){const originalRule=d.rules.find(r=>r.id===live.gift.ruleId);if(!d.giftsEnabled||!originalRule?.enabled||originalRule.name.normalize('NFKC').trim().toLowerCase()!==String(live.gift.name).normalize('NFKC').trim().toLowerCase()||originalRule.kind!==live.gift.requestedKind||originalRule.min!==live.gift.threshold)throw Error('原礼物规则已停用或变化，请恢复原规则后处理；也可核对后手动登记再忽略本条');if(!uid&&d.identityMode==='strict')throw Error('严格模式需要平台用户 ID；菘蓝未提供时可切换昵称＋头像模式后再核对');d.engine=E.apply(d.engine,{type:'pendingRemove',id:pending.id});if(live.gift.quantityIssue&&(!Number.isInteger(correctedCount)||correctedCount<1||correctedCount>10000))throw Error('请填写核对后的数量 1–10000；超出部分请另行手动登记');d=M.route(d,{...live.gift,userId:uid,nickname:name,...(live.gift.quantityIssue?{quantityIssue:'',count:correctedCount}: {})});return d;}const earned=live.gift.requestedOpportunities;if(!Number.isInteger(earned)||earned<1)throw Error('机会数量无效，请核对原始礼物');if(kind!==live.gift.requestedKind)throw Error('已获得机会请保持原礼物类型');if(kind==='repeat'&&opportunities>earned)throw Error('不能补入超过已获得的机会数');}
+ d.engine=E.apply(d.engine,{type:kind,person:q,opportunities:kind==='repeat'?opportunities:1,source:pending?'待处理礼物补入':'手动添加'});if(pending){const remaining=pending.gift.requestedOpportunities-(kind==='repeat'?opportunities:1);d.engine=E.apply(d.engine,{type:'pendingRemove',id:pending.id});if(remaining>0)d.engine=E.apply(d.engine,{type:'pendingAdd',gift:{...pending.gift,requestedOpportunities:remaining},reason:'剩余 '+remaining+' 个机会待补入'});}}return d;},{message:profile?'用户资料已保存':'队列已更新'});if(ok)$('modal').close();else if($('submit-person'))$('submit-person').disabled=false;};}
+function saveRules(){const rules=[...document.querySelectorAll('[data-rule]')].map(row=>{const get=k=>row.querySelector(`[data-rule-field="${k}"]`);return {id:row.dataset.rule,name:get('name').value.trim(),kind:get('kind').value,min:Number(get('min').value),opportunities:Number(get('opportunities')?.value||1),enabled:get('enabled').checked};});return transact(d=>{const unchanged=new Set(rules.filter(r=>JSON.stringify(r)===JSON.stringify(d.rules.find(old=>old.id===r.id))).map(r=>r.id));d.rules=rules;d.receipts=Object.fromEntries(Object.entries(d.receipts).filter(([k])=>{try{return unchanged.has(JSON.parse(k)[0]);}catch{return false;}}));return d;},{message:'礼物规则已保存；仅重置修改规则的未满门槛累计'});}
+function giftReceived(gift){pendingWrites++;const protocol=transport?clone(transport.exportState()):null;const task=queue.then(async()=>{let next;try{next=M.route(doc,gift);next.transport=protocol;next=M.validate(next);}catch(e){lostGifts.push({gift,reason:e.message,time:Date.now()});warning();if(opened&&tab==='queue')renderPanel();notify('礼物未入队：'+e.message);return;}try{if(corruptRaw!==null)throw Error('旧记录已保护');await S.write(next);storageError='';}catch(e){storageError='礼物已在本页处理，但未保存。关闭前请导出备份。';}doc=next;serial++;warning();renderStage();renderFooter();if(opened&&tab!=='gifts'&&tab!=='appearance')renderPanel();});queue=task.catch(e=>{notify(e.message);}).finally(()=>{pendingWrites--;});return task;}
+function connect(){if(transport)transport();transport=ReviewTransport.connect({onGift:giftReceived,onStatus:text=>{$('connection-status').textContent=text;$('connection-dot').classList.toggle('on',/已连接/.test(text));},savedState:doc.transport});}
+function download(name,text,type='application/json'){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}
+async function exportBackup(){await queue;download('锐评排队备份-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(doc,null,2));notify('备份已导出，包含已内嵌的头像和挂件');}
+function imageDimensions(src){return new Promise((resolve,reject)=>{const img=new Image(),timer=setTimeout(()=>{img.src='';reject(Error('图片读取超时'));},8000);img.onload=()=>{clearTimeout(timer);if(!img.naturalWidth||img.naturalWidth>4096||img.naturalHeight>4096)reject(Error('图片最长边不能超过 4096px'));else resolve();};img.onerror=()=>{clearTimeout(timer);reject(Error('图片无法解码，请换一张 PNG/JPEG/WebP/GIF'));};img.src=src;});}
+function fileData(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('文件读取失败'));reader.onabort=()=>reject(Error('文件读取已取消'));reader.readAsDataURL(file);});}
+async function checkedImage(file){if(!/^image\/(png|jpeg|webp|gif)$/.test(file.type))throw Error('只支持 PNG/JPEG/WebP/GIF 图片');if(file.size>1572864)throw Error('单张图片不能超过 1.5MB');const src=await fileData(file);await imageDimensions(src);return src;}
+function requestImage(target){if(target.kind==='sticker'){target={...target,cardKind:$('panel-content').dataset.editCardKind};}uploadToken++;uploadTarget={...target,token:uploadToken};$('image-file').value='';$('image-file').click();}
+$('image-file').onchange=async()=>{const target=uploadTarget,file=$('image-file').files[0];if(!file||!target)return;try{const value=await checkedImage(file);if(target.token!==uploadToken)throw Error('已忽略过期图片读取');const ok=await transact(d=>{if(target.token!==uploadToken)throw Error('已忽略过期图片读取');if(target.kind==='avatar'){const existing=d.engine.profiles.find(p=>p.key===target.key);if(!existing)throw Error('用户资料已被移除，请重新选择');d.engine=E.apply(d.engine,{type:'profile',person:{...existing,avatar:value}});}else{if(d.settings.theme!==target.theme)throw Error('主题已切换，请在目标主题重新上传');if(stickerTarget!==target.cardKind)throw Error('卡片类型已切换，请重新上传');const list=d.settings.skins[target.theme].decorations[target.cardKind];if(target.id){const a=list.find(a=>a.id===target.id);if(!a)throw Error('挂件已移除');a.kind='image';a.value=value;}else{if(list.length>=24)throw Error('每主题最多 24 个挂件');const id=uuid();list.push({id,kind:'image',value,edge:'top',position:80,width:80,rotation:0,z:2,hidden:false});selectedSticker=id;}}return d;},{asset:true,message:'图片已解码并保存'});if(ok&&$('modal').open)$('modal').close();}catch(e){notify(e.message);}};
+async function cacheAvatar(key){const p=doc.engine.profiles.find(p=>p.key===key)||active().find(p=>p.key===key);if(!p?.avatar){notify('这个用户还没有头像');return;}if(p.avatar.startsWith('data:')){notify('头像已经保存在本地');return;}const old=p.avatar;try{const response=await fetch(old,{mode:'cors',credentials:'omit',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(8000)});if(!response.ok)throw Error('头像地址不可读取');const blob=await response.blob(),value=await checkedImage(blob);await transact(d=>{const latest=d.engine.profiles.find(x=>x.key===key)||[d.engine.current,...d.engine.waiting].find(x=>x?.key===key);if(!latest||latest.avatar!==old)throw Error('头像已变化，请重新保存');d.engine=E.apply(d.engine,{type:'profile',person:{...person(latest),avatar:value}});return d;},{asset:true,message:'头像本地副本已保存'});}catch(e){notify('无法保存远程头像，可能受跨域限制；请在资料页上传头像。');}}
+$('backup-file').onchange=async()=>{const file=$('backup-file').files[0],token=++backupToken,epoch=serial;if(!file)return;try{if(file.size>35000000||!/\.json$/i.test(file.name))throw Error('请选择不超过 35MB 的 JSON 备份');const candidate=M.validate(JSON.parse(await file.text()));const images=new Set();for(const skin of Object.values(candidate.settings.skins))for(const a of [...skin.decorations.current,...skin.decorations.waiting])if(a.kind==='image'&&a.value.startsWith('data:'))images.add(a.value);for(const p of [candidate.engine.current,...candidate.engine.waiting,...candidate.engine.history,...candidate.engine.profiles].filter(Boolean))if(p.avatar.startsWith('data:'))images.add(p.avatar);for(const src of images)await imageDimensions(src);if(token!==backupToken)throw Error('备份读取已过期');modal(`<h3>核对导入备份</h3><p>文件：${esc(file.name)}</p><div class="notice">正在评价 ${candidate.engine.current?1:0} 位 · 等待 ${candidate.engine.waiting.length} 个机会<br>收藏 ${candidate.engine.profiles.length} 人 · 历史 ${candidate.engine.history.length} 条<br>主题：${T.themes.find(t=>t.id===candidate.settings.theme).name}<br>确认后替换当前队列、规则、资料与外观。</div><div class="preview-users">${[candidate.engine.current,...candidate.engine.waiting.slice(0,8)].filter(Boolean).map(p=>`<p>${esc(p.name)} · No. ${p.ticket}</p>`).join('')}</div><div class="modal-actions"><button id="cancel-import">取消</button><button id="confirm-import" class="primary">确认替换</button></div>`);$('cancel-import').onclick=()=>{$('modal').close();backupToken++;};$('confirm-import').onclick=async()=>{if(token!==backupToken||epoch!==serial){notify('预览后队列或配置已变化，请重新选择备份核对');$('modal').close();return;}const ok=await transact(()=>{if(token!==backupToken||epoch!==serial)throw Error('数据已变化，请重新预览');return clone(candidate);},{asset:true,message:'备份已导入'});if(ok){$('modal').close();connect();}};}catch(e){notify('未导入：'+e.message);}};
+document.addEventListener('click',async e=>{const t=e.target.closest('button[data-tab],button[data-theme],[data-action]');if(!t)return;
+ if(t.dataset.tab){tab=t.dataset.tab;editStickers=false;renderStage();$('panel-content').scrollTop=0;renderPanel();return;}
+ if(t.dataset.theme){uploadToken++;editStickers=false;selectedSticker='';await transact(d=>{d.settings.theme=t.dataset.theme;return d;});return;}
+ const id=t.dataset.id,a=t.dataset.action,p=personById(id),skin=()=>doc.settings.skins[doc.settings.theme].decorations[stickerTarget];
+ const ownerTheme=$('panel-content').dataset.editTheme,ownerKind=$('panel-content').dataset.editCardKind;const mutateSkin=fn=>transact(d=>{if(d.settings.theme!==ownerTheme)throw Error('主题已切换，请重新选择');fn(d.settings.skins[ownerTheme]);return d;});const mutateDecor=fn=>transact(d=>{if(d.settings.theme!==ownerTheme||stickerTarget!==ownerKind)throw Error('主题或卡片类型已切换，请重新选择');fn(d.settings.skins[ownerTheme].decorations[ownerKind]);return d;});
+ switch(a){
+ case'live-next':advanceQueue();break;
+ case'preview-motion':if(motionEnabled())queueMotion.preview();else notify('动画已关闭或系统要求减少动画，请先选择开启');break;
+ case'add-default-rule':if(!await saveRules())break;transact(d=>{const matches=r=>r.name.normalize('NFKC').trim()==='粉丝团灯牌',existing=d.rules.find(r=>r.enabled&&matches(r))||d.rules.find(matches);if(existing){Object.assign(existing,{kind:'join',min:1,opportunities:1,enabled:true});d.receipts=Object.fromEntries(Object.entries(d.receipts).filter(([k])=>{try{return JSON.parse(k)[0]!==existing.id;}catch{return false;}}));testGiftId=existing.id;}else{if(d.rules.length>=30)throw Error('规则已满，请先删除一条不需要的规则');const rule={...M.defaultRules()[0],id:uuid()};d.rules.push(rule);testGiftId=rule.id;}return d;},{message:'已恢复：1 个粉丝团灯牌加入普通队列'});break;
+ case'manual':personDialog();break;case'new-profile':personDialog(null,{profile:true});break;case'edit-person':if(p)personDialog(p,{profile:!p.id});break;
+ case'save-person':if(p)action({type:'profile',person:person(resolved(p))},'用户名与头像已收藏；远程头像仍可能失效');break;
+ case'forget-person':if(p)confirmAction('取消收藏','队列和历史记录仍会保留。',()=>action({type:'forgetProfile',key:p.key}));break;
+ case'repeat-person':if(p)action({type:'repeat',person:person(resolved(p)),source:'手动再次排队'},'已加入队尾');break;
+ case'remove':if(p)confirmAction('移除 '+p.name,'将记录为已移除，不算完成评价。',()=>action({type:'remove',id}));break;
+ case'up':case'down':action({type:'move',id,direction:a==='up'?-1:1});break;
+ case'undo':confirmAction('撤销最近一次完成','恢复上一位，新收到的排队机会会保留。当前下一位退回等待区。',()=>action({type:'undo'},'已撤销最近完成'));break;
+ case'upload-avatar':if(p)requestImage({kind:'avatar',key:p.key});break;case'cache-avatar':cacheAvatar(id);break;
+ case'resolve-pending':{const pending=doc.engine.pending.find(x=>x.id===id);if(pending){const g=pending.gift;personDialog({key:g.userId&&g.userId.length<181?'uid:'+g.userId:'',uid:g.userId&&g.userId.length<181?g.userId:'',name:g.nickname||'',avatar:g.avatar||'',note:''},{pending});}break;}
+ case'dismiss-pending':confirmAction('忽略这条待处理礼物','确认已人工处理后再忽略。',()=>action({type:'pendingRemove',id}));break;
+ case'test-join':{const n=doc.engine.serial+1;action({type:'join',person:{key:'test:'+n,uid:'demo-'+n,name:['林间晚风','奶油小熊','星野','北岛'][n%4],avatar:'',note:''},source:'模拟普通排队'},'已加入一位模拟观众');break;}
+ case'test-priority':{const p=doc.engine.waiting.at(-1)||{key:'test:priority-'+uuid(),uid:'demo-priority',name:'插队体验员',avatar:'',note:''};action({type:'priority',person:person(p),source:'模拟插队'},'优先队列已更新');break;}
+ case'test-repeat':{const p=doc.engine.current||{key:'test:repeat-'+uuid(),uid:'demo-repeat',name:'返场体验员',avatar:'',note:''};action({type:'repeat',person:person(p),source:'模拟再次锐评'},'新增一次锐评机会');break;}
+ case'add-rule':if(!await saveRules())break;if(doc.rules.length<30)transact(d=>{d.rules.push({id:uuid(),name:'新礼物'+(d.rules.length+1),kind:'join',min:1,opportunities:1,enabled:false});return d;});break;
+ case'delete-rule':{if(!await saveRules())break;transact(d=>{d.rules=d.rules.filter(r=>r.id!==id);d.receipts=Object.fromEntries(Object.entries(d.receipts).filter(([k])=>{try{return JSON.parse(k)[0]!==id;}catch{return false;}}));return d;});break;}
+ case'save-rules':saveRules();break;
+ case'send-test-gift':{const r=doc.rules.find(r=>r.id===$('test-rule').value),count=Number($('test-count').value);if(!r||!r.enabled){notify('请先保存并启用要测试的规则');break;}if(!Number.isInteger(count)||count<1||count>10000){notify('测试数量须为 1–10000 的整数');break;}transport.receive(ReviewTransport.createTestGift({giftName:r.name,count,nickName:$('test-nickname').value}),true);await queue;notify('模拟礼物已处理，请查看队列或待处理列表');break;}
+ case'reset-colors':mutateSkin(s=>{const def=T.defaults()[doc.settings.theme];for(const k of ['accent','background','text','border','opacity'])s[k]=def[k];});break;
+ case'toggle-edit':editStickers=!editStickers;renderStage();renderPanel();break;
+ case'select-sticker':selectedSticker=id;editStickers=true;renderStage();renderPanel();break;
+ case'add-sticker':if(skin().length>=24){notify('每种卡片装饰最多 24 个挂件');break;}modal(`<h3>添加挂件</h3><p class="hint">可以使用内置文字装饰，或上传自己的透明图片。</p><div class="toolbar">${[1,2].map(n=>button('add-builtin-sticker',T.ornament(doc.settings.theme+'-'+n),doc.settings.theme+'-'+n,'class="ornament-choice" title="'+T.ornamentName(doc.settings.theme+'-'+n)+'"')).join('')}</div><div class="toolbar">${['✦','✿','♡','☾','✧','⚡'].map(v=>button('add-text-sticker',v,v)).join('')}</div><div class="modal-actions">${button('upload-sticker','上传图片','','class="primary"')}${button('close-modal','取消')}</div>`);break;
+ case'add-builtin-sticker':case'add-text-sticker':{const st={id:uuid(),kind:a==='add-builtin-sticker'?'builtin':'text',value:id,edge:'top',position:80,width:44,rotation:0,z:2,hidden:false};selectedSticker=st.id;const ok=await mutateDecor(list=>{if(list.length>=24)throw Error('每种卡片装饰最多 24 个挂件');list.push(st);});if(ok)$('modal').close();break;}
+ case'upload-sticker':requestImage({kind:'sticker',theme:doc.settings.theme});break;case'replace-sticker':requestImage({kind:'sticker',theme:doc.settings.theme,id});break;
+ case'toggle-sticker':mutateDecor(list=>{const st=list.find(a=>a.id===id);if(st)st.hidden=!st.hidden;});break;
+ case'delete-sticker':uploadToken++;mutateDecor(list=>{const index=list.findIndex(a=>a.id===id);if(index>=0)list.splice(index,1);});break;
+ case'reset-stickers':confirmAction('恢复默认装饰','只恢复当前主题的'+cardKindNames[ownerKind]+'装饰，另一类卡片保持不变。',()=>mutateDecor(list=>{list.splice(0,list.length,...T.defaults()[ownerTheme].decorations[ownerKind]);selectedSticker='';uploadToken++;}));break;
+ case'reset-position':transact(d=>{d.settings.x=8;d.settings.y=8;d.settings.width=380;d.settings.scale=1;return d;});break;
+ case'export':exportBackup();break;case'import':backupToken++;$('backup-file').value='';$('backup-file').click();break;case'close-modal':$('modal').close();break;
+ case'export-history':download('锐评记录.txt',doc.engine.history.map(p=>`${new Date(p.endedAt).toLocaleString()}\t${p.status==='completed'?'已评价':'已移除'}\t${p.name}\tID:${p.uid}\t第${p.round}次\t${p.note}`).join('\n'),'text/plain;charset=utf-8');break;
+ case'clear-history':confirmAction('清空历史记录','建议先导出记录。清空后不能撤销以前的评价完成。',()=>transact(d=>{d.engine.history=[];d.engine.undo=null;d.engine.revision++;return d;}));break;
+ case'export-corrupt':download('锐评异常原记录.json',JSON.stringify(corruptRaw,null,2));break;case'export-lost':download('锐评未处理礼物.json',JSON.stringify(lostGifts,null,2));break;
+ case'retry-storage':confirmAction('重新尝试保存',corruptRaw!==null?'这会用本页数据替换异常原记录，请确保已经导出原记录。':'将当前队列、头像和主题重新保存到浏览器。',async()=>{await queue;try{await S.write(doc);corruptRaw=null;storageError='';warning();renderPanel();notify('当前数据已保存');return true;}catch(e){notify('仍无法保存：'+e.message);return false;}});break;
+ }
+});
+$('panel-content').addEventListener('change',e=>{const t=e.target,ownerTheme=$('panel-content').dataset.editTheme,ownerKind=$('panel-content').dataset.editCardKind;
+ if(t.id==='sticker-target'){uploadToken++;stickerTarget=t.value;selectedSticker='';drag=null;renderStage();renderPanel();return;}
+ if(t.id==='identity-mode'){const value=t.value;transact(d=>{d.identityMode=value;return d;},{repaint:false});return;}
+ if(t.id==='test-rule'){testGiftId=t.value;return;}
+ if(t.id==='gift-enabled'){transact(d=>{d.giftsEnabled=t.checked;return d;},{repaint:false}).then(refreshGiftTestControls);return;}
+ if(t.dataset.ruleField==='kind'){const row=t.closest('[data-rule]');if(t.value==='repeat'&&!row.querySelector('[data-rule-field=opportunities]')){const label=document.createElement('label');label.textContent='每次触发增加的机会';const input=document.createElement('input');input.type='number';input.min='1';input.max='20';input.value='1';input.dataset.ruleField='opportunities';label.append(input);row.append(label);}return;}
+ if(t.dataset.color||t.dataset.colorText){const k=t.dataset.color||t.dataset.colorText,value=t.value;if(!T.color(value)){notify('请输入 #RRGGBB 格式的颜色');renderPanel();return;}transact(d=>{if(d.settings.theme!==ownerTheme)throw Error('主题已切换，请重新修改颜色');d.settings.skins[ownerTheme][k]=value;return d;});return;}
+ if(t.id==='opacity'){const value=Number(t.value);transact(d=>{if(d.settings.theme!==ownerTheme)throw Error('主题已切换，请重新修改不透明度');d.settings.skins[ownerTheme].opacity=value;return d;});return;}
+ if(t.id.startsWith('s-')){const key=t.id.slice(2),value=t.type==='checkbox'?t.checked:t.type==='number'?Number(t.value):t.value;transact(d=>{d.settings[key]=value;return d;});return;}
+ if(t.dataset.stickerField){const key=t.dataset.stickerField,value=['value','edge'].includes(key)?t.value:Number(t.value),id=selectedSticker;transact(d=>{if(d.settings.theme!==ownerTheme)throw Error('主题已切换，请重新选择挂件');if(stickerTarget!==ownerKind)throw Error('卡片类型已切换，请重新选择挂件');const st=d.settings.skins[ownerTheme].decorations[ownerKind].find(a=>a.id===id);if(!st)throw Error('请重新选择挂件');st[key]=value;return d;});}
+});
+$('panel-content').addEventListener('input',e=>{if(e.target.id==='opacity'){$('opacity-value').textContent=e.target.value+'%';document.documentElement.style.setProperty('--card-opacity',Number(e.target.value)/100);}if(e.target.dataset.color){const k=e.target.dataset.color,v=e.target.value;document.querySelector(`[data-color-text="${k}"]`).value=v;}});
+let drag=null;
+$('stage').addEventListener('pointerdown',e=>{const target=e.target.closest('[data-sticker]'),card=target?.closest('[data-card-kind]');if(!target||!card||!editStickers||!opened||card.dataset.cardKind!==stickerTarget)return;const st=doc.settings.skins[doc.settings.theme].decorations[stickerTarget].find(a=>a.id===target.dataset.sticker);if(!st)return;queueMotion.cancel();const geometry=cardGeometry(card),rect=card.getBoundingClientRect(),point=T.edgePoint(st.edge,st.position,geometry.width,geometry.height,geometry.radius,geometry.border);selectedSticker=st.id;drag={id:st.id,theme:doc.settings.theme,cardKind:stickerTarget,element:target,card,rect,geometry,pointer:e.pointerId,offsetX:(e.clientX-rect.left)/geometry.scaleX-point.x,offsetY:(e.clientY-rect.top)/geometry.scaleY-point.y};target.setPointerCapture(e.pointerId);e.preventDefault();});
+document.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.pointer)return;if(!drag.element.isConnected){drag=null;return;}const g=drag.geometry;drag.next=T.snapEdge((e.clientX-drag.rect.left)/g.scaleX-drag.offsetX,(e.clientY-drag.rect.top)/g.scaleY-drag.offsetY,g.width,g.height,g.radius,g.border);for(const card of $('cards').querySelectorAll('[data-card-kind]')){if(card.dataset.cardKind!==drag.cardKind)continue;const shape=cardGeometry(card),point=T.edgePoint(drag.next.edge,drag.next.position,shape.width,shape.height,shape.radius,shape.border);for(const el of card.querySelectorAll('[data-sticker]'))if(el.dataset.sticker===drag.id){el.style.left=point.x+'px';el.style.top=point.y+'px';}}});
+document.addEventListener('pointerup',e=>{if(!drag||e.pointerId!==drag.pointer)return;const d=drag;drag=null;if(d.next)transact(s=>{if(s.settings.theme!==d.theme||stickerTarget!==d.cardKind)throw Error('主题或卡片类型已变化，请重新拖动');const a=s.settings.skins[d.theme].decorations[d.cardKind].find(a=>a.id===d.id);if(a)Object.assign(a,d.next);return s;});else{renderPanel();renderStage();}});
+document.addEventListener('pointercancel',()=>{drag=null;renderStage();});
+function placeStage(layout){const stage=$('stage');stage.style.left=layout.x+'%';stage.style.top=layout.y+'%';stage.style.setProperty('--stage-scale',layout.scale);stage.style.setProperty('--handle-scale',1/layout.scale);}
+function commitStagePlacement(placement){const token=++stagePlacementSequence;pendingStagePlacement={...placement};return transact(d=>{Object.assign(d.settings,placement);return d;}).then(ok=>{if(token===stagePlacementSequence){pendingStagePlacement=null;if(!stageGesture)renderStage();}return ok;});}
+function stageBounds(x,y,scale,width=$('stage').offsetWidth,height=$('stage').offsetHeight){return T.clampStagePosition({x,y,width:width*scale,height:height*scale,canvasWidth:$('canvas').clientWidth,canvasHeight:$('canvas').clientHeight});}
+function menuSize(delta){transact(d=>{d.settings.menuFont=Math.max(16,Math.min(28,d.settings.menuFont+delta));return d;});}
+$('menu-smaller').onclick=()=>menuSize(-2);$('menu-larger').onclick=()=>menuSize(2);
+$('stage').addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('.sticker'))return;const resize=e.target.closest('#stage-resize'),move=e.target.closest('#stage-move');if(!resize&&!move&&e.target.closest('button,input,select,textarea,a'))return;if(drag)return;queueMotion.cancel();const stage=$('stage'),canvas=$('canvas'),start=pendingStagePlacement||doc.settings;stageGesture={kind:resize?'resize':'move',pointer:e.pointerId,startX:e.clientX,startY:e.clientY,width:stage.offsetWidth,height:stage.offsetHeight,canvasWidth:canvas.clientWidth,canvasHeight:canvas.clientHeight,start:{x:start.x,y:start.y,scale:start.scale},preview:{x:start.x,y:start.y,scale:start.scale},moved:false};stage.setPointerCapture(e.pointerId);stage.classList.add('stage-transforming');e.preventDefault();});
+document.addEventListener('pointermove',e=>{const g=stageGesture;if(!g||e.pointerId!==g.pointer)return;const dx=e.clientX-g.startX,dy=e.clientY-g.startY;if(!g.moved&&Math.hypot(dx,dy)<4)return;g.moved=true;let x=g.start.x,y=g.start.y,scale=g.start.scale;if(g.kind==='move'){x+=dx/g.canvasWidth*100;y+=dy/g.canvasHeight*100;}else scale=T.resizeStageScale({startScale:scale,width:g.width,height:g.height,dx,dy});const position=stageBounds(x,y,scale,g.width,g.height);g.preview={...position,scale};placeStage(g.preview);positionCardDecorations();e.preventDefault();});
+document.addEventListener('pointerup',e=>{const g=stageGesture;if(!g||e.pointerId!==g.pointer)return;stageGesture=null;$('stage').classList.remove('stage-transforming');if(!g.moved)return;suppressDoubleClickUntil=Date.now()+700;const placement={...g.preview};commitStagePlacement(placement);});
+function cancelStageGesture(){if(!stageGesture)return;stageGesture=null;$('stage').classList.remove('stage-transforming');renderStage();}
+document.addEventListener('pointercancel',cancelStageGesture);$('stage').addEventListener('lostpointercapture',cancelStageGesture);
+for(const id of ['stage-move','stage-resize'])$(id).addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();const positive=e.key==='ArrowRight'||e.key==='ArrowDown',base=pendingStagePlacement||doc.settings;let scale=base.scale,x=base.x,y=base.y;if(id==='stage-resize')scale=Math.max(.5,Math.min(2.5,Math.round((scale+(positive?.05:-.05))*100)/100));else{const step=e.shiftKey?5:1;if(e.key==='ArrowLeft'||e.key==='ArrowRight')x+=positive?step:-step;else y+=positive?step:-step;}commitStagePlacement({...stageBounds(x,y,scale),scale});});
+window.addEventListener('pagehide',()=>{queueMotion.cancel();if(transport)transport();});
+window.addEventListener('pageshow',e=>{if(e.persisted)connect();});
+window.addEventListener('beforeunload',e=>{if(storageError||lostGifts.length||pendingWrites){e.preventDefault();e.returnValue='';}});
+renderStage();renderFooter();warning();connect();if((fresh||storageError)&&!ReviewSurface.capture)openPanel();if(storageError&&ReviewSurface.capture)notify('存储暂不可用，请用 OBS 交互打开控制台并导出备份');
+})();
+
+
+</script>
+</body></html>

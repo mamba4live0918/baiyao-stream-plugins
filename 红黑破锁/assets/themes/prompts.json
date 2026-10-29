@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "release": "V2.2",
+  "source": "Built-in image_gen; original generation from text motifs, no portrait copying",
+  "image_editing": "None. Generated PNGs copied unchanged; pixel inspection only.",
+  "assets": [
+    {
+      "asset": "fufu-padlock",
+      "prompt": "Use case: stylized-concept. Create a single original game padlock sprite, front orthographic view, complete silhouette, on a truly transparent RGBA background with generous empty transparent margins on all four sides. Soft sweet cream enamel toy aesthetic, not dark metal or prison horror. The rounded padlock body is cream-gold #F3D99A, with two large round mouse-ear ornaments at its upper left and upper right corners, cream-gold outer ears and light pink #F8CBC4 inner ears. On the right ear attach a small sky blue #A9D8F5 bow, its trim decorated with thin navy #34588F stripes. A real U-shaped sky-blue enamel shackle above the body, glossy soft white highlights. One small heart-shaped keyhole centered on the body, subtle pastel blush patches on either side. Nearly symmetric padlock body and ears, only the small bow is asymmetric. This is an inanimate padlock with mouse-ear-shaped decorations, NOT a character face: absolutely no eyes, no mouth, no nose, no face, no person, no character portrait, no text or letters, no logo/watermark, no attached external chains, no ground, no shadow plate or background. Keep ear silhouettes intact with space around them. Clean softly shaded polished 3D cartoon illustration, readable at small size, matching a light blue and cream cheese-mouse themed stream overlay.",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f05-ea80-7e22-85e0-864c4ea1989b\\exec-537c5cd6-80c1-4f73-ac4f-dce22441ea04.png",
+      "saved_path": "assets/themes/fufu-padlock.png",
+      "visual_review": "Original inanimate toy-enamel prop. Complete silhouette, generous transparent margins; no eyes, mouth, portrait, text, watermark or backdrop. Palette and bow/ear motifs meet the brief. Chain is level, seven interwoven links, no dangling ornaments.",
+      "qa": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 60.35,
+        "alpha_bbox": [
+          0,
+          31,
+          1234,
+          1254
+        ],
+        "visible_alpha32_bbox": [
+          103,
+          140,
+          1151,
+          1119
+        ],
+        "edge_alpha_max": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "bytes": 875558,
+        "sha256": "484c689dd1efdc661f41cbd214a0a966da5e4fde40ebe5408bc8e3a602c29d6c",
+        "edge_note": "Edge alpha <=8/255 is below renderer silhouette threshold 18; the visible alpha32 contour must have full margins.",
+        "passed": true
+      }
+    },
+    {
+      "asset": "fufu-chain",
+      "prompt": "Use case: stylized-concept. Create one single original horizontal repeating-chain source sprite on a truly transparent RGBA background. Exactly seven chunky rounded toy-enamel chain links in a perfectly straight horizontal line, alternating face-on oval rings and edge-on connector rings, mechanically interlocked through each other. Four face-on rings and three edge-on connectors. Cream-gold #F3D99A face-on links alternate with sky-blue #A9D8F5 edge-on enamel links; very tiny blush pink heart engravings may sit flush on the face-on links, no protruding ornaments. Ring holes are completely transparent. Soft cream-white highlights, sweet gentle pastel toy aesthetic, smooth rounded surfaces, polished 3D cartoon rendering, not metallic horror. First and last links must be fully intact, same facing orientation, generous transparent padding at all edges. Entire chain centered and level, no sag, no curve, no tilt, no perspective drift. No padlock, no pendant, no bow, no ribbon, no star, no dangling charms, no characters or faces, no text/logo/watermark, no floor, no opaque shadow or background. One isolated chain only, not a contact sheet. The clear repeating face-on link rhythm must allow the browser to crop a horizontal repeat period between the centers of equivalent links.",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f05-ea80-7e22-85e0-864c4ea1989b\\exec-2498ebdb-64ae-4060-9a8d-85798292fff6.png",
+      "saved_path": "assets/themes/fufu-chain.png",
+      "visual_review": "Original inanimate toy-enamel prop. Complete silhouette, generous transparent margins; no eyes, mouth, portrait, text, watermark or backdrop. Palette and bow/ear motifs meet the brief. Chain is level, seven interwoven links, no dangling ornaments.",
+      "qa": {
+        "width": 2167,
+        "height": 725,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 73.07,
+        "alpha_bbox": [
+          25,
+          0,
+          2135,
+          725
+        ],
+        "visible_alpha32_bbox": [
+          73,
+          217,
+          2096,
+          508
+        ],
+        "edge_alpha_max": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "bytes": 710840,
+        "sha256": "c2dee2fd0b75ff551556be62bd59b581e6db68b7ad3e2e69b7eb0ffe762da8ac",
+        "edge_note": "Edge alpha <=8/255 is below renderer silhouette threshold 18; the visible alpha32 contour must have full margins.",
+        "passed": true
+      }
+    }
+  ]
+}

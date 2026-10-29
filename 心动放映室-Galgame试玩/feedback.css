@@ -1,0 +1,24 @@
+body{--fx-negative:#edaa78}body[data-theme="sky"],body[data-theme="candy"]{--fx-negative:#ad542c}
+.feedback-layer{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden;background:transparent;isolation:isolate}
+.reaction-popup{--fx-tone:var(--t-accent,#e8a1b2);position:absolute;left:1165px;top:150px;width:370px;padding:18px 21px 17px;background:var(--t-panel,#2c2138ee);border:1px solid var(--fx-tone);border-left-width:4px;box-shadow:0 8px 35px #09142128,0 0 22px color-mix(in srgb,var(--fx-tone) 16%,transparent);color:var(--t-text,#fff9fc);will-change:transform,opacity}
+.reaction-popup[data-kind="trouble"]{--fx-tone:var(--fx-negative)}.reaction-popup[data-kind="neutral"]{--fx-tone:var(--t-gold,#dfc5a2)}
+.reaction-heading{display:flex;align-items:center;gap:11px;color:var(--fx-tone)}.reaction-heading .icon{height:29px;width:29px;stroke-width:2}.reaction-title{font-size:25px;letter-spacing:2px;font-weight:500;flex:1}.reaction-amount{font-size:38px;line-height:1;font-family:Georgia,serif;letter-spacing:0}.reaction-line{font-size:18px;line-height:1.6;letter-spacing:1px;margin-top:11px;color:var(--t-text);opacity:.85}
+.reaction-popup:after{content:"";position:absolute;left:36px;bottom:-9px;width:16px;height:16px;background:var(--t-panel);border-right:1px solid var(--fx-tone);border-bottom:1px solid var(--fx-tone);transform:rotate(45deg)}
+.fx-ring{position:absolute;border:2px solid currentColor;border-radius:50%;box-shadow:0 0 20px currentColor,inset 0 0 18px currentColor;opacity:0;will-change:transform,opacity}
+.fx-ring.thin{border-width:1px;box-shadow:none}.fx-ring.angular{border-radius:6px;box-shadow:0 0 15px currentColor;transform:rotate(45deg)}
+.reaction-emblem{position:absolute;width:100px;height:100px;color:var(--t-accent);filter:drop-shadow(0 0 13px currentColor);will-change:transform,opacity}
+.reaction-emblem .icon{width:100%;height:100%;stroke-width:1.5;fill:color-mix(in srgb,currentColor 15%,transparent)}
+.reaction-emblem[data-kind="trouble"]{color:var(--fx-negative)}.reaction-emblem[data-kind="neutral"]{color:var(--t-gold)}
+.fx-particle{position:absolute;color:var(--t-accent);filter:drop-shadow(0 0 5px currentColor);will-change:transform,opacity}
+.fx-particle .icon{height:100%;width:100%;stroke-width:1.8;fill:color-mix(in srgb,currentColor 20%,transparent)}
+.fx-particle[data-kind="trouble"]{color:var(--fx-negative)}.fx-particle[data-kind="neutral"]{color:var(--t-gold)}
+.comic-emote{position:absolute;left:1220px;top:294px;color:#ffe1b7;font-size:41px;font-weight:700;font-style:italic;letter-spacing:5px;text-shadow:2px 2px #774329,-2px -2px #774329,0 0 15px #dd9b66;will-change:transform,opacity}
+.vote-announcement{position:absolute;left:420px;top:237px;width:560px;display:flex;justify-content:center;align-items:center;gap:14px;padding:12px 22px;color:var(--t-text);background:var(--t-panel);border-top:1px solid var(--t-gold);border-bottom:1px solid var(--t-gold);font-size:22px;letter-spacing:3px;text-shadow:0 1px 4px var(--t-shadow);will-change:transform,opacity}
+.vote-announcement .icon{width:25px;height:25px;color:var(--t-accent)}.vote-announcement strong{font-family:Georgia,serif;font-size:29px;color:var(--t-accent);font-weight:400}
+.vote-token{position:absolute;color:var(--t-accent);font-size:21px;line-height:1;font-weight:600;letter-spacing:1px;text-shadow:0 1px 6px #14243899;will-change:transform,opacity}
+.vote-bar{transition:none!important}
+.choice-area.settling .choice{pointer-events:none}.choice-area.settling .choice.winner .surface{fill:var(--t-hover);stroke:var(--t-selected-edge);stroke-width:2.4}.choice-area.settling .choice.winner .trim{stroke:var(--t-selected-edge);stroke-width:1.3}.choice-area.settling .choice.winner{filter:drop-shadow(0 0 12px var(--t-glow))}.choice-area.settling .choice.losing{filter:none}
+.feedback-layer[data-motion="reduced"] .fx-particle,.feedback-layer[data-motion="reduced"] .fx-ring,.feedback-layer[data-motion="reduced"] .comic-emote{display:none}
+body[data-theme="candy"] .reaction-popup{border-radius:18px}.reaction-popup[data-kind="cheer"] .reaction-amount{filter:drop-shadow(0 0 6px var(--t-glow))}
+body[data-theme="orbit"] .reaction-popup{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}body[data-theme="orbit"] .reaction-popup:after{display:none}
+body[data-theme="washi"] .reaction-title,body[data-theme="washi"] .reaction-line{font-family:var(--t-font)}

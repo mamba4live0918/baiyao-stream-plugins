@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "review": "柜台重绘v2",
+  "records": [
+    {
+      "id": "counter_noodle_master",
+      "assetIds": [
+        "counter_noodle_left",
+        "counter_noodle_mid",
+        "counter_noodle_right"
+      ],
+      "prompt": "Use case: stylized-concept. Production raster sprite for a cozy cute2D chibi foodstall game. Match the supplied CUSTOMER only for warm dark-brown #49372d ink thickness, hand-drawn friendly shapes, simple one-cel-shadow and small white highlights. Reference is STYLE ONLY, NOT subject: absolutely NO character, human, face, hands or body in output. Clean flat illustration, actual alpha-transparent background, no floor, scene, watermark or any text/letters/numerals/logos. Subject: ONE entire believable small NOODLE STALL COUNTER, front-on with a slightly elevated view showing a solid wooden worktop. Wide landscape aspect1024:420. This must feel like a real cozy street stall object, NEVER a colored UI button or round-corner plastic panel. Worktop is thick honey-warm natural WOOD, visible sweeping woodgrain lines, real plank edge thickness, small worn nicks at corners, a few restrained white painted highlights. Brown ink outline thickness consistent with the chibi customer. Below worktop: TOMATO RED painted frontboard, covered with a rhythmic repeating WHITE AUSPICIOUS CLOUD pattern (simple traditional curling cloud shapes, no kanji). A scalloped FAN-SHAPED hanging fabric valance runs across top front just beneath worktop lip, tomato-red cloth with light cream trim and soft folds, slightly irregular physical hem. Repeat clouds across central70% width so a meaningful centralstrip can form a patterned repeat tile; avoid any unique centered emblem or vertical divider. Frontboard and fabric both read as part of a stall, not rectangular buttons. Visible wear and woodgrain but not noisy realistic texture. Top occupies about22%height, thick edge10%, cloth valance15%, red cloud-decorated lowerboard rest. Entire counter fills~94%canvaswidth with clean transparencyaround, no separate sign attached, nolegs, noawning, no walls, no food/utensils/props/person. No outer rounded decorative rectangle border, no decorative double-button-frame. All artwork fullwidth with left and right physical end edges visible, no writing whatsoever.",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-315c7091-5f12-4077-b11a-f8559733d35e.png",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-315c7091-5f12-4077-b11a-f8559733d35e.png"
+      ],
+      "rawPath": "raw/counters-v2/counter_noodle_master.png",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "counter_noodle_sign",
+      "assetIds": [
+        "counter_noodle_sign"
+      ],
+      "prompt": "Use case: stylized-concept. Production raster sprite for a cozy cute2D chibi foodstall game. Match the supplied CUSTOMER only for warm dark-brown #49372d ink thickness, hand-drawn friendly shapes, simple one-cel-shadow and small white highlights. Reference is STYLE ONLY, NOT subject: absolutely NO character, human, face, hands or body in output. Clean flat illustration, actual alpha-transparent background, no floor, scene, watermark or any text/letters/numerals/logos. Subject: ONE separate blank circular wooden shop medallion backing, diameter120logical exported240square, frontview. Warm visible natural woodgrain on the thick round slightly worn rim, a narrow TOMATO RED painted accent ring, spacious completely blank cream center for later code lettering. Tiny wornnotches and a simple physical wooden bevel, one hardcelshadow and smallupperleftwhitehighlight. Match physicalhandpaintedstreetstallwood, NOT glossyplasticUIbutton. Exactround silhouette centered with6%transparentmargin. Absolutely NO letters/numbers/icons/food/emblem/logo/string/hooks/personorbody. Referencecustomeronlyprovidesinkstyle.",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-29595e92-8d3b-4622-bf96-5d477d0ea8de.png",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-29595e92-8d3b-4622-bf96-5d477d0ea8de.png"
+      ],
+      "rawPath": "raw/counters-v2/counter_noodle_sign.png",
+      "selected": true,
+      "attempt": 1
+    }
+  ]
+}

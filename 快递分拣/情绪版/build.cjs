@@ -1,0 +1,15 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');const dir=__dirname,base=path.dirname(dir);const read=p=>fs.readFileSync(p,'utf8');
+let s=read(path.join(base,'src/index.html'));
+s=s.replace('/* INLINE_ENGINE */',read(path.join(dir,'src/shift.js'))).replace('__BACKGROUND__','');
+s=s.replace('</style>',read(path.join(base,'src/transparent.css'))+read(path.join(dir,'src/emotion.css'))+'</style>');
+s=s.replace('<script>','<script>'+read(path.join(base,'../插件通用模板/overlay-kit-v1.js'))+'</script><script>');
+s=s.replace('<title>小小快递站 · 下班前最后一车</title>','<title>就差一件下班 · 快递情绪互动版</title>').replace('<h1>小小快递站</h1>','<h1>就差一件下班</h1>').replace('下班前，最后一车。','我只想准点下班。').replace('可玩原型 · V0.1','情绪互动版');
+s=s.replace(/<div class="scoreboard">[\s\S]*?<div class="stage"/,`<div class="scoreboard emotion-hud"><div><span class="remaining-label">距离下班，还剩</span><div class="remaining-line"><strong id="remaining">10</strong><span>件</span></div></div><div class="shift-thought"><strong id="thought">收完这一车，就回家。</strong><span id="closing-status">拖进同色筐，清完就下班</span></div><div class="tiny-progress" hidden><span id="done"></span><span id="target"></span><span id="combo"></span><span id="mistakes"></span><div id="progress"></div></div></div><div class="stage"`);
+s=s.replace(/<aside class="sidebar">[\s\S]*?<\/aside>/,`<aside class="sidebar emotion-controls"><h2>观众来一句</h2><p class="aside-sub">点一下，看看主播还能不能下班。</p><button class="viewer-action bad" data-effect="rush"><span class="action-icon">↯</span><span><strong>不准下班！</strong><small>又来一车 · 增加 8 件</small></span><b>+8</b></button><button class="viewer-action giant" data-effect="giant"><span class="action-icon">▣</span><span><strong>这个也帮我收一下</strong><small>寄来一件超大包裹</small></span><b>+1</b></button><button class="viewer-action good" data-effect="help"><span class="action-icon">♡</span><span><strong>别怕，我来救你</strong><small>机器人清场 · 最多 5 件</small></span><b>−5</b></button><label class="sender">署名<input id="sender" value="" placeholder="留空使用示例观众" maxlength="16" aria-label="观众署名"></label><div class="recent"><h3>这一班，是谁干的</h3><div id="logs" class="logs" aria-live="polite"><div class="log"><span class="dot"></span><span>今天能不能准点下班？</span></div></div></div><div class="aside-note">这是本地互动试玩。<br>礼物接入与规则藏在左下「完整设置」。</div></aside>`);
+s=s.replace("let goal=30,best=0", "let goal=10,best=0");
+s=s.replace(/try\{const s=JSON\.parse\(localStorage\.getItem\('bysl-parcel-prototype-v1'[\s\S]*?(?=function tone)/, "function save(){}\n");
+s=s.replace("game.add(0,'小桃');game.add(1,'今天不加班');game.add(2,'路过的猫');game.parcels.forEach((p,i)=>p.x=.14+i*.28);game.spawn=4;",'game.seed();');
+s=s.replace('也可选中包裹后按 1 / 2 / 3 分拣','只有一个动作：拖进同色筐');
+s=s.replace('</body>','<script>'+read(path.join(dir,'src/app.js'))+'</script></body>');
+for(const m of s.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(m[1]);
+const out=path.join(base,'就差一件下班-情绪互动版.html');fs.writeFileSync(out,s);console.log('Built '+path.basename(out)+' '+Buffer.byteLength(s)+' bytes');

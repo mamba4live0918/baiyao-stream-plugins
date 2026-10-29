@@ -1,0 +1,34 @@
+# 1.3 live-edit steering
+
+User additionally requested live editing on left, interactive right preview, then review. Explicit preference: visual parameters first, source also available. Preserve guided creation/photos/text prompts from guided-contract.md. Same black/lime design. Target one1.3 release.
+
+## Ownership
+- Frontend worker (guided_frontend follow-up): LiveEditor.jsx, src/live-preview.mjs, App.jsx integration, appended dark.css, tests/live-preview.test.cjs. Parent owns shared parameter utility below; backend worker owns new actions. Do not edit bridge/main/model APIs.
+- Backend worker (guided_backend follow-up): service.cjs, review helper, relevant tests, app-bundled starter assets/overlay-starter.html only. Do not change installed personal skill or frontend. Integrate new visual config requirements in generation prompts.
+- Parent: src/live-config.mjs + tests/live-config.test.cjs, native preview screenshot IPC, browser bridge unsupported screenshot, packaging/tests/review.
+
+## Shared visual parameter format / helper (parent)
+Generated HTML should contain one `<script id="overlay-studio-config" type="application/json">` with JSON `{version:1,fields:[{key,label,type:'number'|'color'|'boolean'|'text',value,min?,max?,step?}]}`. At most24 fields. Keys /^[a-zA-Z][a-zA-Z0-9_]{0,39}$/ excluding prototype names. Labels <=80chars, text values <=200, colors #RRGGBB, finite numbers bounds and positive step. Game runtime reads current values from that element during startup and uses them in actual behavior (not decoration). Include relevant speed/size/color/round-time parameters per game, no fake universal controls.
+src/live-config.mjs exports:
+- parseLiveConfig(html) -> {fields:[],error?:string}. Missing config fields[] with no error. Invalid schema error, never evaluate source scripts. Find exact id/type script and parse only its JSON; safe string operations, no DOMParser resource fetching.
+- updateLiveConfig(html,key,value) -> replacement HTML with validated changed JSON, escapes '<' as unicode to prevent script close injection.
+- auditSource(html) -> [{severity:'error'|'warning'|'info',title,detail}]. Conservative: incomplete document, absent viewport, external script/link/img/http resource references (not arbitrary URL mentions), missing visual config; no claim browser verified. Do not run source code.
+
+## UI & runtime preview
+Editor tabs 引导创作 / 实时编辑 / 直接编辑. Only live-edit mode replaces left with visual controls + source textarea tabs. No game HTML: explain generate/import first and link guided. Existing HTML without metadata: show '旧作品尚未提供可视化参数', button onRequestParameters invokes existing jobs.start instruction to add functional config schema; source editing still available.
+LiveEditor renders fields from parseLiveConfig; changes update draft HTML and right preview after ~300ms debounce. Be clear changing params/source refreshes preview and restarts that local play session; all edits remain unsaved until 保存版本. Manual reload available. User may toggle auto-refresh. Source edits show 20MiB bound and errors; saving creates recoverable revision. Don't overwrite server project blindly: retain expectedRevision from base and reject mismatch. Keep unsaved live draft across page switches (base revision keyed, never let clean stale cache overwrite current artifact). Lock while model jobs active; don't lose draft on review completion.
+App Preview should accept live draft override in live mode only and instrument the sandbox document for diagnostics. Keep iframe opaque sandbox allow-scripts; no same-origin/native privileges.
+src/live-preview.mjs extends existing sandboxDocument or builds on it to add error/unhandledrejection/resource-error listeners and DOM ready audit (html/body computed backgrounds, horizontal overflow). Sends bounded diagnostics to parent with random channel token; parent requires event.source===iframe.contentWindow and matching token. No arbitrary IPC actions from iframe messages. Revision/channel changes discard old iframe messages. Label local checks as checks, not a complete game-quality guarantee. No automatic model/network calls on every keystroke.
+LiveEditor review area: local source/runtime findings; button AI审查 with optional '附预览截图（桌面版，需视觉模型）'. Parent offers system.capturePreview crop, otherwise review can run code+diagnostics only. Display model findings and clarify when no screenshot was supplied. User can send suggestions as instruction to existing generation flow, but never silently auto-fix/overwrite. Review is user-triggered and may consume current model usage.
+
+## RPC backend additions
+- projects.commit {id,html,expectedRevision} -> Detail; require matching revision, no active job, validate HTML; existing atomic promote label '实时编辑前版本'. Same HTML should avoid needless revision. Preserve conversation/references. User explicitly clicked Save version.
+- review.start {projectId,html?,diagnostics?:Finding[],screenshot?:dataUrl} -> Job kind:'review'. html is current draft (max20MiB) or saved artifact; no write to artifact. diagnostics max30 entries bounded title120/detail2000; screenshot PNG/JPEG validated same reference helper but not added to project references. Optional image sent to selected model only when requested.
+Review JSON result {summary:string,findings:[{severity:'error'|'warning'|'info',title:string,detail:string,suggestion:string}]} <=20findings. Store public Detail.review={createdAt,summary,findings,htmlHash,withScreenshot:boolean}; SHA256 of reviewed draft. Preserve previous report on failure. Must never claim visual/playtest inspection without screenshot or given runtime evidence. Codex review read-only with screenshot --image, API requestCompletion with images. Global job cancel/stale safeguards same as interview. No artifact or conversation mutation from review aside from report/revision.
+Job completion text specific to review; UI reloads detail but does not clear unsaved live draft. Do not require plaintext keys or new provider setup.
+
+## Screenshot IPC parent
+system.capturePreview {x,y,width,height} -> {dataUrl} via Electron webContents.capturePage, bounds restricted to current app content and <=4096 dimensions. Main-frame only. No OS screen capture. Browser development returns clear unsupported error or UI excludes screenshot option; code-only review remains testable. Parent never trusts iframe to request capture or invoke operations.
+
+## Tests
+Parameters change actual bundled starter speed/color/duration after preview reload; source draft changes visible text; save creates version and detects stale revision; preview errors surface; iframe-origin/token mismatch ignored; review leaves artifact unchanged; optional screenshot reaches model; no screenshot means honest code-only review; cancelled/failed review preserves prior artifact/report. Source/schema validation tests should assert behavior, not source wording.

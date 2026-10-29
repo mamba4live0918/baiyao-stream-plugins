@@ -1,0 +1,1195 @@
+{
+  "generator": "built-in image_gen",
+  "transparent_background": true,
+  "records": [
+    {
+      "theme": "fufu",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom left-right area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Pastel pink-blue hamster cage, blue glossy enamel vertical rods with cream highlights and rounded pink collars, top beam cream with sky blue edge and rounded gently arched upper corners, cream tray base with pink lip, matching cream-blue door beam and riveted latch. Soft plush polished toy rendering, tiny cheese on latch only.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-ea45575f-f7c4-4ca5-ba86-d980d25cf216.png",
+      "saved_path": "assets/cage/fufu-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 63.07,
+        "visible_alpha18_bbox": [
+          71,
+          63,
+          1478,
+          972
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "sha256": "7f76a0600628e4b1a6d3bb4b140b1858cfbdefb4b0c87b2138d93047422fbc03",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            71,
+            63,
+            168,
+            971
+          ],
+          "size": [
+            97,
+            908
+          ],
+          "slice_cap": 107,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            52,
+            64,
+            1264,
+            208
+          ],
+          "size": [
+            1212,
+            144
+          ],
+          "slice_cap": 158,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            48,
+            31,
+            1268,
+            187
+          ],
+          "size": [
+            1220,
+            156
+          ],
+          "slice_cap": 172,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            52,
+            19,
+            1263,
+            220
+          ],
+          "size": [
+            1211,
+            201
+          ],
+          "slice_cap": 221,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            50,
+            0,
+            237,
+            172
+          ],
+          "size": [
+            187,
+            172
+          ]
+        }
+      }
+    },
+    {
+      "theme": "horror",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom left-right area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Dark red-black cast iron prison, heavy angular black iron bars and crossbeams, rust texture, metal rivets, dark-red inset glow, brutal grim gothic industrial rendered realistic metal.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-9f9b6e8f-2785-4606-837e-32eba7d56783.png",
+      "saved_path": "assets/cage/horror-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 68.68,
+        "visible_alpha18_bbox": [
+          62,
+          64,
+          1482,
+          963
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "sha256": "09525544a78d2c44fd9ea3e42c326f9f59d445e6b65e353add5298324ee5a930",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            62,
+            64,
+            156,
+            953
+          ],
+          "size": [
+            94,
+            889
+          ],
+          "slice_cap": 103,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            31,
+            133,
+            1254,
+            279
+          ],
+          "size": [
+            1223,
+            146
+          ],
+          "slice_cap": 161,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            14,
+            86,
+            1272,
+            229
+          ],
+          "size": [
+            1258,
+            143
+          ],
+          "slice_cap": 157,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            32,
+            65,
+            1254,
+            177
+          ],
+          "size": [
+            1222,
+            112
+          ],
+          "slice_cap": 123,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            41,
+            21,
+            192,
+            163
+          ],
+          "size": [
+            151,
+            142
+          ]
+        }
+      }
+    },
+    {
+      "theme": "cyber",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom left-right area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Futuristic glowing metallic energy cage, cyan neon outlines, segmented titanium bars, precision dark blue gunmetal housing, cyan luminous strips, high-tech machined frame, glowing cyan latch. Sleek sci-fi digital rendered game art.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-ce10148f-8e83-41f2-ac5a-d7555b8ec301.png",
+      "saved_path": "assets/cage/cyber-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 72.12,
+        "visible_alpha18_bbox": [
+          64,
+          58,
+          1493,
+          975
+        ],
+        "edge_alpha_max": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "sha256": "24dbcaa3c298a57e78879899a837ff2e2329031a9da43be3eedc035e0f0f78bb",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            64,
+            58,
+            166,
+            956
+          ],
+          "size": [
+            102,
+            898
+          ],
+          "slice_cap": 112,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            22,
+            155,
+            1278,
+            276
+          ],
+          "size": [
+            1256,
+            121
+          ],
+          "slice_cap": 133,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            16,
+            108,
+            1283,
+            247
+          ],
+          "size": [
+            1267,
+            139
+          ],
+          "slice_cap": 153,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            22,
+            60,
+            1277,
+            171
+          ],
+          "size": [
+            1255,
+            111
+          ],
+          "slice_cap": 122,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            25,
+            6,
+            194,
+            175
+          ],
+          "size": [
+            169,
+            169
+          ]
+        }
+      }
+    },
+    {
+      "theme": "typewriter",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Antique typewriter aesthetic. Aged brass endcaps and rivets, ink-green enameled metal rods and beams, brass pinstriped edges, worn warm metal realism, flat straight architectural parts.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-7c3a7e27-c83c-40d7-8d54-fbd959034176.png",
+      "saved_path": "assets/cage/typewriter-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 75.03,
+        "visible_alpha18_bbox": [
+          70,
+          64,
+          1481,
+          970
+        ],
+        "edge_alpha_max": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "sha256": "07ab7fd2eb2d67d99c27ae57e9bdb95e7f53daf4495885baad0267aebcf46113",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            70,
+            64,
+            143,
+            962
+          ],
+          "size": [
+            73,
+            898
+          ],
+          "slice_cap": 80,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            7,
+            168,
+            1271,
+            267
+          ],
+          "size": [
+            1264,
+            99
+          ],
+          "slice_cap": 109,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            7,
+            125,
+            1271,
+            226
+          ],
+          "size": [
+            1264,
+            101
+          ],
+          "slice_cap": 111,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            7,
+            99,
+            1271,
+            196
+          ],
+          "size": [
+            1264,
+            97
+          ],
+          "slice_cap": 107,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            85,
+            22,
+            237,
+            170
+          ],
+          "size": [
+            152,
+            148
+          ]
+        }
+      }
+    },
+    {
+      "theme": "notebook",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Fountain pen hand-drawn ink linework on transparent alpha, blue-black fine crosshatching with slightly imperfect parallel strokes, cream paper-like opaque interior ONLY inside the bar shapes, no paper rectangle outside, sketchbook doodle cage, charming handmade illustrated lines, no photographic metal.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-9a6c646c-a030-408a-a7bf-8ecebffc5d80.png",
+      "saved_path": "assets/cage/notebook-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 72.94,
+        "visible_alpha18_bbox": [
+          33,
+          79,
+          1496,
+          965
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "sha256": "631863771ecd850d145f7d6d8e35d224956434d96556df81385890cace4111ce",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            180,
+            1024
+          ],
+          "trim_bbox": [
+            33,
+            79,
+            130,
+            954
+          ],
+          "size": [
+            97,
+            875
+          ],
+          "slice_cap": 107,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            180,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            4,
+            126,
+            1316,
+            232
+          ],
+          "size": [
+            1312,
+            106
+          ],
+          "slice_cap": 117,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            180,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            6,
+            63,
+            1313,
+            206
+          ],
+          "size": [
+            1307,
+            143
+          ],
+          "slice_cap": 157,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            180,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            5,
+            71,
+            1314,
+            176
+          ],
+          "size": [
+            1309,
+            105
+          ],
+          "slice_cap": 116,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            18,
+            38,
+            155,
+            165
+          ],
+          "size": [
+            137,
+            127
+          ]
+        }
+      }
+    },
+    {
+      "theme": "pixel",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Retro 16-bit pixel-art game prison bars, clearly stepped square edges and hard nearest-neighbor pixel blocks, deep violet and teal metal, turquoise pixel highlights, blocky square rivets. No smooth shading or blur. Original game sprite style.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-f2e3df22-cae1-49b0-be8c-ae04432df14f.png",
+      "saved_path": "assets/cage/pixel-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 69.61,
+        "visible_alpha18_bbox": [
+          81,
+          84,
+          1472,
+          961
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "sha256": "63df096bce10092ab848e2b549e9c19a8abcad386d1c7667535b888688eaa1df",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            81,
+            84,
+            187,
+            926
+          ],
+          "size": [
+            106,
+            842
+          ],
+          "slice_cap": 117,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            47,
+            142,
+            1262,
+            272
+          ],
+          "size": [
+            1215,
+            130
+          ],
+          "slice_cap": 143,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            63,
+            69,
+            1245,
+            223
+          ],
+          "size": [
+            1182,
+            154
+          ],
+          "slice_cap": 169,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            48,
+            53,
+            1262,
+            173
+          ],
+          "size": [
+            1214,
+            120
+          ],
+          "slice_cap": 132,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            69,
+            28,
+            201,
+            161
+          ],
+          "size": [
+            132,
+            133
+          ]
+        }
+      }
+    },
+    {
+      "theme": "chalk",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Classroom chalkboard aesthetic, hand-drawn textured white and pale sage chalk strokes outlining thick cage bars, imperfect chalk dust marks INSIDE strokes, muted teal-green opaque fills inside bars only, transparent negative space. Chalk drawing, not metal or photoreal.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-6ba9923a-90a0-46be-9419-b7066fede915.png",
+      "saved_path": "assets/cage/chalk-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 71.38,
+        "visible_alpha18_bbox": [
+          56,
+          83,
+          1488,
+          972
+        ],
+        "edge_alpha_max": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "sha256": "3800babe339bd6c96e65855dbd436c618e9ff8063db031b8a2d9bbd7fcb21f18",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            56,
+            83,
+            170,
+            877
+          ],
+          "size": [
+            114,
+            794
+          ],
+          "slice_cap": 125,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            58,
+            99,
+            1277,
+            237
+          ],
+          "size": [
+            1219,
+            138
+          ],
+          "slice_cap": 152,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            61,
+            84,
+            1278,
+            221
+          ],
+          "size": [
+            1217,
+            137
+          ],
+          "slice_cap": 151,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            63,
+            78,
+            1276,
+            199
+          ],
+          "size": [
+            1213,
+            121
+          ],
+          "slice_cap": 133,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            93,
+            40,
+            228,
+            172
+          ],
+          "size": [
+            135,
+            132
+          ]
+        }
+      }
+    },
+    {
+      "theme": "terminal",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Vintage green phosphor computer wireframe aesthetic, bright lime green CRT vector wireframe cage rods and crossbeams with square electronic corners, dark-green translucent body inside each bar, restrained green glow, scanline texture, retro monochrome luminous digital geometry, no letters or screen rectangle.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-e8f52584-9926-4094-a527-a82f581d0c94.png",
+      "saved_path": "assets/cage/terminal-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 76.93,
+        "visible_alpha18_bbox": [
+          75,
+          82,
+          1470,
+          946
+        ],
+        "edge_alpha_max": [
+          1,
+          0,
+          1,
+          0
+        ],
+        "sha256": "062ba9b53ff5071a03f6ff7a93bc126b114d520c7b6d0137e2cebf3a4e096d6b",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            75,
+            82,
+            160,
+            946
+          ],
+          "size": [
+            85,
+            864
+          ],
+          "slice_cap": 94,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            61,
+            143,
+            1256,
+            249
+          ],
+          "size": [
+            1195,
+            106
+          ],
+          "slice_cap": 117,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            60,
+            88,
+            1256,
+            210
+          ],
+          "size": [
+            1196,
+            122
+          ],
+          "slice_cap": 134,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            800
+          ],
+          "trim_bbox": [
+            60,
+            58,
+            1260,
+            161
+          ],
+          "size": [
+            1200,
+            103
+          ],
+          "slice_cap": 113,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            800,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            79,
+            22,
+            197,
+            140
+          ],
+          "size": [
+            118,
+            118
+          ]
+        }
+      }
+    },
+    {
+      "theme": "cream",
+      "prompt": "Create ORIGINAL game UI modular cage sprite atlas PNG on ACTUAL ALPHA TRANSPARENT background, no checkerboard, no backdrop. Orthographic front view, perfectly straight vertical/horizontal; isolated pieces, 50px transparent gutters, no text, no lock or chain, no people. EXACT 5 components: left column one long vertical rounded cage rod (roughly x80-150,y100-850); upper right a long horizontal top lintel beam (x300-1400,y100-250); middle right a long horizontal tray base rail(x300-1400,y400-550); lower right one long horizontal door-frame beam(x300-1400,y700-800); bottom area near (x230,y900) a small square door latch plate with central circular hole. All bars have matching endcaps and long uniform middle suitable for repeating. Plenty transparent space. Canvas landscape 1536x1024. STYLE: Cute cream candy cage, marshmallow cream and peach pink tubular bars with soft golden caramel outlines, candy pastel mint details and round sugar buttons, plush icing-like highlights, cozy cute illustrated toy material, rounded top frame and generous cream tray, matching candy doorframe and latch.",
+      "source": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a13ae7-f9fd-7093-aa4d-f4baed000106\\exec-1f7d8a3b-7866-489d-9113-3090727b8fd7.png",
+      "saved_path": "assets/cage/cream-atlas.png",
+      "qa": {
+        "size": [
+          1536,
+          1024
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ],
+        "transparent_percent": 70.72,
+        "visible_alpha18_bbox": [
+          83,
+          70,
+          1466,
+          944
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "sha256": "ea55010b835a4be5d7588c26aadef57b5727d307761db01e5393f723eebede2c",
+        "visual_review": "Front-facing disconnected original rod, top, base, door beam and latch. Transparent gaps and no portrait. Distinct theme materials."
+      },
+      "components": {
+        "bar": {
+          "source_region": [
+            0,
+            0,
+            210,
+            1024
+          ],
+          "trim_bbox": [
+            83,
+            70,
+            191,
+            937
+          ],
+          "size": [
+            108,
+            867
+          ],
+          "slice_cap": 119,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "top": {
+          "source_region": [
+            210,
+            0,
+            1536,
+            310
+          ],
+          "trim_bbox": [
+            60,
+            80,
+            1250,
+            225
+          ],
+          "size": [
+            1190,
+            145
+          ],
+          "slice_cap": 160,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "bottom": {
+          "source_region": [
+            210,
+            310,
+            1536,
+            580
+          ],
+          "trim_bbox": [
+            49,
+            29,
+            1256,
+            186
+          ],
+          "size": [
+            1207,
+            157
+          ],
+          "slice_cap": 173,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "door": {
+          "source_region": [
+            210,
+            580,
+            1536,
+            740
+          ],
+          "trim_bbox": [
+            58,
+            1,
+            1251,
+            131
+          ],
+          "size": [
+            1193,
+            130
+          ],
+          "slice_cap": 143,
+          "repeat_seam": "Reflected lossless middle; first/last RGBA row or column identical."
+        },
+        "latch": {
+          "source_region": [
+            210,
+            740,
+            600,
+            1024
+          ],
+          "trim_bbox": [
+            69,
+            14,
+            267,
+            204
+          ],
+          "size": [
+            198,
+            190
+          ]
+        }
+      }
+    }
+  ],
+  "packing": "Requested component cropping and head/middle/tail slicing. PNG originals preserved. Middle paired with reflection to guarantee matching repeat edges; no whole cage stretching."
+}

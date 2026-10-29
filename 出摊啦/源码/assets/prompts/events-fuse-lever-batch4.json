@@ -1,0 +1,27 @@
+[
+  {
+    "id": "fuse_lever",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "prompt": "Use case: stylized-concept. Create ONE SEPARATE power-switch lever overlay matching the reference cartoon fuse box; reference is STYLE and mechanical attachment reference ONLY, not an edit target. Output contains only the lever itself: a chunky short warm brown metal shaft with a rounded tomato-red insulated grip at its upper end and one round brown/gray pivot rivet base near the lower middle. Front slight three-quarter view matching box, straight upright lever. Logical40×65 transparent frame, pivot centered at logical(20,39), grip spans around x9..31 y5..23, shaft connects grip to pivot; entire lever visible with transparent margin. No box, mounting panel, person, hand, cord, letters, numbers, symbols or text. Match deep brown #49372d outlines 3–4 logicalpx, warm flat fills, ONE simple cel shadow, small upper-left white highlights. True clean alpha transparency, no floor or cast shadow outside prop.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-563af8da-54b9-4578-ae30-fa8b38beb371.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-8e675dfe-fb5f-4686-bc5b-5593544d5ae3.png",
+    "rawPath": "raw/events/fuse_lever.png",
+    "generatedAt": "2026-10-22T15:26:40.163Z",
+    "displaySize": {
+      "width": 40,
+      "height": 65
+    },
+    "anchor": {
+      "name": "pivot",
+      "x": 23.5,
+      "y": 48.5,
+      "units": "logical-px"
+    },
+    "registrationNote": "Observed generated pivot is lower than requested; anchor uses actual approximate visual pivot, not prompt target (20,39)."
+  }
+]

@@ -1,0 +1,97 @@
+/* Actual objects only: these two-dimensional scenes never paint the canvas gaps. */
+html body #typing-lock-overlay[data-scene]{background:transparent!important;pointer-events:none!important;perspective:none!important}
+html body #typing-lock-overlay[data-scene] .lock-center{left:var(--scene-lock-x,50%)!important;top:var(--scene-lock-y,50%)!important;transform:translate(-50%,-50%)!important;translate:none!important;rotate:none!important;scale:none!important;animation:none!important}
+html body #typing-lock-overlay[data-scene] .lock-emblem{transform:none!important;translate:none!important;rotate:none!important;scale:none!important;animation:none!important}
+html body #typing-lock-overlay[data-scene] .lock-emblem{background:none!important;border:0!important;outline:none!important;box-shadow:none!important}
+html body #typing-lock-overlay[data-scene] .lock-emblem::after,html body #typing-lock-overlay[data-scene] .lock-center::before,html body #typing-lock-overlay[data-scene] .lock-center::after{content:none!important;display:none!important;background:none!important;border:0!important;box-shadow:none!important;animation:none!important}
+html body #typing-lock-overlay[data-scene]:not(.lock-frozen) .lock-emblem::before{display:none!important}
+html body #typing-lock-overlay[data-scene] .lock-royal-seal{display:none!important}
+html body #typing-lock-overlay[data-scene] .lock-art{filter:drop-shadow(0 3px 5px #0009)!important}
+html body #typing-lock-overlay[data-scene] .chain-arm{left:var(--scene-arm-x,0px)!important;top:var(--scene-arm-y,0px)!important;width:var(--scene-arm-length,0px)!important;margin-top:calc(var(--lock-thickness)*-.5)!important;transform:rotate(var(--scene-arm-angle,0deg))!important;transform-origin:0 50%!important;animation:none!important}
+html body #typing-lock-overlay[data-scene] .chain-arm[data-scene-active=false]{display:none!important}
+html body #typing-lock-overlay[data-scene] .chain-arm .lock-chain{transform-origin:0 50%!important;translate:none!important;rotate:none!important;scale:none!important}
+html body #typing-lock-overlay[data-scene][data-scene-status] .chain-arm .lock-chain{animation:none!important}
+html body #typing-lock-overlay[data-scene][data-scene-chain-tile=true]:not([data-custom-chain=true]) .chain-arm .lock-chain{background-image:var(--scene-chain-image)!important;background-position:0 center!important;background-size:calc(var(--lock-thickness)*var(--scene-chain-ratio)) 100%!important;background-repeat:repeat-x!important}
+html body #typing-lock-overlay[data-scene] #lock-fx{left:var(--scene-lock-x,50%);top:var(--scene-lock-y,50%)}
+.scene-chain-hook{position:absolute;right:calc(var(--lock-thickness)*-.17);top:32%;width:calc(var(--lock-thickness)*.34);height:36%;border:3px solid var(--scene-cage-metal,var(--lock-ui-accent,#dab68a));border-radius:45%;background:transparent;box-shadow:inset 0 0 3px #fff8,0 2px 3px #0008;pointer-events:none;z-index:3}
+html body #typing-lock-overlay[data-scene][data-motion=on].scene-entering .chain-arm .lock-chain{animation:v2ChainJoin 1.08s cubic-bezier(.2,.65,.2,1) both!important}
+html body #typing-lock-overlay[data-scene][data-motion=on].scene-entering .arm-tr .lock-chain{animation-delay:.08s!important}
+html body #typing-lock-overlay[data-scene][data-motion=on].scene-entering .arm-bl .lock-chain{animation-delay:.16s!important}
+html body #typing-lock-overlay[data-scene][data-motion=on].scene-entering .arm-br .lock-chain{animation-delay:.24s!important}
+html body #typing-lock-overlay[data-scene][data-motion=on].scene-exiting .chain-arm .lock-chain{animation:v2ChainRelease .65s ease-in both!important}
+html body #typing-lock-overlay[data-scene][data-motion=on]:is(.scene-added,.scene-layer-break) .lock-art{animation:v2FixedLockFlash .35s ease-out!important}
+html body #typing-lock-overlay[data-scene]:is([data-scene-whole-lock=true],[data-custom-lock=true]) .lock-shackle{clip-path:none!important;transform:none!important;animation:none!important}
+html body #typing-lock-overlay[data-scene][data-scene-whole-lock=true] .lock-body{display:none!important}
+html body #typing-lock-overlay[data-scene][data-motion=off] .lock-chain{animation:none!important;transform:scaleX(1)!important}
+@keyframes v2ChainJoin{0%{transform:scaleX(0);opacity:.1}100%{transform:scaleX(1);opacity:1}}
+@keyframes v2ChainRelease{to{transform:scaleX(0);opacity:0}}
+@keyframes v2FixedLockFlash{0%{filter:brightness(1.8) drop-shadow(0 0 16px var(--lock-ui-accent,#e8aa72))}100%{filter:brightness(1) drop-shadow(0 6px 9px #0007)}}
+/* V2.3: every visible cage surface uses an original transparent bitmap kit. */
+.scene-cage{position:absolute;inset:0;z-index:1;pointer-events:none;background:transparent;opacity:1;--cage-bar-width:clamp(14px,1.45vw,28px);--cage-frame-height:clamp(38px,4.6vw,78px);--cage-door-height:clamp(19px,2.2vw,36px)}
+#typing-lock-overlay[data-scene=lock] .scene-cage,#typing-lock-overlay[data-scene=lock] .scene-captivity{display:none!important}
+.cage-piece{position:absolute;display:block;background:none;border:0;box-shadow:none}
+.cage-part{position:absolute;display:block;background-repeat:no-repeat;pointer-events:none}
+.cage-piece-bar{width:var(--cage-bar-width);--cap:calc(var(--cage-bar-width)*var(--custom-cage-bar-cap-ratio,var(--cage-bar-cap-ratio)));--tile:calc(var(--cage-bar-width)*var(--custom-cage-bar-tile-ratio,var(--cage-bar-tile-ratio)))}
+.cage-piece-bar>.cage-part{left:0;width:100%;background-size:100% 100%}
+.cage-piece-bar>.cage-part-head{top:0;height:var(--cap);background-image:var(--custom-cage-bar-head,var(--cage-bar-head))}
+.cage-piece-bar>.cage-part-tail{bottom:0;height:var(--cap);background-image:var(--custom-cage-bar-tail,var(--cage-bar-tail))}
+.cage-piece-bar>.cage-part-mid{top:calc(var(--cap) - .5px);bottom:calc(var(--cap) - .5px);background-image:var(--custom-cage-bar-mid,var(--cage-bar-mid));background-size:100% var(--tile);background-repeat:repeat-y}
+.cage-piece-top{--rail-height:var(--cage-frame-height);--cap:calc(var(--rail-height)*var(--custom-cage-top-cap-ratio,var(--cage-top-cap-ratio)));--tile:calc(var(--rail-height)*var(--custom-cage-top-tile-ratio,var(--cage-top-tile-ratio)));--head:var(--custom-cage-top-head,var(--cage-top-head));--mid:var(--custom-cage-top-mid,var(--cage-top-mid));--tail:var(--custom-cage-top-tail,var(--cage-top-tail))}
+.cage-piece-bottom{--rail-height:var(--cage-frame-height);--cap:calc(var(--rail-height)*var(--custom-cage-bottom-cap-ratio,var(--cage-bottom-cap-ratio)));--tile:calc(var(--rail-height)*var(--custom-cage-bottom-tile-ratio,var(--cage-bottom-tile-ratio)));--head:var(--custom-cage-bottom-head,var(--cage-bottom-head));--mid:var(--custom-cage-bottom-mid,var(--cage-bottom-mid));--tail:var(--custom-cage-bottom-tail,var(--cage-bottom-tail))}
+.cage-piece-door{--rail-height:var(--cage-door-height);--cap:calc(var(--rail-height)*var(--custom-cage-door-cap-ratio,var(--cage-door-cap-ratio)));--tile:calc(var(--rail-height)*var(--custom-cage-door-tile-ratio,var(--cage-door-tile-ratio)));--head:var(--custom-cage-door-head,var(--cage-door-head));--mid:var(--custom-cage-door-mid,var(--cage-door-mid));--tail:var(--custom-cage-door-tail,var(--cage-door-tail))}
+:is(.cage-piece-top,.cage-piece-bottom,.cage-piece-door){height:var(--rail-height)}
+:is(.cage-piece-top,.cage-piece-bottom,.cage-piece-door)>.cage-part{top:0;height:100%;background-size:100% 100%}
+:is(.cage-piece-top,.cage-piece-bottom,.cage-piece-door)>.cage-part-head{left:0;width:var(--cap);background-image:var(--head)}
+:is(.cage-piece-top,.cage-piece-bottom,.cage-piece-door)>.cage-part-tail{right:0;width:var(--cap);background-image:var(--tail)}
+:is(.cage-piece-top,.cage-piece-bottom,.cage-piece-door)>.cage-part-mid{left:calc(var(--cap) - .5px);right:calc(var(--cap) - .5px);background-image:var(--mid);background-size:var(--tile) 100%;background-repeat:repeat-x}
+.cage-rail-top,.cage-rail-bottom{left:var(--scene-cage-inset);right:var(--scene-cage-inset);z-index:4}
+.cage-rail-top{top:var(--scene-cage-inset)}.cage-rail-bottom{bottom:var(--scene-cage-inset)}
+.cage-rail-left,.cage-rail-right{top:var(--scene-cage-inset);bottom:var(--scene-cage-inset);z-index:3}
+.cage-rail-left{left:var(--scene-cage-inset)}.cage-rail-right{right:var(--scene-cage-inset)}
+.cage-bar-field{position:absolute;inset:calc(var(--scene-cage-inset) + var(--cage-frame-height)*.5) var(--scene-cage-inset);opacity:.48}
+.cage-bar{left:var(--bar-x);top:0;height:100%;margin-left:calc(var(--cage-bar-width)*-.5);transform-origin:50% 0}
+.cage-piece[hidden]{display:none!important}
+.cage-door{position:absolute;top:calc(var(--scene-cage-inset) + var(--cage-frame-height)*.6);bottom:calc(var(--scene-cage-inset) + var(--cage-frame-height)*.6);width:var(--scene-door-width);background:transparent;border:0;box-shadow:none;transform:none;z-index:2}
+.cage-door-left{left:var(--scene-cage-inset);--door-away:-105%;transform-origin:0 50%}
+.cage-door-right{right:var(--scene-cage-inset);--door-away:105%;transform-origin:100% 50%}
+.cage-door-edge-top,.cage-door-edge-bottom{left:0;right:0;z-index:3}
+.cage-door-edge-top{top:0}.cage-door-edge-bottom{bottom:0}
+.cage-door-edge-outer,.cage-door-edge-inner{top:0;bottom:0;z-index:3}
+.cage-door-left .cage-door-edge-outer,.cage-door-right .cage-door-edge-inner{left:0}
+.cage-door-left .cage-door-edge-inner,.cage-door-right .cage-door-edge-outer{right:0}
+.cage-door-left .cage-lock-post{left:auto;right:calc(var(--scene-latch-gap) - var(--cage-bar-width)*.5);margin-left:0}
+.cage-door-right .cage-lock-post{left:var(--scene-latch-gap)}
+.cage-bolt{position:absolute;top:calc(var(--scene-chain-y) - var(--scene-cage-inset) - var(--cage-frame-height)*.6);width:calc(var(--cage-bar-width)*1.9);height:calc(var(--cage-bar-width)*1.9);background:var(--custom-cage-latch-image,var(--cage-latch-image)) center/contain no-repeat;transform:translate(-50%,-50%);z-index:4}
+.cage-door-left .cage-bolt{left:calc(100% - var(--scene-latch-gap))}.cage-door-right .cage-bolt{left:var(--scene-latch-gap)}
+html body #typing-lock-overlay[data-scene=cage] .lock-center{width:clamp(130px,15vw,210px)!important;height:clamp(130px,15vw,210px)!important}
+html body #typing-lock-overlay[data-scene=cage] .lock-info{left:50%!important;top:calc(100% + 20px)!important;width:min(340px,calc(100vw - 30px))!important;max-width:none!important;box-sizing:border-box}
+html body #typing-lock-overlay[data-scene=cage] .scene-chain-hook{display:none}
+.scene-captivity{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;padding:0 0 7px;border-bottom:1px solid var(--lock-ui-line,#b97452);color:var(--lock-ui-ink,#ffe7cb);font:12px/1.35 var(--ui-font,sans-serif)}
+.scene-captivity strong{font-size:13px;letter-spacing:2px}.scene-captivity span{font-family:Consolas,monospace;white-space:nowrap}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-entering .cage-rail{animation:v23CageFrame .55s ease-out both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-entering .cage-bar-field .cage-bar{animation:v23CageBars .65s cubic-bezier(.15,.7,.25,1) calc(.55s + var(--bar-order)*.035s) both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-entering .cage-door{animation:v23DoorClose .55s cubic-bezier(.2,.75,.2,1) 1.35s both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-entering .chain-arm .lock-chain{animation:v2ChainJoin .25s ease-out 1.9s both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-entering .lock-art{animation:v23LockHang .25s ease-out 2.15s both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-exiting .lock-art{animation:v23LockDrop .3s ease-in both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-exiting .chain-arm .lock-chain{animation:v23ChainDrop .25s ease-in .2s both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-exiting .cage-door{animation:v23DoorOpen .35s ease-in .35s both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-exiting .cage-bar-field .cage-bar{animation:v23BarsOut .25s ease-in .65s both!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=on].scene-exiting .cage-rail{animation:v23FrameOut .2s ease-in .75s both!important}
+html body #typing-lock-overlay[data-scene][data-scene-status=open] .scene-cage{opacity:0!important}
+html body #typing-lock-overlay[data-scene][data-scene-status=open] .chain-arm{visibility:hidden!important}
+html body #typing-lock-overlay[data-scene=cage][data-motion=off] :is(.cage-door,.cage-bar,.cage-rail,.lock-art){animation:none!important;transform:none!important}
+html[data-theme=pixel] .scene-cage{image-rendering:pixelated}
+@keyframes v23CageFrame{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:scale(1)}}
+@keyframes v23CageBars{from{transform:translateY(-105%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes v23DoorClose{from{transform:translateX(var(--door-away));opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes v23LockHang{0%{transform:translateY(-28px) scale(.9);opacity:0}80%{transform:translateY(3px) scale(1.03);opacity:1}100%{transform:none;opacity:1}}
+@keyframes v23LockDrop{25%{transform:translateY(-12px) rotate(-6deg);opacity:1}100%{transform:translateY(100px) rotate(12deg);opacity:0}}
+@keyframes v23ChainDrop{to{transform:translateY(65px);opacity:0}}
+@keyframes v23DoorOpen{to{transform:translateX(var(--door-away));opacity:0}}
+@keyframes v23BarsOut{to{transform:translateY(-105%);opacity:0}}
+@keyframes v23FrameOut{to{transform:scale(1.04);opacity:0}}
+@media(max-height:540px){html body #typing-lock-overlay[data-scene=cage] .lock-center{width:105px!important;height:105px!important}html body #typing-lock-overlay[data-scene=cage] .lock-info{top:calc(100% + 10px)!important;padding:8px 12px!important}.scene-captivity{font-size:10px;margin-bottom:4px;padding-bottom:4px}}
+
+/* Realistic metal keeps a local physical shadow; anime/toon art keeps colored light. */
+#typing-lock-overlay:is([data-material=forged-steel],[data-material=antique-brass]) .lock-art{filter:drop-shadow(0 5px 7px #0009)!important}#typing-lock-overlay:is([data-material=forged-steel],[data-material=antique-brass]) .lock-emblem::after{opacity:.10!important;background:radial-gradient(circle,#ccd4da50,transparent 66%)!important}#typing-lock-overlay[data-material=arcane-anime]{--theme-glow:#9876e9}#typing-lock-overlay[data-material=candy-toon]{--theme-glow:#e8a7bd}

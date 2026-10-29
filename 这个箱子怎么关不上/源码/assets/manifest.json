@@ -1,0 +1,1498 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "name": "case_base",
+      "file": "src/case_base.png",
+      "size": [
+        1520,
+        300
+      ],
+      "display": [
+        760,
+        150
+      ],
+      "anchors": {
+        "base": [
+          760,
+          300
+        ],
+        "center": [
+          760,
+          150
+        ],
+        "rim": [
+          760,
+          0
+        ]
+      },
+      "bytes": 462222,
+      "webpBytes": 43852,
+      "sha256": "2221fe2e7155b5793d0236a41016828b250bc46471174b9d5161a3ad6323c761",
+      "source": "raw/case_base.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "case_lid",
+      "file": "src/case_lid.png",
+      "size": [
+        1580,
+        216
+      ],
+      "display": [
+        790,
+        108
+      ],
+      "anchors": {
+        "base": [
+          790,
+          216
+        ],
+        "center": [
+          790,
+          108
+        ],
+        "hinge": [
+          0,
+          216
+        ],
+        "lowerEdge": [
+          790,
+          216
+        ]
+      },
+      "bytes": 401021,
+      "webpBytes": 34808,
+      "sha256": "1591acfc0d6c6c1d2979c8c11b65c240f00c5d9f46dfdf5b0a19d5bf7058b6d3",
+      "source": "raw/case_lid.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "case_lining_tile",
+      "file": "src/case_lining_tile.png",
+      "size": [
+        512,
+        220
+      ],
+      "display": [
+        256,
+        110
+      ],
+      "anchors": {
+        "base": [
+          256,
+          220
+        ],
+        "center": [
+          256,
+          110
+        ]
+      },
+      "bytes": 214759,
+      "webpBytes": 39926,
+      "sha256": "53334fc2a371bb8f8d46203e8224ff278a7a974421643931a4a5db7eb98820c5",
+      "source": "raw/case_lining_tile.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0,
+      "tileHorizontal": true
+    },
+    {
+      "name": "case_handle",
+      "file": "src/case_handle.png",
+      "size": [
+        80,
+        140
+      ],
+      "display": [
+        40,
+        70
+      ],
+      "anchors": {
+        "base": [
+          40,
+          140
+        ],
+        "center": [
+          40,
+          70
+        ]
+      },
+      "bytes": 15179,
+      "webpBytes": 4242,
+      "sha256": "c0eca161d1100bbaf9ecd13eb3ab303a248132daae49388c8a7e30b5cd55e9fe",
+      "source": "raw/case_handle.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "case_wheel",
+      "file": "src/case_wheel.png",
+      "size": [
+        100,
+        100
+      ],
+      "display": [
+        50,
+        50
+      ],
+      "anchors": {
+        "base": [
+          50,
+          100
+        ],
+        "center": [
+          50,
+          50
+        ]
+      },
+      "bytes": 19769,
+      "webpBytes": 4148,
+      "sha256": "cbb774cbbef1c5341f561d1f17be6191080c27e30149465c075444ec0aebdf08",
+      "source": "raw/case_wheel.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "case_wheel_mount",
+      "file": "src/case_wheel_mount.png",
+      "size": [
+        140,
+        68
+      ],
+      "display": [
+        70,
+        34
+      ],
+      "anchors": {
+        "base": [
+          70,
+          68
+        ],
+        "center": [
+          70,
+          34
+        ]
+      },
+      "bytes": 13440,
+      "webpBytes": 3356,
+      "sha256": "e95dc397df87ed28d271a04070e0d86b9052c0cedc0c1ce44cc48889043a5aa8",
+      "source": "raw/case_wheel_mount.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "zip_slider",
+      "file": "src/zip_slider.png",
+      "size": [
+        100,
+        72
+      ],
+      "display": [
+        50,
+        36
+      ],
+      "anchors": {
+        "base": [
+          50,
+          72
+        ],
+        "center": [
+          50,
+          36
+        ]
+      },
+      "bytes": 13498,
+      "webpBytes": 3910,
+      "sha256": "bf1c579ac76ff89525fbf8481332b11ac20c0549af2d1307301d310ed7f20ac8",
+      "source": "raw/zip_slider.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "zip_pull",
+      "file": "src/zip_pull.png",
+      "size": [
+        56,
+        116
+      ],
+      "display": [
+        28,
+        58
+      ],
+      "anchors": {
+        "base": [
+          28,
+          116
+        ],
+        "center": [
+          28,
+          58
+        ],
+        "pivot": [
+          28,
+          0
+        ]
+      },
+      "bytes": 12928,
+      "webpBytes": 4650,
+      "sha256": "035284e904c08c317e495c424e4665a0c3c1acf0ea67d4ae506e51ad00069835",
+      "source": "raw/zip_pull.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pillow_pink",
+      "file": "src/pillow_pink.png",
+      "size": [
+        480,
+        300
+      ],
+      "display": [
+        240,
+        150
+      ],
+      "anchors": {
+        "base": [
+          240,
+          300
+        ],
+        "center": [
+          240,
+          150
+        ]
+      },
+      "bytes": 224237,
+      "webpBytes": 30218,
+      "sha256": "2d5369f6d9eabdae5d55c0b726ebceaaa20653ecdf90764119064fcfd945532b",
+      "source": "raw/pillow_pink.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pillow_mint",
+      "file": "src/pillow_mint.png",
+      "size": [
+        480,
+        300
+      ],
+      "display": [
+        240,
+        150
+      ],
+      "anchors": {
+        "base": [
+          240,
+          300
+        ],
+        "center": [
+          240,
+          150
+        ]
+      },
+      "bytes": 223880,
+      "webpBytes": 27922,
+      "sha256": "2e1b06432582e5ebf303469b3117ec6493394e59772f1e7dd24bf3efd925ef2f",
+      "source": "raw/pillow_mint.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pillow_yellow",
+      "file": "src/pillow_yellow.png",
+      "size": [
+        480,
+        300
+      ],
+      "display": [
+        240,
+        150
+      ],
+      "anchors": {
+        "base": [
+          240,
+          300
+        ],
+        "center": [
+          240,
+          150
+        ]
+      },
+      "bytes": 208576,
+      "webpBytes": 24910,
+      "sha256": "025ec164fb804eed8206940a0552360b6474db3c1c53da0340f87b292b9229bb",
+      "source": "raw/pillow_yellow.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pillow_purple",
+      "file": "src/pillow_purple.png",
+      "size": [
+        480,
+        300
+      ],
+      "display": [
+        240,
+        150
+      ],
+      "anchors": {
+        "base": [
+          240,
+          300
+        ],
+        "center": [
+          240,
+          150
+        ]
+      },
+      "bytes": 203890,
+      "webpBytes": 24064,
+      "sha256": "35919018ef8beca95ba1d385d1f15880ed50637c58546b02fc522462852ffdb4",
+      "source": "raw/pillow_purple.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pillow_face_happy",
+      "file": "src/pillow_face_happy.png",
+      "size": [
+        280,
+        140
+      ],
+      "display": [
+        140,
+        70
+      ],
+      "anchors": {
+        "base": [
+          140,
+          140
+        ],
+        "center": [
+          140,
+          70
+        ]
+      },
+      "bytes": 33693,
+      "webpBytes": 8826,
+      "sha256": "eefe22326964b559282bd197bf821faceac79791c16e46e59f215350460c92c2",
+      "source": "raw/pillow_face_happy.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pillow_face_squish",
+      "file": "src/pillow_face_squish.png",
+      "size": [
+        280,
+        140
+      ],
+      "display": [
+        140,
+        70
+      ],
+      "anchors": {
+        "base": [
+          140,
+          140
+        ],
+        "center": [
+          140,
+          70
+        ]
+      },
+      "bytes": 31891,
+      "webpBytes": 8016,
+      "sha256": "a52c7558ce30dab76a99ff1205438bfa07550829ab937f366f2e5492f3f43238",
+      "source": "raw/pillow_face_squish.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pillow_face_puff",
+      "file": "src/pillow_face_puff.png",
+      "size": [
+        280,
+        140
+      ],
+      "display": [
+        140,
+        70
+      ],
+      "anchors": {
+        "base": [
+          140,
+          140
+        ],
+        "center": [
+          140,
+          70
+        ]
+      },
+      "bytes": 34542,
+      "webpBytes": 8482,
+      "sha256": "6b289f461d2defafcc4062c5fd9c2d892ce3f75b28667f3cad4453849b2a7500",
+      "source": "raw/pillow_face_puff.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "jacket_yellow",
+      "file": "src/jacket_yellow.png",
+      "size": [
+        500,
+        320
+      ],
+      "display": [
+        250,
+        160
+      ],
+      "anchors": {
+        "base": [
+          250,
+          320
+        ],
+        "center": [
+          250,
+          160
+        ]
+      },
+      "bytes": 230658,
+      "webpBytes": 30540,
+      "sha256": "fa561ee3649873431d1a420709a99b094c0def1970fe74a9ba3ca3c48a799e47",
+      "source": "raw/jacket_yellow.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "jacket_blue",
+      "file": "src/jacket_blue.png",
+      "size": [
+        500,
+        320
+      ],
+      "display": [
+        250,
+        160
+      ],
+      "anchors": {
+        "base": [
+          250,
+          320
+        ],
+        "center": [
+          250,
+          160
+        ]
+      },
+      "bytes": 229405,
+      "webpBytes": 35850,
+      "sha256": "97f2f3a534eb27e7ff1921a0417f12a98f089122cd9e93b67f4704fe92ee5aee",
+      "source": "raw/jacket_blue.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "jacket_pink",
+      "file": "src/jacket_pink.png",
+      "size": [
+        500,
+        320
+      ],
+      "display": [
+        250,
+        160
+      ],
+      "anchors": {
+        "base": [
+          250,
+          320
+        ],
+        "center": [
+          250,
+          160
+        ]
+      },
+      "bytes": 226927,
+      "webpBytes": 27900,
+      "sha256": "550aadadd338183ef463f12641ddf6d5b08b07d09b3d6f1c8ab5dfe92a7c2ca2",
+      "source": "raw/jacket_pink.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "jacket_sleeve_yellow",
+      "file": "src/jacket_sleeve_yellow.png",
+      "size": [
+        300,
+        100
+      ],
+      "display": [
+        150,
+        50
+      ],
+      "anchors": {
+        "base": [
+          150,
+          100
+        ],
+        "center": [
+          150,
+          50
+        ],
+        "shoulder": [
+          0,
+          50
+        ]
+      },
+      "bytes": 41743,
+      "webpBytes": 8502,
+      "sha256": "75a5e6989cf39ee4398151c94e3c91ecb7afa6ef173ff86a3fcc9b1b5bca3733",
+      "source": "raw/jacket_sleeve_yellow.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "jacket_sleeve_blue",
+      "file": "src/jacket_sleeve_blue.png",
+      "size": [
+        300,
+        100
+      ],
+      "display": [
+        150,
+        50
+      ],
+      "anchors": {
+        "base": [
+          150,
+          100
+        ],
+        "center": [
+          150,
+          50
+        ],
+        "shoulder": [
+          0,
+          50
+        ]
+      },
+      "bytes": 41949,
+      "webpBytes": 9014,
+      "sha256": "71abc8ca01b1905f44e5d8e2f70f42f2be12710764909b553504c9ff2d42c0c9",
+      "source": "raw/jacket_sleeve_blue.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "jacket_sleeve_pink",
+      "file": "src/jacket_sleeve_pink.png",
+      "size": [
+        300,
+        100
+      ],
+      "display": [
+        150,
+        50
+      ],
+      "anchors": {
+        "base": [
+          150,
+          100
+        ],
+        "center": [
+          150,
+          50
+        ],
+        "shoulder": [
+          0,
+          50
+        ]
+      },
+      "bytes": 42883,
+      "webpBytes": 8130,
+      "sha256": "cc4ddc673698cdce8d8e5c046de0c812f4af03e7c68ec1c6a910dfef11c6196e",
+      "source": "raw/jacket_sleeve_pink.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "baguette",
+      "file": "src/baguette.png",
+      "size": [
+        800,
+        148
+      ],
+      "display": [
+        400,
+        74
+      ],
+      "anchors": {
+        "base": [
+          400,
+          148
+        ],
+        "center": [
+          400,
+          74
+        ]
+      },
+      "bytes": 217113,
+      "webpBytes": 36872,
+      "sha256": "68b459b22b99823f0d53be01ede448786e846efc74946be0b5335dd04e8f4111",
+      "source": "raw/baguette.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "baguette_half_l",
+      "file": "src/baguette_half_l.png",
+      "size": [
+        410,
+        148
+      ],
+      "display": [
+        205,
+        74
+      ],
+      "anchors": {
+        "base": [
+          205,
+          148
+        ],
+        "center": [
+          205,
+          74
+        ]
+      },
+      "bytes": 118661,
+      "webpBytes": 24212,
+      "sha256": "faed21ef14b0abd153ace3f4291ed6cd8ce3fbf442459fb16ae9bd787f234e21",
+      "source": "raw/baguette_half_l.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "baguette_half_r",
+      "file": "src/baguette_half_r.png",
+      "size": [
+        410,
+        148
+      ],
+      "display": [
+        205,
+        74
+      ],
+      "anchors": {
+        "base": [
+          205,
+          148
+        ],
+        "center": [
+          205,
+          74
+        ]
+      },
+      "bytes": 117027,
+      "webpBytes": 23950,
+      "sha256": "8040989efb6ef7e5348e520e95b42c71ed529c0b2a4de37e1a73550645772b68",
+      "source": "raw/baguette_half_r.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "crumb_1",
+      "file": "src/crumb_1.png",
+      "size": [
+        28,
+        28
+      ],
+      "display": [
+        14,
+        14
+      ],
+      "anchors": {
+        "base": [
+          14,
+          28
+        ],
+        "center": [
+          14,
+          14
+        ]
+      },
+      "bytes": 2283,
+      "webpBytes": 982,
+      "sha256": "a82162777aebd36198d9a0d56818ccac4f4c5005bc391095ffb2b0e3b8f8e551",
+      "source": "raw/crumb_1.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "crumb_2",
+      "file": "src/crumb_2.png",
+      "size": [
+        32,
+        32
+      ],
+      "display": [
+        16,
+        16
+      ],
+      "anchors": {
+        "base": [
+          16,
+          32
+        ],
+        "center": [
+          16,
+          16
+        ]
+      },
+      "bytes": 2815,
+      "webpBytes": 1150,
+      "sha256": "4b3a299689dd7f415dec0d06b05d9998eaf0b65025a6fa300dde0a5660d951bb",
+      "source": "raw/crumb_2.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "crumb_3",
+      "file": "src/crumb_3.png",
+      "size": [
+        36,
+        36
+      ],
+      "display": [
+        18,
+        18
+      ],
+      "anchors": {
+        "base": [
+          18,
+          36
+        ],
+        "center": [
+          18,
+          18
+        ]
+      },
+      "bytes": 3363,
+      "webpBytes": 1330,
+      "sha256": "1178fb38f31472cff3159a9ccdbddb05d001145bcf0a8c972da8258163aee51d",
+      "source": "raw/crumb_3.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "crumb_4",
+      "file": "src/crumb_4.png",
+      "size": [
+        40,
+        40
+      ],
+      "display": [
+        20,
+        20
+      ],
+      "anchors": {
+        "base": [
+          20,
+          40
+        ],
+        "center": [
+          20,
+          20
+        ]
+      },
+      "bytes": 3861,
+      "webpBytes": 1500,
+      "sha256": "6f94b68cd207203ccfcfdfba8cbdd94e03c0d811b635c87415b5237bdf0ce257",
+      "source": "raw/crumb_4.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "pan",
+      "file": "src/pan.png",
+      "size": [
+        800,
+        330
+      ],
+      "display": [
+        400,
+        165
+      ],
+      "anchors": {
+        "base": [
+          400,
+          330
+        ],
+        "center": [
+          400,
+          165
+        ],
+        "panCenter": [
+          168.0,
+          165
+        ]
+      },
+      "bytes": 201875,
+      "webpBytes": 22096,
+      "sha256": "8005c71afe5ca80018f75ac23e8138b1868cc24b5ade082877aa27349948a420",
+      "source": "raw/pan.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "bear",
+      "file": "src/bear.png",
+      "size": [
+        520,
+        600
+      ],
+      "display": [
+        260,
+        300
+      ],
+      "anchors": {
+        "base": [
+          260,
+          600
+        ],
+        "center": [
+          260,
+          300
+        ]
+      },
+      "bytes": 425866,
+      "webpBytes": 49644,
+      "sha256": "93435354d5bc509bab2b680fc2ebc0aa3ce84e803284d58e7878d788283848ee",
+      "source": "raw/bear.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "bear_face_happy",
+      "file": "src/bear_face_happy.png",
+      "size": [
+        240,
+        160
+      ],
+      "display": [
+        120,
+        80
+      ],
+      "anchors": {
+        "base": [
+          120,
+          160
+        ],
+        "center": [
+          120,
+          80
+        ]
+      },
+      "bytes": 43407,
+      "webpBytes": 9954,
+      "sha256": "966366484c65eef1c3e3b7e9728e76421a78a5b753102f306d27355aa7538cee",
+      "source": "raw/bear_face_happy.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "bear_face_squish",
+      "file": "src/bear_face_squish.png",
+      "size": [
+        240,
+        160
+      ],
+      "display": [
+        120,
+        80
+      ],
+      "anchors": {
+        "base": [
+          120,
+          160
+        ],
+        "center": [
+          120,
+          80
+        ]
+      },
+      "bytes": 34940,
+      "webpBytes": 8660,
+      "sha256": "10c1ae1618336d6d7af953053841ebdbbb8c15f27320882869b03d777f43aba0",
+      "source": "raw/bear_face_squish.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "cat_sleep",
+      "file": "src/cat_sleep.png",
+      "size": [
+        400,
+        240
+      ],
+      "display": [
+        200,
+        120
+      ],
+      "anchors": {
+        "base": [
+          200,
+          240
+        ],
+        "center": [
+          200,
+          120
+        ]
+      },
+      "bytes": 139989,
+      "webpBytes": 22628,
+      "sha256": "82a5f995e793cd96d618791f5eb8710437297a047407e093af6976a6d43395ec",
+      "source": "raw/cat_sleep.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "cat_peek",
+      "file": "src/cat_peek.png",
+      "size": [
+        260,
+        260
+      ],
+      "display": [
+        130,
+        130
+      ],
+      "anchors": {
+        "base": [
+          130,
+          260
+        ],
+        "center": [
+          130,
+          130
+        ],
+        "rim": [
+          130,
+          260
+        ]
+      },
+      "bytes": 122517,
+      "webpBytes": 24566,
+      "sha256": "1861cc87e4c13d8d6f89cfe394927956450c702543e6dfd159463467bd9e35fd",
+      "source": "raw/cat_peek.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "cat_tail",
+      "file": "src/cat_tail.png",
+      "size": [
+        140,
+        60
+      ],
+      "display": [
+        70,
+        30
+      ],
+      "anchors": {
+        "base": [
+          70,
+          60
+        ],
+        "center": [
+          70,
+          30
+        ],
+        "root": [
+          0,
+          30
+        ]
+      },
+      "bytes": 14070,
+      "webpBytes": 3794,
+      "sha256": "c77c87903428e34074f627a0febda1c3e1a493415feb33abde0064191c0d6d64",
+      "source": "raw/cat_tail.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "cat_dangle",
+      "file": "src/cat_dangle.png",
+      "size": [
+        220,
+        340
+      ],
+      "display": [
+        110,
+        170
+      ],
+      "anchors": {
+        "base": [
+          110,
+          340
+        ],
+        "center": [
+          110,
+          170
+        ],
+        "grip": [
+          110,
+          8
+        ]
+      },
+      "bytes": 105812,
+      "webpBytes": 22420,
+      "sha256": "75b545b92f3442afa4c1fa2abef934f47781a9c7ca971e3f8207e38a04221bc9",
+      "source": "raw/cat_dangle.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "cat_sit",
+      "file": "src/cat_sit.png",
+      "size": [
+        260,
+        300
+      ],
+      "display": [
+        130,
+        150
+      ],
+      "anchors": {
+        "base": [
+          130,
+          300
+        ],
+        "center": [
+          130,
+          150
+        ]
+      },
+      "bytes": 120561,
+      "webpBytes": 22882,
+      "sha256": "a0f88e587e51d51c4e701ac144cf6274096ad69e8d98dc931a66a8026941e586",
+      "source": "raw/cat_sit.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "feather_1",
+      "file": "src/feather_1.png",
+      "size": [
+        48,
+        80
+      ],
+      "display": [
+        24,
+        40
+      ],
+      "anchors": {
+        "base": [
+          24,
+          80
+        ],
+        "center": [
+          24,
+          40
+        ]
+      },
+      "bytes": 8553,
+      "webpBytes": 2716,
+      "sha256": "ee1db95e36b11d900056cf0603898dbddf7765138ee1200e146979361115443e",
+      "source": "raw/feather_1.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "feather_2",
+      "file": "src/feather_2.png",
+      "size": [
+        48,
+        80
+      ],
+      "display": [
+        24,
+        40
+      ],
+      "anchors": {
+        "base": [
+          24,
+          80
+        ],
+        "center": [
+          24,
+          40
+        ]
+      },
+      "bytes": 8806,
+      "webpBytes": 2876,
+      "sha256": "4ce6150c71408305dcf85239d597988e128a001ac83e2b7136fcc095543cb3c3",
+      "source": "raw/feather_2.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "feather_3",
+      "file": "src/feather_3.png",
+      "size": [
+        48,
+        80
+      ],
+      "display": [
+        24,
+        40
+      ],
+      "anchors": {
+        "base": [
+          24,
+          80
+        ],
+        "center": [
+          24,
+          40
+        ]
+      },
+      "bytes": 6562,
+      "webpBytes": 2218,
+      "sha256": "241fb1181a70fcf958e9724ef7e870926342b1bd10babc0ee56a344635fa174f",
+      "source": "raw/feather_3.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "paw_open",
+      "file": "src/paw_open.png",
+      "size": [
+        300,
+        520
+      ],
+      "display": [
+        150,
+        260
+      ],
+      "anchors": {
+        "base": [
+          150,
+          520
+        ],
+        "center": [
+          150,
+          260
+        ],
+        "contact": [
+          150,
+          508
+        ],
+        "grip": [
+          150,
+          490
+        ]
+      },
+      "bytes": 250644,
+      "webpBytes": 33556,
+      "sha256": "9e4631d0d73f2c3f15ddc9581772b45d7f4d9395031ab869eef0958f5ad13a32",
+      "source": "raw/paw_open.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "paw_press",
+      "file": "src/paw_press.png",
+      "size": [
+        300,
+        520
+      ],
+      "display": [
+        150,
+        260
+      ],
+      "anchors": {
+        "base": [
+          150,
+          520
+        ],
+        "center": [
+          150,
+          260
+        ],
+        "contact": [
+          150,
+          508
+        ],
+        "grip": [
+          150,
+          490
+        ]
+      },
+      "bytes": 246524,
+      "webpBytes": 32760,
+      "sha256": "0210e7e14aca87082917d8bbaaa0d20b31fb6f2c231165c03159888781c8bf06",
+      "source": "raw/paw_press.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "paw_grab",
+      "file": "src/paw_grab.png",
+      "size": [
+        300,
+        520
+      ],
+      "display": [
+        150,
+        260
+      ],
+      "anchors": {
+        "base": [
+          150,
+          520
+        ],
+        "center": [
+          150,
+          260
+        ],
+        "contact": [
+          150,
+          508
+        ],
+        "grip": [
+          150,
+          490
+        ]
+      },
+      "bytes": 251200,
+      "webpBytes": 32514,
+      "sha256": "377e01c31ce2793aa9e412bf867640549eb8e8e840f8916192c7d261f3b9f710",
+      "source": "raw/paw_grab.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "glove_open",
+      "file": "src/glove_open.png",
+      "size": [
+        300,
+        520
+      ],
+      "display": [
+        150,
+        260
+      ],
+      "anchors": {
+        "base": [
+          150,
+          520
+        ],
+        "center": [
+          150,
+          260
+        ],
+        "contact": [
+          150,
+          508
+        ],
+        "grip": [
+          150,
+          490
+        ]
+      },
+      "bytes": 186559,
+      "webpBytes": 25994,
+      "sha256": "c0b792cf5cefdcf2ac06b39de2338ef4700ca0570f476385e0e2cbdf91e24dbe",
+      "source": "raw/glove_open.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "glove_press",
+      "file": "src/glove_press.png",
+      "size": [
+        300,
+        520
+      ],
+      "display": [
+        150,
+        260
+      ],
+      "anchors": {
+        "base": [
+          150,
+          520
+        ],
+        "center": [
+          150,
+          260
+        ],
+        "contact": [
+          150,
+          508
+        ],
+        "grip": [
+          150,
+          490
+        ]
+      },
+      "bytes": 189496,
+      "webpBytes": 23796,
+      "sha256": "f1e7299a4f337acf0728963c111dd67822e1993a81b1d42a0c394d67aca9ce1e",
+      "source": "raw/glove_press.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "glove_grab",
+      "file": "src/glove_grab.png",
+      "size": [
+        300,
+        520
+      ],
+      "display": [
+        150,
+        260
+      ],
+      "anchors": {
+        "base": [
+          150,
+          520
+        ],
+        "center": [
+          150,
+          260
+        ],
+        "contact": [
+          150,
+          508
+        ],
+        "grip": [
+          150,
+          490
+        ]
+      },
+      "bytes": 193448,
+      "webpBytes": 25068,
+      "sha256": "5ec14892c1a7c4a45bea748f1f6ccaa29e891dc507bf99f385edca0bcd5d4faf",
+      "source": "raw/glove_grab.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "helper_sit_push",
+      "file": "src/helper_sit_push.png",
+      "size": [
+        260,
+        340
+      ],
+      "display": [
+        130,
+        170
+      ],
+      "anchors": {
+        "base": [
+          130,
+          340
+        ],
+        "center": [
+          130,
+          170
+        ],
+        "seat": [
+          130,
+          308
+        ],
+        "avatarCenter": [
+          130,
+          54
+        ],
+        "avatarRadius": 24
+      },
+      "bytes": 126314,
+      "webpBytes": 19446,
+      "sha256": "bdc181e0c5b4006f2a9028a17d6e1541af5c43a0af438672a4904095abd0fe3c",
+      "source": "raw/helper_sit_push.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "helper_sit_happy",
+      "file": "src/helper_sit_happy.png",
+      "size": [
+        260,
+        340
+      ],
+      "display": [
+        130,
+        170
+      ],
+      "anchors": {
+        "base": [
+          130,
+          340
+        ],
+        "center": [
+          130,
+          170
+        ],
+        "seat": [
+          130,
+          308
+        ],
+        "avatarCenter": [
+          130,
+          54
+        ],
+        "avatarRadius": 24
+      },
+      "bytes": 122822,
+      "webpBytes": 19072,
+      "sha256": "532af5b0581000355ea96694c6987f361f7cc5aaf4beaf94a9963964facd5e79",
+      "source": "raw/helper_sit_happy.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    },
+    {
+      "name": "helper_lifted",
+      "file": "src/helper_lifted.png",
+      "size": [
+        260,
+        340
+      ],
+      "display": [
+        130,
+        170
+      ],
+      "anchors": {
+        "base": [
+          130,
+          340
+        ],
+        "center": [
+          130,
+          170
+        ],
+        "seat": [
+          130,
+          308
+        ],
+        "avatarCenter": [
+          130,
+          54
+        ],
+        "avatarRadius": 24
+      },
+      "bytes": 107248,
+      "webpBytes": 18254,
+      "sha256": "c84faf8fff8736941093314d90f4ee590254ce09e710cc7cf168eaa0669c2810",
+      "source": "raw/helper_lifted.png",
+      "animation": "拆件、按列形变；无逐帧循环",
+      "haloRatio": 0.0
+    }
+  ],
+  "missing": []
+}

@@ -1,0 +1,11 @@
+const {test}=require('node:test');const a=require('node:assert/strict');const {Shift}=require('../src/shift.js');
+function playing(n=10){const g=new Shift(n);g.seed();g.start();return g;}
+function sortAll(g){for(const p of [...g.parcels,...g.returns.map(r=>r.parcel),...g.waiting])g.finish(p.id);}
+test('finite starting load does not generate endless new work',()=>{const g=playing();for(let i=0;i<100;i++)g.tick(.1);a.equal(g.remaining,10);a.equal(g.parcels.length+g.returns.length+g.waiting.length,10);});
+test('last parcel interference increases remaining work, not just decorative parcels',()=>{const g=playing();g.help(9,'阿橙');a.equal(g.remaining,1);const r=g.interact('rush',8,'小王');a.equal(r.actual,8);a.equal(g.remaining,9);a.equal(g.target,18);a.equal(r.nearEnd,true);});
+test('final delivery has a cancellable door closing phase',()=>{const g=playing();sortAll(g);a.equal(g.status,'closing');g.tick(2);g.interact('giant',1,'小王');a.equal(g.status,'playing');a.equal(g.remaining,1);g.tick(8);a.notEqual(g.status,'complete');});
+test('help uses actual remaining work and credits sender once',()=>{const g=playing();let r=g.interact('help',20,'阿橙');a.equal(r.actual,10);a.equal(g.done,10);a.equal(g.helpers['阿橙'],10);a.equal(g.status,'closing');g.tick(3);a.equal(g.status,'complete');a.equal(g.interact('rush',8,'小王'),false);});
+test('wrong sorting and return queue preserve workload',()=>{const g=playing();const p=g.parcels[0];g.sort(p.id,(p.color+1)%3);a.equal(g.remaining,10);g.tick(3);a.equal(g.parcels.filter(x=>x.id===p.id).length,1);});
+test('pause freezes closing; resume completes once',()=>{const g=playing();sortAll(g);g.pause();g.tick(20);a.equal(g.closeLeft,3);g.pause();g.tick(3);a.equal(g.status,'complete');g.tick(9);a.equal(g.done,10);});
+test('snapshot validates ledger, rejects extra method properties and pauses restoration',()=>{const g=playing();g.interact('rush',8,'小王');const s=g.snapshot();const c=Shift.restore({...s,tick:'broken'});a.equal(c.status,'paused');a.equal(typeof c.tick,'function');a.equal(c.remaining,18);a.throws(()=>Shift.restore({...s,target:99}));});
+test('capacity reports actual additions without inflating promised count',()=>{const g=playing();for(let i=0;i<20;i++)g.interact('rush',20,'小王');a.equal(g.remaining,120);a.equal(g.target,120);a.equal(g.interact('rush',8,'小王'),false);});

@@ -1,0 +1,56 @@
+/* Standard leaves V2.1 gameplay rendering untouched. Larger presets use one scale. */
+#typing-lock-overlay{--display-scale:1;--lock-progress:0}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .lock-center{width:calc(var(--lock-base-size)*var(--display-scale))!important;height:calc(var(--lock-base-size)*var(--display-scale))!important;top:var(--scene-lock-y,50%)!important}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .lock-info{width:min(calc(var(--panel-base-width)*var(--display-scale)),calc(100vw - 32px))!important;top:calc(100% + 8px*var(--display-scale))!important;padding:calc(12px*var(--display-scale)) calc(15px*var(--display-scale)) calc(10px*var(--display-scale))!important;border-width:calc(1px*var(--display-scale));border-radius:calc(8px*var(--display-scale));box-sizing:border-box}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true])[data-scene=cage] .lock-info{top:calc(100% + 20px*var(--display-scale))!important}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .lock-heading{font-size:calc(15px*var(--display-scale))!important;gap:calc(9px*var(--display-scale));flex-wrap:wrap}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) #typing-lock-grade{font-size:calc(11px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .lock-progress-row{gap:calc(10px*var(--display-scale));margin:calc(10px*var(--display-scale)) 0 calc(7px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .lock-meter{height:calc(27px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) #typing-lock-progress{font-size:calc(13px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) #typing-lock-layers{font-size:calc(24px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .counter-readout{font-size:calc(var(--base-counter-font,28px)*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .counter-readout small{font-size:calc(16px*var(--display-scale));margin-top:calc(7px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .scene-captivity{font-size:calc(12px*var(--display-scale));gap:calc(8px*var(--display-scale));margin-bottom:calc(8px*var(--display-scale));padding-bottom:calc(7px*var(--display-scale));flex-wrap:wrap}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .scene-captivity strong{font-size:calc(13px*var(--display-scale));letter-spacing:calc(2px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .lock-freeze{font-size:calc(13px*var(--display-scale));padding:calc(4px*var(--display-scale)) calc(8px*var(--display-scale));margin-bottom:calc(7px*var(--display-scale))}
+html body #typing-lock-overlay:is([data-display-size]:not([data-display-size=standard]),[data-cage-fit=true]) .lock-freeze b{font-size:calc(16px*var(--display-scale))}
+/* Preview cards reuse the already embedded theme variables: no duplicated bitmap payloads. */
+#settings #theme.theme-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#settings .theme-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;background:#252830;border:2px solid #5c616b;color:#f3edf1;min-height:145px;padding:12px 8px;box-shadow:none}
+#settings .theme-card[aria-pressed=true]{border-color:#eaa3bb;background:#4b2c3b}
+#settings .theme-card:focus-visible{outline:3px solid #a9d8f5;outline-offset:3px}
+.theme-card-lock{display:block;width:75px;height:72px;background:var(--typing-lock-padlock) center/contain no-repeat}
+.theme-card-chain{display:block;width:100%;height:24px;background:var(--typing-lock-chain) center/contain no-repeat}
+.theme-card-name{font-size:16px;line-height:1.35;text-align:center}
+@media(max-width:650px){#settings #theme.theme-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}#settings .theme-card{min-height:140px;padding:10px 5px}.theme-card-name{font-size:15px}}
+/* fufu only: cream, sky blue and rose, with cocoa text (contrast > 4.5:1). */
+html[data-theme=fufu] #typing-lock-overlay{--lock-ui-bg:#fff8ea;--lock-ui-ink:#6a4b3c;--lock-ui-line:#a9d8f5;--lock-ui-accent:#8c3f58;--lock-ui-track:#f6dfd1;--theme-glow:#a9d8f5}
+html[data-theme=fufu] #typing-lock-overlay .lock-info{background:#fff8ea;border:2px solid #a9d8f5;border-radius:16px;box-shadow:0 5px 15px #6a4b3c22;font-family:FufuPanelSubset,'Microsoft YaHei',sans-serif}
+html[data-theme=fufu] #typing-lock-overlay .lock-info::after{content:'';position:absolute;left:10px;right:10px;top:calc(100% - 2px);height:calc(10px*var(--display-scale));background:radial-gradient(circle at 50% 0,#fff8ea 65%,transparent 68%) 0 0/calc(16px*var(--display-scale)) calc(11px*var(--display-scale)) repeat-x;pointer-events:none}
+html[data-theme=fufu] #typing-lock-overlay .lock-heading,html[data-theme=fufu] #typing-lock-progress,html[data-theme=fufu] #typing-lock-layers,html[data-theme=fufu] #lock-counter,html[data-theme=fufu] .scene-captivity,html[data-theme=fufu] .scene-captivity span{font-family:FufuPanelSubset,'Microsoft YaHei',sans-serif!important;color:#6a4b3c!important;text-shadow:none}
+html[data-theme=fufu] #typing-lock-overlay .lock-heading kbd,html[data-theme=fufu] #typing-lock-overlay #typing-lock-grade,html[data-theme=fufu] #lock-total-hits{color:#8c3f58!important}
+html[data-theme=fufu] #typing-lock-overlay .lock-meter{overflow:visible!important;border-radius:8px;border-color:#a9d8f5;background:#f6dfd1}
+html[data-theme=fufu] #typing-lock-fill{background:#f6a7c1!important;border-radius:6px;opacity:.75!important}
+html[data-theme=fufu] #typing-lock-relief{background:#a9d8f5!important;opacity:.7}
+html[data-theme=fufu] #typing-lock-overlay .lock-progress-row{margin-top:calc(22px*var(--display-scale))}
+html[data-theme=fufu] #typing-lock-overlay[data-challenge=count] .lock-progress-row{justify-content:flex-end;margin-top:calc(10px*var(--display-scale))}
+html[data-theme=fufu] #typing-lock-overlay .scene-captivity{border-color:#a9d8f5}
+html[data-theme=fufu] #typing-lock-overlay .scene-cage{--cage-metal:#a9d8f5;--cage-light:#fff8ea;--cage-dark:#5c9fd6}
+html[data-theme=fufu] #typing-lock-overlay .cage-rail-top{border-radius:8px}
+html[data-theme=fufu] #typing-lock-overlay .cage-door{border-radius:12px;border-image:none;border-color:#a9d8f5}
+html[data-theme=fufu] #typing-lock-overlay .lock-art{filter:drop-shadow(0 3px 5px #6a4b3c33)!important}
+html[data-theme=fufu] body #typing-lock-overlay[data-scene][data-motion=on]:is(.scene-added,.scene-layer-break) .lock-art{animation:none!important}
+.fufu-race{display:none;pointer-events:none;--fufu-travel:0px}.fufu-race-bar{position:absolute;inset:0}.fufu-mouse{position:absolute;left:0;bottom:calc(100% - 8px*var(--display-scale));width:calc(36px*var(--display-scale));height:calc(27px*var(--display-scale));transform:translateX(calc(var(--lock-progress)*var(--fufu-travel)));z-index:3}.fufu-mouse-art{display:block;width:100%;height:100%}.fufu-race svg{width:100%;height:100%;overflow:visible}.fufu-cheese{position:absolute;right:0;bottom:calc(100% - 8px*var(--display-scale));width:calc(28px*var(--display-scale));height:calc(24px*var(--display-scale));z-index:2}
+html[data-theme=fufu] .fufu-race{display:block}html[data-theme=fufu] .fufu-race-count{position:relative;margin:calc(29px*var(--display-scale)) 0 calc(3px*var(--display-scale));height:calc(6px*var(--display-scale));background:#f6a7c1;border-radius:20px}
+html[data-theme=fufu] #typing-lock-overlay.fufu-celebrate .fufu-mouse{transform:translateX(var(--fufu-travel))}
+#lock-fx .fufu-particle{position:absolute;left:-9px;top:-9px;width:18px;height:18px;pointer-events:none;background:#a9d8f5;will-change:transform,opacity}#lock-fx .fufu-color-1{background:#f6a7c1}#lock-fx .fufu-color-2{background:#ffcf5a}#lock-fx .fufu-heart{clip-path:polygon(50% 92%,8% 53%,3% 29%,18% 9%,37% 7%,50% 24%,63% 7%,82% 9%,97% 29%,92% 53%)}#lock-fx .fufu-cheese{position:absolute;right:auto;bottom:auto;width:18px;height:18px;clip-path:polygon(0 25%,62% 0,100% 30%,100% 100%,0 100%);background:#ffcf5a}#lock-fx .fufu-star{clip-path:polygon(50% 0,62% 35%,100% 36%,70% 60%,80% 100%,50% 76%,20% 100%,30% 60%,0 36%,38% 35%)}#lock-fx .fufu-ring{position:absolute;left:-70px;top:-70px;width:140px;height:140px;border:4px solid #a9d8f5;border-radius:50%;box-shadow:0 0 10px #a9d8f555}#lock-fx .fufu-flash{position:absolute;left:-100px;top:-100px;width:200px;height:200px;background:radial-gradient(circle,#fff8ea 0,#fff8ea99 22%,transparent 65%);border-radius:50%}
+
+/* V2.3: one active mode, one editable profile. */
+#mode{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px}#mode button{display:flex;flex-direction:column;gap:8px;min-height:100px;padding:18px 12px;background:#252830;color:#f3edf1;border:2px solid #5c616b}#mode strong{font-size:22px}#mode span{font-size:14px;line-height:1.5}#mode [aria-checked=true]{border-color:#eaa3bb;background:#4b2c3b}#mode button:focus-visible{outline:3px solid #a9d8f5;outline-offset:3px}
+@media(max-width:650px){#mode{gap:6px}#mode button{padding:12px 5px}#mode strong{font-size:19px}#mode span{font-size:13px}}
+#typing-lock-overlay[data-mode=count] .lock-progress-row,#typing-lock-overlay[data-mode=count] #typing-lock-queue{display:none!important}
+#typing-lock-overlay[data-mode=count] .counter-readout{margin-top:calc(16px*var(--display-scale));font-size:calc(28px*var(--display-scale))}
+#typing-lock-overlay[data-mode=count] #lock-remaining-hits{color:var(--lock-ui-accent)}
+#typing-lock-overlay[data-mode=count] .counter-readout small{display:block;font-size:calc(16px*var(--display-scale));margin-top:calc(8px*var(--display-scale))}
+[hidden]{display:none!important}

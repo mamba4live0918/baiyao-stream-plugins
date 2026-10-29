@@ -1,0 +1,63 @@
+{
+  "batch": "counters-v2-pancake",
+  "requestedOutputs": 2,
+  "records": [
+    {
+      "assetIds": [
+        "counter_pancake_left",
+        "counter_pancake_mid",
+        "counter_pancake_right"
+      ],
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_pancake_master-attempt-1.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_noodle_master.png",
+      "referenceRole": "exact edit target and visual style reference",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-953c2640-8171-45af-82f9-e6dd6a063e94.png",
+      "outputId": "exec-953c2640-8171-45af-82f9-e6dd6a063e94",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "transparentBackground": true,
+      "prompt": "Use case: precise-object-edit. Asset type: wide transparent 2D PANCAKE street-food counter master. Input image 1 is the EXACT physical wooden counter edit target and the style reference. Keep exactly its long low shape, shallow perspective top plane, heavy thick wooden tabletop and front lip, broad worn woodgrain lines, small edge nicks, dark-brown #49372d outlines and small white edge highlights. Change only the shop color/decorative areas: the physical front wooden planks become bright egg-yellow; the hanging scalloped cloth beneath the wood top becomes egg-yellow with a RED AND CREAM-WHITE CHECKERED BORDER/FRINGE along its curved lower edge. Replace all cream cloud motifs with small simple wheat-ear motifs, evenly repeated across the middle 70% of the yellow front panel, no unique center emblem. Preserve visible wooden side edges and bottom timber trim. Same flat cute cartoon family, one cel shadow layer, warm worn wood; no glossy UI treatment. Requested master aspect ratio 1024:420, entire counter silhouette with transparent margin all around. NO attached sign. NO people, body parts, food, utensils, cookware, wall, roof, canopy, legs, wheels or ground shadow. NO text, letters, numerals, logos or labels. Actual alpha transparency. It must remain a real physical street-stall counter with wood thickness and material texture, not a rounded UI panel or button. Center decorative pattern must be continuous and repeatable, without a focal logo.",
+      "targetFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_pancake_master.png",
+      "attempt": 1,
+      "selected": false,
+      "rejectionReason": "Checker pattern was only a thin hem; the full hanging cloth needed to be red-white checkered."
+    },
+    {
+      "assetIds": [
+        "counter_pancake_sign"
+      ],
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_pancake_sign.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_noodle_sign.png",
+      "referenceRole": "exact edit target and visual style reference",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-10fed3a1-700a-4c44-bca7-7b1faf8a9c72.png",
+      "outputId": "exec-10fed3a1-700a-4c44-bca7-7b1faf8a9c72",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "transparentBackground": true,
+      "prompt": "Use case: precise-object-edit. Asset type: separate transparent 2D PANCAKE shop round wooden sign medallion. Input image 1 is the EXACT wooden medallion edit target. Change ONLY its red painted accent ring to a warm bright egg-yellow accent ring with similar small worn/chipped paint texture. Keep exact round shape, thick rough wooden rim, subtle broad woodgrain, dark-brown #49372d outline, lower material thickness, small white highlights and flat cartoon one-cel-shadow rendering. Keep the large warm-cream central writing area completely blank; very faint woodgrain only. No text, no letters, no numerals, no logo, no egg or wheat icon, no drawing inside center. No hanging string, no counter, no props, no food, no people, no scenery, no shadow outside the silhouette. Actual alpha transparent background. Physical wooden sign, not a UI button.",
+      "attempt": 1,
+      "selected": true
+    },
+    {
+      "assetIds": [
+        "counter_pancake_left",
+        "counter_pancake_mid",
+        "counter_pancake_right"
+      ],
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_pancake_master.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_pancake_master-attempt-1.png",
+      "referencePathAtGeneration": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_pancake_master.png",
+      "referenceRole": "exact first-version pancake counter edit target; preserved at sourceFile before replacement",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-8def2db0-fc3d-49d6-a919-21c1f4f6e66d.png",
+      "outputId": "exec-8def2db0-fc3d-49d6-a919-21c1f4f6e66d",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "transparentBackground": true,
+      "prompt": "Use case: precise-object-edit. Asset type: transparent 2D pancake street-stall wooden counter master, second targeted correction. Input image 1 is the EXACT first-version pancake counter edit target. Make ONE change only: the ENTIRE hanging scalloped FABRIC VALANCE immediately underneath the thick wood tabletop must be red-and-cream-white CHECKERED FABRIC, not yellow fabric. Fill the whole area of every fabric scallop from its upper attachment beneath the wooden lip to its lower scalloped edge with a clear medium-size alternating RED/CREAM-WHITE SQUARE CHECK PATTERN. Let the checker pattern naturally follow the cloth folds, with the same single cel-shaded fold shadows and small white highlights. No yellow patches anywhere on this hanging fabric. The check must read clearly at 210 pixels total counter height, so use bold readable squares. Preserve EXACTLY all pixels outside that upper hanging cloth region: the broad worn wooden tabletop, woodgrain, nicks, thick front wooden lip, table perspective, dark-brown outlines, side frame, bottom timber trim, full canvas and transparent alpha, whole counter silhouette and proportions. ESPECIALLY keep the LOWER bright egg-yellow wooden front planks and their existing repeated cream wheat-ear designs exactly as they are. Do not change lower board colors, number or placement of wheat motifs. No added sign, lettering, numerals, logos, people, food, tools, utensils, wall, canopy, legs, wheels or background. Retain true alpha transparency and established flat cute 2D style. Edit only the fabric color and pattern.",
+      "attempt": 2,
+      "selected": true
+    }
+  ],
+  "visualAssessment": "Selected second counter master: the ENTIRE scalloped hanging valance is now bold red-and-cream-white checker fabric with folds and cel shadows. Lower bright yellow planks, repeated wheat-ear decoration, worn thick wood top and frame remain visually stable. Approved separate blank wooden sign was not changed. First master preserved as backup. No visible text, people, food, utensils or legs. Original generated PNGs copied without resizing or conversion.",
+  "verification": "Source and destination file existence/nonempty inspected only; no build, automated tests, browser, transcoding, or pixel/alpha validation executed."
+}

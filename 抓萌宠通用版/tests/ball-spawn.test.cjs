@@ -1,0 +1,3 @@
+const test=require('node:test'),assert=require('node:assert/strict'),C=require('../src/core.js');
+test('精灵球从四个不同边缘投来，落点始终是指定豹豹位置',()=>{const W=1280,H=720,x=400,y=520;for(let edge=0;edge<4;edge++){const p=C.ballPath(edge,x,y,W,H,.5);assert.equal(p.endX,x);assert.equal(p.endY,y);assert.ok(Number.isFinite(p.viaX)&&Number.isFinite(p.viaY));if(edge===0)assert.ok(p.startX<0);if(edge===1)assert.ok(p.startX>W);if(edge===2)assert.ok(p.startY<0);if(edge===3)assert.ok(p.startY>H);}});
+test('精灵球投掷落点和路线被钳制到画布',()=>{for(const scatter of [-100,NaN,Infinity,100]){const p=C.ballPath(2,0,9999,640,360,scatter);assert.equal(p.endX,0);assert.equal(p.endY,360);assert.ok(p.startX>=0&&p.startX<=640);assert.ok(Number.isFinite(p.viaX)&&Number.isFinite(p.viaY));}});

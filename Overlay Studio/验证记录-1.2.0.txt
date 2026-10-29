@@ -1,0 +1,26 @@
+Overlay Studio 1.2.0 — 模型与API Key配置
+2026-10-19
+
+新增：本机Codex/API切换；DeepSeek、OpenRouter、硅基流动、自定义兼容接口、Claude独立配置；Base URL、模型ID、输出上限、密码输入、保存/替换/清除Key、测试已保存配置。
+协议：OpenAI兼容Chat Completions及Anthropic原生Messages，支持JSON与SSE。未接入Responses或Gemini原生协议。
+
+测试结果：52/52通过。
+- 27项传输测试：两协议请求和鉴权、分块UTF-8、流式文本、思考内容隔离、输出截断/异常/提前结束、HTTP错误、拒绝重定向、取消、30秒真实超时、20MiB限制、HTML提取。
+- 5项配置测试：提供商Key隔离、加密持久化与不可回显、主机绑定、替换/清除、会话模式、解密失败状态、原子保存失败时原Key/主机保留。
+- 3项API服务测试：无需Codex即可生成、敏感值不进入提示/日志/公共设置/作品、截断和取消保留旧版本、运行中阻止更改配置。
+- 原有17项Codex/项目服务测试继续通过。
+
+界面联调：使用127.0.0.1本地协议模拟服务和明确无效的测试字符串，不调用真实提供商。兼容接口保存/连接测试/启用通过；Claude原生保存/连接测试/启用/生成后预览通过。输入Key成功保存后清空，页面只返回保存状态。控制台无相关error/warn。
+
+Windows便携版：实际EXE启动、现有Codex登录检测通过。Electron safeStorage.isEncryptionAvailable=true；用无敏感性的固定测试字符串验证encryptString/decryptString往返成功。未读取或保存任何真实账户API Key。
+
+存储：provider-state.json是私有原子快照，含配置和系统加密密文；公共设置不返回Key或密文。系统加密不可用时，仅会话内存保存。Key绑定服务origin，换主机需显式重填或清除。生成的HTML不会包含Key；生成前后预览权限不扩大。
+
+限制：用户尚未提供真实Key，未实测真实供应商余额、模型权限、地区网络和实际生成质量。API模式直接返回HTML，不自主调用工具、浏览器或运行测试。连接测试会产生少量请求用量；无自动重试。
+
+参考：
+https://api-docs.deepseek.com/api/create-chat-completion/
+https://platform.claude.com/docs/en/api/messages/create
+https://openrouter.ai/docs/api_reference/overview
+https://docs.siliconflow.cn/docs/api/chat-completions-post
+https://www.electronjs.org/docs/latest/api/safe-storage

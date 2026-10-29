@@ -1,0 +1,24 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>出摊啦 · 试玩台</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:"Microsoft YaHei",sans-serif;color:#423c34;background:#ece8dc}body{display:grid;grid-template-columns:280px 1fr}aside{padding:24px 18px;overflow:auto;background:#fffaf0;border-right:2px solid #584635}h1{font-size:28px;margin:0 0 8px}p{font-size:12px;color:#7b6e5d;line-height:1.7}h2{font-size:13px;margin:22px 0 9px}button,select{font:inherit;color:inherit;border:1.5px solid #7b6550;border-radius:8px;background:#fffdf6;padding:9px 10px;cursor:pointer}button:hover{background:#ffe2ac}button:focus-visible{outline:3px solid #d37355}.grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.wide{width:100%;margin-top:8px}.primary{background:#edb46c;font-weight:bold}main{min-width:0;display:grid;grid-template-rows:48px 1fr}nav{display:flex;align-items:center;justify-content:space-between;padding:8px 18px;font-size:12px;background:#f9f5eb}#scene{position:relative;min-height:0;background-color:#e4e5e1;background-image:linear-gradient(45deg,#d7d9d3 25%,transparent 25%),linear-gradient(-45deg,#d7d9d3 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d7d9d3 75%),linear-gradient(-45deg,transparent 75%,#d7d9d3 75%);background-size:36px 36px;background-position:0 0,0 18px,18px -18px,-18px 0}#scene.dark{background:#263b3d}#scene.light{background:#ede6d4}iframe{width:100%;height:100%;border:0;position:absolute;inset:0;background:transparent}#result{padding:10px 0;font-size:12px;color:#567258;font-weight:bold}footer{border-top:1px dashed #d0c4ae;margin-top:20px;padding-top:8px;font-size:11px;line-height:1.7;color:#8b7964}@media(max-width:720px){body{grid-template-columns:180px 1fr}aside{padding:14px 9px}h1{font-size:21px}.grid{grid-template-columns:1fr}button{font-size:11px;padding:7px}nav{padding:8px;font-size:10px;gap:4px}}
+</style></head><body><aside><h1>出摊啦</h1><p>V1.6 · 送礼物就来顾客<br>先模拟点单（设置②里的 ▶ 可试送点单礼物），在设置里选店，照下面做菜、端给顾客，也可试捣乱/帮忙。</p><p>🍜 点面箱 → 等绿圈 → 锅拖碗，一下1两 → 碗拖给顾客。<br>🍣 点鱼箱 → 按刀向下划 → 鱼片拖盘，一下1片 → 盘拖给顾客。<br>🫓 点面糊桶 → 在鏊子上画圈摊开 → 点蛋篮，一下1蛋 → 等绿圈，铲子拖饼装袋，袋拖给顾客。<br>🧋 点珍珠罐，一下1勺下进小锅 → 等绿圈，小锅拖到杯里，一下1勺 → 按住雪克杯左右摇，拖到杯里封口 → 茶杯拖给顾客。<br>灭火器拖火上；小偷敲3下；电闸向上推；猫拎出摊位；糊脸按住来回擦。<br>画面上的牌子（计时牌、门外人数、通缉令、统计牌）按住能拖，鼠标移上去拖右下角圆点改大小。</p>
+<button class="wide primary" id="order">模拟点单</button><button class="wide" id="fifty">一键来 50 人</button><button class="wide" id="dismiss">模拟送走前 5 位</button>
+<h2>捣乱入口</h2><div class="grid"><button data-kind="fire">放火</button><button data-kind="thief">小偷</button><button data-kind="blackout">停电</button><button data-kind="cat">野猫</button><button data-kind="tour">旅行团</button><button data-kind="boom">爆锅糊脸</button><button data-kind="spice">乱加料</button></div>
+<h2>帮忙入口</h2><div class="grid"><button data-kind="helper">帮手</button><button data-kind="guard">保安</button></div><button class="wide" data-kind="rent">快进到交租</button><button class="wide" id="settings">打开设置</button>
+<div id="result" role="status">试玩台准备中</div><footer>帮手优先救场，没麻烦就给足上菜；保安挡下后续捣乱。<br>每营业10分钟交100铜板，缺额折加班（加到白曜加班机）。空店一周期自动打烊。<br>打烊/离线满1小时结束本场，短空档跳过时间、照常营业。<br>开新场和清统计需3秒内再点确认。<br>模拟送走只看补位；预览底色不进入插件。</footer></aside>
+<main><nav><span>透明叠加预览</span><select id="background" aria-label="预览背景"><option value="">透明格</option><option value="dark">深色背景</option><option value="light">浅色背景</option></select></nav><div id="scene"><iframe id="preview" title="出摊啦透明页"></iframe></div></main>
+<script>
+const frame=document.querySelector('#preview');
+// Mark this exact embedded document before any of its styles or scripts run.
+const embeddedHtml=__EMBEDDED_HTML__;
+frame.srcdoc=embeddedHtml.replace('<html ','<html data-trial="true" ');
+let serial=0;function send(action,spec){frame.contentWindow.postMessage({channel:'chutan-trial-v1',action,spec},'*');}
+document.querySelector('#order').onclick=()=>send('sim',{kind:'order',nick:'试玩顾客',uid:'trial-'+(++serial)});
+document.querySelector('#fifty').onclick=()=>send('fifty');document.querySelector('#settings').onclick=()=>send('settings');
+document.querySelector('#dismiss').onclick=()=>send('dismiss');
+document.querySelectorAll('[data-kind]').forEach(b=>b.onclick=()=>send('sim',{kind:b.dataset.kind,nick:'试玩观众',count:1}));
+document.querySelector('#background').onchange=e=>document.querySelector('#scene').className=e.target.value;
+frame.onload=()=>document.querySelector('#result').textContent='准备好了，点单试试';
+addEventListener('message',e=>{if(e.source!==frame.contentWindow||e.data?.channel!=='chutan-state-v1')return;document.querySelector('#result').textContent=`待出 ${e.data.queueCount} 单 · 已出 ${e.data.served??0} 单 · 铜板 ${e.data.coins??0}`;});
+</script></body></html>
+

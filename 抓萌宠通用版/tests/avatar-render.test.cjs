@@ -1,0 +1,34 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const vm=require('node:vm');
+const source=fs.readFileSync(path.join(__dirname,'../src/app.js'),'utf8');
+
+test('头像可切换为动物，加载失败退回该观众对应的动物',()=>{
+ const a=source.indexOf('function size()'),b=source.indexOf('function ballBurst(',a);
+ assert(a>=0&&b>a);
+ const chosen=[];const ctx={C:require('../src/core.js'),PetRoamGeometry:require('../src/roam-geometry.js'),W:1280,H:720,prefs:{size:90},state:{avatarKinds:[{kind:1000000,url:'https://example.com/avatar.png',name:'小莓',fallbackKind:30}]},custom:{cfg:{avatarMode:true,avatarMotion:'float'},hasCowKind:k=>k===30,cowScale:()=>1,cowWalk:()=>null,cowFrameMeta:()=>({kind:'image',frames:1,fps:0}),cowSource:k=> 'animal-'+k+'.png',cowStaticSource:k=> 'animal-'+k+'.png',cowName:k=> '动物-'+k,cowMotion:()=> 'prowl'},reduced:()=>false};
+ vm.runInNewContext(source.slice(a,b)+';globalThis.cowVisual=cowVisual;',ctx);
+ const c={kind:1000000,size:90,el:{style:{},classList:{toggle(name,on){chosen.push([name,on])}},setAttribute(k,v){this[k]=v}},im:{style:{},src:''},sprite:{style:{}}};
+ ctx.cowVisual(c);
+ assert.equal(c.im.src,'https://example.com/avatar.png');
+ assert.equal(c.im.referrerPolicy,'no-referrer');
+ assert.equal(c.im.hidden,false);
+ assert.equal(c.sprite.hidden,true);
+ assert.equal(c.motionMode,'float');
+ assert.match(c.el['aria-label'],/小莓/);
+ assert.equal(chosen.at(-1)[1],true);
+ ctx.custom.cfg.avatarMode=false;
+ ctx.cowVisual(c);
+ assert.equal(c.im.src,'animal-30.png');
+ assert.equal(c.motionMode,'prowl');
+ assert.equal(chosen.at(-1)[1],false);
+ ctx.custom.cfg.avatarMode=true;
+ ctx.cowVisual(c);
+ assert.equal(c.im.src,'https://example.com/avatar.png');
+ c.im.onerror();
+ assert.equal(c.im.src,'animal-30.png');
+ assert.equal(chosen.at(-1)[1],false);
+ assert.equal(c.kind,1000000);
+});

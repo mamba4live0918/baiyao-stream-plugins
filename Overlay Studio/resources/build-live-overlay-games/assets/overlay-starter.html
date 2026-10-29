@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>透明直播小游戏 · 起步模板</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;font-family:system-ui,"Microsoft YaHei",sans-serif;color:#f7f5ee}
+body.preview{background-color:#24353e;background-image:linear-gradient(45deg,#ffffff08 25%,transparent 25%,transparent 75%,#ffffff08 75%),linear-gradient(45deg,#ffffff08 25%,transparent 25%,transparent 75%,#ffffff08 75%);background-size:40px 40px;background-position:0 0,20px 20px}
+body.preview.light{background-color:#dad9d2}canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#hud{position:absolute;left:24px;top:24px;background:#15232be8;border:1px solid #ffffff30;border-radius:16px;padding:14px 20px;pointer-events:none;box-shadow:0 8px 30px #0002}
+#hud small{display:block;color:#a5c6c9;font-size:11px;letter-spacing:.12em}#score{font-size:36px;font-weight:750}#state{font-size:13px;color:#b5dcd4;margin-left:15px}
+#controls{position:absolute;left:24px;bottom:24px;width:min(440px,calc(100% - 48px));padding:20px;border-radius:18px;background:#15232bf5;border:1px solid #ffffff30;box-shadow:0 10px 40px #0003;max-height:calc(100% - 132px);overflow:auto}
+[hidden]{display:none!important}h1{font-size:18px;margin:0 0 6px}p{font-size:12px;line-height:1.7;color:#b7c9ca;margin:6px 0 14px}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}button{border:1px solid #ffffff25;background:#2b424d;color:#fff;padding:10px 14px;border-radius:10px;font:inherit;font-size:12px;cursor:pointer}button:hover{background:#3c5965}button:focus-visible{outline:2px solid #a8ecbc;outline-offset:2px}button.primary{background:#bcf3ce;color:#143127}#stats,#notice{display:block;font-size:11px;line-height:1.8;color:#b7c9ca}#notice{color:#ffe0a0;min-height:20px}
+@media(max-width:480px){#hud{left:12px;top:12px}#controls{left:12px;bottom:12px;width:calc(100% - 24px);padding:14px}}
+</style>
+<canvas id="stage" aria-label="透明落球演示"></canvas>
+<div id="hud"><small>OVERLAY / 本地模拟</small><span id="score">0</span><span id="state">待开始 · F2 控制台</span></div>
+<section id="controls" hidden aria-label="试玩控制台">
+ <h1>透明直播小游戏 · 起步模板</h1>
+ <p>落球到达底部计分，用于演示运行机制。尚未接入真实直播，也不是完整游戏。F2 显示或收起控制台。</p>
+ <div class="buttons"><button class="primary" id="start">开始 / 继续</button><button id="pause">暂停</button><button id="reset">重开</button></div>
+ <div class="buttons"><button id="one">模拟 1 球</button><button id="ten">模拟 10 球</button><button id="burst">突发 100 条</button></div>
+ <div class="buttons"><button id="background">切换预览底色</button><button id="hide">收起控制台</button></div>
+ <output id="stats"></output><output id="notice" aria-live="polite"></output>
+</section>
+<script id="overlay-studio-config" type="application/json">
+{"version":1,"fields":[{"key":"speed","label":"落球速度","type":"number","value":1,"min":0.25,"max":3,"step":0.25},{"key":"ballRadius","label":"球体半径","type":"number","value":14,"min":4,"max":40,"step":1},{"key":"ballColor","label":"球体颜色","type":"color","value":"#bdf4ce"}]}
+</script>
+<script id="runtime">
+// Pure state machine. Internal demo contract only, NOT a platform gift protocol.
+function createOverlayRuntime(now = () => Date.now(), options = {}) {
+ const speed=Number.isFinite(options.speed)?Math.max(.25,Math.min(3,options.speed)):1;
+ const limits={pending:200,active:80,ttlMs:30000,seen:512,seenTtlMs:300000,rate:8};
+ let state='ready',score=0,queue=[],balls=[],seen=new Map(),credit=0,expired=0,rejected=0,serial=0;
+ function prune(){
+  const time=now();
+  queue=queue.filter(e=>{if(time-e.at>=limits.ttlMs){expired+=e.count;return false;}return true;});
+  for(const [id,at] of seen)if(time-at>=limits.seenTtlMs)seen.delete(id);
+ }
+ const pending=()=>queue.reduce((sum,e)=>sum+e.count,0);
+ function receive(e){
+  prune();
+  if(!e||typeof e.id!=='string'||!e.id||e.id.length>128||!Number.isInteger(e.count)||e.count<1||e.count>100)return {ok:false,reason:'invalid'};
+  if(seen.has(e.id))return {ok:false,reason:'duplicate'};
+  if(pending()+e.count>limits.pending){rejected+=e.count;return {ok:false,reason:'capacity'};}
+  seen.set(e.id,now());while(seen.size>limits.seen)seen.delete(seen.keys().next().value);
+  queue.push({count:e.count,at:now(),actor:String(e.actor??'模拟观众').slice(0,24)});
+  return {ok:true};
+ }
+ function step(seconds){
+  prune();if(state!=='running')return;
+  const dt=Number.isFinite(seconds)?Math.max(0,Math.min(seconds,.05)):0;
+  credit=Math.min(1,credit+dt*limits.rate);
+  if(credit>=1&&queue.length&&balls.length<limits.active){
+   const e=queue[0];balls.push({x:.12+((serial++*0.61803398875)%1)*.76,y:.08,age:0,actor:e.actor});
+   e.count--;if(!e.count)queue.shift();credit=0;
+  }
+  balls=balls.filter(b=>{b.age+=dt*speed;b.y=.08+.12*b.age+.09*b.age*b.age;if(b.y>=.84){score++;return false;}return true;});
+ }
+ return {
+  receive,step,start(){state='running';credit=0;},pause(){if(state==='running')state='paused';},
+  reset(){state='ready';score=0;queue=[];balls=[];credit=0;expired=0;rejected=0;},
+  snapshot(){return {state,score,pending:pending(),active:balls.length,expired,rejected,seen:seen.size,balls:balls.map(b=>({...b}))};}
+ };
+}
+</script>
+<script>
+(() => {
+ const $=id=>document.getElementById(id);
+ let config={};try{config=Object.fromEntries(JSON.parse($('overlay-studio-config').textContent).fields.map(field=>[field.key,field.value]));}catch{}
+ const game=createOverlayRuntime(undefined,config), canvas=$('stage'), ctx=canvas.getContext('2d',{alpha:true});
+ const ballRadius=Number.isFinite(config.ballRadius)?Math.max(4,Math.min(40,config.ballRadius)):14;
+ const ballColor=typeof config.ballColor==='string'&&/^#[0-9a-f]{6}$/i.test(config.ballColor)?config.ballColor:'#bdf4ce';
+ const preview=new URLSearchParams(location.search).get('preview')==='1';
+ if(preview){document.body.classList.add('preview');$('controls').hidden=false;}
+ $('background').hidden=!preview;
+ let width=innerWidth,height=innerHeight,sequence=0,last=performance.now(),lastText='';
+ function resize(){width=innerWidth;height=innerHeight;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
+ function simulate(count){const result=game.receive({id:'local-'+(++sequence),count,actor:'模拟观众'});$('notice').textContent=result.ok?'已加入本地候场；暂停时等待继续。':'本批未执行：'+result.reason;}
+ $('start').onclick=()=>{game.start();last=performance.now();};$('pause').onclick=()=>game.pause();$('reset').onclick=()=>{game.reset();$('notice').textContent='本局已重开，旧候场已清空。';};
+ $('one').onclick=()=>simulate(1);$('ten').onclick=()=>simulate(10);
+ $('burst').onclick=()=>{let accepted=0;for(let i=0;i<100;i++){if(game.receive({id:'local-'+(++sequence),count:1,actor:'突发测试'}).ok)accepted++;}$('notice').textContent=`100条模拟输入：接收${accepted}，拒绝${100-accepted}。`;};
+ $('background').onclick=()=>document.body.classList.toggle('light');$('hide').onclick=()=>{$('controls').hidden=true;};
+ document.addEventListener('keydown',e=>{if(e.key==='F2'&&!e.repeat){e.preventDefault();$('controls').hidden=!$('controls').hidden;}});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){game.pause();$('notice').textContent='页面隐藏已暂停，返回后手动继续。';}last=performance.now();});
+ addEventListener('resize',resize);resize();
+ function frame(time){
+  game.step((time-last)/1000);last=time;const s=game.snapshot();ctx.clearRect(0,0,width,height);
+  const radius=Math.min(ballRadius,width/12);
+  for(const b of s.balls){ctx.beginPath();ctx.arc(b.x*width,b.y*height,radius,0,Math.PI*2);ctx.fillStyle=ballColor;ctx.fill();ctx.strokeStyle='#254f42';ctx.lineWidth=2;ctx.stroke();}
+  ctx.fillStyle='#a4d7d0';ctx.fillRect(width*.1,height*.86,width*.8,4);
+  $('score').textContent=s.score;$('state').textContent=({ready:'待开始 · F2 控制台',running:'运行中',paused:'已暂停'})[s.state];
+  const text=`场上 ${s.active}/80 · 候场 ${s.pending}/200 · 过期 ${s.expired} · 超限拒绝 ${s.rejected}`;
+  if(text!==lastText){$('stats').textContent=text;lastText=text;}
+  requestAnimationFrame(frame);
+ }
+ requestAnimationFrame(frame);
+})();
+</script>
+</html>

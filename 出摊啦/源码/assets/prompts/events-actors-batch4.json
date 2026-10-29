@@ -1,0 +1,466 @@
+[
+  {
+    "id": "thief_walk_1",
+    "displaySize": {
+      "width": 180,
+      "height": 230
+    },
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE cute comic full-body thief tiptoeing, black eye mask, black-and-cream horizontally striped shirt, dark brown trousers and shoes, charcoal knitted beanie, sly harmless grin. Chibi big head short body, frontal three-quarter facing right. Walk pose A: left leg raised slightly, right foot on baseline, both empty hands held sneaky in front. NO bag, weapon, stolen goods or other object. Stable animation frame logical180×230, head top y8, baseline y222, body center x90, fit x10..170. Subsequent frame will only alternate feet/forearms; keep head/body registration.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-9cf178eb-0edf-438d-bae2-85b07dac1583.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/thief_walk_1.png",
+    "generatedAt": "2026-10-22T15:21:34.039Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 90,
+      "y": 222,
+      "units": "logical-px"
+    },
+    "frameGroup": "thief-walk",
+    "preserveFrame": true
+  },
+  {
+    "id": "thief_walk_2",
+    "displaySize": {
+      "width": 180,
+      "height": 230
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-9cf178eb-0edf-438d-bae2-85b07dac1583.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Input is the exact edit target for the second sprite animation frame. Preserve EXACT canvas, head position, face, eye mask, beanie, hair, torso, clothes palette, body center, scale and transparent background. Change ONLY leg and forearm pose to the opposite tiptoe walking phase: switch raised and planted foot, opposite elbow forward. Keep feet baseline and full silhouette within same frame, no recenter, crop or zoom. No bag, object, text, symbols or floor. Match identical deep-brown outlines, flat fills, one cel shadow and highlights. True alpha.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-3b9ef78e-ed2f-4dc2-8d99-4b3242e28319.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/thief_walk_2.png",
+    "generatedAt": "2026-10-22T15:21:34.040Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 90,
+      "y": 222,
+      "units": "logical-px"
+    },
+    "frameGroup": "thief-walk",
+    "preserveFrame": true
+  },
+  {
+    "id": "thief_sack",
+    "displaySize": {
+      "width": 100,
+      "height": 120
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\props\\coin_jar.png"
+    ],
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE small soft tan burlap loot sack, rounded pear shape, top tied with simple brown cord, broad blank cream patch on front for code-rendered name. No contents or coins visible, no hands, person, symbols, letters, money signs or writing. Front slight three-quarter view. Logical100×120 frame, complete sack within x8..92 y6..113, bottom-center anchor. Same cute warm flat material shading.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-506a4492-0771-4282-8b04-246f807d2a22.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/thief_sack.png",
+    "generatedAt": "2026-10-22T15:21:34.042Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 50,
+      "y": 112,
+      "units": "logical-px"
+    },
+    "textRect": {
+      "x": 24,
+      "y": 65,
+      "width": 56,
+      "height": 22,
+      "units": "logical-px"
+    }
+  },
+  {
+    "id": "cat_sit",
+    "displaySize": {
+      "width": 180,
+      "height": 190
+    },
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE cute plump orange tabby cat sitting, full body front three-quarter facing right, orange stripes, cream muzzle/chest/paws, short rounded tail curled left, large cheeky eyes, tiny pink nose. No collar, clothing, food, bowl, hand or other object. Logical180×190 frame, cat centered x90, paw baseline y182, top ears near y12. This is reference idle pose for eating and being held variants; full silhouette with ample margin.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-a8fe4cd6-196a-4817-b9f0-721493fec6e6.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/cat_sit.png",
+    "generatedAt": "2026-10-22T15:21:34.045Z",
+    "anchor": {
+      "name": "paws-center",
+      "x": 90,
+      "y": 182,
+      "units": "logical-px"
+    },
+    "frameGroup": "cat",
+    "preserveFrame": true
+  },
+  {
+    "id": "cat_eat",
+    "displaySize": {
+      "width": 180,
+      "height": 190
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-a8fe4cd6-196a-4817-b9f0-721493fec6e6.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Create the eating state of this EXACT orange tabby cat on the SAME canvas and registration. Preserve tail/body placement, ear tips, palette, stripe pattern and paw baseline. Change only face to eyes happily squinting and mouth chomping, and forepaws holding one tiny plain salmon-colored bite just below mouth. No bowl or hand or whole fish. Do not recenter/crop/zoom. Same chibi brown outlines, flat warm fills, one cel shadow, upper-left light. All background true alpha, no text or symbols.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-f5a296dc-f5df-4df0-9761-693d3c899349.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/cat_eat.png",
+    "generatedAt": "2026-10-22T15:21:34.047Z",
+    "anchor": {
+      "name": "paws-center",
+      "x": 90,
+      "y": 182,
+      "units": "logical-px"
+    },
+    "frameGroup": "cat",
+    "preserveFrame": true
+  },
+  {
+    "id": "cat_held",
+    "displaySize": {
+      "width": 180,
+      "height": 190
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-a8fe4cd6-196a-4817-b9f0-721493fec6e6.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Create held-by-scruff state of this EXACT cute orange tabby. Preserve same canvas and overall character scale, stripe identity, cream muzzle/chest, face center and palette. Pose now hanging upright with the scruff at back of neck gently pulled upward (NO human hand in sprite), all four little paws dangling outward, curled tail, surprised but cute eyes and tiny open mouth. Keep whole cat inside same logical180×190 frame and transparent margin. Harmless comic pose, no distress, injury, collar, text or objects. Same brown outlines/flat cel shading/highlights, true alpha. No crop or zoom.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-fd4cc354-8745-4cde-adf8-7106a0f93575.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/cat_held.png",
+    "generatedAt": "2026-10-22T15:21:34.048Z",
+    "anchor": {
+      "name": "scruff",
+      "x": 90,
+      "y": 35,
+      "units": "logical-px"
+    },
+    "frameGroup": "cat",
+    "preserveFrame": true
+  },
+  {
+    "id": "bus",
+    "displaySize": {
+      "width": 330,
+      "height": 190
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\props\\coin_jar.png"
+    ],
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE cute yellow tourist coach bus BODY viewed straight from the side facing right, friendly rounded box shape, warm yellow cream panels, 4 large dark teal windows, closed passenger folding door near front right. A broad EMPTY cream rectangular name strip on lower middle body for code-rendered tour name. NO wheels: leave two clean semicircular wheel-well holes transparent at lower body (wheel centers logical70,151 and267,151); wheels generated separately. No people in windows, driver, luggage, scenery, text, marks or symbols. Landscape logical330×190 frame, bus body within x8..322,y20..162. Wheels will fit y128..180. Whole body visible including mirrors with transparent margin. Next variant opens only door.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-78d33165-2964-4ad8-8cc8-cec6fc9805f0.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/bus.png",
+    "generatedAt": "2026-10-22T15:21:34.051Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 165,
+      "y": 182,
+      "units": "logical-px"
+    },
+    "frameGroup": "bus",
+    "preserveFrame": true,
+    "attachments": [
+      {
+        "name": "back-wheel",
+        "x": 76,
+        "y": 145,
+        "units": "logical-px"
+      },
+      {
+        "name": "front-wheel",
+        "x": 237,
+        "y": 145,
+        "units": "logical-px"
+      }
+    ],
+    "textRect": {
+      "x": 64,
+      "y": 98,
+      "width": 182,
+      "height": 26,
+      "units": "logical-px"
+    }
+  },
+  {
+    "id": "bus_door_open",
+    "displaySize": {
+      "width": 330,
+      "height": 190
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-78d33165-2964-4ad8-8cc8-cec6fc9805f0.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Input is the exact yellow bus BODY animation frame. Keep pixel registration/canvas, entire bus outline, windows, blank cream name strip, colors, two transparent empty wheel wells, mirrors, bumper and all panels unchanged. Change ONLY the folding passenger door near front right: fold it open inward so a dark simple interior entrance and one warm cream step become visible. NO passengers, wheels, driver, text, numbers or other additions. Do not crop/recenter/zoom. Same deep brown ink outlines and flat cartoon cel highlights, true alpha transparent exterior and wheel holes.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-1e76d8c3-015e-4ebe-aed2-2e02a3537555.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/bus_door_open.png",
+    "generatedAt": "2026-10-22T15:21:34.052Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 165,
+      "y": 182,
+      "units": "logical-px"
+    },
+    "frameGroup": "bus",
+    "preserveFrame": true,
+    "attachments": [
+      {
+        "name": "back-wheel",
+        "x": 76,
+        "y": 145,
+        "units": "logical-px"
+      },
+      {
+        "name": "front-wheel",
+        "x": 237,
+        "y": 145,
+        "units": "logical-px"
+      }
+    ],
+    "textRect": {
+      "x": 64,
+      "y": 98,
+      "width": 182,
+      "height": 26,
+      "units": "logical-px"
+    }
+  },
+  {
+    "id": "bus_wheel",
+    "displaySize": {
+      "width": 55,
+      "height": 55
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-78d33165-2964-4ad8-8cc8-cec6fc9805f0.png"
+    ],
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE separate cartoon bus wheel seen exactly from the side, round dark-brown rubber tire with simple dark gray inset and cream circular hub. Match the yellow reference bus's cute outline and shading; reference is style and scale only, do not include bus body. Wheel is a clean full circle, logical55×55 centered(27.5,27.5), outer diameter50. No axle, letters, logos, road, perspective ellipse or extra objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-28eba3d0-00ab-4f00-abf8-af4fab1de962.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/bus_wheel.png",
+    "generatedAt": "2026-10-22T15:21:34.054Z",
+    "anchor": {
+      "name": "wheel-center",
+      "x": 27.5,
+      "y": 27.5,
+      "units": "logical-px"
+    }
+  },
+  {
+    "id": "big_hand",
+    "displaySize": {
+      "width": 220,
+      "height": 420
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\props\\coin_jar.png"
+    ],
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE cartoon oversized human forearm reaching down from above, with warm plum-red sleeve extending out through TOP canvas edge and a broad BLANK light-cream cuff strip. At bottom, a friendly rounded hand grips a small dark-brown bowl tilted downward to the left as if pouring seasonings. The bowl is EMPTY, no falling material; chili/wasabi separate overlays. No body, face, text, letters, numbers or symbols. Vertical logical220×420 frame, sleeve starts at top center x110 and hand/bowl ends aroundy402, whole side silhouette fits x15..205. Clean cutout, flat skin peach, single cel shadow, clear fingers.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-d7096bb4-b3f5-4f55-99ff-733bf002817d.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/big_hand.png",
+    "generatedAt": "2026-10-22T15:21:34.056Z",
+    "anchor": {
+      "name": "sleeve-top",
+      "x": 110,
+      "y": 0,
+      "units": "logical-px"
+    }
+  },
+  {
+    "id": "helper_run_1",
+    "displaySize": {
+      "width": 180,
+      "height": 230
+    },
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE cheerful cute full-body chibi kitchen helper, mint green long-sleeved shirt, cream-white apron, green headscarf with a broad blank forehead band, dark olive trousers, simple brown shoes. No text, hat badge or symbols. Run pose A, frontal three-quarter facing right: left knee forward/right foot back, elbows bent, empty hands. No utensils or food. Logical180×230 frame, head top y8, feet baseline y222, body center x90, fit x10..170. This is first frame; later alternate limbs but keep head/torso registration.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-be10c55c-212e-40a5-92c8-a90c056420a5.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/helper_run_1.png",
+    "generatedAt": "2026-10-22T15:21:34.058Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 90,
+      "y": 222,
+      "units": "logical-px"
+    },
+    "frameGroup": "helper",
+    "preserveFrame": true
+  },
+  {
+    "id": "helper_run_2",
+    "displaySize": {
+      "width": 180,
+      "height": 230
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-be10c55c-212e-40a5-92c8-a90c056420a5.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Input is exact edit target for second running sprite. Preserve SAME canvas, head/face/headscarf, torso center, apron, colors, scale and baseline. Change ONLY legs and forearms to opposite running phase: other knee and elbow forward, leading foot behind. No food or utensils. Do not recenter/crop/zoom. Keep entire silhouette inside original frame. Same deep-brown outlines, flat mint green shirt, cream apron, one cel shadow and highlights. True alpha background. No writing, symbols, logo.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-584d6af8-9e55-4258-a3fd-30e25fe90799.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/helper_run_2.png",
+    "generatedAt": "2026-10-22T15:21:34.060Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 90,
+      "y": 222,
+      "units": "logical-px"
+    },
+    "frameGroup": "helper",
+    "preserveFrame": true
+  },
+  {
+    "id": "helper_serve",
+    "displaySize": {
+      "width": 180,
+      "height": 230
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-be10c55c-212e-40a5-92c8-a90c056420a5.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Create serving pose of this EXACT green-clothed chibi kitchen helper on SAME canvas/scale. Preserve head, face, green headscarf blank band, shirt, white apron, torso center and foot baseline. Change arms to hold one simple small cream ceramic bowl at chest height with both hands, bowl containing a small golden noodle mound; change legs to stable standing pose. No utensils or other objects. Same warm deep brown ink, flat fills, one cel shadow and highlights. True alpha background. No text/numbers/logos. Do not crop/recenter/zoom.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-a40ecd38-de08-4c61-86b4-e646bd78e38b.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/helper_serve.png",
+    "generatedAt": "2026-10-22T15:21:34.061Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 90,
+      "y": 222,
+      "units": "logical-px"
+    },
+    "frameGroup": "helper",
+    "preserveFrame": true
+  },
+  {
+    "id": "guard_stand",
+    "displaySize": {
+      "width": 190,
+      "height": 260
+    },
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE funny friendly cartoon full-body chibi security guard standing, rounded stocky body, medium blue uniform jacket and pants, matching simple blue cap WITHOUT badge, small tie, brown belt and dark shoes. Friendly firm face, one empty forearm bent slightly across front for separate shield overlay, other arm rests at side. No insignia, police symbols, weapon, shield, whistle, logos or text. Logical190×260 frame, head top y8, feet baseline y252, body center x95, fit x10..180. Broad front three-quarter view facing left; this is standing reference frame.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-d3754e95-ac26-4265-a676-454eb8b6091e.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/guard_stand.png",
+    "generatedAt": "2026-10-22T15:21:34.063Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 95,
+      "y": 252,
+      "units": "logical-px"
+    },
+    "frameGroup": "guard",
+    "preserveFrame": true
+  },
+  {
+    "id": "guard_block",
+    "displaySize": {
+      "width": 190,
+      "height": 260
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-d3754e95-ac26-4265-a676-454eb8b6091e.png"
+    ],
+    "prompt": "Use case: precise-object-edit. Create the defending frame of this EXACT cute blue security guard. Preserve SAME canvas, head/cap/face, torso, feet, scale and baseline. Change only arms to lift both forearms in front of chest as if bracing a separate shield; hands visibly grip empty air, but DO NOT DRAW THE SHIELD, it will be an independent overlay. Firm friendly determined expression. No badge/insignia, weapon, police symbols, text or extra objects. Same brown outlines, blue flat fills, one cel shadow, highlights and true alpha. Do not recenter/crop/zoom.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-e3c3252f-77a4-49a9-8518-d0989b1b519e.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/guard_block.png",
+    "generatedAt": "2026-10-22T15:21:34.064Z",
+    "anchor": {
+      "name": "feet-center",
+      "x": 95,
+      "y": 252,
+      "units": "logical-px"
+    },
+    "frameGroup": "guard",
+    "preserveFrame": true
+  },
+  {
+    "id": "guard_shield",
+    "displaySize": {
+      "width": 140,
+      "height": 170
+    },
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-d3754e95-ac26-4265-a676-454eb8b6091e.png"
+    ],
+    "prompt": "Use case: stylized-concept. Production raster sprite for the existing cute 2D chibi street-food livestream game. Input is STYLE REFERENCE ONLY: match deep brown #49372d ink outlines 3–4 logical px, simple warm flat colors, ONE cel-shadow, a few tiny white highlights, upper-left light. Clean true alpha transparent background, no floor or cast shadow outside object. No text, numbers, letters, logos, watermarks, currencies or realistic rendering. Full isolated subject entirely visible with transparent margin. ONE separate cute rounded security shield prop, front view, navy-blue edge frame and warm cream/very-light-blue central face, soft short point at bottom, tiny upper-left white highlight. The whole broad central panel is BLANK for code-rendered shield count. No emblem, star, badge, writing, numbers, cross, weapon, hand or person. Match blue guard style reference only; do not include guard. Logical140×170 frame, shield centered(70,85), full silhouette inside x8..132 y8..162. Solid friendly chunky chibi shape.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-9c293709-7d8b-4e36-8159-fe2523ce8816.png",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "rawPath": "raw/events/guard_shield.png",
+    "generatedAt": "2026-10-22T15:21:34.066Z",
+    "anchor": {
+      "name": "shield-center",
+      "x": 70,
+      "y": 85,
+      "units": "logical-px"
+    },
+    "textRect": {
+      "x": 27,
+      "y": 47,
+      "width": 86,
+      "height": 66,
+      "units": "logical-px"
+    }
+  }
+]

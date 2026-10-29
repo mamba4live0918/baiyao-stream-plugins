@@ -1,0 +1,8 @@
+/* The wrapper occupies exactly the old art box; geometry still measures .lock-emblem. */
+#typing-lock-overlay .lock-hit{position:absolute;inset:0;display:block;transform-origin:50% 65%;pointer-events:none}
+#lock-fx .hit-crumb,#lock-fx .hit-cheese-chunk{position:absolute;left:-3px;top:-3px;width:6px;height:6px;background:#fff0bf;border-radius:2px;pointer-events:none}
+#lock-fx .hit-crumb-1{background:#ffcf5a}
+#lock-fx .hit-cheese-chunk{left:-9px;top:-9px;width:18px;height:18px;background:linear-gradient(135deg,#fff8df,#ffcf5a);border-radius:40% 25% 45% 20%}
+#typing-lock-overlay .door-impact-ripple{position:absolute;width:42px;height:42px;box-sizing:border-box;border:2px solid var(--theme-glow,#f1b5c3);border-radius:50%;box-shadow:0 0 5px var(--theme-glow,#f1b5c3),inset 0 0 5px var(--theme-glow,#f1b5c3);z-index:8;pointer-events:none}
+#typing-lock-overlay .door-impact-paw{position:absolute;width:30px;height:32px;z-index:9;pointer-events:none;background:radial-gradient(ellipse at 50% 69%,#e991ad 0 28%,transparent 30%),radial-gradient(ellipse at 15% 36%,#e991ad 0 12%,transparent 14%),radial-gradient(ellipse at 38% 17%,#e991ad 0 12%,transparent 14%),radial-gradient(ellipse at 65% 18%,#e991ad 0 12%,transparent 14%),radial-gradient(ellipse at 87% 38%,#e991ad 0 12%,transparent 14%)}
+html[data-theme=fufu] #typing-lock-overlay .door-impact-ripple{border-color:#fff8ea;box-shadow:0 0 5px #a9d8f5,inset 0 0 5px #a9d8f5}

@@ -1,0 +1,221 @@
+{
+  "note": "Simulated immediate noticing of any exposed needle fragment. Actual texture alpha, approximate source sampling. No audience effects. Not a human duration guarantee.",
+  "results": [
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 1,
+      "initialMin": 1200,
+      "picks": 22185,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 123.3
+    },
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 2,
+      "initialMin": 1200,
+      "picks": 17613,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 97.8
+    },
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 3,
+      "initialMin": 1200,
+      "picks": 8560,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 47.6
+    },
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 4,
+      "initialMin": 1200,
+      "picks": 21710,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 120.6
+    },
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 5,
+      "initialMin": 1200,
+      "picks": 21731,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 120.7
+    },
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 6,
+      "initialMin": 1200,
+      "picks": 18267,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 101.5
+    },
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 7,
+      "initialMin": 1200,
+      "picks": 16318,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 90.7
+    },
+    {
+      "count": 30000,
+      "strategy": "grid",
+      "seed": 8,
+      "initialMin": 1200,
+      "picks": 21522,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 119.6
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 1,
+      "initialMin": 1200,
+      "picks": 22197,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 123.3
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 2,
+      "initialMin": 1200,
+      "picks": 23251,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 129.2
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 3,
+      "initialMin": 1200,
+      "picks": 22273,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 123.7
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 4,
+      "initialMin": 1200,
+      "picks": 21964,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 122
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 5,
+      "initialMin": 1200,
+      "picks": 22971,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 127.6
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 6,
+      "initialMin": 1200,
+      "picks": 21390,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 118.8
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 7,
+      "initialMin": 1200,
+      "picks": 23045,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 128
+    },
+    {
+      "count": 30000,
+      "strategy": "random",
+      "seed": 8,
+      "initialMin": 1200,
+      "picks": 23477,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 130.4
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 1,
+      "initialMin": 1200,
+      "picks": 12828,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 71.3
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 2,
+      "initialMin": 1200,
+      "picks": 10226,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 56.8
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 3,
+      "initialMin": 1200,
+      "picks": 6149,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 34.2
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 4,
+      "initialMin": 1200,
+      "picks": 12210,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 67.8
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 5,
+      "initialMin": 1200,
+      "picks": 11556,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 64.2
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 6,
+      "initialMin": 1200,
+      "picks": 10902,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 60.6
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 7,
+      "initialMin": 1200,
+      "picks": 9297,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 51.6
+    },
+    {
+      "count": 30000,
+      "strategy": "assisted",
+      "seed": 8,
+      "initialMin": 1200,
+      "picks": 14658,
+      "found": true,
+      "minutesAt3ClicksPerSecond": 81.4
+    }
+  ]
+}

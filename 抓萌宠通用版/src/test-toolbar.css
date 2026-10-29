@@ -1,0 +1,6 @@
+#toolbar{display:none;pointer-events:none}
+#toolbar[hidden]{display:none!important;pointer-events:none}
+body[data-test-menu-open="true"] #toolbar:not([hidden]){display:flex;pointer-events:auto;z-index:101}
+body[data-test-toolbar-visible="true"] #settings{top:min(24px,4vh);bottom:max(112px,calc(3.8vh + 84px));min-height:0;overflow-y:auto}
+@media(max-width:650px){body[data-test-toolbar-visible="true"] #settings{top:min(16px,4vh);bottom:max(100px,calc(4vh + 70px))}}
+@media(max-height:360px){body[data-test-toolbar-visible="true"] #settings .settings-head{position:static}}

@@ -1,0 +1,1423 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f3f5e9"><title>俄罗斯方块 · 观众别闹</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='18' height='18' rx='4' fill='%2392b899'/%3E%3Crect x='20' y='20' width='18' height='18' rx='4' fill='%23efac8b'/%3E%3Crect y='20' width='18' height='18' rx='4' fill='%23efac8b'/%3E%3C/svg%3E"><style>:root{font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;color:#345240;font-synthesis:none;--ink:#345240;--sage:#789b74;--cream:#f8faee;--line:#d9e2c7;--coral:#e98c68}*{box-sizing:border-box}html,body{margin:0;background:transparent;min-height:100%}body{font-size:13px}button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible,canvas:focus-visible{outline:3px solid #e5ad55;outline-offset:3px}button:disabled{opacity:.45;cursor:default}.preview-bg{display:none;position:fixed;inset:0;background:#f2f5e9;z-index:-1}.with-preview .preview-bg{display:block}.app{width:min(845px,calc(100% - 40px));margin:0 auto;padding:25px 0 18px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}header>div:first-child{position:relative;padding-left:39px}.brand-icon{position:absolute;left:0;top:3px;width:28px;height:28px;display:grid;grid-template-columns:repeat(2,12px);gap:3px;transform:rotate(-7deg)}.brand-icon i{border-radius:3px;background:#8db58a;box-shadow:inset 0 2px #bdd3aa,inset 0 -2px #6d926b}.brand-icon i:first-child{opacity:0}.brand-icon i:last-child{background:#eda681;box-shadow:inset 0 2px #ffd3ae,inset 0 -2px #d98b69}h1{font-size:29px;line-height:1.2;letter-spacing:1px;margin:0;font-weight:900;text-shadow:0 1px #fbffed}h1 span{font-size:12px;font-weight:500;letter-spacing:2px;color:#9b8e78;display:inline-block;vertical-align:middle;margin-left:13px;border-left:1px solid #d4ddbf;padding-left:13px}header p{font-size:11px;color:#8c9b7f;margin:8px 0 0;letter-spacing:1.2px;text-shadow:0 1px #fafcec}.top-actions{display:flex;gap:8px}.icon-btn{width:35px;height:35px;border:1px solid #d7e0c4;background:#f7faed;border-radius:12px;font-size:19px;box-shadow:0 3px 0 #d2dec3}.icon-btn[aria-pressed=true]{background:#d9e9cd}.layout{display:grid;grid-template-columns:minmax(0,464px) 270px;gap:30px;justify-content:center;align-items:start}.game-zone{display:grid;grid-template-columns:90px minmax(0,342px);gap:14px;align-items:start}.piece-rail{padding-top:68px;display:flex;flex-direction:column;gap:14px}.mini-box{border:1px solid #dbe3c8;background:#f8faeedd;border-radius:16px;overflow:hidden;padding:12px 3px 10px;text-align:center;box-shadow:0 3px 0 #a0b48b14}.mini-box h2{font-size:11px;letter-spacing:1px;font-weight:600;margin:0 0 5px}.mini-box kbd{margin-left:5px}.mini-box canvas{display:block;width:80px;height:80px;margin:auto}.mini-box small{display:block;font-size:8px;color:#94a183;margin-top:2px;white-space:nowrap}.next-box canvas{height:224px}.rail-note{text-align:center;line-height:1.9;color:#879c75;font-size:10px;text-shadow:0 1px #fff}.rail-note>span{display:block;font-size:29px;line-height:1.2}.rail-note small{font-size:8px;color:#a1ad92}.stats{height:53px;display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:8px;margin:0 3px 15px}.stats>div{background:#f5f8e9e8;border:1px solid #dde5c9;border-radius:13px;padding:8px 12px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 3px 0 #91a0770d}.stats span{font-size:9px;letter-spacing:1px;color:#8b9e7b}.stats strong{font-size:23px;line-height:1.2;letter-spacing:.5px;font-variant-numeric:tabular-nums}.stats>div:first-child strong{color:#db895f}.stats>div:not(:first-child) strong{font-size:19px}.board-frame{border:5px solid #87a77c;border-radius:21px;padding:7px;background:#f7faec;box-shadow:inset 0 0 0 1px #d8e5c4,0 5px 0 #557c472b,0 6px 20px #405e2721}.board-top,.board-bottom{display:flex;align-items:center;justify-content:space-between;padding:5px 5px 9px;color:#9aa88b;font-size:8px;letter-spacing:.5px}.board-top span:first-child{color:#79936a}.board-top i{display:inline-block;width:4px;height:4px;background:#7fa469;border-radius:50%;margin-right:5px;vertical-align:middle}.board-bottom{padding:9px 4px 3px;font-size:8px;letter-spacing:0}.board-bottom i{font-style:normal;padding:0 4px;color:#c1cbae}#speed-label{font-size:10px;color:#8f9e80}.canvas-wrap{position:relative;overflow:hidden;border-radius:8px;isolation:isolate;background:#e3ebd6}#board{display:block;width:100%;height:auto;aspect-ratio:1/2;touch-action:none;outline-offset:-3px}.curtain{position:absolute;inset:0;background:#f0f5e3e8;backdrop-filter:blur(6px);z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px}.curtain[hidden]{display:none}.curtain-mark{font-size:57px;color:#9ab887;line-height:1}.curtain h2{font-size:23px;letter-spacing:1px;margin:19px 0 0}.curtain p{font-size:11px;line-height:1.8;color:#889979;margin:11px 0 0}.primary{background:linear-gradient(#90b27d,#70985f);border:1px solid #70965f;border-radius:14px;color:#fffdec;font-size:15px;font-weight:700;padding:12px 38px;margin-top:25px;box-shadow:0 4px 0 #557d47}.primary:hover{filter:brightness(1.04)}.curtain small{font-size:9px;color:#a4b18e;margin-top:22px;letter-spacing:.5px}.touch-controls{display:grid;grid-template-columns:repeat(5,1fr) 1.5fr;gap:6px;margin:14px 3px 0}.touch-controls button{height:36px;border:1px solid #d8e2c3;border-radius:11px;background:linear-gradient(#fcfdf3,#e7efd9);font-size:18px;font-weight:600;box-shadow:0 2px 0 #bfceac;user-select:none;touch-action:none}.touch-controls button:active{transform:translateY(2px);box-shadow:none}.touch-controls .drop{font-size:12px;color:#8a6348;background:linear-gradient(#ffe4cb,#f5c4a4);border-color:#e9bea0;box-shadow:0 2px 0 #d7aa88}.bottom-actions{display:flex;gap:8px;margin:12px 4px 0}.bottom-actions button{flex:1;height:30px;border:1px solid #dce4c9;border-radius:10px;background:#f7faeddc;color:#8a9b7a;font-size:10px}.bottom-actions button:last-child{color:#ae8a68}kbd{font:9px inherit;font-size:8px;background:#e7eddb;border:1px solid #d2dec2;border-radius:4px;padding:1px 3px;font-weight:400;margin-left:3px}.interaction-panel{border:1px solid #dee5c7;border-radius:23px;background:#fafbf0ed;box-shadow:0 5px 24px #48632c13;padding:23px 19px 15px;margin-top:0}.panel-heading{display:flex;align-items:center;justify-content:space-between}.panel-heading>div{display:flex;align-items:center;gap:7px}.dot{width:6px;height:6px;background:#e3a77e;border-radius:50%;box-shadow:0 0 0 4px #f6e7d6}.panel-heading h2{font-size:19px;font-weight:800;letter-spacing:.7px;margin:0}.panel-heading>span{font-size:8px;color:#9fac8e}.panel-subtitle{font-size:10px;color:#95a285;margin:9px 0 20px;letter-spacing:.3px}.storm-card{display:flex;align-items:center;justify-content:space-between;border:1px solid #e6d9c3;background:#f6eddd;border-radius:13px;padding:12px 11px;margin-bottom:18px}.storm-card strong{font-size:12px;letter-spacing:1px;color:#9b795b}.storm-card small{display:block;font-size:8px;color:#ac9a7d;margin-top:5px}#storm{border:0;border-radius:20px;background:#d2d8bf;width:34px;height:20px;padding:3px;box-shadow:inset 0 1px 3px #8c997e44}#storm i{display:block;width:14px;height:14px;border-radius:50%;background:#fffdee;box-shadow:0 1px 3px #85926e44;transition:transform .2s}#storm[aria-checked=true]{background:#d58a68}#storm[aria-checked=true] i{transform:translateX(14px)}.effect-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.effect-grid button{position:relative;min-height:91px;text-align:left;border:1px solid #e5ddcc;border-radius:14px;background:linear-gradient(145deg,#fdf8ed,#f3eee1);padding:11px 10px 9px;transition:transform .13s;box-shadow:0 2px 0 #ddd7c826}.effect-grid button:hover{transform:translateY(-2px)}.effect-grid button:active{transform:scale(.97)}.effect-grid button>span{display:block;font-size:23px;line-height:25px;color:#bd9270;margin-bottom:5px}.effect-grid strong{display:block;font-size:12px;font-weight:700;letter-spacing:.3px}.effect-grid small{display:block;font-size:8px;color:#a2977d;line-height:1.6;margin-top:4px;white-space:nowrap;letter-spacing:-.4px}.effect-grid .good{border-color:#d5e3c7;background:linear-gradient(145deg,#f5fae8,#e8efd9)}.good>span{color:#8daa73!important}.good small{color:#96a483}.effect-grid .danger{background:linear-gradient(145deg,#fff1e5,#f9e2d4);border-color:#edcbb5}.danger>span{color:#d19874!important}.status-section{border-top:1px dashed #d8e1c1;margin-top:21px;padding-top:17px}.status-heading{display:flex;align-items:center;justify-content:space-between}.status-heading h3{font-size:11px;margin:0;letter-spacing:.8px}.status-heading>span{font-size:8px;color:#a2af90}#active-effects{padding-top:10px;min-height:57px}.quiet{margin:6px 0;font-size:10px;color:#a2af90;letter-spacing:1px}.effect-status{display:flex;gap:7px;align-items:center;margin-bottom:8px;font-size:10px;color:#a47754}.effect-status:before{content:"";width:4px;height:4px;background:#dfb18d;border-radius:50%;flex-shrink:0}.effect-status>b{margin-left:auto;font-variant-numeric:tabular-nums;font-size:10px;font-weight:500;color:#b8926b}.effect-status.challenge{color:#b87352}.activity{border:1px solid #e0e7ce;background:#eff3e3;border-radius:12px;min-height:62px;padding:12px 11px;font-size:10px;line-height:1.9;color:#8b9e77;margin-top:12px}.simulation-note{font-size:8px;line-height:1.8;color:#b1b99f;text-align:center;margin:12px -4px 0}footer{display:flex;justify-content:space-between;margin:18px 0 0 105px;font-size:8px;color:#9eac8e;letter-spacing:.2px;text-shadow:0 1px #f8faef}footer i{font-style:normal;padding:0 5px;color:#b7c6a7}#toast{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);z-index:8;text-align:center;pointer-events:none;white-space:nowrap;font-size:27px;font-weight:900;color:#fff9dd;text-shadow:0 3px #b48154,1px 0 #b48154,-1px 0 #b48154,0 3px 15px #5e744c66;opacity:0}#toast.show{animation:toast .9s both}#line-flash{position:absolute;inset:0;pointer-events:none;z-index:4}#line-flash.show{animation:clear-flash .35s both;background:linear-gradient(90deg,#fbffde00,#fffde555,#fbffde00)}.board-frame.attacked{animation:attack .3s}.board-frame.danger-zone{border-color:#c89a79}.board-frame.reversed .board-bottom{color:#b68861}.panel-hidden .interaction-panel{display:none}.panel-hidden .layout{grid-template-columns:minmax(0,464px)}.panel-hidden footer{max-width:445px;margin-left:auto;margin-right:auto}.with-preview .app{min-height:100vh}@keyframes toast{0%{opacity:0;transform:translate(-50%,-30%) scale(.7)}20%,70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-80%) scale(1.05)}}@keyframes clear-flash{50%{opacity:1}100%{opacity:0}}@keyframes attack{30%{transform:translateX(-3px)}60%{transform:translateX(3px)}100%{transform:none}}@media(max-width:760px){.app{width:min(455px,calc(100% - 28px));padding-top:20px}.layout{grid-template-columns:1fr;gap:25px}.game-zone{justify-content:center}.interaction-panel{margin-left:104px;padding:22px 18px}.top-actions{gap:5px}.icon-btn{width:31px;height:31px;font-size:16px}header h1{font-size:25px}header h1 span{display:none}header p{font-size:9px;letter-spacing:.7px}header>div:first-child{padding-left:34px}footer{margin-left:0;gap:10px}.effect-grid button{min-height:91px}}@media(max-width:440px){.app{width:calc(100% - 22px)}.game-zone{grid-template-columns:1fr;gap:12px}.piece-rail{padding:0;display:grid;grid-template-columns:1fr 1.7fr;gap:10px}.mini-box{padding:8px;height:76px;position:relative;text-align:left}.mini-box h2{font-size:9px;margin:0;position:absolute;left:10px;top:10px}.mini-box canvas{position:absolute;width:60px;height:60px;right:2px;bottom:4px}.mini-box small{position:absolute;left:10px;bottom:12px;width:40px;white-space:normal;font-size:7px;line-height:1.5}.next-box canvas{width:144px;height:60px;right:2px}.rail-note{display:none}.stats{margin:0 2px 13px;height:48px}.board-column{max-width:342px;width:100%;margin:auto}.interaction-panel{margin-left:0;max-width:342px;width:100%;margin:auto}.board-top{font-size:8px}.effect-grid small{font-size:9px;letter-spacing:0}.effect-grid button{min-height:91px}.simulation-note{font-size:8px}.panel-hidden .layout{display:block}.panel-hidden footer{margin-left:0}.panel-hidden .piece-rail{display:grid}.brand-icon{top:1px}footer{font-size:7px}.curtain h2{font-size:23px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+header h1{-webkit-text-stroke:3px #f7faec;paint-order:stroke fill}header h1 span{-webkit-text-stroke:1.5px #f7faec}header p{display:inline-block;background:#f7faedea;border-radius:6px;padding:4px 7px;margin-left:-5px}footer{background:#f7faedea;border:1px solid #dce5c9;border-radius:8px;padding:7px 9px}.effect-grid small{font-size:9px;white-space:normal;letter-spacing:0;min-height:27px}.effect-grid button{min-height:103px}button:disabled{opacity:.67}
+.overtime-card{background:linear-gradient(145deg,#f9f0e3,#f4e5d5);border:1px solid #e8cfb5;border-radius:14px;padding:12px 11px;margin:0 0 15px}.overtime-heading{display:flex;align-items:center;justify-content:space-between}.overtime-heading>strong{font-size:13px;letter-spacing:1px;color:#946d4e}.overtime-heading label{display:flex;align-items:center;gap:4px;font-size:9px;color:#a58b70}.overtime-heading input{accent-color:#bd916b;width:12px;height:12px;margin:0}.overtime-amount{display:flex;align-items:center;justify-content:space-between;margin-top:9px;font-size:10px;color:#aa8d6e}.overtime-amount>span:last-child{font-size:12px;color:#aa7754}.overtime-amount input{width:43px;height:27px;border:1px solid #dfc5a9;border-radius:7px;text-align:center;font:700 17px MicrosoftYaHei,sans-serif;background:#fff9ed;color:#bc825a;padding:0 2px;appearance:textfield}.overtime-amount input::-webkit-inner-spin-button{display:none}.overtime-card>p{font-size:9px;line-height:1.6;margin:9px 0 3px;color:#b08b6c}.overtime-card[data-connected=true]>p{color:#779063}.overtime-card>small{font-size:8px;color:#b29f85;line-height:1.7;display:block}.overtime-card details{margin-top:8px;border-top:1px dashed #dfccb5;padding-top:7px;font-size:9px;color:#a08b71}.overtime-card summary{cursor:pointer}.overtime-port{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.overtime-port input{width:88px;min-width:0;font:11px inherit;color:#86775f;border:1px solid #ddcbb3;background:#fff9ed;border-radius:6px;padding:5px}.overtime-buttons{display:flex;gap:5px;margin-top:8px}.overtime-buttons button{flex:1;border:1px solid #dcc7ac;background:#fff8e9;border-radius:7px;padding:6px 3px;font-size:9px;color:#a18666}.overtime-card details p{font-size:8px;line-height:1.7;margin-bottom:0;color:#ab957a}.effect-grid button{min-height:91px;padding:9px 10px 8px}.effect-grid button>span{font-size:21px;line-height:22px;margin-bottom:4px}.effect-grid small{min-height:24px;line-height:1.4}.curtain p{max-width:255px;line-height:2}
+.curtain p{white-space:pre-line}
+</style></head>
+<body><div class="preview-bg" aria-hidden="true"></div><main class="app">
+<header><div><div class="brand-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></div><h1>俄罗斯方块<span>观众别闹</span></h1><p>你负责消行，观众负责添乱。</p></div><div class="top-actions"><button id="sound" class="icon-btn" aria-label="开启音效" aria-pressed="false" title="音效">♪</button><button id="preview" class="icon-btn" aria-label="切换预览底色" aria-pressed="false" title="预览底色">▧</button><button id="panel-toggle" class="icon-btn" aria-label="收起互动面板" aria-expanded="true" title="互动面板">⚑</button></div></header>
+<div class="layout">
+ <section class="game-zone" aria-label="俄罗斯方块游戏">
+  <aside class="piece-rail"><div class="mini-box"><h2>暂存 <kbd>C</kbd></h2><canvas id="hold" width="80" height="80" aria-label="暂存方块"></canvas><small id="hold-note">每次落地后可换</small></div><div class="mini-box next-box"><h2>接下来</h2><canvas id="next" width="80" height="224" aria-label="接下来三个方块"></canvas></div><div class="rail-note"><span>∞</span>无尽挑战<br><small>堆到顶才结束</small></div></aside>
+  <div class="board-column"><div class="stats"><div><span>得分</span><strong id="score">0</strong></div><div><span>消行</span><strong id="lines">0</strong></div><div><span>等级</span><strong id="level">01</strong></div></div>
+   <div class="board-frame"><div class="board-top"><span><i></i>承受力测试</span><span id="piece-count">0 块已落地</span></div><div class="canvas-wrap"><canvas id="board" width="320" height="640" aria-label="10 列 20 行俄罗斯方块棋盘" tabindex="0"></canvas><div id="line-flash" aria-hidden="true"></div><div id="toast" aria-live="polite"></div>
+    <div class="curtain" id="curtain"><span class="curtain-mark">▦</span><h2 id="curtain-title">准备好接招了吗</h2><p id="curtain-copy">先消几行，再让观众来点狠的。</p><button class="primary" id="start">开始挑战</button><small id="curtain-note">方向键移动 · ↑ 旋转 · 空格落地</small></div>
+   </div><div class="board-bottom"><span>← → 移动 <i>·</i> ↑ 旋转 <i>·</i> 空格落地</span><span id="speed-label">1×</span></div></div>
+   <div class="touch-controls" aria-label="触摸操作"><button data-input="left" aria-label="向左">←</button><button data-input="rotate" aria-label="旋转">↻</button><button data-input="right" aria-label="向右">→</button><button data-input="down" aria-label="加速下落">↓</button><button data-input="hold" aria-label="暂存">C</button><button data-input="drop" class="drop">落地</button></div>
+   <div class="bottom-actions"><button id="pause">暂停 <kbd>P</kbd></button><button id="restart">重新开始</button></div>
+  </div>
+ </section>
+ <aside class="interaction-panel" id="interaction-panel"><div class="panel-heading"><div><span class="dot"></span><h2>礼物与互动</h2></div><span>支持宿主接入</span></div><p class="panel-subtitle">每一下，都得让主播有点反应。</p>
+  <section class="overtime-card" aria-label="失败加班联动">
+   <div class="overtime-heading"><strong>输了就加班</strong><label><input id="overtime-enabled" type="checkbox" checked> 打开</label></div>
+   <div class="overtime-amount"><span>每输一局</span><span>＋ <input id="overtime-minutes" aria-label="每局失败加班分钟数" type="number" min="1" max="180" step="1" value="10"> 分钟</span></div>
+   <p id="overtime-status" role="status">正在连白曜加班机…</p><small id="overtime-summary">本页已加 0 局 · 待发 0 局</small>
+   <details id="overtime-link"><summary>不在白曜里用：填连接码</summary><div class="overtime-port"><label for="overtime-key">连接码</label><input id="overtime-key" type="text" maxlength="12" placeholder="ABCD-2345" autocomplete="off" spellcheck="false"></div><div class="overtime-buttons"><button id="overtime-connect">连接</button><button id="overtime-test">测试连接</button></div><p>在白曜里用不用填。菘蓝里、直接放进 OBS 时，填白曜「加班机 → 加班设置 → 插件连接」里的连接码，再点「连接」。测试连接只试不存，不改时间。</p></details><small id="overtime-test-result" role="status">暂停和重开不算输。</small>
+  </section>
+  <div class="storm-card"><div><strong>自动折磨</strong><small id="storm-note">开启后每 9 秒随机整活</small></div><button id="storm" role="switch" aria-checked="false" aria-label="自动折磨"><i></i></button></div>
+  <div id="effect-buttons" class="effect-grid">
+   <button data-effect="garbage" class="bad"><span>▤</span><strong>塞两行</strong><small>垃圾从底下顶上来</small></button>
+   <button data-effect="reverse" class="bad"><span>⇄</span><strong>左右反转</strong><small>方向键反着来 · 12 秒</small></button>
+   <button data-effect="rush" class="bad"><span>ϟ</span><strong>突然加速</strong><small>四倍下落 · 12 秒</small></button>
+   <button data-effect="fog" class="bad"><span>≋</span><strong>眼前一黑</strong><small>已落方块隐身 · 9 秒</small></button>
+   <button data-effect="seal" class="bad"><span>⊠</span><strong>封印旋转</strong><small>只能平移硬扛 · 8 秒</small></button>
+   <button data-effect="challenge" class="bad danger"><span>◷</span><strong>限时催命</strong><small>15 秒清 2 行，否则塞 3 行</small></button>
+   <button data-effect="bomb" class="good"><span>✦</span><strong>救命炸弹</strong><small>挖掉底部 3 行</small></button>
+   <button data-effect="cleanse" class="good"><span>✧</span><strong>放主播一马</strong><small>解除全部临时折磨</small></button>
+  </div>
+  <section class="status-section"><div class="status-heading"><h3>主播正在承受</h3><span id="effect-count">0 项</span></div><div id="active-effects" role="status"><p class="quiet">暂时风平浪静</p></div></section>
+  <div id="activity" class="activity" aria-live="polite">点击开始，给主播来点强度。</div><p class="simulation-note">支持菘蓝 / 白曜礼物接入；手动按钮供试玩；失败加班加到加班机</p>
+ </aside>
+</div><footer><span>不计时通关，堆顶才结束</span><span>默认透明底 <i>·</i> F2 收起整活台</span></footer>
+</main><style>html:has(body.broadcast-mode),body.broadcast-mode{width:100%;height:100%;margin:0;overflow:hidden;background:transparent!important}.broadcast-source,.broadcast-store{display:none!important}.broadcast-mode .preview-backdrop,.broadcast-mode .preview-bg{display:none!important}.broadcast-preview:before{content:"";position:fixed;inset:0;z-index:-1;background-color:#e7e9e7;background-image:linear-gradient(45deg,#d6dcd8 25%,transparent 25%),linear-gradient(-45deg,#d6dcd8 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d6dcd8 75%),linear-gradient(-45deg,transparent 75%,#d6dcd8 75%);background-size:32px 32px;background-position:0 0,0 16px,16px -16px,-16px 0}.broadcast-stage{position:fixed;transform-origin:top left;z-index:10;max-width:none;user-select:none}.broadcast-stage .board-frame{width:100%;padding:8px!important;border:3px solid #86a57d!important;border-radius:19px!important;background:#f6f9ec;box-shadow:0 3px 0 #4c713531,0 8px 24px #152c1917!important;margin:0!important}.broadcast-stage .board-shell{width:100%}.broadcast-stage .canvas-wrap{border-radius:9px}.broadcast-stage .board-top,.broadcast-stage .board-bottom{display:none}.broadcast-hud{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 4px 8px;padding:8px 13px;background:#f8fbefed;border:1px solid #d8e3ca;border-radius:13px;box-shadow:0 2px 6px #2a452017;min-height:39px;color:#3a5b41;font:13px/1.4 "Microsoft YaHei",sans-serif}.broadcast-metric{display:flex;align-items:baseline;gap:10px;white-space:nowrap}.broadcast-metric small,.broadcast-next small{font-size:11px;color:#7b9170;font-weight:500}.broadcast-metric b{font-size:18px;font-weight:750;line-height:1.1;font-variant-numeric:tabular-nums}.broadcast-next{display:flex;align-items:center;gap:4px}.broadcast-next canvas{width:44px;height:36px}.broadcast-blocks .broadcast-hud{gap:9px;padding:6px 9px}.broadcast-blocks .broadcast-metric{gap:5px}.broadcast-blocks .broadcast-metric b{font-size:16px}.broadcast-blocks .broadcast-hud small{font-size:10px}.broadcast-stage[data-hud=false] .broadcast-hud{display:none}.broadcast-stage[data-next=false] .broadcast-next{display:none}.broadcast-stage[data-touch=false] .touch-controls{display:none}.broadcast-stage .touch-controls{margin:9px 3px 0;gap:5px}.broadcast-stage .touch-controls button{height:30px;font-size:14px}.broadcast-effect{margin:0 4px 7px;font:600 11px/1.65 "Microsoft YaHei",sans-serif;background:#fff4dfef;border:1px solid #e1c7a3;color:#9a744d;border-radius:9px;padding:4px 9px;overflow-wrap:anywhere}.broadcast-effect[hidden]{display:none}.broadcast-gear{position:fixed;right:12px;top:12px;width:40px;height:40px;border-radius:50%;border:1px solid #6f97a8;background:#202c34ed;color:#c9e7f3;display:grid;place-items:center;z-index:950;padding:9px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 3px 12px #15202925}.broadcast-gear svg{width:23px;height:23px}.broadcast-gear.is-visible,.broadcast-gear:focus-visible{opacity:1;pointer-events:auto}.broadcast-drag,.broadcast-resize{display:none;touch-action:none}.broadcast-editing .broadcast-drag{display:block;position:absolute;left:0;top:-30px;width:100%;height:28px;font:12px "Microsoft YaHei",sans-serif;border:1px solid #89c6dd;border-radius:8px;background:#202c34;color:#d6eff9;cursor:move}.broadcast-editing .broadcast-resize{display:block;position:absolute;right:-11px;bottom:-11px;width:29px;height:29px;border:2px solid #ecfaff;border-radius:8px;background:#6bacc1;color:#fff;font:700 21px sans-serif;cursor:nwse-resize;box-shadow:0 2px 8px #14313e44}.broadcast-editing .broadcast-stage{outline:2px dashed #ff8eaf;outline-offset:5px}.broadcast-editing .broadcast-stage .board-frame,.broadcast-editing .broadcast-stage .touch-controls{pointer-events:none}.broadcast-layout-guide{position:fixed;inset:0;z-index:940;pointer-events:none}.broadcast-layout-guide[hidden]{display:none}.broadcast-safe-area{position:absolute;border:1.5px dashed #91bdd8;border-radius:24px;display:grid;place-items:center;background:#81b9d10b;color:#c6e8f6;text-align:center;font:700 20px/1.8 "Microsoft YaHei",sans-serif;text-shadow:0 2px 5px #142934}.broadcast-safe-area[hidden]{display:none}.broadcast-safe-area small{font-size:12px;font-weight:400}.broadcast-edit-bar{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);max-width:calc(100vw - 24px);display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 17px;background:#1c2731f5;border:1px solid #6f97a8;border-radius:13px;color:#cfe5f0;box-shadow:0 10px 30px #0005;pointer-events:auto;font:13px/1.7 "Microsoft YaHei",sans-serif;white-space:nowrap}.broadcast-edit-bar button{font:700 13px "Microsoft YaHei",sans-serif;background:#ffd88a;color:#463622;border:0;border-radius:7px;padding:8px 15px;cursor:pointer}
+#broadcast-settings{position:fixed;right:16px;top:16px;bottom:auto;width:560px;max-width:calc(100vw - 24px);max-height:calc(100vh - 32px);overflow:auto;z-index:1000;padding:22px 22px 20px;background:linear-gradient(150deg,#202c34,#12181e);border:1px solid #6f97a8;border-radius:16px;box-shadow:0 22px 60px #0008;color:#eef3f5;font:13px/1.6 "Microsoft YaHei","PingFang SC",sans-serif;user-select:text;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#557a89 #16222a}#broadcast-settings[hidden]{display:none!important}#broadcast-settings *{box-sizing:border-box}#broadcast-settings h2{margin:0 0 12px;font-size:19px;font-weight:700;letter-spacing:1px;color:#bfe9ff;line-height:1.6;text-shadow:none}#broadcast-settings h3{font-size:15px;line-height:1.6;margin:12px 0 8px;color:#ffe3a3;letter-spacing:1px}#broadcast-settings h4{font-size:13px;color:#9fd8f0;margin:14px 0 6px}#broadcast-settings .broadcast-lead{margin:-6px 0 4px;font-size:12px;color:#a9c3cd}#broadcast-settings p{font-size:12px;line-height:1.7;color:#a9c3cd}#broadcast-settings .broadcast-section{border:1px solid #6f97a866;border-radius:12px;padding:2px 14px 14px;margin:12px 0;background:#00000024}#broadcast-settings .broadcast-note{margin:7px 0;font-size:12px;line-height:1.7;color:#a9c3cd}#broadcast-settings .broadcast-row{display:flex;gap:8px;align-items:center;margin:10px 0;flex-wrap:wrap}#broadcast-settings button{font:12px/1.5 "Microsoft YaHei",sans-serif;color:#e2f2f8;background:#34505c;border:1px solid #6f97a8;border-radius:7px;padding:6px 11px;cursor:pointer;box-shadow:none;min-height:31px;transform:none;letter-spacing:0}#broadcast-settings button:hover:not(:disabled){background:#46707f;filter:none;transform:none}#broadcast-settings button:disabled{opacity:.4;cursor:default}#broadcast-settings button:focus-visible,#broadcast-settings input:focus-visible,#broadcast-settings select:focus-visible,#broadcast-settings summary:focus-visible{outline:2px solid #ffd88a;outline-offset:2px}#broadcast-settings .broadcast-primary{background:#2f6f62;border-color:#7fd6c2;color:#f0fff9;font-weight:700}#broadcast-settings .broadcast-close{position:absolute;right:12px;top:9px;width:30px;height:30px;min-height:0;padding:0;border:0;background:transparent;font-size:25px;line-height:1;color:#cfe6ef}#broadcast-settings .broadcast-field{display:flex;align-items:center;gap:10px;margin:9px 0;flex-wrap:wrap}#broadcast-settings .broadcast-field>span:first-child{min-width:105px}#broadcast-settings input,#broadcast-settings select{font:13px/1.5 "Microsoft YaHei",sans-serif!important;color:#eef6f8!important;background:#16222a!important;border:1px solid #557a89!important;border-radius:5px!important;padding:5px 7px!important;min-width:0;box-shadow:none!important;height:auto!important}#broadcast-settings input[type=number]{width:92px!important;text-align:left!important}#broadcast-settings input[type=checkbox]{width:16px!important;height:16px!important;padding:0!important;accent-color:#7fd6c2}#broadcast-settings input[type=range]{accent-color:#7fd6c2;width:190px;padding:0!important;border:0!important;height:16px!important}#broadcast-settings select{width:140px}#broadcast-settings option{background:#16222a}#broadcast-settings .broadcast-slider{display:flex;align-items:center;gap:10px}#broadcast-settings output{color:#ffe3a3;font-variant-numeric:tabular-nums;min-width:43px;font-size:12px}#broadcast-settings .broadcast-orientation{font-size:11px;color:#91b4c2;margin:6px 0}.broadcast-map{position:relative;max-width:100%;overflow:hidden;border:1px solid #557a8966;background:repeating-linear-gradient(0deg,#17242b,#17242b 12px,#1a2932 12px,#1a2932 13px);border-radius:8px;margin:10px auto}.broadcast-map-board{position:absolute;background:#7fd6c2aa;border:1px solid #b1eddf;border-radius:3px}.broadcast-map-free{position:absolute;inset:0;display:grid;place-items:center;font-size:10px;color:#88a8b7;pointer-events:none}
+#broadcast-settings .billing-settings,#broadcast-settings .overtime-card{border:0;background:none;padding:0;margin:0;border-radius:0;box-shadow:none}#broadcast-settings .billing-settings>h2,#broadcast-settings .billing-intro,#broadcast-settings .overtime-heading>strong{display:none}#broadcast-settings .fee-field,#broadcast-settings .overtime-amount,#broadcast-settings .overtime-port{display:flex;justify-content:flex-start;align-items:center;gap:12px;font-size:13px;color:#dcebf0;margin:9px 0}#broadcast-settings .fee-field>label,#broadcast-settings .overtime-port>label,#broadcast-settings .overtime-amount>span:first-child{min-width:105px}#broadcast-settings .fee-field>span,#broadcast-settings .overtime-amount>span:last-child{display:flex;gap:8px;align-items:center;color:#9cb7c2;font-size:12px;min-width:0}#broadcast-settings .fee-link-switch{border-color:#6f97a84d;padding-top:12px;display:flex;align-items:center;justify-content:flex-start;gap:15px;margin-top:10px}#broadcast-settings .fee-link-switch label,#broadcast-settings .overtime-heading label{font-size:13px;color:#dcebf0;gap:8px}#broadcast-settings .fee-link-switch>span{font-size:11px;color:#9cb7c2;max-width:none;text-align:left}#broadcast-settings #fee-difficulty-note,#broadcast-settings #fee-totals,#broadcast-settings #overtime-summary,#broadcast-settings #overtime-status{font-size:12px;color:#a9c3cd;line-height:1.7;margin:8px 0}#broadcast-settings #fee-last{background:#16222a;border-color:#557a8966;color:#dcebf0;font-size:12px;line-height:1.8;padding:9px 10px}#broadcast-settings #fee-connection[data-ready=true],#broadcast-settings .overtime-card[data-connected=true]>p{color:#7fd6c2}#broadcast-settings details{border:1px solid #6f97a84d;border-radius:10px;padding:9px 12px;margin-top:13px;font-size:12px;color:#a9c3cd}#broadcast-settings details summary{font-size:12px;cursor:pointer;color:#cfe6ef;font-weight:600}#broadcast-settings #fee-test-result,#broadcast-settings #overtime-test-result{font-size:11px;color:#9cb7c2;line-height:1.7;margin-top:9px}#broadcast-settings .fee-connect-buttons,#broadcast-settings .overtime-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}#broadcast-settings .fee-connect-buttons button,#broadcast-settings .overtime-buttons button{flex:none;font-size:12px}#broadcast-settings .overtime-heading{display:flex;justify-content:flex-start;margin:7px 0 12px}#broadcast-settings .overtime-heading input{margin:0}#broadcast-settings .broadcast-game-controls .tool{flex:none;min-height:31px;gap:6px}#broadcast-settings .broadcast-game-controls .tool svg{width:15px;height:15px}#broadcast-settings .broadcast-game-controls .tool.pause{flex:none}#broadcast-settings kbd{background:#16222a;border-color:#557a89;color:#a9c3cd;font-size:10px}#broadcast-settings .storm-card{background:none;border:0;padding:2px 0 10px;margin:0;display:flex;justify-content:space-between;gap:20px}#broadcast-settings .storm-card strong{font-size:13px;color:#eef6f8}#broadcast-settings .storm-card small{font-size:11px;color:#9cb7c2}#broadcast-settings #storm{background:#34505c;border:1px solid #6f97a8;border-radius:30px;width:38px;height:23px;min-height:0;padding:3px}#broadcast-settings #storm i{width:15px;height:15px;background:#bfe9ff}#broadcast-settings #storm[aria-checked=true]{background:#2f6f62;border-color:#7fd6c2}#broadcast-settings #auto-prank[aria-checked=true]{background:#2f6f62;border-color:#7fd6c2}#broadcast-settings .broadcast-effect-list{display:flex;flex-direction:column;gap:5px;margin-top:11px}#broadcast-settings .broadcast-effect-list button{width:100%;display:grid;grid-template-columns:85px minmax(0,1fr) 19px;gap:10px;align-items:center;justify-content:initial;min-height:41px;padding:8px 10px;margin:0;text-align:left;background:#16222a;border:1px solid #557a8977;border-radius:7px}#broadcast-settings .broadcast-effect-list strong{font-size:12px;color:#e2f2f8;font-weight:600;letter-spacing:0}#broadcast-settings .broadcast-effect-list small{font-size:11px;line-height:1.5;white-space:normal;min-height:0;color:#91b1bf;margin:0;opacity:1;letter-spacing:0}#broadcast-settings .broadcast-effect-list .broadcast-play{color:#ffe08a;font-size:12px;line-height:1;margin:0;height:auto}#broadcast-settings .broadcast-effect-list button[data-effect=bomb],#broadcast-settings .broadcast-effect-list button[data-effect=rainbow],#broadcast-settings .broadcast-effect-list button[data-effect=cleanse]{border-color:#7fd6c24d}#broadcast-settings .broadcast-advanced{margin-top:14px}#broadcast-settings .stats,#broadcast-settings .hud,#broadcast-settings .billing-hud{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;padding:8px;height:auto;background:none;border:0;box-shadow:none}#broadcast-settings .stats>div,#broadcast-settings .hud>div,#broadcast-settings .billing-hud>div{border:1px solid #557a8966;background:#16222a;color:#dcebf0;border-radius:7px;padding:8px 12px;display:flex;gap:8px;flex-direction:row;height:auto}#broadcast-settings .stats span,#broadcast-settings .hud span,#broadcast-settings .billing-hud span{font-size:11px;color:#a9c3cd}#broadcast-settings .stats strong,#broadcast-settings .hud strong,#broadcast-settings .billing-hud strong{font-size:15px;color:#ffe3a3}#broadcast-settings .goals{margin-top:12px}#broadcast-settings .goals h2{font-size:15px;margin:0;color:#9fd8f0}#broadcast-settings .goal-list{background:#16222a;border:1px solid #557a8955;max-width:260px}#broadcast-settings .goal-count{background:#23343e;color:#a9c3cd}#broadcast-settings .goal-count b{color:#ffe3a3}#broadcast-settings .piece-rail{padding:0;display:flex;flex-direction:row;gap:14px;align-items:flex-start}#broadcast-settings .mini-box{background:#16222a;border:1px solid #557a89;width:100px;box-shadow:none}#broadcast-settings .mini-box h2{color:#a9c3cd;font-size:12px;margin:0}#broadcast-settings .mini-box canvas{position:static}#broadcast-settings .mini-box small{position:static;width:auto;font-size:9px;color:#a9c3cd}#broadcast-settings .rail-note{display:none}#broadcast-settings .activity,#broadcast-settings #activity{background:#16222a;border-color:#557a8955;color:#a9c3cd;font-size:12px;line-height:1.8;border-radius:9px;padding:10px;margin-top:12px}#broadcast-settings .activity h2{font-size:14px;color:#9fd8f0}#broadcast-settings .activity svg{display:none}#broadcast-settings .effect-status,#broadcast-settings .effect-status b{font-size:12px;color:#ffe3a3}#broadcast-settings .quiet{font-size:12px;color:#91b1bf}#broadcast-settings .board-top,#broadcast-settings .board-bottom{font-size:11px;color:#a9c3cd}#broadcast-settings .broadcast-footer{margin:16px 0 0;text-align:center;color:#7d9aa6;font-size:11px}
+@media(max-width:560px){#broadcast-settings{right:6px;top:6px;max-width:calc(100vw - 12px);max-height:calc(100dvh - 12px);padding:17px 14px}#broadcast-settings .broadcast-section{padding:2px 11px 12px}#broadcast-settings .broadcast-field>span:first-child,#broadcast-settings .fee-field>label,#broadcast-settings .overtime-amount>span:first-child{min-width:84px}#broadcast-settings input[type=range]{width:140px}#broadcast-settings .broadcast-effect-list button{grid-template-columns:76px minmax(0,1fr) 17px;gap:7px}#broadcast-settings .fee-link-switch{flex-wrap:wrap;gap:8px}.broadcast-edit-bar{white-space:normal;flex-wrap:wrap;width:max-content;gap:9px;text-align:center;font-size:12px}.broadcast-gear{width:34px;height:34px;padding:6px}.broadcast-safe-area{font-size:14px}.broadcast-safe-area small{font-size:10px}}@media(prefers-reduced-motion:reduce){.broadcast-gear{transition:none}}
+.broadcast-stage{--stage-scale:1}.broadcast-hud .broadcast-metric small,.broadcast-hud .broadcast-next small{font-size:calc(11px / var(--stage-scale))}.broadcast-hud .broadcast-metric b{font-size:calc(16px / var(--stage-scale))}.broadcast-blocks .broadcast-hud .broadcast-metric b{font-size:calc(14px / var(--stage-scale))}.broadcast-blocks .broadcast-hud small{font-size:calc(10px / var(--stage-scale))}.broadcast-stage[data-compact=true] .broadcast-metric{flex-direction:column;align-items:flex-start;gap:3px}.broadcast-stage[data-compact=true] .broadcast-hud{gap:10px;align-items:center;min-height:calc(42px / var(--stage-scale))}.broadcast-stage .broadcast-next canvas{width:calc(36px / var(--stage-scale));height:calc(30px / var(--stage-scale))}.broadcast-effect{font-size:calc(11px / var(--stage-scale))}.broadcast-editing .broadcast-drag{top:0;height:calc(28px / var(--stage-scale));font-size:calc(12px / var(--stage-scale));z-index:40}.broadcast-editing .broadcast-resize{right:2px;bottom:2px;width:calc(29px / var(--stage-scale));height:calc(29px / var(--stage-scale));font-size:calc(21px / var(--stage-scale));z-index:41}
+.broadcast-stage[data-tiny=true] .broadcast-next small{display:none}#broadcast-settings #prank-status{font-size:12px;color:#a9c3cd;padding:8px 0}.broadcast-stage[data-compact=true] .broadcast-hud .broadcast-metric b{line-height:1.2}
+.broadcast-stage .touch-controls button{height:calc(36px / var(--stage-scale));font-size:calc(14px / var(--stage-scale))}.broadcast-stage[data-compact=true] .touch-controls{grid-template-columns:repeat(3,1fr);gap:calc(5px / var(--stage-scale))}.broadcast-stage[data-compact=true] .curtain .primary,.broadcast-stage[data-compact=true] #resume{font-size:calc(13px / var(--stage-scale));padding:calc(10px / var(--stage-scale)) calc(18px / var(--stage-scale))}.broadcast-stage[data-compact=true] .curtain h2{font-size:calc(17px / var(--stage-scale));line-height:1.5;text-wrap:balance}.broadcast-stage[data-compact=true] .curtain p{font-size:calc(10px / var(--stage-scale));line-height:1.7}
+#broadcast-settings .miebo-port-help{border-left:2px solid #557a89;margin-top:14px;padding:1px 0 1px 12px;font-size:12px;color:#a9c3cd;line-height:1.8}#broadcast-settings .miebo-port-help>strong{color:#bfe9ff;font-size:12px}#broadcast-settings .miebo-port-help ol{padding-left:19px;margin:7px 0}#broadcast-settings .miebo-port-help li{margin:6px 0;overflow-wrap:anywhere}#broadcast-settings .miebo-port-help code{font:11px/1.8 Consolas,monospace;color:#ffe3a3;overflow-wrap:anywhere;white-space:normal}#broadcast-settings .miebo-port-help p{font-size:11px;margin:8px 0 0}
+#broadcast-settings .broadcast-toggle{width:auto!important;min-width:76px;height:34px!important;min-height:34px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;line-height:1.2;padding:6px 14px;flex:0 0 auto}#broadcast-settings .broadcast-toggle[aria-checked=true]{background:#2f6f62;border-color:#7fd6c2;color:#eafff7}
+#broadcast-settings .broadcast-toggle{background:#34505c;color:#e2f2f8;border:1px solid #6f97a8}#broadcast-settings .broadcast-toggle[aria-checked=true]{background:#2f6f62;border-color:#7fd6c2;color:#eafff7}
+</style><style>#broadcast-settings .live-settings{margin:8px 0 14px}#broadcast-settings #live-mode{width:190px;max-width:100%}#broadcast-settings .live-connection{font-size:12px;color:#d2b489;border-left:2px solid #b39162;padding:5px 10px;margin:12px 0 7px;background:#16222a}#broadcast-settings .live-connection[data-connected=true]{color:#8cddc6;border-color:#7fd6c2}#broadcast-settings .live-latest{font-size:12px;line-height:1.7;overflow-wrap:anywhere;background:#16222a;border:1px solid #557a8966;border-radius:7px;padding:8px 10px}#broadcast-settings .live-binding-heading,#broadcast-settings .live-binding-row{display:grid;grid-template-columns:91px minmax(0,1fr) 58px 30px;align-items:center;gap:7px}#broadcast-settings .live-binding-heading{font-size:11px;color:#8fb0bc;margin:13px 0 5px}#broadcast-settings .live-binding-row{padding:7px 0;border-bottom:1px solid #557a8933}#broadcast-settings .live-binding-row strong{font-size:12px;font-weight:500;color:#e0edf1}#broadcast-settings .live-binding-row input{width:100%!important;min-width:0!important;font-size:12px!important;height:31px!important}#broadcast-settings .live-binding-row input[type=number]{padding:4px!important}#broadcast-settings .live-binding-row button{padding:0;width:30px;height:31px;color:#ffe08a}#broadcast-settings .live-binding-row input[aria-invalid=true]{border-color:#e19a94!important}#broadcast-settings .live-feedback{font-size:11px;min-height:18px;color:#e4c895;margin:8px 0}#broadcast-settings .live-bindings.inactive{opacity:.6}#broadcast-settings .live-action-ids{display:grid;grid-template-columns:1fr 1fr;gap:5px 15px;font-size:12px}#broadcast-settings .live-action-ids dt{color:#a9c3cd}#broadcast-settings .live-action-ids dd{margin:0;color:#ffe3a3;font-family:Consolas,monospace}#broadcast-settings .live-connection-settings{margin-bottom:14px}#broadcast-settings .live-manual-effects>summary{margin-bottom:8px}@media(max-width:560px){#broadcast-settings .live-binding-heading{display:none}#broadcast-settings .live-binding-row{grid-template-columns:minmax(0,1fr) 49px 30px;gap:6px;padding:10px 0}#broadcast-settings .live-binding-row>strong{grid-column:1/-1;font-size:12px}#broadcast-settings #live-mode{width:170px}}
+#broadcast-settings .live-message-test{margin:12px 0 16px;padding:10px 12px;background:#16222a55}
+#broadcast-settings .live-test-source{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+#broadcast-settings #live-test-source{width:auto;max-width:100%;flex:1;min-width:150px;font-size:12px!important}
+#broadcast-settings .live-test-raw-label{display:block;color:#a9c3cd;font-size:11px;margin:8px 0 5px}
+#broadcast-settings .live-test-raw{display:block;width:100%;min-width:0;max-width:100%;height:188px;min-height:120px;max-height:360px;resize:vertical;padding:9px 10px;border:1px solid #557a89;border-radius:7px;background:#111c23;color:#d9edf5;font:12px/1.6 Consolas,"Microsoft YaHei",monospace;white-space:pre-wrap;overflow-wrap:anywhere;tab-size:2}
+#broadcast-settings .live-test-raw:focus-visible{outline:2px solid #ffd88a;outline-offset:2px}
+#broadcast-settings .live-test-tools{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+#broadcast-settings .live-test-tools button{min-width:0;white-space:nowrap;flex:1;padding:7px 10px}
+#broadcast-settings .live-test-trigger{display:flex;gap:8px;align-items:center;margin:12px 0 6px;color:#e0edf1}
+#broadcast-settings .live-test-trigger input{margin:0;flex-shrink:0}
+#broadcast-settings .live-test-result{border:1px solid #557a8977;border-left:3px solid #b39162;border-radius:7px;padding:10px;margin-top:12px;overflow-wrap:anywhere;background:#111c23}
+#broadcast-settings .live-test-result[data-status=accepted]{border-left-color:#7fd6c2}
+#broadcast-settings .live-test-result[data-status=idle]{border-left-color:#557a89}
+#broadcast-settings .live-test-title{display:block;color:#ffe3a3;font-size:12px}
+#broadcast-settings .live-test-result[data-status=accepted] .live-test-title{color:#8cddc6}
+#broadcast-settings .live-test-fields{display:grid;grid-template-columns:76px minmax(0,1fr);gap:6px 9px;margin:12px 0;font-size:11px;line-height:1.65}
+#broadcast-settings .live-test-fields dt{color:#91b1bf}
+#broadcast-settings .live-test-fields dd{margin:0;min-width:0;color:#e0edf1;overflow-wrap:anywhere}
+#broadcast-settings .live-test-result p{font-size:11px;margin:7px 0 0}
+#broadcast-settings .live-test-result p:first-child{margin-top:0}
+#broadcast-settings .live-test-foot{border-top:1px solid #557a8944;padding-top:8px}
+@media(max-width:560px){#broadcast-settings .live-message-test{padding:9px}#broadcast-settings .live-test-fields{grid-template-columns:62px minmax(0,1fr);gap:5px 7px}#broadcast-settings .live-test-tools button{font-size:11px;padding:7px 6px}#broadcast-settings .live-test-source{align-items:stretch}#broadcast-settings .live-test-source>span{width:100%}}
+</style>
+<style>/* 插件自带加班机：设置②里的「加班机」一块 + 直播画面棋盘上方的倒计时牌（俄罗斯方块和萌宠消消乐用同一份） */
+#broadcast-settings .lot{margin-top:12px;padding-top:10px;border-top:1px dashed #6f97a866}
+#broadcast-settings .lot-title{margin:4px 0 4px;font:700 14px/1.6 "Microsoft YaHei",sans-serif;color:#ffd27a}
+#broadcast-settings .lot-sub{margin:14px 0 2px;font:700 13px/1.6 "Microsoft YaHei",sans-serif;color:#e2f2f8}
+#broadcast-settings .lot-body[hidden]{display:none}
+#broadcast-settings .lot-face{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:8px 0;padding:10px 13px;border-radius:10px;background:#0d171d;border:1px solid #6f97a855}
+#broadcast-settings .lot-face small{font-size:12px;color:#a9c3cd}
+#broadcast-settings .lot-time{font:800 26px/1.1 "Microsoft YaHei",sans-serif;color:#eef6f8;font-variant-numeric:tabular-nums}
+#broadcast-settings .lot-inline{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+#broadcast-settings .lot-inline input[type=number]{width:84px}
+#broadcast-settings .lot-check{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+#broadcast-settings .lot-gifts{display:grid;gap:6px;margin:6px 0}
+#broadcast-settings .lot-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+#broadcast-settings .lot-row input[type=text]{width:100px!important;flex:none}
+#broadcast-settings .lot-row input[type=number]{width:54px!important;flex:none}
+#broadcast-settings .lot-row select{width:70px!important;flex:none}
+#broadcast-settings .lot-row button{min-height:28px;padding:3px 9px}
+#broadcast-settings .lot-empty{margin:2px 0}
+/* 直播画面上的牌子：和上面的状态栏同一种浅色底板 */
+.lot-plate{position:relative;display:flex;align-items:baseline;gap:8px;margin:0 4px 8px;padding:6px 12px;background:#f8fbefed;border:1px solid #d8e3ca;border-radius:13px;box-shadow:0 2px 6px #2a452017;color:#3a5b41;font:13px/1.4 "Microsoft YaHei",sans-serif;white-space:nowrap}
+.lot-plate[hidden]{display:none}
+.lot-plate .lot-plate-label{font-size:calc(11px / var(--stage-scale,1));color:#7b9170;font-weight:500}
+.lot-plate .lot-plate-time{font-size:calc(18px / var(--stage-scale,1));font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.lot-plate .lot-plate-net{margin-left:auto;font-size:calc(11px / var(--stage-scale,1));color:#9a744d;font-weight:600}
+.lot-plate[data-done=true] .lot-plate-time,.lot-plate[data-done=true] .lot-plate-label{color:#b5603f}
+.lot-plate .lot-plate-net.flash{padding:1px 8px;border-radius:8px;background:#2f7a5f;color:#fff;animation:lotFlash .35s ease-out}
+.lot-plate .lot-plate-net.flash.sub{background:#b5603f}
+@keyframes lotFlash{0%{transform:scale(.8);opacity:.4}60%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.lot-plate .lot-plate-net.flash{animation:none}}
+</style><script>(function(root){
+  'use strict';
+  const W=10,H=20;
+  const SHAPES={I:[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],O:[[1,1],[1,1]],T:[[0,1,0],[1,1,1],[0,0,0]],S:[[0,1,1],[1,1,0],[0,0,0]],Z:[[1,1,0],[0,1,1],[0,0,0]],J:[[1,0,0],[1,1,1],[0,0,0]],L:[[0,0,1],[1,1,1],[0,0,0]]};
+  const TYPES=Object.keys(SHAPES);
+  class BlockGame{
+    constructor(random=Math.random){this.random=random;this.reset();}
+    reset(){
+      this.board=Array.from({length:H},()=>Array(W).fill(0));this.bag=[];this.next=[];
+      this.score=0;this.lines=0;this.level=1;this.combo=-1;this.clock=0;this.held=null;this.holdUsed=false;
+      this.active=null;this.status='ready';this.gravity=0;this.lockTime=0;this.lockResets=0;
+      this.effects={reverse:0,rush:0,fog:0,seal:0};this.challenge=null;this.events=[];this.pieces=0;
+      this.fillNext();return this;
+    }
+    emit(type,data={}){this.events.push({type,...data});if(this.events.length>40)this.events.shift();}
+    drain(){return this.events.splice(0);}
+    fillNext(){
+      while(this.next.length<5){
+        if(!this.bag.length){this.bag=[...TYPES];for(let i=6;i>0;i--){const j=Math.floor(this.random()*(i+1));[this.bag[i],this.bag[j]]=[this.bag[j],this.bag[i]];}}
+        this.next.push(this.bag.pop());
+      }
+    }
+    start(){if(this.status==='ready'){this.status='playing';this.spawn();}}
+    spawn(type){
+      type=type||this.next.shift();this.fillNext();
+      const matrix=SHAPES[type].map(r=>[...r]);
+      this.active={type,matrix,x:Math.floor((W-matrix.length)/2),y:0};
+      this.gravity=0;this.lockTime=0;this.lockResets=0;
+      if(this.collides(this.active))this.lose();
+    }
+    cells(piece=this.active){
+      if(!piece)return[];const cells=[];
+      piece.matrix.forEach((row,y)=>row.forEach((v,x)=>{if(v)cells.push([piece.x+x,piece.y+y]);}));return cells;
+    }
+    collides(piece){return this.cells(piece).some(([x,y])=>x<0||x>=W||y>=H||(y>=0&&this.board[y][x]));}
+    activeEffect(name){return(this.effects[name]||0)>this.clock;}
+    resetLock(){if(this.lockResets<12){this.lockTime=0;this.lockResets++;}}
+    move(dx){
+      if(this.status!=='playing')return false;
+      const sign=this.activeEffect('reverse')?-1:1;
+      const piece={...this.active,x:this.active.x+dx*sign};
+      if(this.collides(piece))return false;this.active=piece;this.resetLock();return true;
+    }
+    rotate(direction=1){
+      if(this.status!=='playing'||this.activeEffect('seal'))return false;
+      const old=this.active.matrix,n=old.length;
+      const matrix=Array.from({length:n},(_,y)=>Array.from({length:n},(_,x)=>direction>0?old[n-1-x][y]:old[x][n-1-y]));
+      // Small bounded wall/floor kicks keep rotations usable at the board edges.
+      for(const[dx,dy]of[[0,0],[-1,0],[1,0],[-2,0],[2,0],[0,-1],[-1,-1],[1,-1],[0,-2]]){
+        const piece={...this.active,matrix,x:this.active.x+dx,y:this.active.y+dy};
+        if(!this.collides(piece)){this.active=piece;this.resetLock();return true;}
+      }
+      return false;
+    }
+    softDrop(manual=true){
+      if(this.status!=='playing')return false;
+      const piece={...this.active,y:this.active.y+1};
+      if(this.collides(piece))return false;this.active=piece;if(manual)this.score++;this.lockTime=0;return true;
+    }
+    ghostY(){if(!this.active)return 0;let y=this.active.y;while(!this.collides({...this.active,y:y+1}))y++;return y;}
+    hardDrop(){
+      if(this.status!=='playing')return;
+      const y=this.ghostY();this.score+=(y-this.active.y)*2;this.active.y=y;this.lock();
+    }
+    hold(){
+      if(this.status!=='playing'||this.holdUsed)return false;
+      const old=this.held;this.held=this.active.type;this.spawn(old);this.holdUsed=true;this.emit('hold');return true;
+    }
+    lock(){
+      if(this.status!=='playing')return;
+      const cells=this.cells();if(cells.some(([,y])=>y<0)){this.lose();return;}
+      const value=TYPES.indexOf(this.active.type)+1;
+      for(const[x,y]of cells)this.board[y][x]=value;
+      const full=[];this.board.forEach((row,y)=>{if(row.every(Boolean))full.push(y);});
+      if(full.length){
+        this.board=this.board.filter((_,y)=>!full.includes(y));while(this.board.length<H)this.board.unshift(Array(W).fill(0));
+        this.combo++;const points=([0,100,300,500,800][full.length]+Math.max(0,this.combo)*50)*this.level;
+        this.score+=points;this.lines+=full.length;this.level=1+Math.floor(this.lines/10);this.emit('clear',{rows:full,count:full.length,points,combo:this.combo});
+      }else this.combo=-1;
+      this.pieces++;this.holdUsed=false;
+      this.checkChallenge();this.spawn();this.emit('lock');
+    }
+    lose(){if(this.status==='over')return;this.status='over';this.emit('over');}
+    addGarbage(count){
+      const amount=Math.min(4,Math.max(1,Math.floor(count)));let overflow=false;
+      for(let i=0;i<amount;i++){
+        if(this.board.shift().some(Boolean))overflow=true;
+        const gap=Math.floor(this.random()*W);this.board.push(Array.from({length:W},(_,x)=>x===gap?0:8));
+      }
+      if(this.active){
+        for(let i=0;i<amount+4&&this.collides(this.active);i++)this.active.y--;
+        if(this.collides(this.active)||this.cells().every(([,y])=>y<0))overflow=true;
+      }
+      this.emit('garbage',{count:amount});if(overflow)this.lose();
+    }
+    checkChallenge(){
+      if(!this.challenge)return;
+      if(this.lines-this.challenge.start>=2){this.challenge=null;this.score+=500;this.emit('challenge-win');}
+      else if(this.clock>=this.challenge.end){this.challenge=null;this.addGarbage(3);this.emit('challenge-fail');}
+    }
+    effect(kind){
+      if(this.status!=='playing')return false;
+      if(kind==='garbage')this.addGarbage(2);
+      else if(['reverse','rush','fog','seal'].includes(kind))this.effects[kind]=this.clock+({reverse:12000,rush:12000,fog:9000,seal:8000}[kind]);
+      else if(kind==='challenge')this.challenge={start:this.lines,end:this.clock+15000};
+      else if(kind==='bomb'){
+        this.board.splice(H-3,3);this.board.unshift(...Array.from({length:3},()=>Array(W).fill(0)));this.emit('rescue');
+      }else if(kind==='cleanse'){
+        for(const key of Object.keys(this.effects))this.effects[key]=0;this.challenge=null;this.emit('cleanse');
+      }else return false;
+      this.emit('effect',{kind});return true;
+    }
+    tick(dt){
+      if(this.status!=='playing')return;
+      dt=Math.min(50,Math.max(0,Number(dt)||0));this.clock+=dt;
+      for(const key of Object.keys(this.effects))if(this.effects[key]&&this.effects[key]<=this.clock){this.effects[key]=0;this.emit('expired',{kind:key});}
+      this.checkChallenge();if(this.status!=='playing')return;
+      const interval=Math.max(95,780*Math.pow(.84,this.level-1))/(this.activeEffect('rush')?4:1);
+      this.gravity+=dt;
+      if(this.collides({...this.active,y:this.active.y+1})){
+        this.lockTime+=dt;if(this.lockTime>=450)this.lock();
+      }else{
+        this.lockTime=0;
+        for(let n=0;n<4&&this.gravity>=interval;n++){this.gravity-=interval;if(!this.softDrop(false))break;}
+      }
+    }
+  }
+  root.BlockGame=BlockGame;root.BlockShapes=SHAPES;root.BlockTypes=TYPES;
+  if(typeof module!=='undefined')module.exports={BlockGame,SHAPES,TYPES,W,H};
+})(typeof window!=='undefined'?window:globalThis);
+</script><script>/* 白曜加班机 · 插件用的连接库（俄罗斯方块、萌宠消消乐、出摊啦共用；别的插件整份拷过去也能用）。
+ *
+ * 在白曜 0.27.0 以上里跑（白曜的插件窗口、白曜给的 OBS 网址）：直接用白曜给的 BaiyaoPlugin.overtime，什么都不用设。
+ * 不在白曜里跑（菘蓝里、直接把网页放进 OBS、浏览器里试玩）：连白曜的本机连接 ws://127.0.0.1:47833/overtime，
+ * 填上白曜「加班机 → 加班设置 → 插件连接」里的连接码才能加减；没填只能看时间。
+ *
+ * 这个库只管「送」：getPending() 给出还没送到的 [{id, seconds, op:'add'|'sub', label, user}]，送到了回调 onSent(id, change)。
+ *   change 是白曜实际加减的秒数（文字）；'0' 表示时间已经到了、白曜没加；
+ *   null 表示连接断在半路、不知道加上没有——按已送算，不再重发，免得加两遍。
+ * 同一个 id 只送一次。哪些送过、存不存，由插件自己记。
+ */
+(function (root) {
+  'use strict';
+  const DEFAULT_PORT = 47833;
+  const RETRY_MS = Object.freeze([1000, 3000, 5000, 10000]);
+  const HELLO_TIMEOUT_MS = 5000;
+  const STORE_KEY = 'baiyao-overtime-link-v1';
+  const KEY_CHARS = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+  const KEY_RE = new RegExp('^[' + KEY_CHARS + ']{4}-[' + KEY_CHARS + ']{4}$');
+  const MAX_REMEMBERED = 512;
+
+  /** 连接码：不分大小写，空格、各种横线都行，8 位不带横线也行。 */
+  function normalizeKey(value) {
+    const raw = String(value == null ? '' : value).toUpperCase().replace(/[\s　]+/g, '').replace(/[－—–‐_]/g, '-');
+    const bare = raw.replace(/-/g, '');
+    return bare.length === 8 ? bare.slice(0, 4) + '-' + bare.slice(4) : raw;
+  }
+  const isKey = key => KEY_RE.test(key);
+  function portNumber(value) {
+    if (typeof value === 'string' && !/^\d+$/.test(value.trim())) return null;
+    if (typeof value !== 'number' && typeof value !== 'string') return null;
+    const n = Number(value);
+    return Number.isInteger(n) && n >= 1 && n <= 65535 ? n : null;
+  }
+  /** 秒数只要正整数：数字或一串数字（多长都行），别的不送。 */
+  function secondsText(value) {
+    if (typeof value === 'number') return Number.isSafeInteger(value) && value >= 1 ? String(value) : null;
+    if (typeof value !== 'string' || !/^\d+$/.test(value.trim())) return null;
+    return value.trim().replace(/^0+/, '') || null;
+  }
+  const shortText = (value, max) => Array.from(String(value == null ? '' : value).replace(/[\u0000-\u001F\u007F]/g, '').trim()).slice(0, max).join('');
+  const errorText = e => shortText(e && e.message ? e.message : e, 80) || '白曜加班机出错了';
+
+  /** 白曜加班机还剩多久：1:23:45；∞；超过 99 小时写天数。 */
+  function remainingText(state) {
+    if (!state || typeof state !== 'object') return '';
+    if (state.infinite) return '∞';
+    const s = Number(state.remainingSeconds);
+    if (!Number.isFinite(s) || s < 0) return '';
+    if (s >= 360000) return Math.floor(s / 86400).toLocaleString('zh-CN') + ' 天';
+    const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, sec = Math.floor(s % 60);
+    return h + ':' + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+  }
+
+  /** 给设置页看的一句话。 */
+  function describe(s) {
+    if (!s) return '';
+    const later = ' · ' + Math.ceil((s.retryMs || 0) / 1000) + ' 秒后再试';
+    if (s.mode === 'none') return '这里连不了白曜加班机';
+    if (s.mode === 'baiyao') return s.state === 'retrying' ? '白曜加班机没回应' + later : s.state === 'ready' ? '已接上白曜加班机' : '没有接白曜加班机';
+    if (s.state === 'ready') return '已连上白曜加班机';
+    if (s.state === 'locked') return s.key ? '连上白曜了，但连接码不对，只能看时间' : '连上白曜了，填上连接码才能加时间';
+    if (s.state === 'connecting') return '正在连白曜加班机…';
+    if (s.state === 'retrying') return (s.hostTooOld ? '这个白曜还没有加班机，要 0.27.0 以上' : '没连上白曜加班机（要开着白曜 0.27.0 以上）') + later;
+    return '没有连白曜加班机';
+  }
+
+  function createBaiyaoOvertime(options) {
+    const o = options && typeof options === 'object' ? options : {};
+    const env = o.env || root;
+    const Socket = 'WebSocket' in o ? o.WebSocket : env.WebSocket;
+    const schedule = o.setTimeout || ((fn, ms) => root.setTimeout(fn, ms));
+    const cancel = o.clearTimeout || (id => root.clearTimeout(id));
+    const steps = Array.isArray(o.retryMs) && o.retryMs.length ? o.retryMs.slice() : RETRY_MS;
+    const plugin = shortText(o.plugin, 20) || '插件';
+    const getPending = typeof o.getPending === 'function' ? o.getPending : () => [];
+    const call = (fn, ...args) => { try { return typeof fn === 'function' ? fn(...args) : undefined; } catch { return undefined; } };
+    let storage = o.storage;
+    if (storage === undefined) { try { storage = env.localStorage; } catch { storage = null; } }
+    const storeKey = typeof o.storageKey === 'string' && o.storageKey ? o.storageKey : STORE_KEY;
+    let saved = {};
+    try { saved = JSON.parse((storage && storage.getItem(storeKey)) || '{}') || {}; } catch { saved = {}; }
+    let key = normalizeKey(o.key != null ? o.key : saved.key);
+    let port = portNumber(o.port != null ? o.port : saved.port) || DEFAULT_PORT;
+    const sdk = () => { const host = env.BaiyaoPlugin, api = host && host.overtime; return api && typeof api.add === 'function' && typeof api.sub === 'function' ? api : null; };
+    const mode = sdk() ? 'baiyao' : typeof Socket === 'function' ? 'bridge' : 'none';
+    const hostTooOld = !!env.BaiyaoPlugin && mode !== 'baiyao';
+
+    let state = mode === 'none' ? 'unavailable' : 'idle', error = '', retryMs = 0, attempt = 0, running = false, epoch = 0;
+    let socket = null, helloTimer = null, retryTimer = null, trusted = false, timer = null, unsubscribe = null, flushing = false, again = false;
+    const sent = new Set(), inflight = new Map();
+
+    const snapshot = () => ({ mode, state, error, retryMs, key, keyValid: isKey(key), port, trusted: mode === 'baiyao' || trusted, timer, inflight: inflight.size, hostTooOld, url: 'ws://127.0.0.1:' + port + '/overtime' });
+    const notify = () => call(o.onStatus, snapshot());
+    const persist = () => { try { if (storage) storage.setItem(storeKey, JSON.stringify({ key, port })); } catch { /* 存不了就只在这一页记着 */ } };
+    const live = token => running && token === epoch;
+
+    function records() {
+      let list;
+      try { list = getPending(); } catch { return []; }
+      if (!Array.isArray(list)) return [];
+      const seen = new Set(), out = [];
+      for (const r of list) {
+        if (!r || typeof r !== 'object') continue;
+        const id = typeof r.id === 'string' ? r.id.trim() : typeof r.id === 'number' && Number.isFinite(r.id) ? String(r.id) : '';
+        const seconds = secondsText(r.seconds);
+        if (!id || !seconds || seen.has(id) || sent.has(id) || inflight.has(id)) continue;
+        seen.add(id);
+        out.push({ id, seconds, op: r.op === 'sub' ? 'sub' : 'add', label: shortText(r.label, 20), user: shortText(r.user, 20) });
+      }
+      return out;
+    }
+    function delivered(id, change) {
+      sent.add(id);
+      if (sent.size > MAX_REMEMBERED) sent.delete(sent.values().next().value);
+      call(o.onSent, id, change == null ? null : String(change));
+    }
+    function clearTimers() {
+      if (helloTimer != null) cancel(helloTimer);
+      if (retryTimer != null) cancel(retryTimer);
+      helloTimer = retryTimer = null;
+    }
+    // 等一会儿再试：在白曜里是重送，本机连接是重连
+    function backoff(token, message) {
+      if (!live(token)) return;
+      clearTimers();
+      state = 'retrying'; error = message; retryMs = steps[Math.min(attempt++, steps.length - 1)];
+      retryTimer = schedule(() => { retryTimer = null; if (!live(token)) return; if (mode === 'baiyao') resumeSdk(token); else openSocket(token); }, retryMs);
+      notify();
+    }
+
+    // —— 在白曜里：BaiyaoPlugin.overtime ——
+    function startSdk(token) {
+      const api = sdk();
+      try {
+        const off = typeof api.onChange === 'function' ? api.onChange(payload => {
+          if (!live(token)) return;
+          if (payload && payload.state && typeof payload.state === 'object') timer = payload.state;
+          call(o.onChange, payload); notify();
+        }) : null;
+        unsubscribe = typeof off === 'function' ? off : null;
+      } catch { unsubscribe = null; }
+      if (typeof api.state === 'function') Promise.resolve().then(() => api.state()).then(value => { if (live(token) && value && typeof value === 'object') { timer = value; notify(); } }, () => {});
+      resumeSdk(token);
+    }
+    function resumeSdk(token) {
+      if (!live(token)) return;
+      state = 'ready'; error = ''; retryMs = 0; notify();
+      flushSdk(token);
+    }
+    async function flushSdk(token) {
+      if (flushing) { again = true; return; }
+      flushing = true;
+      try {
+        do {
+          again = false;
+          for (const r of records()) {
+            if (!live(token) || state !== 'ready') return;
+            inflight.set(r.id, r);
+            let change;
+            try { change = await sdk()[r.op](r.seconds, { label: r.label, user: r.user }); }
+            catch (e) { if (inflight.delete(r.id)) backoff(token, errorText(e)); return; }
+            // 送的时候停了（关页面、刷新）：停的那一刻已经按已送记过了，这里不再记
+            if (!inflight.delete(r.id)) return;
+            attempt = 0;
+            delivered(r.id, change);
+          }
+        } while (again && live(token));
+      } finally {
+        flushing = false;
+        // 送的时候被停了又重新开始：新的那轮接着送
+        if (again && token !== epoch && running && state === 'ready') { again = false; flushSdk(epoch); }
+      }
+      notify();
+    }
+
+    // —— 不在白曜里：本机连接 ——
+    function openSocket(token) {
+      if (!live(token)) return;
+      clearTimers();
+      state = 'connecting'; error = ''; retryMs = 0; trusted = false; notify();
+      let ws;
+      try { ws = new Socket('ws://127.0.0.1:' + port + '/overtime'); } catch { backoff(token, '连不上白曜加班机'); return; }
+      socket = ws;
+      ws.onopen = () => { if (ws === socket && live(token)) sendHello(ws, token); };
+      ws.onmessage = event => {
+        if (ws !== socket || !live(token)) return;
+        let msg;
+        try { msg = JSON.parse(String(event.data)); } catch { return; }
+        receive(token, msg);
+      };
+      ws.onerror = () => drop(ws, token, '连不上白曜加班机');
+      ws.onclose = () => drop(ws, token, '和白曜加班机断开了');
+      helloTimer = schedule(() => drop(ws, token, '白曜加班机没回应'), HELLO_TIMEOUT_MS);
+    }
+    function sendHello(ws, token) {
+      try { ws.send(JSON.stringify({ type: 'hello', plugin, key })); } catch { drop(ws, token, '连不上白曜加班机'); }
+    }
+    // 送出去还没回话的，按已送算（不知道加上没有，宁可少加也不加两遍）
+    function settleInflight() { for (const id of [...inflight.keys()]) delivered(id, null); inflight.clear(); }
+    function drop(ws, token, message) {
+      if (ws !== socket) return;
+      socket = null; trusted = false;
+      try { ws.close(); } catch { /* 已经断了 */ }
+      settleInflight();
+      if (live(token)) backoff(token, message);
+    }
+    function receive(token, msg) {
+      if (!msg || typeof msg !== 'object') return;
+      if (msg.state && typeof msg.state === 'object') timer = msg.state;
+      if (msg.type === 'hello') {
+        if (helloTimer != null) { cancel(helloTimer); helloTimer = null; }
+        trusted = msg.trusted === true; attempt = 0; retryMs = 0;
+        state = trusted ? 'ready' : 'locked'; error = trusted || !key ? '' : '连接码不对';
+        notify();
+        if (trusted) flushBridge(token);
+      } else if (msg.type === 'change') {
+        call(o.onChange, { state: msg.state || null, change: msg.change || null }); notify();
+      } else if (msg.type === 'result') {
+        const id = msg.id == null ? '' : String(msg.id);
+        if (inflight.delete(id)) delivered(id, msg.change);
+        notify();
+      } else if (msg.type === 'error') {
+        // 没加上：留在待发里，下次再送
+        inflight.delete(msg.id == null ? '' : String(msg.id));
+        const text = shortText(msg.message, 80) || '白曜加班机出错了';
+        if (/连接码/.test(text)) { trusted = false; state = 'locked'; error = '连接码不对'; } else error = text;
+        notify();
+      } else if (msg.type === 'state') notify();
+    }
+    function flushBridge(token) {
+      if (!live(token) || state !== 'ready' || !trusted || !socket || socket.readyState !== 1) return 0;
+      let count = 0;
+      for (const r of records()) {
+        try { socket.send(JSON.stringify({ type: r.op, id: r.id, seconds: r.seconds, label: r.label, user: r.user })); }
+        catch { drop(socket, token, '和白曜加班机断开了'); break; }
+        inflight.set(r.id, r); count++;
+      }
+      if (count) notify();
+      return count;
+    }
+
+    // —— 对外 ——
+    function halt() {
+      running = false; epoch++; clearTimers();
+      if (unsubscribe) { call(unsubscribe); unsubscribe = null; }
+      const ws = socket; socket = null; trusted = false;
+      if (ws) { try { ws.close(); } catch { /* 已经断了 */ } }
+      // 送出去还没回话的按已送记：页面可能马上就关了，白曜那边多半已经加上，宁可少加也不下次再送一遍
+      settleInflight();
+    }
+    function start() {
+      halt();
+      if (mode === 'none') { state = 'unavailable'; notify(); return false; }
+      running = true; attempt = 0;
+      const token = epoch;
+      if (mode === 'baiyao') startSdk(token); else openSocket(token);
+      return true;
+    }
+    function stop() {
+      halt();
+      state = mode === 'none' ? 'unavailable' : 'stopped'; error = ''; retryMs = 0;
+      notify();
+    }
+    /** 有新的待发就叫一声；连着就马上送，没连上等连上了自己送。 */
+    function flush() {
+      if (!running) return 0;
+      if (mode === 'baiyao') { if (state === 'ready') flushSdk(epoch); return 0; }
+      return flushBridge(epoch);
+    }
+    function setKey(value) {
+      const next = normalizeKey(value);
+      if (next && !isKey(next)) return false;
+      key = next; persist();
+      if (mode === 'bridge' && running) {
+        if (socket && socket.readyState === 1) { trusted = false; sendHello(socket, epoch); } else start();
+      }
+      notify();
+      return true;
+    }
+    function setPort(value) {
+      const next = portNumber(value);
+      if (next === null) return false;
+      port = next; persist();
+      if (mode === 'bridge' && running) start(); else notify();
+      return true;
+    }
+    /** 只连一下、看看能不能加：另开一条连接，只打招呼，绝不改时间。
+     *  options.key：拿输入框里还没保存的连接码试——不保存，也不碰正在用的连接（不然攒着的加班会被送出去）；不给就用已保存的。 */
+    function test(options) {
+      const t = options && typeof options === 'object' ? options : {};
+      const wait = Number.isFinite(t.timeoutMs) && t.timeoutMs > 0 ? t.timeoutMs : HELLO_TIMEOUT_MS;
+      const tryKey = t.key === undefined ? key : normalizeKey(t.key);
+      if (mode === 'none') return Promise.resolve({ ok: false, mode, trusted: false, state: null, error: '这里连不了白曜加班机' });
+      if (mode === 'baiyao') {
+        const api = sdk();
+        return Promise.resolve().then(() => (typeof api.state === 'function' ? api.state() : null))
+          .then(value => ({ ok: true, mode, trusted: true, state: value || null, error: '' }), e => ({ ok: false, mode, trusted: false, state: null, error: errorText(e) }));
+      }
+      if (tryKey && !isKey(tryKey)) return Promise.resolve({ ok: false, mode, trusted: false, state: null, error: '连接码是 8 位，比如 ABCD-2345' });
+      return new Promise(resolve => {
+        let ws = null, done = false, timeout = null;
+        const finish = result => {
+          if (done) return;
+          done = true;
+          if (timeout != null) cancel(timeout);
+          try { if (ws) ws.close(); } catch { /* 已经断了 */ }
+          resolve({ mode, ...result });
+        };
+        const failed = text => finish({ ok: false, trusted: false, state: null, error: text });
+        timeout = schedule(() => failed('白曜加班机没回应'), wait);
+        try { ws = new Socket('ws://127.0.0.1:' + port + '/overtime'); } catch { failed('连不上白曜加班机'); return; }
+        ws.onopen = () => { try { ws.send(JSON.stringify({ type: 'hello', plugin, key: tryKey })); } catch { failed('连不上白曜加班机'); } };
+        ws.onmessage = event => {
+          let msg;
+          try { msg = JSON.parse(String(event.data)); } catch { return; }
+          if (!msg || msg.type !== 'hello') return;
+          const ok = msg.trusted === true;
+          finish({ ok: true, trusted: ok, state: msg.state || null, error: ok ? '' : tryKey ? '连接码不对' : '还没填连接码' });
+        };
+        ws.onerror = () => failed('连不上白曜加班机');
+        ws.onclose = () => failed('连不上白曜加班机');
+      });
+    }
+    return { start, stop, flush, snapshot, test, setKey, setPort, describe: () => describe(snapshot()) };
+  }
+
+  const api = Object.freeze({ createBaiyaoOvertime, describe, remainingText, normalizeKey, isKey, DEFAULT_PORT });
+  root.BaiyaoOvertimeClient = api;
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+</script><script>(function(root){
+  'use strict';
+  /* 插件自带的加班机（俄罗斯方块和萌宠消消乐用同一份）：不连白曜加班机也能用。
+   * 「距离下播」倒计时：预设时长 + 加的 − 减的 − 已经走的；输了 / 积分不够、礼物、主播手动都能加减。
+   * 开着的时候存的是到点时刻（endsAt），刷新页面接着走；暂停时存剩余毫秒。
+   * 礼物加减表：礼物名 → 加时 / 减时 → 最少～最多分钟（一样就是固定）；送几个算几次。 */
+  const MAX_MINUTES=99999,MAX_ROWS=50,NAME_MAX=20;
+  const text=(v,max)=>String(v??'').replace(/[\u0000-\u001f\u007f]/g,'').trim().slice(0,max);
+  const giftKey=v=>String(v??'').normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}\p{Cf}]/gu,'');
+  const wholeMinutes=(v,min=0)=>{const n=typeof v==='string'&&v.trim()!==''?Number(v):v;return typeof n==='number'&&Number.isInteger(n)&&n>=min&&n<=MAX_MINUTES?n:null;};
+  function cleanGift(raw){
+    if(!raw||typeof raw!=='object')return null;
+    const name=text(raw.name,NAME_MAX);if(!giftKey(name))return null;
+    const a=wholeMinutes(raw.min)??1,b=wholeMinutes(raw.max)??a;
+    return{name,mode:raw.mode==='sub'?'sub':'add',min:Math.min(a,b),max:Math.max(a,b)};
+  }
+  /* 分钟 → 「1 小时 5 分钟」「10 分钟」「30 秒」 */
+  function spoken(seconds){
+    const s=Math.round(Math.abs(seconds)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=s%60;
+    if(!s)return'0 分钟';
+    return[h?`${h} 小时`:'',m?`${m} 分钟`:'',r?`${r} 秒`:''].filter(Boolean).join(' ');
+  }
+  /* 倒计时：1:59:30 / 9:05 */
+  function clock(seconds){
+    const s=Math.max(0,Math.ceil(seconds)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=s%60;
+    return h?`${h}:${String(m).padStart(2,'0')}:${String(r).padStart(2,'0')}`:`${m}:${String(r).padStart(2,'0')}`;
+  }
+  function createLocalOvertime(options={}){
+    const key=options.key||'local-overtime-v1',now=options.now||(()=>Date.now()),random=options.random||Math.random;
+    let storage=options.storage;try{if(storage===undefined)storage=root.localStorage;}catch{storage=null;}
+    let saved={};try{saved=JSON.parse(storage?.getItem(key)||'{}')||{};}catch{saved={};}
+    const preset=wholeMinutes(saved.presetMinutes,1)??120;
+    const state={
+      presetMinutes:preset,
+      running:saved.running===true&&Number.isFinite(saved.endsAt),
+      endsAt:Number.isFinite(saved.endsAt)?saved.endsAt:null,
+      remainingMs:Number.isFinite(saved.remainingMs)&&saved.remainingMs>=0?saved.remainingMs:preset*60000,
+      netSeconds:Number.isFinite(saved.netSeconds)?Math.round(saved.netSeconds):0,
+      fresh:saved.fresh!==false,
+      show:saved.show!==false,
+      gifts:(Array.isArray(saved.gifts)?saved.gifts:[]).map(cleanGift).filter(Boolean).slice(0,MAX_ROWS),
+    };
+    const listeners=new Set();
+    const persist=()=>{try{storage?.setItem(key,JSON.stringify(state));}catch{}};
+    const remainingMs=()=>state.running?Math.max(0,state.endsAt-now()):state.remainingMs;
+    function snapshot(){
+      const ms=remainingMs();
+      return{presetMinutes:state.presetMinutes,running:state.running,fresh:state.fresh,show:state.show,remainingSeconds:Math.ceil(ms/1000),
+        clockText:clock(ms/1000),netSeconds:state.netSeconds,netText:state.netSeconds?(state.netSeconds<0?'已减班 −':'已加班 +')+spoken(state.netSeconds):'还没加班',
+        finished:ms<=0,gifts:state.gifts.map(g=>({...g}))};
+    }
+    const publish=event=>{const s=snapshot();for(const fn of listeners)try{fn(s,event||null);}catch{}};
+    function start(){if(state.running)return false;state.endsAt=now()+state.remainingMs;state.running=true;state.fresh=false;persist();publish();return true;}
+    function pause(){if(!state.running)return false;state.remainingMs=remainingMs();state.running=false;state.endsAt=null;persist();publish();return true;}
+    function reset(){state.running=false;state.endsAt=null;state.remainingMs=state.presetMinutes*60000;state.netSeconds=0;state.fresh=true;persist();publish();}
+    /* 游戏开始时自动开始计时：只在重置后还没开始过时才开（主播手动暂停的不会被打开） */
+    function autoStart(){return state.fresh&&!state.running?start():false;}
+    function setPreset(value){
+      const minutes=wholeMinutes(value,1);if(minutes===null)return false;
+      state.presetMinutes=minutes;if(state.fresh&&!state.running){state.remainingMs=minutes*60000;state.netSeconds=0;}
+      persist();publish();return true;
+    }
+    function setShow(value){state.show=value===true;persist();publish();}
+    /* 加减秒数（负数是减）；到点以后加的从现在算起，减到 0 为止 */
+    function shift(seconds,label=''){
+      const delta=Math.round(Number(seconds));if(!Number.isFinite(delta)||!delta)return 0;
+      const before=remainingMs(),after=Math.max(0,before+delta*1000),applied=Math.round((after-before)/1000);
+      if(state.running)state.endsAt=now()+after;else state.remainingMs=after;
+      state.netSeconds+=delta;persist();publish({seconds:delta,applied,label:text(label,20)});return delta;
+    }
+    function setGifts(list){
+      if(!Array.isArray(list))return{ok:false,error:'礼物表格式不对'};
+      const rows=list.map(cleanGift);
+      if(rows.some(r=>!r))return{ok:false,error:'每一行都要填礼物名'};
+      if(rows.length>MAX_ROWS)return{ok:false,error:`最多 ${MAX_ROWS} 行`};
+      state.gifts=rows;persist();publish();return{ok:true};
+    }
+    /* 一份礼物（已去重、已算好本次新增的个数）→ 按表加减。返回加减的总秒数（没匹配是 0） */
+    function minutesFor(row,count){
+      if(row.min===row.max)return row.min*count;
+      if(count>1000)return Math.round((row.min+row.max)/2*count);
+      let sum=0;for(let i=0;i<count;i++)sum+=row.min+Math.floor(random()*(row.max-row.min+1));return sum;
+    }
+    function applyGift({name,count=1}={}){
+      const k=giftKey(name),n=Math.max(1,Math.floor(Number(count)||1));if(!k)return 0;
+      let total=0;
+      for(const row of state.gifts){
+        if(giftKey(row.name)!==k)continue;
+        const seconds=minutesFor(row,n)*60*(row.mode==='sub'?-1:1);
+        if(seconds){shift(seconds,row.name);total+=seconds;}
+      }
+      return total;
+    }
+    function hasGift(name){const k=giftKey(name);return!!k&&state.gifts.some(r=>giftKey(r.name)===k);}
+    function subscribe(fn){listeners.add(fn);fn(snapshot(),null);return()=>listeners.delete(fn);}
+    return{snapshot,subscribe,start,pause,reset,autoStart,setPreset,setShow,shift,setGifts,applyGift,hasGift};
+  }
+  const api={createLocalOvertime,spokenDuration:spoken,clockText:clock,giftKey};
+  root.LocalOvertime=api;
+  if(typeof module!=='undefined')module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);
+</script>
+<script>(function(root){
+  'use strict';
+  /* 输了（萌宠消消乐：积分不够）就加班 N 分钟。俄罗斯方块和萌宠消消乐用同一份。
+   * 加班记到哪（target）：auto（默认）= 在白曜 0.27.0 以上里、或者填了连接码 → 白曜加班机，不然 → 插件自带的加班机；
+   * local = 一直用插件自带的；baiyao = 一直用白曜加班机（不在白曜里要填白曜「加班机 → 加班设置 → 插件连接」里的连接码）。
+   * 记到白曜时待发的只记在这一页：没连上先攒着，连上自动补发；刷新就清空，不会补发上一页的。
+   * 记到自带的（local-overtime.js）马上加上，礼物加减表也只在这时生效（用白曜加班机时礼物在白曜里配，免得加两遍）。 */
+  const TARGETS=['auto','local','baiyao'];
+  const validMinutes=value=>(typeof value==='number'||typeof value==='string'&&/^\d+$/.test(value.trim()))&&Number.isInteger(Number(value))&&Number(value)>=1&&Number(value)<=180;
+  function createOvertimeLink(options={}){
+    const settingsKey=options.settingsKey||'overtime-link-settings-v1',prefix=options.roundPrefix||'loss',label=options.label||'输了一局';
+    const Client=options.client||root.BaiyaoOvertimeClient||(typeof require==='function'?require('./baiyao-overtime-client.js'):null);
+    const Local=options.Local||root.LocalOvertime||(typeof require==='function'?require('./local-overtime.js'):null);
+    let storage=options.storage;try{if(storage===undefined)storage=root.localStorage;}catch{storage=null;}
+    let saved={};try{saved=JSON.parse(storage?.getItem(settingsKey)||'{}')||{};}catch{saved={};}
+    const settings={minutes:validMinutes(saved.minutes)?Number(saved.minutes):10,enabled:typeof saved.enabled==='boolean'?saved.enabled:true,target:TARGETS.includes(saved.target)?saved.target:'auto'};
+    const local=Local.createLocalOvertime({key:options.localKey||settingsKey+'-local',storage,...(options.now?{now:options.now}:{}),...(options.random?{random:options.random}:{})});
+    const records=[];let totalCount=0,sentCount=0,totalSeconds=0,sentSeconds=0,sequence=0,round=null,handled=false,last=null,link={};
+    // 旧版存的咩播端口不用了，但留在存档里，退回旧版还在
+    const persist=()=>{try{storage?.setItem(settingsKey,JSON.stringify({...saved,...settings}));}catch{}};
+    const route=()=>settings.target==='local'?'local':settings.target==='baiyao'?'baiyao':(link.mode==='baiyao'||link.keyValid)?'baiyao':'local';
+    const snapshot=()=>({...settings,route:route(),mode:link.mode||'none',connection:link.state||'idle',
+      statusText:route()==='local'?'记到插件自带的加班机':Client.describe(link),linkText:Client.describe(link),key:link.key||'',keyValid:!!link.keyValid,error:link.error||'',
+      timerText:Client.remainingText(link.timer),totalCount,sentCount,totalSeconds,sentSeconds,pendingCount:records.length,last:last?{...last}:null});
+    const publish=()=>{try{options.onChange?.(snapshot());}catch{}};
+    const client=Client.createBaiyaoOvertime({
+      plugin:options.plugin,storage,
+      ...(options.env?{env:options.env}:{}),...('WebSocket' in options?{WebSocket:options.WebSocket}:{}),
+      ...(options.setTimeout?{setTimeout:options.setTimeout}:{}),...(options.clearTimeout?{clearTimeout:options.clearTimeout}:{}),
+      getPending:()=>records.map(r=>({id:r.id,seconds:r.seconds,label})),
+      onSent:(id,change)=>{
+        const index=records.findIndex(r=>r.id===id);if(index<0)return;
+        const[record]=records.splice(index,1);sentCount++;sentSeconds+=record.seconds;
+        if(last?.roundId===id)last={...last,status:'sent',change};publish();
+      },
+      onStatus:value=>{link=value;publish();}
+    });
+    link=client.snapshot();
+    function beginRound(){
+      const uuid=root.crypto?.randomUUID?.()||`${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+      round=`${prefix}-${uuid}-${++sequence}`;handled=false;return round;
+    }
+    function onLoss(id){
+      if(!round||id!==round)return{ignored:true};
+      if(handled)return{duplicate:true};handled=true;
+      if(!settings.enabled)return{status:'disabled',seconds:0};
+      const seconds=settings.minutes*60;
+      if(route()==='local'){
+        local.shift(seconds,label);totalCount++;sentCount++;totalSeconds+=seconds;sentSeconds+=seconds;
+        last={roundId:round,seconds,status:'sent',change:String(seconds),route:'local'};publish();
+        return{seconds,status:'sent',change:String(seconds),roundId:id,route:'local'};
+      }
+      records.push({id:round,seconds});totalCount++;totalSeconds+=seconds;last={roundId:round,seconds,status:'pending'};
+      client.flush();publish();
+      return{seconds,status:last.status,roundId:id};
+    }
+    function connect(){return settings.enabled?client.start():false;}
+    function setEnabled(value){settings.enabled=value===true;persist();if(settings.enabled)client.start();else client.stop();publish();}
+    function setMinutes(value){if(!validMinutes(value))return false;settings.minutes=Number(value);persist();publish();return true;}
+    function setTarget(value){if(!TARGETS.includes(value))return false;settings.target=value;persist();publish();return true;}
+    /* 礼物：只在记到自带加班机时按礼物加减表加减；返回加减的秒数 */
+    function onGift(gift){return route()==='local'?local.applyGift(gift):0;}
+    // 自带加班机一变就通知界面；订阅时那一次立即回调跳过（游戏页面这时还没准备好）
+    let localReady=false;local.subscribe(()=>{if(localReady)publish();});localReady=true;
+    return{beginRound,onLoss,connect,setEnabled,setMinutes,setTarget,onGift,route,local,snapshot,stop:()=>client.stop(),setKey:value=>client.setKey(value),
+      pending:()=>records.map(r=>({...r})),testConnection:key=>client.test(key===undefined?undefined:{key})};
+  }
+  root.createOvertimeLink=createOvertimeLink;
+  if(typeof module!=='undefined')module.exports={createOvertimeLink};
+})(typeof window!=='undefined'?window:globalThis);
+</script><script>(function(root){
+ 'use strict';
+ const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
+ const text=(v,n=80)=>typeof v==='string'||typeof v==='number'?String(v).replace(/[\u0000-\u001f\u007f-\u009f]/g,'').trim().slice(0,n):'';
+ const giftKey=v=>text(v).normalize('NFKC').replace(/[^\p{L}\p{N}]/gu,'').toLowerCase();
+ const integer=(v,max=1000000)=>((typeof v==='number')||(typeof v==='string'&&/^\d+$/.test(v.trim())))&&Number.isSafeInteger(Number(v))&&Number(v)>=1&&Number(v)<=max;
+ const first=(...v)=>v.find(x=>x!==undefined&&x!==null);
+ const ignored=reason=>({status:'ignored',reason,increment:0,executions:0,queued:0});
+ function analyzeGift(raw,source='sdk'){
+  if(!object(raw))return ignored('not-object');const d=object(raw.data)?raw.data:raw,g=object(d.gift)?d.gift:d,u=object(d.user)?d.user:{};
+  const type=text(first(raw.type,raw.msgType,raw.method,d.type)).toLowerCase();
+  if((source==='ws'||type)&&!type.includes('gift')&&type!=='2')return ignored('not-gift');
+  const name=text(first(d.giftName,g.giftName,g.name,d.name));if(!name)return ignored('missing-name');
+  const effective=first(d.effectiveGiftCount,g.effectiveGiftCount,raw.effectiveGiftCount);
+  if(effective===undefined&&(d.comboEnd===true||g.comboEnd===true||raw.comboEnd===true))return ignored('combo-end');
+  if(effective===0||effective==='0')return ignored('no-increment');
+  const count=first(effective,d.count,d.giftCount,g.count,g.giftCount,d.comboCount,d.repeatCount,1);if(!integer(count))return ignored('invalid-count');
+  const cumulative=effective===undefined&&first(d.cumulative,g.cumulative,raw.cumulative)===true;
+  const comboId=text(first(d.comboId,g.comboId,raw.comboId),150);if(cumulative&&!comboId)return ignored('missing-combo-id');
+  return{...ignored(''),normalized:{name,count:Number(count),cumulative,comboId,id:text(first(raw.eventId,d.eventId,raw.event_id,d.event_id,raw.msgId,d.msgId),200),actor:text(first(d.nickName,d.nickname,u.nickname,u.nickName,d.userName),30)||'观众',uid:text(first(d.userId,d.uid,u.id,u.uid),120),room:text(first(d.roomId,raw.roomId),100)}};
+ }
+ function normalizeGift(raw,source='sdk'){return analyzeGift(raw,source).normalized||null;}
+ class GameLiveInput{
+  constructor(options){
+   this.options=options;this.env=options.env||root;this.now=options.now||Date.now;this.effects=options.effects.map(e=>({...e}));this.ids=new Set(this.effects.map(e=>e.id));this.key=options.key||'overlay-live-gifts-v1';this.name=options.name||'直播小游戏';
+   this.storage=options.storage;try{if(this.storage===undefined&&typeof document!=='undefined')this.storage=root.localStorage;}catch{}
+   let saved={};try{saved=JSON.parse(this.storage?.getItem(this.key)||'{}')||{};}catch{}if(!object(saved))saved={};saved.rules=Array.isArray(saved.rules)?saved.rules.filter(object).slice(0,100):[];
+   this.config={enabled:saved.enabled!==false,mode:saved.mode==='actions'?'actions':'gifts',forwarding:saved.forwarding===true,port:integer(saved.port,65535)?Number(saved.port):9910};
+   this.rules=this.effects.map(e=>({effect:e.id,gift:text(saved.rules?.find?.(r=>r.effect===e.id)?.gift??e.gift??''),times:integer(saved.rules?.find?.(r=>r.effect===e.id)?.times,20)?Number(saved.rules.find(r=>r.effect===e.id).times):1}));
+   const occupied=new Set();for(const r of this.rules){const k=giftKey(r.gift);if(k&&occupied.has(k))r.gift='';else if(k)occupied.add(k);}
+   this.queue=[];this.maxUnits=options.maxUnits||2000;this.maxRecords=options.maxRecords||100;this.ttl=options.ttl||120000;this.seen=new Map();this.combos=new Map();this.listeners=new Set();this.stats={received:0,actions:0,unmatched:0,executed:0,rejected:0,expired:0,cleared:0,duplicate:0,failed:0};
+   this.running=false;this.timer=null;this.socket=null;this.giftSub=null;this.actionSub=null;this.channel='none';this.last='等待礼物消息';this.serial=0;this.nextAt=0;this.nextConnect=0;this.failures=0;this.inFlight=false;this.epoch=0;this.lastSnapshot='';
+  }
+  pending(){return this.queue.reduce((n,r)=>n+r.count,0);}
+  snapshot(){return{...this.config,running:this.running,channel:this.channel,giftBound:!!this.giftSub,actionBound:!!this.actionSub,queued:this.pending(),inFlight:this.inFlight,stats:{...this.stats},last:this.last,rules:this.rules.map(r=>({...r}))};}
+  subscribe(fn){this.listeners.add(fn);fn(this.snapshot());return()=>this.listeners.delete(fn);}
+  publish(){const s=this.snapshot(),key=JSON.stringify(s);if(key===this.lastSnapshot)return;this.lastSnapshot=key;for(const fn of this.listeners)try{fn(s);}catch{}}
+  save(){try{this.storage?.setItem(this.key,JSON.stringify({...this.config,rules:this.rules}));}catch{}}
+  configure(values){
+   if('mode'in values&&!['gifts','actions'].includes(values.mode)||'port'in values&&!integer(values.port,65535))return false;
+   const routeChanged=values.mode&&values.mode!==this.config.mode,portChanged='port'in values&&Number(values.port)!==this.config.port;
+   for(const k of['enabled','forwarding'])if(k in values)this.config[k]=values[k]===true;
+   if(values.mode)this.config.mode=values.mode;if('port'in values)this.config.port=Number(values.port);
+   if(routeChanged)this.clearQueue('切换规则来源，旧候场已清理');if(portChanged)this.closeSocket();
+   if(!this.config.enabled)this.clearQueue('已停止接收，候场已清理');this.nextConnect=0;this.save();this.tryBind();this.publish();return true;
+  }
+  setRule(effect,{gift,times}){
+   if(!this.ids.has(effect)||!integer(times,20))return{ok:false,error:'每个礼物触发次数需为 1～20 的整数'};
+   gift=text(gift);const k=giftKey(gift);if(gift&&!k)return{ok:false,error:'礼物名需要包含文字或数字'};
+   if(k&&this.rules.some(r=>r.effect!==effect&&giftKey(r.gift)===k))return{ok:false,error:'这个礼物已经绑定了另一种效果'};
+   const r=this.rules.find(r=>r.effect===effect);r.gift=gift;r.times=Number(times);this.save();this.publish();return{ok:true};
+  }
+  fresh(id){if(!id)return true;const now=this.now();if((this.seen.get(id)||0)>now){this.stats.duplicate++;return false;}this.seen.set(id,now+600000);if(this.seen.size>2000)this.seen.delete(this.seen.keys().next().value);return true;}
+  receiveGift(raw,source='sdk',simulation=false){return this.processGift(raw,source,simulation).queued>0;}
+  processGift(raw,source='sdk',simulation=false){
+   if(!this.running)return ignored('stopped');if(!simulation&&!this.config.enabled)return ignored('disabled');
+   // 规则来源是「白曜重工规则动作」时礼物不触发效果，但还要过一遍加班机的礼物加减表
+   if(!simulation&&this.config.mode!=='gifts'&&!this.options.onGift)return ignored('mode');
+   const report=analyzeGift(raw,source),gift=report.normalized;if(!gift)return report;
+   const reject=(reason,status='ignored')=>({...report,status,reason});
+   const id=gift.id?JSON.stringify(['gift',gift.room,gift.id,...(gift.cumulative?[gift.comboId,gift.count]:[])]):'';if(!this.fresh(id)){this.publish();return reject('duplicate','duplicate');}
+   let count=gift.count;
+   if(gift.cumulative){const key=JSON.stringify([gift.room,gift.uid||gift.actor,giftKey(gift.name),gift.comboId]),old=this.combos.get(key);const previous=old&&old.until>this.now()?old.count:0;if(count<=previous)return reject('no-increment');this.combos.set(key,{count,until:this.now()+600000});count-=previous;if(this.combos.size>1000)this.combos.delete(this.combos.keys().next().value);}
+   report.increment=count;
+   if(!simulation)this.stats.received+=count;
+   // 加班机的礼物加减表（只在记到插件自带的加班机时生效）：和效果绑定互不影响，同一个礼物两边都能配
+   let shifted=0;if(!simulation&&this.options.onGift){try{shifted=Number(this.options.onGift({name:gift.name,count,actor:gift.actor}))||0;}catch{}}
+   const shiftText=shifted?`，加班机 ${shifted>0?'+':'−'}${Math.round(Math.abs(shifted)/60)} 分钟`:'';
+   if(!simulation&&this.config.mode!=='gifts'){if(shifted){this.last=`收到 ${gift.name} ×${count}${shiftText}`;this.publish();}return reject('mode');}
+   const rule=this.rules.find(r=>giftKey(r.gift)===giftKey(gift.name)&&r.gift);
+   if(!rule){if(!shifted)this.stats.unmatched+=count;this.last=`收到 ${gift.name} ×${count}${shifted?shiftText:'，未绑定效果'}`;this.publish();return reject(shifted?'overtime':'unmatched');}
+   return this.processEffect(report,{kind:rule.effect,count:count*rule.times,actor:gift.actor,gift:gift.name,source:simulation?'manual':'gift'},rule.times);
+  }
+  receiveAction(raw){return this.processAction(raw).queued>0;}
+  processAction(raw){
+   if(!this.running)return ignored('stopped');if(!this.config.enabled)return ignored('disabled');if(this.config.mode!=='actions')return ignored('mode');
+   if(!object(raw))return ignored('not-object');if(!this.ids.has(raw.action))return ignored('unknown-action');
+   const value=raw.value??1,repeat=raw.repeat??1;if(!integer(value)||!integer(repeat)||!integer(Number(value)*Number(repeat)))return ignored('invalid-count');
+   const id=text(first(raw.actionId,raw.eventId),200),actor=text(raw.event?.user?.nickname,30)||'观众',count=Number(value)*Number(repeat);
+   const report={...ignored(''),normalized:{action:raw.action,id,actor,count,value:Number(value),repeat:Number(repeat)}};
+   if(!this.fresh(id?'action:'+id:'')){this.publish();return{...report,status:'duplicate',reason:'duplicate'};}
+   this.stats.actions+=count;report.increment=count;return this.processEffect(report,{kind:raw.action,count,actor,source:raw.preview?'preview':'action'},1);
+  }
+  processEffect(report,spec,multiplier){
+   this.expire();const before=this.pending();this.enqueue(spec);const queued=this.pending()-before;
+   return{...report,status:queued===spec.count?'accepted':queued?'partial':'ignored',reason:queued<spec.count?'capacity':'',effect:spec.kind,multiplier,executions:spec.count,queued};
+  }
+  clearMessageTests(){this.messageTests={seen:new Map(),combos:new Map()};}
+  diagnoseMessage(input,channel,{receive=false,trigger=false}={}){
+   if(typeof input!=='string')return ignored('json');if(input.length>65536)return ignored('too-large');
+   let raw;try{raw=JSON.parse(input);}catch{return ignored('json');}
+   if(!['songlan-port','baiyao-port','baiyao-sdk','baiyao-action'].includes(channel))return ignored('channel');
+   // A receiver with no start(), storage or host APIs shares the production path,
+   // but its deduplication and combo state can never consume real gift IDs.
+   const shadow=new GameLiveInput({effects:this.effects,storage:null,env:{},now:this.now,maxUnits:this.maxUnits,maxRecords:this.maxRecords,ttl:this.ttl});
+   shadow.running=this.running;shadow.config={...this.config};shadow.rules=this.rules.map(r=>({...r}));
+   shadow.seen=new Map(this.messageTests?.seen);shadow.combos=new Map(this.messageTests?.combos);
+   shadow.queue=this.queue.filter(r=>r.expires>this.now()).map(r=>({...r}));
+   const report=channel==='baiyao-action'?shadow.processAction(raw):shadow.processGift(raw,channel.endsWith('-port')?'ws':'sdk');
+   if(receive)this.messageTests={seen:shadow.seen,combos:shadow.combos};
+   const result={...report,channel,received:receive,admitted:report.queued,queued:0};
+   if(receive&&trigger&&report.executions){
+    this.expire();const before=this.pending();this.enqueue({kind:report.effect,count:report.executions,actor:report.normalized.actor,gift:report.normalized.name,source:'manual'});result.queued=this.pending()-before;
+   }
+   return result;
+  }
+  enqueue(spec){
+   if(!this.ids.has(spec.kind)||!integer(spec.count,20000000))return false;
+   this.expire();const available=Math.max(0,this.maxUnits-this.pending()),accepted=this.queue.length<this.maxRecords?Math.min(available,spec.count):0;
+   this.stats.rejected+=spec.count-accepted;
+   if(accepted)this.queue.push({...spec,count:accepted,actor:text(spec.actor,30)||'观众',expires:this.now()+this.ttl,id:++this.serial});
+   this.last=`${spec.source==='manual'?'本地测试':spec.source==='auto'?'自动整活':'@'+text(spec.actor,30)} · ${this.effects.find(e=>e.id===spec.kind).label}，排队 ${accepted} 次${accepted<spec.count?`，队列已满，未接纳 ${spec.count-accepted} 次`:''}`;this.publish();return accepted>0;
+  }
+  simulateEffect(kind,source='manual'){return this.enqueue({kind,count:1,actor:'本地测试',source});}
+  simulateGift(effect,count=1){const r=this.rules.find(r=>r.effect===effect);if(!r?.gift||!integer(count))return false;return this.receiveGift({giftName:r.gift,count,nickName:'本地测试',eventId:'test-'+this.now()+'-'+(++this.serial)},'sdk',true);}
+  expire(){const now=this.now();let expired=0;this.queue=this.queue.filter(r=>{if(r.expires<=now){expired+=r.count;return false;}return true;});if(expired){this.stats.expired+=expired;this.last=`${expired} 次候场已超过 120 秒，已过期`;this.publish();}}
+  clearQueue(message='旧候场已清理'){this.stats.cleared+=this.pending();this.queue=[];this.epoch++;this.nextAt=0;this.last=message;this.publish();}
+  async tick(){
+   this.expire();if(!this.running||this.inFlight||!this.queue.length||this.now()<this.nextAt||!this.options.canRun())return false;
+   const record=this.queue[0],token=this.epoch;record.count--;if(!record.count)this.queue.shift();this.inFlight=true;this.publish();
+   try{const accepted=await this.options.execute({...record,count:1});
+    if(accepted===false){if(token===this.epoch&&record.expires>this.now()){const current=this.queue.find(r=>r.id===record.id);if(current)current.count++;else this.queue.unshift({...record,count:1});}else this.stats.cleared++;}
+    else{this.stats.executed++;this.last=`${record.source==='manual'?'本地测试':record.source==='auto'?'自动整活':'@'+record.actor} · 已执行 ${this.effects.find(e=>e.id===record.kind).label}`;}
+   }catch{this.stats.failed++;this.last='效果执行异常，这一次未自动重试';}
+   finally{this.inFlight=false;this.nextAt=this.now()+900;this.publish();}return true;
+  }
+  start(){if(this.running)return;this.running=true;this.tryBind();this.timer=this.env.setInterval(()=>this.tryBind(),1500);this.publish();}
+  tryBind(){
+   if(!this.running)return;
+   const candidate=typeof this.env.SonglanPlugin?.onGift==='function'?this.env.SonglanPlugin:typeof this.env.BaiyaoPlugin?.onGift==='function'?this.env.BaiyaoPlugin:null;
+   if(candidate&&(!this.giftSub||this.giftSub.sdk!==candidate)){
+    // Baiyao exposes the same gift list through both SDK names. Bind one only.
+    const old=this.giftSub,binding={sdk:candidate,off:null};try{binding.off=candidate.onGift(raw=>{if(this.running&&this.giftSub===binding)this.receiveGift(raw,'sdk');});this.giftSub=binding;if(typeof old?.off==='function')old.off();}catch{}
+   }
+   const baiyao=this.env.BaiyaoPlugin;
+   if(typeof baiyao?.onAction==='function'&&(!this.actionSub||this.actionSub.sdk!==baiyao)){
+    const old=this.actionSub,binding={sdk:baiyao,off:null};try{binding.off=baiyao.onAction(raw=>{if(this.running&&this.actionSub===binding)this.receiveAction(raw);});this.actionSub=binding;if(typeof old?.off==='function')old.off();}catch{}
+   }
+   if(this.giftSub){this.closeSocket();this.channel=this.env.BaiyaoPlugin?'baiyao':'songlan';}
+   else if(this.config.enabled&&this.config.forwarding&&this.config.mode==='gifts'){
+    if(this.socket&&this.socket.readyState===0&&this.now()-this.socketStarted>6000)this.failSocket(this.socket);
+    if(!this.socket&&this.now()>=this.nextConnect)this.openSocket();
+   }else{this.closeSocket();this.channel='none';}
+   this.publish();
+  }
+  openSocket(){
+   let socket;try{socket=new this.env.WebSocket(`ws://localhost:${this.config.port}`);}catch{this.channel='waiting';this.nextConnect=this.now()+10000;return;}
+   this.socket=socket;this.socketStarted=this.now();this.channel='connecting';const current=()=>this.running&&this.socket===socket&&!this.giftSub&&this.config.enabled&&this.config.forwarding&&this.config.mode==='gifts';
+   socket.onopen=()=>{if(!current())return;this.channel='forwarder';this.failures=0;try{socket.send(JSON.stringify({action:'identify',module:this.name}));}catch{this.failSocket(socket);}this.publish();};
+   socket.onmessage=e=>{if(!current()||typeof e.data!=='string'||e.data.length>65536)return;try{const raw=JSON.parse(e.data);this.receiveGift(raw,'ws');}catch{}};
+   socket.onerror=()=>this.failSocket(socket);socket.onclose=()=>this.failSocket(socket);
+  }
+  failSocket(socket){if(this.socket!==socket)return;this.socket=null;try{socket.close();}catch{}this.channel='waiting';this.nextConnect=this.now()+[3000,5000,10000][Math.min(this.failures++,2)];this.publish();}
+  closeSocket(){const old=this.socket;this.socket=null;if(old)try{old.close();}catch{}}
+  stop(){this.running=false;if(this.timer!==null)this.env.clearInterval(this.timer);this.timer=null;this.closeSocket();for(const k of['giftSub','actionSub'])if(typeof this[k]?.off==='function'){try{this[k].off();}catch{}this[k]=null;}this.clearQueue('页面已离开，候场已清理');this.channel='none';this.publish();}
+ }
+ root.GameLiveInput=GameLiveInput;if(typeof module!=='undefined')module.exports={GameLiveInput,normalizeGift,giftKey};
+})(typeof window!=='undefined'?window:globalThis);
+</script><script>(function(root){
+ 'use strict';
+ root.makeGameLive=function(kind,handlers){
+  const gifts=kind==='match3'?{ice:'玫瑰',chain:'棒棒糖',fog:'墨汁炸弹',chaos:'亲吻',curse:'口红示爱',challenge:'大厨煎蛋',bomb:'小心心',rainbow:'为你撑伞',cleanse:'热气球'}:{garbage:'玫瑰',reverse:'棒棒糖',rush:'抖音',fog:'墨汁炸弹',seal:'口红示爱',challenge:'大厨煎蛋',bomb:'小心心',cleanse:'为你撑伞'};
+  return new GameLiveInput({key:kind+'-live-gifts-v1',name:kind==='match3'?'萌宠消消乐':'俄罗斯方块',effects:[...document.querySelectorAll('[data-effect]')].map(n=>({id:n.dataset.effect,label:n.querySelector('strong').textContent,gift:gifts[n.dataset.effect]||''})),...handlers});
+ };
+ function mountMessageTest(parent,live,make){
+  const box=make('details','live-message-test');box.id='live-message-test';box.append(make('summary','','宿主消息解析测试'));parent.append(box);
+  box.append(make('p','broadcast-note','模拟收到菘蓝或白曜端口的消息，使用正式接收逻辑检查。本地测试不会向真实端口广播；通过测试不代表真实端口已经连接。'));
+  const sourceLabel=make('label','live-test-source'),source=make('select');source.id='live-test-source';
+  for(const[value,title]of[['songlan-port','菘蓝端口 · 礼物消息'],['baiyao-port','白曜端口 · 礼物消息'],['baiyao-sdk','白曜 SDK · 礼物回调'],['baiyao-action','白曜规则 · 动作回调']]){const o=make('option','',title);o.value=value;source.append(o);}
+  sourceLabel.append(make('span','','模拟来源'),source);box.append(sourceLabel);
+  const rawLabel=make('label','live-test-raw-label','消息原文（JSON，可粘贴）');rawLabel.htmlFor='live-test-raw';const raw=make('textarea','live-test-raw');raw.id='live-test-raw';raw.maxLength=65536;raw.spellcheck=false;raw.wrap='soft';raw.rows=9;box.append(rawLabel,raw);
+  const samples=make('div','live-test-tools'),sample=make('button','','载入新样例'),clear=make('button','','清空测试记录');sample.type=clear.type='button';sample.id='live-test-sample';clear.id='live-test-clear';samples.append(sample,clear);box.append(samples);
+  const hint=make('p','broadcast-note');hint.id='live-test-hint';box.append(hint);
+  const triggerLabel=make('label','live-test-trigger'),trigger=make('input');trigger.type='checkbox';trigger.id='live-test-trigger';triggerLabel.append(trigger,make('span','','同时触发棋盘效果'));box.append(triggerLabel);
+  box.append(make('p','broadcast-note','默认只检查。勾选后点击「模拟收到」才会加入当前棋盘队列，并按本局原有规则结算加班。'));
+  const actions=make('div','live-test-tools'),check=make('button','','解析检查'),receive=make('button','broadcast-primary','模拟收到');check.type=receive.type='button';check.id='live-test-check';receive.id='live-test-receive';actions.append(check,receive);box.append(actions);
+  const result=make('div','live-test-result');result.id='live-test-result';result.setAttribute('role','status');result.setAttribute('aria-live','polite');box.append(result);
+  const reasons={json:'JSON 格式不正确，请检查引号、逗号和括号。','too-large':'消息超过 65,536 个字符。','not-object':'消息必须是一个 JSON 对象。','not-gift':'这不是礼物消息；端口消息需要 type: "gift"（也支持现有的 gift 类型标记）。','missing-name':'没有找到礼物名称 giftName 或 gift.name。','invalid-count':'数量必须是 1～1,000,000 的整数；动作的 value × repeat 也需在此范围。','no-increment':'本条没有新增数量，或累计数未超过已测试的数量。','combo-end':'这是连击结束消息，没有新增数量，不再触发。','missing-combo-id':'累计消息缺少 comboId，无法可靠计算增量。',unmatched:'已识别礼物，但没有匹配下方的礼物绑定。',duplicate:'相同消息 ID 已模拟接收过，已拦截重复触发。',disabled:'接收开关已关闭；开启「接收真实礼物 / 动作」后再测。',mode:'当前规则来源与测试消息不一致。礼物消息选「插件内礼物绑定」，动作回调选「白曜重工规则动作」。',stopped:'接收器当前未运行。',capacity:'当前候场队列已达上限，部分或全部效果未接纳。','unknown-action':'动作 ID 未匹配本插件效果，请查看下方的白曜动作 ID。',channel:'未知测试来源。'};
+  let sequence=0;
+  const idle=message=>{result.dataset.status='idle';result.replaceChildren(make('p','',message));};
+  function loadSample(){
+   const rule=live.rules.find(r=>r.gift)||live.rules[0],id='local-test-'+Date.now()+'-'+(++sequence),white=source.value!=='songlan-port';
+   const payload=source.value==='baiyao-action'?{action:rule.effect,value:1,repeat:2,actionId:id,event:{user:{nickname:'白曜测试观众'}}}:{type:'gift',eventId:id,nickName:white?'白曜测试观众':'菘蓝测试观众',userId:'local-test-viewer',giftName:rule.gift||'玫瑰',count:2};
+   raw.value=JSON.stringify(payload,null,2);idle('样例已载入。可以直接测试，也可以粘贴自己的原始消息。');
+   hint.textContent=source.value==='baiyao-action'?'动作样例：value × repeat 为执行次数。请把规则来源切到「白曜重工规则动作」。':(white?'白曜兼容礼物消息中的 count 已是本次新增数量。':'菘蓝端口样例按本次新增数量 count 解析。')+' 连点「模拟收到」可检查去重；「载入新样例」会生成新 ID。';
+  }
+  function run(receive){
+   const report=live.diagnoseMessage(raw.value,source.value,{receive,trigger:trigger.checked}),gift=report.normalized;
+   result.dataset.status=report.status;result.dataset.reason=report.reason;result.replaceChildren();
+   const title=report.status==='accepted'?(receive?'模拟接收成功':'可以识别并匹配'):report.status==='partial'?'已识别，队列只能接纳部分效果':report.status==='duplicate'?'已忽略：重复消息':'本条消息未触发效果';
+   result.append(make('strong','live-test-title',title));
+   if(report.reason)result.append(make('p','',reasons[report.reason]||report.reason));
+   if(gift){
+    const fields=make('dl','live-test-fields'),add=(name,value)=>fields.append(make('dt','',name),make('dd','',String(value)));
+    add(gift.action?'动作 ID':'礼物名称',gift.action||gift.name);add('观众',gift.actor);add('消息 ID',gift.id||'未提供（无法按 ID 去重）');
+    add('解析数量',gift.action?`${gift.value} × ${gift.repeat} = ${gift.count}`:`${gift.count}（${gift.cumulative?'累计数量':'本次增量'}）`);add('本次新增',report.increment);add('匹配效果',live.effects.find(e=>e.id===report.effect)?.label||'—');
+    if(!gift.action&&report.multiplier)add('每件触发',report.multiplier+' 次');
+    add('应触发',report.executions+' 次');add('棋盘入队',report.queued+' 次');result.append(fields);
+   }
+   result.append(make('p','live-test-foot',receive?(trigger.checked?'已按当前设置尝试加入棋盘；暂停或候场时等待游戏继续。':'仅更新测试去重和连击记录，棋盘未变。'):'只读检查，不保存测试记录，也不触发棋盘。'));
+  }
+  sample.onclick=loadSample;source.onchange=loadSample;check.onclick=()=>run(false);receive.onclick=()=>run(true);clear.onclick=()=>{live.clearMessageTests();idle('测试去重与连击记录已清空，可以重新测试同一条消息。已入队效果和真实礼物记录不受影响。');};
+  raw.addEventListener('input',()=>idle('消息已修改，重新解析后查看结果。'));loadSample();
+ }
+ root.mountLiveSettings=function(parent,live){
+  const make=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text)n.textContent=text;return n;};
+  const section=make('div','live-settings');section.id='live-settings';parent.append(section);
+  const label=(caption,input)=>{const n=make('label','broadcast-field');n.append(make('span','',caption),input);section.append(n);return input;};
+  const receive=make('input');receive.type='checkbox';receive.id='live-receive';label('接收真实礼物 / 动作',receive);receive.onchange=()=>live.configure({enabled:receive.checked});
+  const mode=make('select');mode.id='live-mode';for(const[v,t]of[['gifts','插件内礼物绑定'],['actions','白曜重工规则动作']]){const o=make('option','',t);o.value=v;mode.append(o);}label('规则来源',mode);mode.onchange=()=>live.configure({mode:mode.value});
+  section.append(make('p','broadcast-note','菘蓝和白曜都可直接使用「插件内礼物绑定」，与抓萌宠一样接收宿主礼物；不用另外配置白曜规则。两种来源互斥，避免重复触发。'));
+  const status=make('p','live-connection');status.id='live-status';status.setAttribute('role','status');const summary=make('p','broadcast-note');summary.id='live-counts';const latest=make('p','live-latest');latest.id='live-latest';latest.setAttribute('role','status');section.append(status,summary,latest);
+  mountMessageTest(section,live,make);
+  const rules=make('div','live-bindings');rules.id='live-bindings';section.append(rules);
+  const head=make('div','live-binding-heading');head.append(make('span','','效果'),make('span','','礼物名称（留空关闭）'),make('span','','每个次数'),make('span','','测试'));rules.append(head);
+  const feedback=make('p','live-feedback');feedback.id='live-feedback';feedback.setAttribute('role','status');
+  const inputs=new Map();
+  for(const effect of live.effects){
+   const line=make('div','live-binding-row');line.dataset.binding=effect.id;const name=make('strong','',effect.label);const gift=make('input');gift.type='text';gift.maxLength=80;gift.placeholder='填写礼物名称';gift.setAttribute('aria-label',effect.label+'绑定礼物');
+   const times=make('input');times.type='number';times.min=1;times.max=20;times.step=1;times.setAttribute('aria-label',effect.label+'每个礼物触发次数');
+   const test=make('button','live-try','▶');test.type='button';test.setAttribute('aria-label','模拟绑定礼物触发'+effect.label);
+   const commit=()=>{const result=live.setRule(effect.id,{gift:gift.value,times:times.value});gift.setAttribute('aria-invalid',String(!result.ok));times.setAttribute('aria-invalid',String(!result.ok));feedback.textContent=result.ok?'礼物绑定已保存。':result.error;return result.ok;};
+   gift.onchange=commit;times.onchange=commit;test.onclick=()=>{if(commit())feedback.textContent=live.simulateGift(effect.id)?'模拟礼物已按绑定规则加入队列。':'先为这个效果填写礼物名称。';};
+   line.append(name,gift,times,test);rules.append(line);inputs.set(effect.id,{gift,times,test});
+  }
+  section.append(feedback);
+  const connection=make('details','live-connection-settings');connection.append(make('summary','','接入方式、本机转发与白曜动作 ID'));section.append(connection);
+  connection.append(make('p','broadcast-note','与抓萌宠 V1.0.41 一致：优先订阅 SonglanPlugin.onGift（白曜也提供这个兼容接口），缺少时再使用 BaiyaoPlugin.onGift。导入宿主后自动接入；单独打开网页或作为 OBS 本地文件时，再手动开启本机礼物转发。'));
+  const wsLabel=make('label','broadcast-field');const forwarding=make('input');forwarding.type='checkbox';forwarding.id='live-forwarding';wsLabel.append(make('span','','启用本机礼物转发'),forwarding);connection.append(wsLabel);forwarding.onchange=()=>live.configure({forwarding:forwarding.checked});
+  const portLabel=make('label','broadcast-field'),port=make('input');port.id='live-port';port.type='number';port.min=1;port.max=65535;portLabel.append(make('span','','礼物转发端口'),port);connection.append(portLabel);
+  const retry=make('button','','重新尝试接入');retry.type='button';port.onchange=()=>{if(!live.configure({port:port.value})){feedback.textContent='礼物端口需为 1～65535 的整数。';port.value=live.snapshot().port;}};retry.onclick=()=>{if(live.configure({port:port.value})){live.closeSocket();live.nextConnect=0;live.tryBind();}};connection.append(retry);
+  connection.append(make('p','broadcast-note','当前宿主默认使用 9910，旧版可用 10030；按宿主实际设置填写。这个端口只接礼物；加班走白曜加班机，不用这里设。SDK 出现后会关闭转发连接，只保留一条礼物通道。'));
+  connection.append(make('p','broadcast-note','白曜规则模式：在白曜为此 HTML 插件配置规则，插件动作填下列 ID；动作数值 × repeat 为执行次数。插件内礼物绑定模式下不会再执行白曜规则动作。'));
+  const ids=make('dl','live-action-ids');for(const e of live.effects)ids.append(make('dt','',e.label),make('dd','',e.id));connection.append(ids);
+  connection.append(make('p','broadcast-note','暂停、消除结算和等待开始时先候场，最多排队 2,000 次、100 条；超过 120 秒未执行的候场会过期并计数。重开清理旧候场，刷新不重放。超出容量会明确显示未接纳次数。'));
+  const clear=make('button','','清空礼物候场');clear.type='button';clear.onclick=()=>live.clearQueue('手动清空礼物候场');connection.append(clear);
+  live.subscribe(state=>{
+   receive.checked=state.enabled;mode.value=state.mode;forwarding.checked=state.forwarding;if(document.activeElement!==port)port.value=state.port;
+   const channel={none:'未检测到礼物 SDK',connecting:`连接本机礼物转发 ${state.port}…`,waiting:`等待本机礼物转发 ${state.port}`,forwarder:`本机礼物转发已连接（${state.port}）`,songlan:'菘蓝礼物 SDK 已绑定',baiyao:'白曜礼物 SDK 已绑定'}[state.channel]||'等待接入';
+   status.textContent=!state.enabled?'真实礼物接收已关闭':state.mode==='actions'?(state.actionBound?'白曜规则动作已订阅':'等待白曜规则动作接口'):channel;status.dataset.connected=String(state.enabled&&(state.mode==='actions'?state.actionBound:state.giftBound||state.channel==='forwarder'));
+   summary.textContent=`${state.mode==='actions'?`收到动作 ${state.stats.actions} 次`:`收到礼物 ${state.stats.received} 件`} · 已执行 ${state.stats.executed} 次 · 候场 ${state.queued} 次${state.inFlight?' · 执行中':''}${state.stats.unmatched?` · 未绑定 ${state.stats.unmatched} 件`:''}${state.stats.rejected?` · 未接纳 ${state.stats.rejected} 次`:''}${state.stats.expired?` · 已过期 ${state.stats.expired} 次`:''}${state.stats.cleared?` · 已清理 ${state.stats.cleared} 次`:''}${state.stats.failed?` · 执行异常 ${state.stats.failed} 次`:''}`;
+   latest.textContent=state.last;
+   rules.classList.toggle('inactive',state.mode==='actions');for(const rule of state.rules){const x=inputs.get(rule.effect);if(document.activeElement!==x.gift&&x.gift.getAttribute('aria-invalid')!=='true')x.gift.value=rule.gift;if(document.activeElement!==x.times&&x.times.getAttribute('aria-invalid')!=='true')x.times.value=rule.times;}
+  });
+ };
+})(window);
+</script><script>(function(root){
+ 'use strict';
+ root.setupBroadcastUI=function(api){
+  const $=s=>document.querySelector(s),kind=api.kind,isMatch=kind==='match3',key=kind+'-broadcast-layout-v1';
+  const make=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e;};
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const fresh=()=>({x:.04,y:.08,scale:1});let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{}
+  const clean=v=>({x:Number.isFinite(v?.x)?clamp(v.x,0,1):.04,y:Number.isFinite(v?.y)?clamp(v.y,0,1):.08,scale:Number.isFinite(v?.scale)?clamp(v.scale,.5,1.8):1});
+  const config={landscape:clean(saved.landscape),portrait:clean(saved.portrait),showHud:saved.showHud!==false,showTouch:typeof saved.showTouch==='boolean'?saved.showTouch:matchMedia('(pointer:coarse)').matches,showNext:saved.showNext!==false};
+  const orientation=()=>innerWidth>=innerHeight?'landscape':'portrait';let open=false,editing=false,previousPause=false,drag=null,scale=1,fadeTimer=null;
+  const source=$('.app');source.classList.add('broadcast-source');document.body.classList.add('broadcast-mode',isMatch?'broadcast-match':'broadcast-blocks');
+  const stage=make('section','broadcast-stage');stage.id='broadcast-stage';stage.setAttribute('aria-label',isMatch?'消消乐直播棋盘':'俄罗斯方块直播棋盘');document.body.append(stage);
+  const hud=make('div','broadcast-hud');stage.append(hud);
+  const metric=(name)=>{const e=make('span','broadcast-metric');e.append(make('small','',name));const b=make('b','','0');e.append(b);hud.append(e);return b;};
+  const score=metric(isMatch?'积分':'得分'),secondary=metric(isMatch?'收分':'消行');
+  let nextPreview=null;if(!isMatch){const next=make('span','broadcast-next');next.append(make('small','','下一块'));nextPreview=make('canvas');nextPreview.width=88;nextPreview.height=72;next.append(nextPreview);hud.append(next);}
+  const effects=make('div','broadcast-effect');effects.hidden=true;stage.append(effects);
+  const board=$('.board-frame');stage.append(board);
+  const hidden=make('div','broadcast-store');hidden.hidden=true;document.body.append(hidden);
+  if(isMatch){for(const q of['.billing-hud','.hud','#prank-status']){const e=$(q);if(e)hidden.append(e);}}
+  else{for(const q of['.board-top','.board-bottom'])hidden.append($(q));}
+  const touch=!isMatch?$('.touch-controls'):null;if(touch)stage.append(touch);
+  const dragHandle=make('button','broadcast-drag','拖动棋盘');dragHandle.type='button';dragHandle.setAttribute('aria-label','拖动棋盘位置');stage.append(dragHandle);
+  const resizeHandle=make('button','broadcast-resize','↘');resizeHandle.type='button';resizeHandle.setAttribute('aria-label','拖动缩放棋盘');stage.append(resizeHandle);
+  const gear=make('button','broadcast-gear');gear.id='broadcast-gear';gear.type='button';gear.title='设置（S / F2）';gear.setAttribute('aria-label','打开设置');gear.setAttribute('aria-expanded','false');gear.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m9 3-.7 2.2-2 .9L4 5.6 2.4 8.4 4 10.1v2.3l-1.6 1.8L4 17l2.3-.5 2 .9L9 20h3l.8-2.6 2-.9 2.3.5 1.6-2.8-1.6-1.8v-2.3l1.6-1.7-1.6-2.8-2.3.5-2-.9L12 3Z"/><circle cx="10.5" cy="11.5" r="3"/></svg>';document.body.append(gear);
+  const panel=make('aside','broadcast-settings');panel.id='broadcast-settings';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-label',(isMatch?'消消乐':'俄罗斯方块')+'设置');document.body.append(panel);
+  const close=make('button','broadcast-close','×');close.type='button';close.setAttribute('aria-label','关闭设置');panel.append(close,make('h2','',`${isMatch?'消消乐':'俄罗斯方块'} · 设置`),make('p','broadcast-lead','直播画面只留棋盘。设置修改即时生效。'));
+  function group(title){const s=make('section','broadcast-section');s.append(make('h3','',title));panel.append(s);return s;}
+  function move(selector,to){const e=$(selector);if(e)to.append(e);return e;}
+  function row(parent,label,control,hint){const r=make('label','broadcast-field');r.append(make('span','',label),control);parent.append(r);if(hint)parent.append(make('p','broadcast-note',hint));return control;}
+  function button(text,fn,parent,main=false){const b=make('button',main?'broadcast-primary':'',text);b.type='button';b.onclick=fn;parent.append(b);return b;}
+  const layout=group('① 主播位置与棋盘布局');
+  layout.append(make('p','broadcast-note','把棋盘放到主播身旁。横屏、竖屏分别保存，平时锁定，调整时暂停游戏。'));
+  const orient=make('p','broadcast-orientation');layout.append(orient);
+  const presets=make('div','broadcast-row');layout.append(presets);
+  for(const[name,pos]of[['主播在右',{x:.03,y:.08}],['主播在左',{x:.97,y:.08}],['主播在下',{x:.04,y:.02}]])button(name,()=>{Object.assign(config[orientation()],pos);apply();persist();},presets);
+  const map=make('div','broadcast-map');map.setAttribute('aria-label','棋盘位置预览');const free=make('span','broadcast-map-free','留给主播');const mapBoard=make('i','broadcast-map-board');map.append(free,mapBoard);layout.append(map);
+  const layoutButtons=make('div','broadcast-row');layout.append(layoutButtons);button('在画面上拖动 / 缩放',startEditing,layoutButtons,true);button('恢复当前方向布局',()=>{config[orientation()]=fresh();apply();persist();},layoutButtons);
+  const sliders={};for(const[id,label,min,max,step]of[['x','水平位置',0,100,1],['y','垂直位置',0,100,1],['scale','棋盘大小',50,180,1]]){
+    const wrap=make('span','broadcast-slider');const input=make('input');input.type='range';input.min=min;input.max=max;input.step=step;input.id='layout-'+id;input.setAttribute('aria-label',label);const output=make('output');wrap.append(input,output);row(layout,label,wrap);sliders[id]={input,output};input.oninput=()=>{config[orientation()][id]=Number(input.value)/100;apply(false);persist();};
+  }
+  const layoutNote=make('p','broadcast-note','布局自动保存。移动或缩放窗口时，棋盘会保持在画面内。');layout.append(layoutNote);
+  const gameplay=group(isMatch?'② 游戏、收分与加班':'② 游戏与失败加班');
+  if(isMatch)move('.billing-settings',gameplay);else move('.overtime-card',gameplay);
+  const controls=make('div','broadcast-row broadcast-game-controls');gameplay.append(controls);
+  if(!isMatch)button('开始 / 继续',()=>{api.start();setOpen(false);},controls,true);
+  const pause=move('#pause',controls);pause.setAttribute('aria-label','暂停或继续游戏');pause.title='暂停 / 继续';
+  if(isMatch){pause.replaceChildren(document.createTextNode('暂停 / 继续'));move('#hint',controls);move('#shuffle',controls);}
+  move('#restart',controls);
+  gameplay.append(make('p','broadcast-note',isMatch?'暂停会冻结收分倒计时；重置棋盘保留积分和收分周期。':'方向键移动，↑ 旋转，空格落地，C 暂存，P 暂停。'));
+  const interactions=group('③ 礼物与互动');
+  interactions.append(make('p','broadcast-note','菘蓝 / 白曜礼物接入与绑定。单独试玩和真实消息共用执行队列。'));
+  if(api.live)root.mountLiveSettings(interactions,api.live);
+  if(isMatch)move('#auto-prank',interactions);else move('.storm-card',interactions);
+  const manual=make('details','live-manual-effects');manual.append(make('summary','','单独测试效果'));interactions.append(manual);
+  const gifts=move(isMatch?'.gift-grid':'#effect-buttons',manual);gifts.classList.add('broadcast-effect-list');
+  for(const b of gifts.querySelectorAll('[data-effect]')){const title=b.querySelector('strong')?.textContent||'',description=b.querySelector('small')?.textContent||'';b.replaceChildren(make('strong','',title),make('small','',description),make('span','broadcast-play','▶'));b.setAttribute('aria-label','测试'+title);}
+  const display=group('④ 声音与画面');
+  const soundWrap=make('div','broadcast-field');soundWrap.append(make('span','','游戏音效'));const sound=move('#sound',soundWrap);soundWrap.append(make('small','','点击切换'));display.append(soundWrap);
+  const previewWrap=make('div','broadcast-field');previewWrap.append(make('span','','预览底色'));const preview=move(isMatch?'#transparent':'#preview',previewWrap);preview.classList.remove('icon-button','icon-btn');preview.classList.add('broadcast-toggle');preview.setAttribute('role','switch');preview.setAttribute('aria-label','预览底色');preview.title='只用于预览，默认透明';
+  function setPreview(active){document.body.classList.toggle('broadcast-preview',active);preview.textContent=active?'已开启':'已关闭';preview.setAttribute('aria-pressed',String(active));preview.setAttribute('aria-checked',String(active));}
+  preview.onclick=()=>setPreview(!document.body.classList.contains('broadcast-preview'));display.append(previewWrap);
+  function check(label,keyName){const input=make('input');input.type='checkbox';input.checked=config[keyName];input.id='display-'+keyName;row(display,label,input);input.onchange=()=>{config[keyName]=input.checked;apply();persist();};}
+  check('显示精简状态栏','showHud');if(!isMatch){check('显示下一块预告','showNext');check('显示触屏操作按键','showTouch');}
+  display.append(make('p','broadcast-note','页面默认透明。预览底色只在本次打开时使用，不保存到直播布局。'));
+  const advanced=make('details','broadcast-advanced');advanced.append(make('summary','','高级设置 · 统计与记录'));panel.append(advanced);
+  if(isMatch){move('.hud',advanced);move('.billing-hud',advanced);move('#prank-status',advanced);move('.goals',advanced);move('.activity',advanced);}
+  else{move('.stats',advanced);move('.piece-rail',advanced);move('.status-section',advanced);move('#activity',advanced);move('.board-top',advanced);move('.board-bottom',advanced);}
+  panel.append(make('p','broadcast-footer','S / F2 打开设置 · Esc 或点击外面关闭'));
+  const guide=make('div','broadcast-layout-guide');guide.hidden=true;guide.innerHTML='<div class="broadcast-safe-area"><span>留给主播的位置<br><small>仅布局编辑时显示</small></span></div><div class="broadcast-edit-bar"><span>拖动棋盘调整位置 · 拖右下角缩放</span><button type="button" id="layout-done">完成布局</button></div>';document.body.append(guide);const safe=guide.querySelector('.broadcast-safe-area');guide.querySelector('button').onclick=finishEditing;
+  function persist(){try{localStorage.setItem(key,JSON.stringify(config));layoutNote.textContent='布局已保存，横屏和竖屏互不影响。';}catch{layoutNote.textContent='本次布局已应用；当前浏览器未允许保存。';}}
+  function apply(sync=true){
+    const o=orientation(),c=config[o],w=innerWidth,h=innerHeight,base=isMatch?560:300;
+    stage.style.width=base+'px';stage.dataset.hud=String(config.showHud);stage.dataset.touch=String(!isMatch&&config.showTouch);stage.dataset.next=String(config.showNext);
+    const naturalHeight=stage.offsetHeight||base;const fit=Math.min(1,(w*(o==='portrait'?.73:.44))/base,h*(o==='portrait'?.48:.86)/naturalHeight);
+    scale=Math.max(.1,Math.min(fit*c.scale,(w-20)/base,(h-20)/naturalHeight));
+    stage.style.setProperty('--stage-scale',String(scale));stage.dataset.compact=String(base*scale<330);
+    for(let n=0;n<3&&stage.offsetHeight*scale>h-20;n++){scale=Math.max(.1,(h-22)/stage.offsetHeight);stage.style.setProperty('--stage-scale',String(scale));}
+    stage.dataset.tiny=String(base*scale<220);
+    const width=base*scale,height=stage.offsetHeight*scale,availableX=Math.max(0,w-width-20),availableY=Math.max(0,h-height-20);
+    stage.style.transform=`scale(${scale})`;stage.style.left=(10+availableX*c.x)+'px';stage.style.top=(10+availableY*c.y)+'px';
+    orient.textContent=`当前：${o==='portrait'?'竖屏':'横屏'}布局 · 棋盘 ${Math.round(width)} × ${Math.round(height)}`;
+    mapBoard.style.cssText=`left:${(10+availableX*c.x)/w*100}%;top:${(10+availableY*c.y)/h*100}%;width:${width/w*100}%;height:${height/h*100}%`;
+    map.style.aspectRatio=String(w/h);map.style.width=Math.min(480,132*w/h)+'px';map.style.maxHeight='132px';
+    if(sync)for(const id of['x','y','scale'])sliders[id].input.value=Math.round(c[id]*100);
+    for(const id of['x','y','scale'])sliders[id].output.textContent=Math.round(c[id]*100)+'%';
+    if(editing){const left=10+availableX*c.x,top=10+availableY*c.y;const regions=[{x:left+width+24,y:24,w:w-left-width-48,h:h-48},{x:24,y:24,w:left-48,h:h-48},{x:24,y:top+height+24,w:w-48,h:h-top-height-48}].filter(r=>r.w>70&&r.h>70).sort((a,b)=>b.w*b.h-a.w*a.h);const r=regions[0];safe.hidden=!r;if(r)safe.style.cssText=`left:${r.x}px;top:${r.y}px;width:${r.w}px;height:${r.h}px`;}
+  }
+  function setOpen(value){
+    if(editing)return;open=value;panel.hidden=!value;gear.setAttribute('aria-expanded',String(value));document.body.classList.toggle('broadcast-menu-open',value);revealGear();
+    if(value){panel.scrollTop=0;close.focus({preventScroll:true});}else gear.focus({preventScroll:true});
+  }
+  function revealGear(){gear.classList.add('is-visible');clearTimeout(fadeTimer);fadeTimer=setTimeout(()=>{if(!open&&!editing&&document.activeElement!==gear&&!matchMedia('(pointer:coarse)').matches)gear.classList.remove('is-visible');},2400);}
+  function startEditing(){previousPause=api.isPaused();api.setPaused(true);setOpen(false);editing=true;guide.hidden=false;document.body.classList.add('broadcast-editing');apply();dragHandle.focus({preventScroll:true});}
+  function finishEditing(){if(!editing)return;editing=false;drag=null;guide.hidden=true;document.body.classList.remove('broadcast-editing');persist();if(!previousPause)api.setPaused(false);revealGear();}
+  function startDrag(e,type){if(!editing)return;e.preventDefault();const rect=stage.getBoundingClientRect();drag={type,id:e.pointerId,startX:e.clientX,startY:e.clientY,x:rect.x,y:rect.y,width:rect.width,scale:config[orientation()].scale,orientation:orientation()};e.currentTarget.setPointerCapture(e.pointerId);}
+  function dragMove(e){if(!drag||drag.id!==e.pointerId||drag.orientation!==orientation())return;const c=config[orientation()],rect=stage.getBoundingClientRect();if(drag.type==='move'){c.x=clamp((drag.x+e.clientX-drag.startX-10)/Math.max(1,innerWidth-rect.width-20),0,1);c.y=clamp((drag.y+e.clientY-drag.startY-10)/Math.max(1,innerHeight-rect.height-20),0,1);}else c.scale=clamp(drag.scale*(drag.width+e.clientX-drag.startX)/drag.width,.5,1.8);apply();}
+  dragHandle.onpointerdown=e=>startDrag(e,'move');resizeHandle.onpointerdown=e=>startDrag(e,'resize');for(const el of[dragHandle,resizeHandle]){el.onpointermove=dragMove;el.onpointerup=()=>{drag=null;persist();};el.onpointercancel=()=>{drag=null;};}
+  gear.onclick=()=>setOpen(!open);close.onclick=()=>setOpen(false);
+  document.addEventListener('pointermove',revealGear,{passive:true});gear.onfocus=revealGear;
+  document.addEventListener('pointerdown',revealGear,{passive:true});
+  document.addEventListener('pointerdown',e=>{if(open&&!panel.contains(e.target)&&!gear.contains(e.target))setOpen(false);});
+  document.addEventListener('keydown',e=>{
+    const input=e.target.closest('input,textarea,select');
+    if(editing){if(['Escape','Enter'].includes(e.key)){e.preventDefault();finishEditing();}e.stopImmediatePropagation();return;}
+    if((e.code==='KeyS'&&!input)||e.key==='F2'){e.preventDefault();e.stopImmediatePropagation();if(!e.repeat)setOpen(!open);return;}
+    if(open){if(e.key==='Escape'){e.preventDefault();setOpen(false);}if(e.key==='Tab'){const list=[...panel.querySelectorAll('button,input,select,summary')].filter(n=>!n.disabled&&n.getClientRects().length);if(list.length){const first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}}e.stopImmediatePropagation();}
+  },true);
+  let lastNextType='';
+  function update(){
+    const set=(el,text)=>{if(el.textContent!==text)el.textContent=text;};set(score,$('#score').textContent);
+    set(secondary,isMatch?`${$('#fee-countdown').textContent} / ${$('#fee-target').textContent}`:$('#lines').textContent);
+    const warning=isMatch?$('#prank-status').textContent.split(' · ').filter(s=>!s.includes('观众暂时')&&!s.startsWith('下次整活')).join(' · '):[...$('#active-effects').querySelectorAll('.effect-status')].map(n=>n.textContent).join(' · ');
+    const effectLayoutChanged=effects.hidden===Boolean(warning);effects.hidden=!warning;set(effects,warning);if(effectLayoutChanged)apply();
+    if(nextPreview&&api.nextType){const type=api.nextType();if(type!==lastNextType){lastNextType=type;const c=nextPreview.getContext('2d');c.clearRect(0,0,88,72);const cells=[];(root.BlockShapes[type]||[]).forEach((row,y)=>row.forEach((v,x)=>{if(v)cells.push([x,y]);}));if(cells.length){const xs=cells.map(p=>p[0]),ys=cells.map(p=>p[1]),x0=Math.min(...xs),y0=Math.min(...ys),w=Math.max(...xs)-x0+1,h=Math.max(...ys)-y0+1,s=Math.min(80/w,64/h);for(const[x,y]of cells){c.fillStyle={I:'#86cdc7',O:'#efc968',T:'#b9a1d8',S:'#a9c77f',Z:'#eba19a',J:'#90b9d9',L:'#ecb17c'}[type];c.beginPath();c.roundRect((88-w*s)/2+(x-x0)*s+1,(72-h*s)/2+(y-y0)*s+1,s-2,s-2,3);c.fill();}}}}
+  }
+  const observer=new MutationObserver(update);for(const q of isMatch?['#score','#fee-countdown','#fee-target','#prank-status']:['#score','#lines','#active-effects','#next']){const n=$(q);observer.observe(n,{childList:true,subtree:true,characterData:true,attributes:q==='#next',attributeFilter:q==='#next'?['width','height']:undefined});}
+  window.addEventListener('resize',()=>{drag=null;apply();});window.addEventListener('pagehide',()=>{clearTimeout(fadeTimer);});
+  setPreview(new URLSearchParams(location.search).get('preview')==='1');
+  update();apply();revealGear();
+  return{open:()=>setOpen(true),close:()=>setOpen(false),isOpen:()=>open};
+ };
+})(window);
+</script>
+<script>(function(root){
+  'use strict';
+  /* 插件自带加班机的界面（俄罗斯方块和萌宠消消乐用同一份）：
+   * 1. 设置②里的「加班机」：加班记到哪、倒计时、开始 / 暂停 / 重置、预设时长、手动加减、礼物加减时间表、画面上显不显示。
+   * 2. 直播画面上棋盘上方的倒计时牌：只在记到插件自带的加班机、并且勾了「画面上显示」时出现；加减时间时冒一下「+10 分钟」。
+   * 画面上只写「距离下播」「已加班」，不写宿主的名字。 */
+  root.mountLocalOvertime=function({link,anchor,stage}){
+    const make=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
+    const button=(text,cls)=>{const b=make('button',cls||'',text);b.type='button';return b;};
+    const L=root.LocalOvertime,local=link.local;
+    /* ---------- 设置面板 ---------- */
+    const box=make('div','lot');box.id='lot-settings';
+    box.append(make('h4','lot-title','加班机'));
+    const targetRow=make('label','broadcast-field');targetRow.append(make('span','','加班记到'));
+    const target=make('select');target.id='lot-target';target.setAttribute('aria-label','加班记到');
+    for(const[v,t]of[['auto','自动（推荐）'],['local','插件自带的加班机'],['baiyao','白曜加班机']]){const o=make('option','',t);o.value=v;target.append(o);}
+    targetRow.append(target);box.append(targetRow);
+    const routeNote=make('p','broadcast-note lot-route');box.append(routeNote);
+    const body=make('div','lot-body');body.id='lot-local';box.append(body);
+    const face=make('div','lot-face'),faceLabel=make('small','','距离下播'),faceTime=make('b','lot-time'),faceNet=make('small','lot-net');
+    face.append(faceLabel,faceTime,faceNet);body.append(face);
+    const controls=make('div','broadcast-row'),startBtn=button('开始','broadcast-primary'),resetBtn=button('重置');startBtn.id='lot-start';resetBtn.id='lot-reset';
+    controls.append(startBtn,resetBtn);body.append(controls);
+    const field=(label,...children)=>{const r=make('div','broadcast-field');r.append(make('span','',label));const c=make('span','lot-inline');c.append(...children);r.append(c);body.append(r);return r;};
+    const presetInput=make('input');presetInput.type='number';presetInput.min='1';presetInput.max='99999';presetInput.step='1';presetInput.id='lot-preset';presetInput.setAttribute('aria-label','预设时长（分钟）');
+    field('预设时长',presetInput,make('span','','分钟'));
+    const manualInput=make('input');manualInput.type='number';manualInput.min='1';manualInput.max='99999';manualInput.step='1';manualInput.value='10';manualInput.id='lot-manual';manualInput.setAttribute('aria-label','手动加减（分钟）');
+    const addBtn=button('加');addBtn.id='lot-add';const subBtn=button('减');subBtn.id='lot-sub';
+    field('手动加减',manualInput,make('span','','分钟'),addBtn,subBtn);
+    const showBox=make('input');showBox.type='checkbox';showBox.id='lot-show';
+    const showLabel=make('label','lot-check');showLabel.append(showBox,make('span','','画面上显示倒计时'));
+    field('直播画面',showLabel);
+    body.append(make('h5','lot-sub','礼物加减时间'));
+    const table=make('div','lot-gifts');table.id='lot-gifts';body.append(table);
+    const giftActions=make('div','broadcast-row'),giftAdd=button('＋ 添加礼物');giftAdd.id='lot-gift-add';giftActions.append(giftAdd);body.append(giftActions);
+    const giftMsg=make('p','broadcast-note lot-msg');giftMsg.setAttribute('role','status');body.append(giftMsg);
+    body.append(make('p','broadcast-note','礼物名要和直播间里的一模一样。两个分钟数一样就是固定加减，不一样就在这个范围里随机；送几个算几次。▶ 会真的加减一次倒计时，试完可以点「重置」。'));
+    anchor.after(box);
+
+    let draft=local.snapshot().gifts,resetArmed=0;
+    function renderGifts(){
+      table.replaceChildren();
+      if(!draft.length)table.append(make('p','broadcast-note lot-empty','还没有礼物。点「＋ 添加礼物」，比如：玫瑰 → 加时 5 分钟。'));
+      draft.forEach((row,i)=>{
+        const r=make('div','lot-row');r.dataset.row=String(i);
+        const name=make('input');name.type='text';name.maxLength=20;name.placeholder='礼物名';name.value=row.name;name.setAttribute('aria-label',`第 ${i+1} 行礼物名`);
+        const mode=make('select');for(const[v,t]of[['add','加时'],['sub','减时']]){const o=make('option','',t);o.value=v;mode.append(o);}mode.value=row.mode;mode.setAttribute('aria-label',`第 ${i+1} 行加时还是减时`);
+        const num=(v,label)=>{const n=make('input');n.type='number';n.min='0';n.max='99999';n.step='1';n.value=String(v);n.setAttribute('aria-label',label);return n;};
+        const min=num(row.min,`第 ${i+1} 行最少分钟`),max=num(row.max,`第 ${i+1} 行最多分钟`);
+        const tryBtn=button('▶');tryBtn.title='试一下：真的加减一次';tryBtn.setAttribute('aria-label',`试一下第 ${i+1} 行`);
+        const del=button('删除');del.setAttribute('aria-label',`删除第 ${i+1} 行`);
+        const sync=()=>{draft[i]={name:name.value,mode:mode.value,min:min.value,max:max.value};save();};
+        for(const el of[name,mode,min,max])el.addEventListener('change',sync);
+        tryBtn.onclick=()=>{sync();const s=local.applyGift({name:name.value,count:1});giftMsg.textContent=s?`试了一下：${s>0?'+':'−'}${L.spokenDuration(s)}`:'先填好礼物名再试';};
+        del.onclick=()=>{draft.splice(i,1);save();renderGifts();};
+        r.append(name,mode,min,make('span','','～'),max,make('span','','分钟'),tryBtn,del);table.append(r);
+      });
+    }
+    function save(){
+      const rows=draft.filter(r=>String(r.name||'').trim());
+      const result=local.setGifts(rows.map(r=>({name:r.name,mode:r.mode,min:Number(r.min),max:Number(r.max)})));
+      giftMsg.textContent=result.ok?(rows.length<draft.length?'没填礼物名的行不会生效。':'已保存，马上生效。'):result.error;
+    }
+    target.onchange=()=>{link.setTarget(target.value);update();};
+    startBtn.onclick=()=>{if(local.snapshot().running)local.pause();else local.start();update();};
+    resetBtn.onclick=()=>{
+      if(Date.now()<resetArmed){resetArmed=0;local.reset();resetBtn.textContent='重置';update();return;}
+      resetArmed=Date.now()+3000;resetBtn.textContent='再点一次重置';
+      setTimeout(()=>{if(resetArmed&&Date.now()>=resetArmed){resetArmed=0;resetBtn.textContent='重置';}},3100);
+    };
+    presetInput.onchange=()=>{if(!local.setPreset(presetInput.value)){giftMsg.textContent='预设时长请填 1～99999 的整数分钟。';presetInput.value=local.snapshot().presetMinutes;}};
+    const manual=sign=>{const n=Number(manualInput.value);if(!Number.isInteger(n)||n<1||n>99999){giftMsg.textContent='手动加减请填 1～99999 的整数分钟。';return;}local.shift(sign*n*60,'手动');};
+    addBtn.onclick=()=>manual(1);subBtn.onclick=()=>manual(-1);
+    showBox.onchange=()=>local.setShow(showBox.checked);
+    giftAdd.onclick=()=>{draft.push({name:'',mode:'add',min:1,max:1});renderGifts();table.querySelector('.lot-row:last-child input')?.focus();};
+
+    /* ---------- 直播画面上的倒计时牌 ---------- */
+    const plate=make('div','lot-plate');plate.id='lot-plate';plate.hidden=true;plate.setAttribute('aria-live','polite');
+    const plateLabel=make('small','lot-plate-label','距离下播'),plateTime=make('b','lot-plate-time'),plateNet=make('small','lot-plate-net');
+    plate.append(plateLabel,plateTime,plateNet);
+    const hud=stage.querySelector('.broadcast-hud');(hud||stage.firstChild)?.after?.(plate);
+    /* 加减时间时：牌子右边那段「已加班」临时换成高亮的「+10 分钟」，2 秒后恢复（不叠在别的字上） */
+    let flashUntil=0,flashTimer=null;
+    function pop(seconds){
+      flashUntil=Date.now()+2000;plateNet.classList.remove('flash','sub');void plateNet.offsetWidth;
+      plateNet.classList.add('flash');plateNet.classList.toggle('sub',seconds<0);
+      plateNet.textContent=(seconds<0?'−':'+')+L.spokenDuration(seconds);
+      clearTimeout(flashTimer);flashTimer=setTimeout(()=>{flashUntil=0;plateNet.classList.remove('flash','sub');update();},2050);
+    }
+
+    function setText(el,value){if(el.textContent!==value)el.textContent=value;}
+    function update(event){
+      const s=link.snapshot(),l=local.snapshot(),route=s.route;
+      if(document.activeElement!==target)target.value=s.target;
+      if(document.activeElement!==presetInput)presetInput.value=String(l.presetMinutes);
+      showBox.checked=l.show;
+      body.hidden=route!=='local';
+      setText(routeNote,route==='local'
+        ?(s.target==='auto'?'现在记到：插件自带的加班机（没在白曜里、也没填连接码，所以自动用这个）。':'现在记到：插件自带的加班机。')
+        :s.mode==='baiyao'?'现在记到：白曜加班机（在白曜里自动接上）。礼物加减时间在白曜「加班机 → 加班设置」里配。'
+        :'现在记到：白曜加班机。在上面「不在白曜里用：填连接码」填连接码再点「连接」；礼物加减时间在白曜里配。');
+      setText(faceTime,l.clockText);setText(faceNet,l.netText);setText(faceLabel,l.finished&&!l.fresh?'下播时间到':'距离下播');
+      setText(startBtn,l.running?'暂停':l.fresh?'开始':'继续');
+      // 画面上的牌子
+      const visible=route==='local'&&l.show;
+      if(plate.hidden===visible){plate.hidden=!visible;dispatchEvent(new Event('resize'));}
+      plate.dataset.done=String(l.finished&&!l.fresh);
+      setText(plateLabel,l.finished&&!l.fresh?'下播时间到':'距离下播');setText(plateTime,l.clockText);if(Date.now()>=flashUntil)setText(plateNet,l.netSeconds?l.netText:'');
+      if(event&&visible&&event.seconds)pop(event.seconds);
+    }
+    local.subscribe((snapshot,event)=>update(event));
+    renderGifts();update();setInterval(()=>update(),1000);
+    return{update,box,plate};
+  };
+})(typeof window!=='undefined'?window:globalThis);
+</script><script>(()=>{
+  'use strict';
+  const $=s=>document.querySelector(s),game=new BlockGame();
+  const canvas=$('#board'),ctx=canvas.getContext('2d'),holdCanvas=$('#hold'),nextCanvas=$('#next');
+  const colors=['','#86cdc7','#efc968','#b9a1d8','#a9c77f','#eba19a','#90b9d9','#ecb17c','#a1ae98'];
+  const label={garbage:'塞两行',reverse:'左右反转',rush:'突然加速',fog:'眼前一黑',seal:'封印旋转',challenge:'限时催命',bomb:'救命炸弹',cleanse:'放主播一马'};
+  const messages={garbage:'观众给你塞了两行垃圾！找好洞口再下手。',reverse:'左右已经反了！别靠肌肉记忆，12 秒后恢复。',rush:'四倍速来了！趁落地前把位置想好。',fog:'已落方块暂时隐身，预落点也隐藏了。记住堆积位置，9 秒后恢复。',seal:'旋转被封印了！8 秒内只能平移硬扛。',challenge:'15 秒内清掉 2 行，否则从底部顶上来 3 行！',bomb:'救命炸弹挖掉底部 3 行，喘口气吧。',cleanse:'观众心软了：临时折磨和限时任务全部解除。'};
+  let last=0,paused=false,sound=false,audio=null,storm=false,nextStorm=0,cooldown=0,lastStatus='',lastMini='',inputClock=0,lastTime=0;
+  const held=new Map();
+  const live=makeGameLive('blocks',{canRun:()=>game.status==='playing'&&!paused&&game.clock>=cooldown,execute:spec=>receive(spec.kind,spec),onGift:gift=>overtime.onGift(gift)});
+  let overtimeRound=null,overtimeLoss=null;
+  const overtime=createOvertimeLink({plugin:'俄罗斯方块',settingsKey:'tetris-overtime-settings-v1',roundPrefix:'block-loss',label:'输了一局',onChange:renderOvertime});
+  function lossCopy(){
+    const result=`本局 ${game.score.toLocaleString()} 分 · 消掉 ${game.lines} 行`;
+    if(!overtimeLoss?.seconds)return result;
+    // 幕布在直播画面上：只写「加班机」，不带名字
+    const where=overtimeLoss.status!=='sent'?'，等连上加班机再加':overtimeLoss.change==='0'?'，加班机已经到点，没再加':'，已加到加班机';
+    return`${result}\n加班 +${overtimeLoss.seconds/60} 分钟${where}`;
+  }
+  function renderOvertime(state){
+    $('#overtime-status').textContent=state.enabled?state.statusText:'失败加班已关闭';
+    $('.overtime-card').dataset.connected=String(state.enabled&&state.connection==='ready');
+    $('#overtime-summary').textContent=`本页已加 ${state.sentCount} 局 · 待发 ${state.pendingCount} 局${state.pendingCount?'（连上自动补发，刷新清空）':''}`;
+    $('#overtime-enabled').checked=state.enabled;
+    $('#overtime-link').hidden=state.mode==='baiyao'||state.target==='local';
+    if(document.activeElement!==$('#overtime-minutes'))$('#overtime-minutes').value=state.minutes;
+    if(document.activeElement!==$('#overtime-key'))$('#overtime-key').value=state.key;
+    if(overtimeLoss&&state.last?.roundId===overtimeLoss.roundId){overtimeLoss.status=state.last.status;overtimeLoss.change=state.last.change;if(game.status==='over')$('#curtain-copy').textContent=lossCopy();}
+  }
+  function resize(){
+    const dpr=Math.min(2,window.devicePixelRatio||1);
+    for(const[c,w,h]of[[canvas,320,640],[holdCanvas,80,80],[nextCanvas,80,224]]){
+      c.width=w*dpr;c.height=h*dpr;c.getContext('2d').setTransform(dpr,0,0,dpr,0,0);
+    }
+    lastMini='';render();
+  }
+  function tile(context,x,y,color,size=32,ghost=false){
+    const gap=size*.065,px=x+gap,py=y+gap,s=size-gap*2,r=size*.11;
+    context.save();context.beginPath();context.roundRect(px,py,s,s,r);
+    if(ghost){context.strokeStyle=color;context.globalAlpha=.4;context.lineWidth=1.7;context.stroke();context.restore();return;}
+    context.fillStyle=color;context.fill();
+    context.beginPath();context.roundRect(px+2,py+2,s-4,s*.28,Math.max(1,r-1));context.fillStyle='#ffffff3a';context.fill();
+    context.fillStyle='#00000012';context.fillRect(px+3,py+s-4,s-6,2);
+    context.strokeStyle='#ffffff33';context.lineWidth=1;context.strokeRect(px+2.5,py+2.5,s-5,s-5);context.restore();
+  }
+  function drawMini(context,type,y,size=17){
+    const shape=BlockShapes[type];if(!shape)return;const cells=[];shape.forEach((r,yy)=>r.forEach((v,x)=>{if(v)cells.push([x,yy]);}));
+    const minX=Math.min(...cells.map(c=>c[0])),maxX=Math.max(...cells.map(c=>c[0]));
+    const minY=Math.min(...cells.map(c=>c[1])),maxY=Math.max(...cells.map(c=>c[1]));
+    const offsetX=(80-(maxX-minX+1)*size)/2,offsetY=y+(64-(maxY-minY+1)*size)/2;
+    for(const[x,yy]of cells)tile(context,offsetX+(x-minX)*size,offsetY+(yy-minY)*size,colors[BlockTypes.indexOf(type)+1],size);
+  }
+  function render(){
+    ctx.clearRect(0,0,320,640);
+    ctx.fillStyle='#dfE8d0';ctx.fillRect(0,0,320,640);
+    ctx.strokeStyle='#b7c8a044';ctx.lineWidth=.65;
+    for(let x=1;x<10;x++){ctx.beginPath();ctx.moveTo(x*32,0);ctx.lineTo(x*32,640);ctx.stroke();}
+    for(let y=1;y<20;y++){ctx.beginPath();ctx.moveTo(0,y*32);ctx.lineTo(320,y*32);ctx.stroke();}
+    const fog=game.activeEffect('fog');
+    if(!fog)for(let y=0;y<20;y++)for(let x=0;x<10;x++)if(game.board[y][x])tile(ctx,x*32,y*32,colors[game.board[y][x]]);
+    if(game.active&&game.status!=='ready'){
+      const color=colors[BlockTypes.indexOf(game.active.type)+1];
+      if(!fog&&game.status==='playing'){
+        const ghost={...game.active,y:game.ghostY()};for(const[x,y]of game.cells(ghost))if(y>=0)tile(ctx,x*32,y*32,color,32,true);
+      }
+      for(const[x,y]of game.cells())if(y>=0)tile(ctx,x*32,y*32,color);
+    }
+    if(fog){ctx.save();ctx.fillStyle='#64845933';ctx.font='12px Microsoft YaHei';ctx.textAlign='center';ctx.fillText('堆积暂时隐身',160,360);ctx.restore();}
+    $('.board-frame').classList.toggle('danger-zone',game.board.slice(0,5).some(r=>r.some(Boolean)));
+    $('.board-frame').classList.toggle('reversed',game.activeEffect('reverse'));
+    $('#score').textContent=game.score.toLocaleString('en-US');$('#lines').textContent=game.lines;$('#level').textContent=String(game.level).padStart(2,'0');
+    $('#piece-count').textContent=`${game.pieces} 块已落地`;$('#speed-label').textContent=game.activeEffect('rush')?'4× 加速':'1×';
+    $('#hold-note').textContent=game.holdUsed?'本次已经换过':'每次落地后可换';
+    const mini=game.held+'|'+game.next.slice(0,3).join(',')+'|'+(innerWidth<=440);
+    if(mini!==lastMini){
+      holdCanvas.getContext('2d').clearRect(0,0,80,80);nextCanvas.getContext('2d').clearRect(0,0,80,224);
+      if(game.held)drawMini(holdCanvas.getContext('2d'),game.held,8);
+      if(innerWidth<=440){
+        // Canvas CSS uses a horizontal strip on narrow screens; keep its logical
+        // aspect ratio aligned so block shapes never stretch.
+        const dpr=Math.min(2,devicePixelRatio||1);nextCanvas.width=180*dpr;nextCanvas.height=75*dpr;const c=nextCanvas.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);
+        game.next.slice(0,3).forEach((t,i)=>{c.save();c.translate(i*59-10,5);drawMini(c,t,0,12);c.restore();});
+      }else{
+        const dpr=Math.min(2,devicePixelRatio||1);nextCanvas.width=80*dpr;nextCanvas.height=224*dpr;const c=nextCanvas.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);
+        game.next.slice(0,3).forEach((t,i)=>drawMini(c,t,i*73+3,16));
+      }
+      lastMini=mini;
+    }
+    renderStatus();
+  }
+  function renderStatus(){
+    const active=Object.entries(game.effects).filter(([,until])=>until>game.clock);
+    const parts=active.map(([kind,until])=>({name:label[kind],suffix:`${Math.ceil((until-game.clock)/1000)} 秒`,kind}));
+    if(game.challenge)parts.push({name:`催命：${Math.max(0,2-(game.lines-game.challenge.start))} 行未清`,suffix:`${Math.ceil((game.challenge.end-game.clock)/1000)} 秒`,kind:'challenge'});
+    const key=JSON.stringify(parts);
+    if(key!==lastStatus){lastStatus=key;$('#effect-count').textContent=`${parts.length} 项`;$('#active-effects').innerHTML=parts.length?parts.map(p=>`<div class="effect-status ${p.kind}"><span>${p.name}</span><b>${p.suffix}</b></div>`).join(''):'<p class="quiet">暂时风平浪静</p>';}
+    $('#storm-note').textContent=storm?(game.status==='playing'?`下一次整活：${Math.max(0,Math.ceil((nextStorm-game.clock)/1000))} 秒`:'开始后每 9 秒随机整活'):'开启后每 9 秒随机整活';
+    document.querySelectorAll('[data-effect]').forEach(n=>n.disabled=game.status!=='playing'||paused||game.clock<cooldown);
+  }
+  function log(text){$('#activity').textContent=text;}
+  function toast(text){const n=$('#toast');n.classList.remove('show');void n.offsetWidth;n.textContent=text;n.classList.add('show');}
+  function beep(kind='lock'){
+    if(!sound)return;try{
+      if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume().catch(()=>{});
+      const o=audio.createOscillator(),g=audio.createGain();o.connect(g);g.connect(audio.destination);o.type='sine';
+      const now=audio.currentTime,f={lock:200,clear:700,effect:320,over:140}[kind]||400;
+      o.frequency.setValueAtTime(f,now);o.frequency.exponentialRampToValueAtTime(f*(kind==='over'?.6:1.3),now+.14);
+      g.gain.setValueAtTime(.025,now);g.gain.exponentialRampToValueAtTime(.0001,now+.16);o.start();o.stop(now+.18);
+    }catch{}
+  }
+  function processEvents(){
+    for(const e of game.drain()){
+      if(e.type==='clear'){
+        toast(e.count===4?'四行全消！':`${e.count} 行消除！+${e.points}`);beep('clear');
+        const n=$('#line-flash');n.classList.remove('show');void n.offsetWidth;n.classList.add('show');log(`消掉 ${e.count} 行，拿下 ${e.points} 分${e.combo>0?`，连续消行 ${e.combo+1} 次！`:'。'}`);
+      }else if(e.type==='effect'){
+        log(messages[e.kind]);toast(e.kind==='garbage'?'垃圾行 +2':label[e.kind]);beep('effect');
+        if(!['bomb','cleanse'].includes(e.kind)){const n=$('.board-frame');n.classList.remove('attacked');void n.offsetWidth;n.classList.add('attacked');}
+      }else if(e.type==='challenge-win'){toast('催命任务完成！+500');log('15 秒催命任务完成！奖励 500 分，观众没得逞。');}
+      else if(e.type==='challenge-fail'){toast('没来得及！垃圾行 +3');log('催命倒计时结束，3 行垃圾已经顶上来了！');}
+      else if(e.type==='expired')log(`「${label[e.kind]}」结束了，操作恢复，喘口气。`);
+      else if(e.type==='lock')beep('lock');
+      else if(e.type==='over'){
+        live.clearQueue('本局结束，旧礼物候场已清理');
+        held.clear();beep('over');const result=overtime.onLoss(overtimeRound);if(result.seconds)overtimeLoss=result;
+        showCurtain('被拿捏了，再来一局',lossCopy(),'再来一局');
+        if(overtimeLoss?.seconds)log(`本局失败，加班 +${overtimeLoss.seconds/60} 分钟，送去加班机。`);
+      }
+    }
+  }
+  function showCurtain(title,copy,button){$('#curtain').hidden=false;$('#curtain-title').textContent=title;$('#curtain-copy').textContent=copy;$('#start').textContent=button;}
+  function begin(){if(game.status!=='ready')live.clearQueue('重开，旧礼物候场已清理');overtime.local.autoStart();overtimeRound=overtime.beginRound();overtimeLoss=null;game.reset();game.start();paused=false;held.clear();cooldown=0;nextStorm=9000;lastMini='';lastStatus='';$('#curtain').hidden=true;$('#toast').classList.remove('show');$('#line-flash').classList.remove('show');$('.board-frame').classList.remove('attacked');$('#pause').innerHTML='暂停 <kbd>P</kbd>';log('挑战开始！先把地基铺好，观众随时会来添乱。');render();canvas.focus({preventScroll:true});}
+  function pause(value){
+    if(game.status!=='playing')return;paused=value;held.clear();
+    if(paused)showCurtain('暂停一下，喘口气','整活倒计时也停住了。','继续挑战');else $('#curtain').hidden=true;
+    $('#pause').innerHTML=paused?'继续 <kbd>P</kbd>':'暂停 <kbd>P</kbd>';renderStatus();
+  }
+  function action(key){
+    if(game.status!=='playing'||paused)return;
+    if(key==='left')game.move(-1);else if(key==='right')game.move(1);else if(key==='down')game.softDrop();else if(key==='rotate')game.rotate();else if(key==='ccw')game.rotate(-1);else if(key==='drop')game.hardDrop();else if(key==='hold')game.hold();
+    processEvents();render();
+  }
+  const repeatKeys=new Set(['left','right','down']);
+  const keys={ArrowLeft:'left',ArrowRight:'right',ArrowDown:'down',ArrowUp:'rotate',KeyX:'rotate',KeyZ:'ccw',Space:'drop',KeyC:'hold',ShiftLeft:'hold',ShiftRight:'hold'};
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest('input,textarea,select,summary'))return;
+    if(['KeyP','Escape'].includes(e.code)){e.preventDefault();if(!e.repeat)pause(!paused);return;}
+    if(e.code==='F2'){e.preventDefault();if(!e.repeat)$('#panel-toggle').click();return;}
+    const key=keys[e.code];if(!key)return;
+    if(e.target.tagName==='BUTTON'&&(game.status!=='playing'||paused))return;
+    e.preventDefault();if(e.repeat)return;action(key);if(repeatKeys.has(key)&&!paused&&game.status==='playing')held.set(key,inputClock+(key==='down'?45:150));
+  });
+  document.addEventListener('keyup',e=>{const key=keys[e.code];if(key)held.delete(key);});
+  document.querySelectorAll('[data-input]').forEach(n=>{
+    n.addEventListener('pointerdown',e=>{e.preventDefault();const key=n.dataset.input;action(key);if(repeatKeys.has(key))held.set(key,inputClock+(key==='down'?45:150));n.setPointerCapture?.(e.pointerId);});
+    n.addEventListener('pointerup',()=>held.delete(n.dataset.input));n.addEventListener('pointercancel',()=>held.delete(n.dataset.input));
+  });
+  window.addEventListener('pointerup',()=>held.clear());window.addEventListener('blur',()=>{held.clear();if(game.status==='playing')pause(true);});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)pause(true);});
+  $('#start').onclick=()=>{if(paused&&game.status==='playing')pause(false);else begin();};$('#restart').onclick=begin;$('#pause').onclick=()=>pause(!paused);
+  $('#sound').onclick=()=>{sound=!sound;$('#sound').setAttribute('aria-pressed',String(sound));$('#sound').setAttribute('aria-label',sound?'关闭音效':'开启音效');if(sound)beep('clear');};
+  $('#preview').onclick=()=>{const value=document.body.classList.toggle('with-preview');$('#preview').setAttribute('aria-pressed',String(value));};
+  $('#panel-toggle').onclick=()=>{const hidden=document.body.classList.toggle('panel-hidden');$('#panel-toggle').setAttribute('aria-expanded',String(!hidden));$('#panel-toggle').setAttribute('aria-label',hidden?'展开互动面板':'收起互动面板');};
+  $('#storm').onclick=()=>{storm=!storm;nextStorm=game.clock+9000;$('#storm').setAttribute('aria-checked',String(storm));renderStatus();};
+  $('#overtime-enabled').onchange=e=>overtime.setEnabled(e.target.checked);
+  $('#overtime-minutes').onchange=e=>{if(!overtime.setMinutes(e.target.value)){$('#overtime-test-result').textContent='加班时长请输入 1～180 的整数分钟。';e.target.value=overtime.snapshot().minutes;}};
+  const keyHelp='连接码是 8 位，比如 ABCD-2345，在白曜「加班机 → 加班设置 → 插件连接」里。';
+  const useKey=()=>{if(overtime.setKey($('#overtime-key').value))return true;$('#overtime-test-result').textContent=keyHelp;$('#overtime-key').value=overtime.snapshot().key;return false;};
+  $('#overtime-connect').onclick=()=>{if(useKey()&&!overtime.connect())$('#overtime-test-result').textContent='先打开「输了就加班」。';};
+  $('#overtime-test').onclick=async()=>{
+    // 只拿输入框里的码试一下：不保存、不碰正在用的连接，攒着的加班不会被送出去；点「连接」才用上
+    const typed=BaiyaoOvertimeClient.normalizeKey($('#overtime-key').value),now=overtime.snapshot(),inUse=typed===now.key&&now.connection==='ready';
+    $('#overtime-test').disabled=true;$('#overtime-test-result').textContent='正在测试连接，不改加班时间…';
+    const result=await overtime.testConnection(typed);
+    $('#overtime-test-result').textContent=!result.ok?`测试失败：${result.error}`:!result.trusted?`连上白曜了，但${result.error}，现在只能看时间。`:inUse?'连接正常，连接码也对；测试没有加时间。':'连接码对，测试没有加时间；点「连接」才开始加。';$('#overtime-test').disabled=false;
+  };
+  window.addEventListener('pagehide',()=>overtime.stop());window.addEventListener('pageshow',e=>{if(e.persisted&&overtime.snapshot().enabled)overtime.connect();});
+  function receive(kind,origin=null){if(paused||game.clock<cooldown||game.status!=='playing')return false;cooldown=game.clock+650;game.effect(kind);processEvents();if(origin&&game.status==='playing'&&origin.source!=='manual'&&origin.source!=='auto')log(`@${origin.actor} · ${messages[kind]}`);render();return true;}
+  document.querySelectorAll('[data-effect]').forEach(n=>n.onclick=()=>live.simulateEffect(n.dataset.effect));
+  function frame(time){
+    const dt=last?Math.min(50,time-last):0;last=time;
+    if(game.status==='playing'&&!paused){
+      inputClock+=dt;
+      for(const[key,next]of held)if(inputClock>=next){action(key);held.set(key,inputClock+45);}
+      game.tick(dt);
+      if(storm&&game.status==='playing'&&game.clock>=nextStorm){
+        const choices=['garbage','reverse','rush','fog','seal','challenge'];
+        const choicesFree=choices.filter(k=>!game.activeEffect(k)&&(k!=='challenge'||!game.challenge));
+        const kind=(choicesFree.length?choicesFree:choices)[Math.floor(Math.random()*(choicesFree.length||choices.length))];
+        live.simulateEffect(kind,'auto');nextStorm=game.clock+9000;
+      }
+      processEvents();render();
+    }
+    live.tick();requestAnimationFrame(frame);
+  }
+  const params=new URLSearchParams(location.search);if(params.get('preview')==='1')$('#preview').click();if(params.get('panel')==='0')$('#panel-toggle').click();
+  window.addEventListener('resize',resize);resize();renderOvertime(overtime.snapshot());if(overtime.snapshot().enabled)overtime.connect();requestAnimationFrame(frame);
+  setupBroadcastUI({kind:'blocks',isPaused:()=>paused,setPaused:pause,nextType:()=>game.next[0],start:()=>{if(game.status==='playing'){pause(false);canvas.focus();}else begin();},live});live.start();
+  mountLocalOvertime({link:overtime,anchor:$('.overtime-card'),stage:$('#broadcast-stage')});
+  window.addEventListener('pagehide',()=>live.stop());window.addEventListener('pageshow',e=>{if(e.persisted)live.start();});
+})();
+</script></body></html>

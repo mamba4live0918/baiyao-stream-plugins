@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>万圣节砸砸乐 · 0.27.3 新玩法试玩</title>
+<style><!--@CSS@--></style>
+</head>
+<body>
+<main id="stage" aria-label="试玩画面（按住拖动 = 晃头）"><canvas id="avatar"></canvas><p id="hint">按住画面拖动 = 晃头 · 右边点按钮试效果</p></main>
+<aside id="panel">
+  <header><h1>万圣节新玩法试玩</h1><p>用的是白曜 0.27.3 里真的万圣节代码；VTS 动皮套的部分用立绘模拟（绕着脸转、缩，和软件里一样）。</p></header>
+  <section><h2>一次来几下</h2><div class="row" id="counts"></div></section>
+  <section><h2>按等级随机</h2><div class="row" id="tiers"></div><p class="note">和设置页默认的三级一样：小捣蛋 / 中捣蛋 / 大捣蛋各有自己的随机池。</p></section>
+  <section><h2>捣蛋和糖果</h2><div class="row" id="tricks"></div></section>
+  <section id="potions"><h2>变身药水（23 种）</h2></section>
+  <section><h2>叠南瓜换成自己的图</h2>
+    <div class="row"><label class="file">＋ 传自己的图（可多选）<input id="art-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple></label><label class="check"><input id="art-on" type="checkbox" disabled>南瓜换成我的图</label></div>
+    <div id="art-list"></div>
+    <p class="note">和软件里一样：自动裁掉透明的边、缩到 512 像素以内，每个南瓜随机用一张。传好以后点「南瓜叠叠乐」看。</p>
+  </section>
+  <section><h2>皮套</h2><div class="row"><button id="shake" type="button">使劲晃头</button><button id="clear" type="button">全部清掉</button><select id="frame" aria-label="立绘大小"><option value="big">立绘放大（像直播时只露上半身）</option><option value="normal">立绘小一点（看得见全身）</option></select><select id="bg" aria-label="背景"><option value="dark">深色背景</option><option value="checker">格子背景</option><option value="light">浅色背景</option></select></div></section>
+  <p id="status" role="status"></p>
+</aside>
+<script>window.__AVATAR__='<!--@AVATAR@-->';</script>
+<script><!--@ART@--></script>
+<script><!--@MODULES@--></script>
+<script><!--@JS@--></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+{
+  "masterReference": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+  "records": [
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-e3931f2b-65e6-414c-b29b-d7b966df3ac7",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-e3931f2b-65e6-414c-b29b-d7b966df3ac7.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer game sprite, neutral expression frame. Input image 1 is the EXACT edit target, customer 01. Change ONLY the facial expression inside the face: use a tiny straight flat closed mouth and relaxed neutral eyebrows and eyes. Preserve the exact same canvas size, transparent alpha, framing, pose, hair, peach skin identity, ears, green shirt, cream undershirt, body, silhouette and all pixels outside facial features. Keep thick dark-brown ink outline and the established simple cartoon rendering. No new objects, no text, no badges, no background, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-8637e9cd-f1de-4c7b-b184-644820e6fb6e",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-8637e9cd-f1de-4c7b-b184-644820e6fb6e.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer game sprite, impatient expression frame. Input image 1 is the EXACT edit target, customer 01. Change ONLY facial features inside the face: furrowed eyebrows drawn inward/down toward the nose, slightly narrowed eyes and a small downward frown; convey impatience without symbols. Preserve exact same canvas dimensions, transparent alpha, framing, body pose, hair, identity, ears, green shirt, cream undershirt, silhouette and every pixel outside the face. Maintain established thick dark-brown ink cartoon rendering. No text, no badges, no mood symbols, no props, no background or ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-a8b4d5ca-1954-4286-af42-24b38dab7697",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-a8b4d5ca-1954-4286-af42-24b38dab7697.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer game sprite, angry expression frame. Input image 1 is the EXACT edit target, customer 01. Change ONLY facial features inside the face: sharply furrowed angry eyebrows, slightly narrowed eyes, visibly red cheeks and a small open shouting mouth; convey anger without symbols. Preserve exact same canvas dimensions, transparent alpha, framing, body pose, hair, identity, ears, green shirt, cream undershirt, silhouette and every pixel outside the face. Maintain established thick dark-brown ink cartoon rendering. No text, no badges, no mood symbols, no props, no background or ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_02_happy.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-7858b1f2-dfe5-4ccc-b5ae-157bc95ce7ba",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-7858b1f2-dfe5-4ccc-b5ae-157bc95ce7ba.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D customer game sprite, HAPPY base portrait, customer 02. Input image 1 is a STYLE AND COMPOSITION REFERENCE ONLY; create a DIFFERENT person, do not copy the reference man's identity or clothing. Subject: friendly adult woman with peach skin, dark brown hair gathered into a neat high bun, simple coral shirt, small warm closed smiling mouth and round dark eyes. Match reference bust proportions, head scale, front-facing centered pose, visible ears, shoulders and curved lower bust cutoff. Designed to read at 110×130 display pixels. Thick dark-brown ink outlines, simple flat warm color fills, only one cel shadow layer, restrained small white highlights; retain the reference's playful friendly cartoon line quality. Same canvas aspect ratio and framing as reference with transparent margin around full silhouette. Actual alpha transparent background. No text, no symbols, no badges, no logos, no food, no hands, no props, no scenery, no ground shadow.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_02_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_02_happy.png",
+      "outputId": "exec-9431deb9-c77b-4a01-a39a-4a473b49d845",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-9431deb9-c77b-4a01-a39a-4a473b49d845.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 02, neutral frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: tiny straight flat closed mouth; relaxed neutral eyebrows and eyes. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_02_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_02_happy.png",
+      "outputId": "exec-c86b4147-6ccc-4a08-8608-71001cefddc5",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-c86b4147-6ccc-4a08-8608-71001cefddc5.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 02, impatient frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: furrowed brows angled inward/down, slightly narrowed eyes, and a small downward closed frown. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_02_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_02_happy.png",
+      "outputId": "exec-a0125807-72ba-4b8c-9363-9cb7a0858ea7",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-a0125807-72ba-4b8c-9363-9cb7a0858ea7.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 02, angry frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: sharply furrowed brows, narrowed eyes, visibly red cheeks, and a small open shouting mouth. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_03_happy.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-3d55cc49-8e5d-4d85-b9ee-c1f0e22dc7c2",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-3d55cc49-8e5d-4d85-b9ee-c1f0e22dc7c2.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D customer game sprite, HAPPY base portrait, customer 03. Input image 1 is ONLY a style, proportion and composition reference; create an entirely distinct young man. Subject: dark brown skin, very short black buzzcut with a simple clean rounded hairline, sky-blue hoodie, friendly small closed smile and dark round eyes. No beard, no hat. Match the reference's big friendly head, compact shoulders, centered front-facing bust, visible ears and rounded lower shoulder cutoff. Intended display size 110×130 pixels. Thick dark-brown ink outlines, flat color blocks with only one cel shadow layer, small restrained white highlights, same playful cozy cartoon family as reference. Keep the same portrait canvas aspect ratio and full silhouette surrounded by a small transparent margin. Actual alpha transparent background. No text, no badges, no logos, no symbols, no props, no hands, no scenery, no ground shadow.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_03_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_03_happy.png",
+      "outputId": "exec-c27be0a3-437e-4801-a403-605fc64c1c6c",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-c27be0a3-437e-4801-a403-605fc64c1c6c.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 03, neutral frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: tiny straight flat closed mouth; relaxed neutral eyebrows and eyes. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_03_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_03_happy.png",
+      "outputId": "exec-38859130-aae7-4d91-aea7-1f333fc031b8",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-38859130-aae7-4d91-aea7-1f333fc031b8.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 03, impatient frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: furrowed brows angled inward/down, slightly narrowed eyes, and a small downward closed frown. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_03_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_03_happy.png",
+      "outputId": "exec-a8197876-cecb-4938-8073-b7e8c373beb3",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-a8197876-cecb-4938-8073-b7e8c373beb3.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 03, angry frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: sharply furrowed brows, narrowed eyes, visibly red cheeks, and a small open shouting mouth. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_04_happy.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-844ea089-c9d6-40a1-b8a0-06c9ffbe9467",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-844ea089-c9d6-40a1-b8a0-06c9ffbe9467.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D customer game sprite, HAPPY base portrait, customer 04. Input image 1 is ONLY a style, proportion and composition reference; create an entirely distinct person. Subject: an older woman with warm tan skin, short silver-gray curly hair in a simple rounded silhouette, subtle smile lines near her eyes, a lavender cardigan over a cream blouse; no hat, no spectacles, no jewelry. Friendly small closed smiling mouth and simple dark round eyes. Match reference's big friendly head, compact shoulders, centered front-facing bust and rounded lower shoulder cutoff. Intended display size 110×130 pixels. Thick dark-brown ink outlines, flat warm color blocks with only one cel shadow layer, small restrained white highlights, same playful cozy cartoon family as reference. Keep the same portrait canvas aspect ratio and full silhouette surrounded by a small transparent margin. Actual alpha transparent background. No text, no badges, no logos, no expression symbols, no props, no hands, no scenery, no ground shadow.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_04_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_04_happy.png",
+      "outputId": "exec-55d8ee86-b59c-45bd-ba80-1a0a4ddbc4d4",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-55d8ee86-b59c-45bd-ba80-1a0a4ddbc4d4.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 04, neutral frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: tiny straight flat closed mouth; relaxed neutral eyebrows and eyes. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_04_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_04_happy.png",
+      "outputId": "exec-81ab529b-d9b2-495f-a433-bcd5dc5be894",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-81ab529b-d9b2-495f-a433-bcd5dc5be894.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 04, impatient frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: furrowed brows angled inward/down, slightly narrowed eyes, and a small downward closed frown. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_04_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_04_happy.png",
+      "outputId": "exec-99867ec5-9b40-4c12-93ca-111e86e9acdb",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-99867ec5-9b40-4c12-93ca-111e86e9acdb.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 04, angry frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: sharply furrowed brows, narrowed eyes, visibly red cheeks, and a small open shouting mouth. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_05_happy.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-4489de83-3994-4e47-96ee-62d0cb923fc3",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-4489de83-3994-4e47-96ee-62d0cb923fc3.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D customer game sprite, HAPPY base portrait, customer 05. Input image 1 is ONLY a style, proportion and composition reference; create an entirely distinct person. Subject: a teenage girl with peach skin, black hair tied in two short twin ponytails, simple bangs and a plain mustard-yellow sweater; no jewelry, no hair decorations. Friendly small closed smiling mouth and simple dark round eyes. Match reference's big friendly head, compact shoulders, centered front-facing bust and rounded lower shoulder cutoff. Intended display size 110×130 pixels. Thick dark-brown ink outlines, flat warm color blocks with only one cel shadow layer, small restrained white highlights, same playful cozy cartoon family as reference. Keep the same portrait canvas aspect ratio and full silhouette surrounded by a small transparent margin. Actual alpha transparent background. No text, no badges, no logos, no expression symbols, no props, no hands, no scenery, no ground shadow.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_05_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_05_happy.png",
+      "outputId": "exec-457df24d-8f1f-4978-9a2d-356212cc485b",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-457df24d-8f1f-4978-9a2d-356212cc485b.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 05, neutral frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: tiny straight flat closed mouth; relaxed neutral eyebrows and eyes. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_05_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_05_happy.png",
+      "outputId": "exec-de0556bf-2ab8-46fa-8399-a8b60be67ddb",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-de0556bf-2ab8-46fa-8399-a8b60be67ddb.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 05, impatient frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: furrowed brows angled inward/down, slightly narrowed eyes, and a small downward closed frown. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_05_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_05_happy.png",
+      "outputId": "exec-6f18f197-8e22-4309-ac73-ca930fa334da",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-6f18f197-8e22-4309-ac73-ca930fa334da.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 05, angry frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: sharply furrowed brows, narrowed eyes, visibly red cheeks, and a small open shouting mouth. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_06_happy.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-f0bc67ce-fe26-4998-8fe5-1309d6d6c9bb",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-f0bc67ce-fe26-4998-8fe5-1309d6d6c9bb.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D customer game sprite, HAPPY base portrait, customer 06. Input image 1 is ONLY a style, proportion and composition reference; create an entirely distinct person. Subject: an adult woman with medium-brown skin and long wavy black hair draped behind both shoulders, a simple pale mint-and-cream blouse; no jewelry, no hat, no ornaments. Friendly small closed smiling mouth and simple dark round eyes. Match reference's big friendly head, compact shoulders, centered front-facing bust and rounded lower shoulder cutoff. Intended display size 110×130 pixels. Thick dark-brown ink outlines, flat warm color blocks with only one cel shadow layer, small restrained white highlights, same playful cozy cartoon family as reference. Keep the same portrait canvas aspect ratio and full silhouette surrounded by a small transparent margin. Actual alpha transparent background. No text, no badges, no logos, no expression symbols, no props, no hands, no scenery, no ground shadow.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_06_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_06_happy.png",
+      "outputId": "exec-26413a5a-960c-429f-9810-00642e50f7e1",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-26413a5a-960c-429f-9810-00642e50f7e1.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 06, neutral frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: tiny straight flat closed mouth; relaxed neutral eyebrows and eyes. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_06_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_06_happy.png",
+      "outputId": "exec-1efac054-077d-47f3-a4b9-1374da87fe9c",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-1efac054-077d-47f3-a4b9-1374da87fe9c.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 06, impatient frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: furrowed brows angled inward/down, slightly narrowed eyes, and a small downward closed frown. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_06_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_06_happy.png",
+      "outputId": "exec-cfe785e7-c159-4e7a-a2d9-73157e00876e",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-cfe785e7-c159-4e7a-a2d9-73157e00876e.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 06, angry frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: sharply furrowed brows, narrowed eyes, visibly red cheeks, and a small open shouting mouth. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_07_happy.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-61d517e9-bcde-4586-8c78-2268829b127a",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-61d517e9-bcde-4586-8c78-2268829b127a.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D customer game sprite, HAPPY base portrait, customer 07. Input image 1 is ONLY a style, proportion and composition reference; create an entirely distinct person. Subject: a middle-aged man with tan skin, a plain navy-blue baseball cap, short dark hair visible at the sides, an ochre jacket over a cream shirt, subtle middle-aged smile lines; no beard, no jewelry, no logos on the cap or clothes. Friendly small closed smiling mouth and simple dark round eyes. Match reference's big friendly head, compact shoulders, centered front-facing bust and rounded lower shoulder cutoff. Intended display size 110×130 pixels. Thick dark-brown ink outlines, flat warm color blocks with only one cel shadow layer, small restrained white highlights, same playful cozy cartoon family as reference. Keep the same portrait canvas aspect ratio and full silhouette surrounded by a small transparent margin. Actual alpha transparent background. No text, no badges, no logos, no expression symbols, no props, no hands, no scenery, no ground shadow.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_07_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_07_happy.png",
+      "outputId": "exec-da4b8ded-a0e2-42f4-8af7-94ad64271311",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-da4b8ded-a0e2-42f4-8af7-94ad64271311.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 07, neutral frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: tiny straight flat closed mouth; relaxed neutral eyebrows and eyes. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_07_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_07_happy.png",
+      "outputId": "exec-412e4928-64e5-425a-9eb5-9ac39de4bd0c",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-412e4928-64e5-425a-9eb5-9ac39de4bd0c.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 07, impatient frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: furrowed brows angled inward/down, slightly narrowed eyes, and a small downward closed frown. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_07_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_07_happy.png",
+      "outputId": "exec-0b6cf6aa-45af-4d51-9d23-bfe5bad19d1c",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-0b6cf6aa-45af-4d51-9d23-bfe5bad19d1c.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 07, angry frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: sharply furrowed brows, narrowed eyes, visibly red cheeks, and a small open shouting mouth. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_08_happy.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_01_happy.png",
+      "outputId": "exec-e38efd57-4702-4dd9-8f58-d7ecaa755117",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-e38efd57-4702-4dd9-8f58-d7ecaa755117.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D customer game sprite, HAPPY base portrait, customer 08. Input image 1 is ONLY a style, proportion and composition reference; create an entirely distinct person. Subject: a young man with light peach skin, a plain coral-red knitted beanie, a little short dark hair visible below it, and a plain navy-blue shirt; no beard, no jewelry, no logos or badge on the beanie or clothes. Friendly small closed smiling mouth and simple dark round eyes. Match reference's big friendly head, compact shoulders, centered front-facing bust and rounded lower shoulder cutoff. Intended display size 110×130 pixels. Thick dark-brown ink outlines, flat warm color blocks with only one cel shadow layer, small restrained white highlights, same playful cozy cartoon family as reference. Keep the same portrait canvas aspect ratio and full silhouette surrounded by a small transparent margin. Actual alpha transparent background. No text, no badges, no logos, no expression symbols, no props, no hands, no scenery, no ground shadow.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_08_neutral.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_08_happy.png",
+      "outputId": "exec-7425c5f6-dc6c-4029-974f-c4ecf79b0666",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-7425c5f6-dc6c-4029-974f-c4ecf79b0666.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 08, neutral frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: tiny straight flat closed mouth; relaxed neutral eyebrows and eyes. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_08_impatient.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_08_happy.png",
+      "outputId": "exec-50a453df-29f5-457c-96aa-676edcc9717e",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-50a453df-29f5-457c-96aa-676edcc9717e.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 08, impatient frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: furrowed brows angled inward/down, slightly narrowed eyes, and a small downward closed frown. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    },
+    {
+      "file": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_08_angry.png",
+      "sourceFile": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\customers\\customer_08_happy.png",
+      "outputId": "exec-589b9083-d760-425b-ac85-9ed3f609c325",
+      "generatedSource": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-29f1-7452-978a-ed71c1569601\\exec-589b9083-d760-425b-ac85-9ed3f609c325.png",
+      "tool": "image_gen.imagegen",
+      "mode": "built-in",
+      "prompt": "Use case: identity-preserve. Asset type: transparent 2D customer sprite 08, angry frame. Input image 1 is the EXACT edit target. Change ONLY the facial features inside the face: sharply furrowed brows, narrowed eyes, visibly red cheeks, and a small open shouting mouth. Preserve exact same canvas dimensions, transparent alpha, centered bust framing, pose, identity, skin tone, entire hairstyle, ears, clothing, shoulders, silhouette, and all pixels outside face. Maintain established thick dark-brown ink and simple cartoon cel shading. No text, no badges, no expression symbols, no props, no backdrop, no ground shadow. Actual transparent background.",
+      "transparentBackground": true
+    }
+  ]
+}

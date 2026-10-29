@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f3f5e9"><title>俄罗斯方块 · 观众别闹</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='18' height='18' rx='4' fill='%2392b899'/%3E%3Crect x='20' y='20' width='18' height='18' rx='4' fill='%23efac8b'/%3E%3Crect y='20' width='18' height='18' rx='4' fill='%23efac8b'/%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"></head>
+<body><div class="preview-bg" aria-hidden="true"></div><main class="app">
+<header><div><div class="brand-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></div><h1>俄罗斯方块<span>观众别闹</span></h1><p>你负责消行，观众负责添乱。</p></div><div class="top-actions"><button id="sound" class="icon-btn" aria-label="开启音效" aria-pressed="false" title="音效">♪</button><button id="preview" class="icon-btn" aria-label="切换预览底色" aria-pressed="false" title="预览底色">▧</button><button id="panel-toggle" class="icon-btn" aria-label="收起互动面板" aria-expanded="true" title="互动面板">⚑</button></div></header>
+<div class="layout">
+ <section class="game-zone" aria-label="俄罗斯方块游戏">
+  <aside class="piece-rail"><div class="mini-box"><h2>暂存 <kbd>C</kbd></h2><canvas id="hold" width="80" height="80" aria-label="暂存方块"></canvas><small id="hold-note">每次落地后可换</small></div><div class="mini-box next-box"><h2>接下来</h2><canvas id="next" width="80" height="224" aria-label="接下来三个方块"></canvas></div><div class="rail-note"><span>∞</span>无尽挑战<br><small>堆到顶才结束</small></div></aside>
+  <div class="board-column"><div class="stats"><div><span>得分</span><strong id="score">0</strong></div><div><span>消行</span><strong id="lines">0</strong></div><div><span>等级</span><strong id="level">01</strong></div></div>
+   <div class="board-frame"><div class="board-top"><span><i></i>承受力测试</span><span id="piece-count">0 块已落地</span></div><div class="canvas-wrap"><canvas id="board" width="320" height="640" aria-label="10 列 20 行俄罗斯方块棋盘" tabindex="0"></canvas><div id="line-flash" aria-hidden="true"></div><div id="toast" aria-live="polite"></div>
+    <div class="curtain" id="curtain"><span class="curtain-mark">▦</span><h2 id="curtain-title">准备好接招了吗</h2><p id="curtain-copy">先消几行，再让观众来点狠的。</p><button class="primary" id="start">开始挑战</button><small id="curtain-note">方向键移动 · ↑ 旋转 · 空格落地</small></div>
+   </div><div class="board-bottom"><span>← → 移动 <i>·</i> ↑ 旋转 <i>·</i> 空格落地</span><span id="speed-label">1×</span></div></div>
+   <div class="touch-controls" aria-label="触摸操作"><button data-input="left" aria-label="向左">←</button><button data-input="rotate" aria-label="旋转">↻</button><button data-input="right" aria-label="向右">→</button><button data-input="down" aria-label="加速下落">↓</button><button data-input="hold" aria-label="暂存">C</button><button data-input="drop" class="drop">落地</button></div>
+   <div class="bottom-actions"><button id="pause">暂停 <kbd>P</kbd></button><button id="restart">重新开始</button></div>
+  </div>
+ </section>
+ <aside class="interaction-panel" id="interaction-panel"><div class="panel-heading"><div><span class="dot"></span><h2>礼物与互动</h2></div><span>支持宿主接入</span></div><p class="panel-subtitle">每一下，都得让主播有点反应。</p>
+  <section class="overtime-card" aria-label="失败加班联动">
+   <div class="overtime-heading"><strong>输了就加班</strong><label><input id="overtime-enabled" type="checkbox" checked> 打开</label></div>
+   <div class="overtime-amount"><span>每输一局</span><span>＋ <input id="overtime-minutes" aria-label="每局失败加班分钟数" type="number" min="1" max="180" step="1" value="10"> 分钟</span></div>
+   <p id="overtime-status" role="status">正在连白曜加班机…</p><small id="overtime-summary">本页已加 0 局 · 待发 0 局</small>
+   <details id="overtime-link"><summary>不在白曜里用：填连接码</summary><div class="overtime-port"><label for="overtime-key">连接码</label><input id="overtime-key" type="text" maxlength="12" placeholder="ABCD-2345" autocomplete="off" spellcheck="false"></div><div class="overtime-buttons"><button id="overtime-connect">连接</button><button id="overtime-test">测试连接</button></div><p>在白曜里用不用填。菘蓝里、直接放进 OBS 时，填白曜「加班机 → 加班设置 → 插件连接」里的连接码，再点「连接」。测试连接只试不存，不改时间。</p></details><small id="overtime-test-result" role="status">暂停和重开不算输。</small>
+  </section>
+  <div class="storm-card"><div><strong>自动折磨</strong><small id="storm-note">开启后每 9 秒随机整活</small></div><button id="storm" role="switch" aria-checked="false" aria-label="自动折磨"><i></i></button></div>
+  <div id="effect-buttons" class="effect-grid">
+   <button data-effect="garbage" class="bad"><span>▤</span><strong>塞两行</strong><small>垃圾从底下顶上来</small></button>
+   <button data-effect="reverse" class="bad"><span>⇄</span><strong>左右反转</strong><small>方向键反着来 · 12 秒</small></button>
+   <button data-effect="rush" class="bad"><span>ϟ</span><strong>突然加速</strong><small>四倍下落 · 12 秒</small></button>
+   <button data-effect="fog" class="bad"><span>≋</span><strong>眼前一黑</strong><small>已落方块隐身 · 9 秒</small></button>
+   <button data-effect="seal" class="bad"><span>⊠</span><strong>封印旋转</strong><small>只能平移硬扛 · 8 秒</small></button>
+   <button data-effect="challenge" class="bad danger"><span>◷</span><strong>限时催命</strong><small>15 秒清 2 行，否则塞 3 行</small></button>
+   <button data-effect="bomb" class="good"><span>✦</span><strong>救命炸弹</strong><small>挖掉底部 3 行</small></button>
+   <button data-effect="cleanse" class="good"><span>✧</span><strong>放主播一马</strong><small>解除全部临时折磨</small></button>
+  </div>
+  <section class="status-section"><div class="status-heading"><h3>主播正在承受</h3><span id="effect-count">0 项</span></div><div id="active-effects" role="status"><p class="quiet">暂时风平浪静</p></div></section>
+  <div id="activity" class="activity" aria-live="polite">点击开始，给主播来点强度。</div><p class="simulation-note">支持菘蓝 / 白曜礼物接入；手动按钮供试玩；失败加班加到加班机</p>
+ </aside>
+</div><footer><span>不计时通关，堆顶才结束</span><span>默认透明底 <i>·</i> F2 收起整活台</span></footer>
+</main><link rel="stylesheet" href="broadcast-ui.css"><link rel="stylesheet" href="live-settings.css">
+<link rel="stylesheet" href="overtime-ui.css"><script src="engine.js"></script><script src="baiyao-overtime-client.js"></script><script src="local-overtime.js"></script>
+<script src="overtime.js"></script><script src="live-input.js"></script><script src="live-settings.js"></script><script src="broadcast-ui.js"></script>
+<script src="overtime-ui.js"></script><script src="game.js"></script></body></html>

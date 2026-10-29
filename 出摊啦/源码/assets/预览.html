@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN" data-counter-view="actual">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>出摊啦 · 第1–3批素材预览</title>
+  <link rel="stylesheet" href="preview.css">
+  <script src="manifest.js" defer></script>
+  <script src="preview.js" defer></script>
+</head>
+<body data-background="grid">
+  <header class="page-header">
+    <p class="eyebrow">出摊啦 · 图片素材 / BATCH 01–05</p>
+    <h1>四家摊位 · 顾客、厨房与互动</h1>
+    <p class="intro">按短边 1080 的建议尺寸展示。透明源 PNG 为 2 倍尺寸；全部表情共享画布与锚点。此页可直接离线打开。</p>
+    <p class="approval-note">已批准的165张素材保持原字节。第5批新增20张煎饼和奶茶工具；杯壁、茶、珍珠、盖子与鏊子面糊分层叠合。</p>
+    <p id="asset-status" class="status" role="status">正在读取本地素材清单…</p>
+  </header>
+
+  <nav class="toolbar" aria-label="预览控制">
+    <fieldset>
+      <legend>底图</legend>
+      <label><input type="radio" name="background" value="grid" checked> 棋盘格</label>
+      <label><input type="radio" name="background" value="avatar"> 白曜皮套</label>
+    </fieldset>
+    <label class="control-label">素材格式 <select id="image-format"><option value="png">源 PNG</option><option value="webp">处理后 WebP</option></select></label>
+    <label class="control-label">显示倍率 <select id="display-zoom"><option value="1" selected>100% · 建议显示尺寸</option><option value="0.75">75% · 页面缩放</option><option value="1.5">150% · 检查边缘</option><option value="2">200% · 原图尺寸</option></select></label>
+    <button id="show-crowd" class="primary" type="button">随机摆 200 个人</button>
+  </nav>
+
+  <main>
+    <section aria-labelledby="customers-title" class="asset-section">
+      <div class="section-heading"><div><p class="eyebrow">01 / PEOPLE</p><h2 id="customers-title">16 位顾客 × 4 种表情</h2></div><p>头到胸口 · 110×130</p></div>
+      <div id="expression-controls" class="state-controls" role="group" aria-label="顾客表情">
+        <button type="button" data-expression="all" aria-pressed="true">全部表情</button>
+        <button type="button" data-expression="happy" aria-pressed="false">开心</button>
+        <button type="button" data-expression="neutral" aria-pressed="false">平淡</button>
+        <button type="button" data-expression="impatient" aria-pressed="false">不耐烦</button>
+        <button type="button" data-expression="angry" aria-pressed="false">生气</button>
+      </div>
+      <div id="customer-grid" class="asset-grid customer-grid"></div>
+      <h3 class="small-heading">人群小偷与头顶烟</h3>
+      <div id="crowd-extras-grid" class="asset-grid"></div>
+    </section>
+
+    <section aria-labelledby="counter-title" class="asset-section">
+      <div class="section-heading"><div><p class="eyebrow">02 / COUNTERS · REVISION 2</p><h2 id="counter-title">四家摊位 · 木台面与店面纹样</h2></div><p>固定高度 210 · 完整图案中片平铺</p></div>
+      <p class="section-note">木纹、高光和布帘纹样来自生成图片；中片保留 256px 原画条带与其水平镜像。店招文字由页面叠加。</p>
+      <div id="counter-compositions" class="counter-compositions"></div>
+      <div class="counter-width-controls"><h3>1920 / 2560 实际宽度验收</h3><label>查看方式 <select id="counter-view"><option value="actual">实际像素 · 横向滚动</option><option value="fit">适合页面 · 仅缩放视图</option></select></label></div>
+      <p class="section-note">下方画布始终保留 1920×210 和 2560×210 像素。1920 使用 7 个完整中片等宽铺满，2560 使用 9 个完整中片；每块都保留完整纹样。</p>
+      <div id="counter-width-previews" class="counter-width-previews"></div>
+      <h3 class="small-heading">分片与独立店招源图</h3>
+      <div id="counter-grid" class="asset-grid"></div>
+    </section>
+
+    <section aria-labelledby="props-title" class="asset-section">
+      <div class="section-heading"><div><p class="eyebrow">03 / PROPS</p><h2 id="props-title">钱罐与通用道具</h2></div><p>钱罐两层共用 140×150 显示画布</p></div>
+      <div class="jar-composition-block"><div id="jar-composition" class="jar-composition transparency-surface" aria-label="钱罐与铜钱顶层叠合"></div><p>coin_jar + coin_jar_top<br><span>同锚点叠合检查</span></p></div>
+      <div id="props-grid" class="asset-grid"></div>
+    </section>
+
+    <section aria-labelledby="ui-title" class="asset-section">
+      <div class="section-heading"><div><p class="eyebrow">04 / UI</p><h2 id="ui-title">胸牌、订单泡泡与盖章框</h2></div><p>空白区域交给代码写字</p></div>
+      <div id="ui-grid" class="asset-grid"></div>
+    </section>
+    <section aria-labelledby="tools-title" class="asset-section" id="tools-section">
+      <div class="section-heading"><div><p class="eyebrow">05 / KITCHEN TOOLS · BATCH 02</p><h2 id="tools-title">面馆与日料店工具 · 22张</h2></div><p>独立生成 · 透明PNG与WebP85</p></div>
+      <p class="section-note">下方按固定画布叠合锅、水和面条；碗体脚底与鱼块左缘保持位置。每个档位均独立生成，未按可见边界单独放大。</p>
+      <div id="tool-compositions" class="tool-compositions"></div>
+      <h3 class="small-heading">全部工具 · 建议显示尺寸</h3>
+      <div id="tools-grid" class="asset-grid"></div>
+    </section>
+    <section aria-labelledby="rent-title" class="asset-section" id="rent-section">
+      <div class="section-heading"><div><p class="eyebrow">06 / RENT &amp; OVERTIME · BATCH 03</p><h2 id="rent-title">交租和加班 · 5张</h2></div><p>包租婆两态共享完整画布与脚底锚点</p></div>
+      <p class="section-note">人物与本子独立叠合；交租牌和小钟原图均无文字，下面组合中的倒计时由代码写入。所有新图使用透明PNG与WebP85。</p>
+      <div id="rent-compositions" class="rent-compositions"></div>
+      <h3 class="small-heading">全部素材 · 建议显示尺寸</h3>
+      <div id="rent-grid" class="asset-grid"></div>
+    </section>
+    <section aria-labelledby="events-title" class="asset-section" id="events-section">
+      <div class="section-heading"><div><p class="eyebrow">07 / EVENTS · BATCH 04</p><h2 id="events-title">捣乱和帮忙 · 45张</h2></div><p>独立角色、附件、换帧与糊脸层</p></div>
+      <p class="section-note">同族状态共用规范画布；车轮、麻袋、盾牌、电闸杆单独叠合，示例名字与数字由代码写入。</p>
+      <div id="event-compositions" class="event-compositions"></div>
+      <h3 class="small-heading">全部素材 · 建议显示尺寸</h3>
+      <div id="events-grid" class="asset-grid"></div>
+    </section>
+    <section aria-labelledby="shops-title" class="asset-section" id="shops-section">
+      <div class="section-heading"><div><p class="eyebrow">08 / PANCAKE &amp; MILK TEA · BATCH 05</p><h2 id="shops-title">煎饼摊和奶茶店工具 · 20张</h2></div><p>同帧分层与source-px注册</p></div>
+      <p class="section-note">鏊子、面糊用实际锚点对齐；杯后壁、奶茶、1～3勺珍珠、前壁与封膜分层叠合。所有文字由代码绘制，原图无字。</p>
+      <div id="shop-compositions" class="shop-compositions"></div>
+      <h3 class="small-heading">全部工具 · 建议显示尺寸</h3>
+      <div id="shops-grid" class="asset-grid"></div>
+    </section>
+  </main>
+
+  <footer>此页仅用于素材验收与人海密度检查。游戏的脸部避让、计分和交互布局不属于此页。</footer>
+
+  <section id="crowd-overlay" class="crowd-overlay" hidden aria-label="200 人密度预览">
+    <div class="crowd-stage transparency-surface">
+      <canvas id="crowd-canvas" width="1920" height="1080" aria-label="固定 200 位图片顾客的密度预览"></canvas>
+    </div>
+    <div class="crowd-title"><strong>200 人 · 素材密度预览</strong><span>仅预览，不代表游戏正式布局或脸部避让范围</span></div>
+    <div class="crowd-toolbar">
+      <label>表情 <select id="crowd-expression"><option value="happy">开心</option><option value="neutral">平淡</option><option value="impatient">不耐烦</option><option value="angry">生气</option></select></label>
+      <button id="crowd-randomize" type="button">重新随机摆放</button>
+      <button id="crowd-background" type="button">切换底图</button>
+      <button id="crowd-close" type="button">关闭预览</button>
+    </div>
+    <p id="crowd-status" class="crowd-status" role="status"></p>
+  </section>
+  <section id="counter-shot-panel" class="counter-shot-panel" hidden aria-label="柜台实际像素单独预览">
+    <header><strong id="counter-shot-label"></strong><button id="counter-shot-close" type="button">关闭单独预览</button></header>
+    <div class="counter-shot-surface transparency-surface"><canvas id="counter-shot-canvas" width="1920" height="210" aria-label="柜台原尺寸画布"></canvas></div>
+  </section>
+</body>
+</html>

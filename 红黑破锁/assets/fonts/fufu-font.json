@@ -1,0 +1,17 @@
+{
+  "font": "ZCOOL KuaiLe / 站酷快乐体",
+  "subset_family": "FufuPanelSubset",
+  "license": "SIL Open Font License 1.1",
+  "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/zcoolkuaile/ZCOOLKuaiLe-Regular.ttf",
+  "license_url": "https://raw.githubusercontent.com/google/fonts/main/ofl/zcoolkuaile/OFL.txt",
+  "subset_bytes": 13624,
+  "fixed_characters": "连按啃开锁鼠鼠被关进笼子啦逃出来挠门次本累计键当前层还需剩余永久援助禁用破除已经全部成功来自空格回车上方向下左右小数字键盘退删除普通重锁轻极限信号新芙奈奶酪测试默认普通稀有传说0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz /×~—-+.,:;()[]%↑↓←→还需已啃已按次数挑战拍门笼门敲开逃离等待观众增加",
+  "missing_fixed_characters": [
+    "←",
+    "↑",
+    "→",
+    "↓"
+  ],
+  "fallback": "Microsoft YaHei, sans-serif",
+  "sha256": "030a6efe2cba197d15eeadfb8b57503a019b58894179e6cfce0336d8c76caf47"
+}

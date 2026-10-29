@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>冰淇淋堆叠 · 接球版</title><style>/* STYLE */</style></head>
+<body class="transparent" data-ui-version="8">
+<main id="game-shell" aria-label="冰淇淋堆叠">
+  <canvas id="game-canvas" tabindex="0" role="application" aria-label="鼠标移动、触屏拖动或方向键控制盘子，空格开始或暂停"></canvas>
+  <div id="score-board" title="拖动调整位置，双击打开设置">
+    <div class="hud-heading"><span id="level-title">关卡 1 / 1</span><span id="run-state">未开始</span></div>
+    <div class="hud-values"><div><span>倒计时</span><strong id="timer">02:00</strong></div><div><span id="goal-label">高度 / 目标</span><strong><span id="layers">0</span> / <span id="goal">300</span></strong></div><div><span>剩余掉落</span><strong id="throws-left">无限</strong></div></div>
+    <div class="height-track" aria-hidden="true"><div id="height-fill"></div></div>
+    <div id="bowl-progress" hidden></div>
+    <span id="g-r41" aria-hidden="true"></span>
+  </div>
+  <div id="game-controls" role="group" aria-label="游戏控制"><span id="control-handle" title="拖动调整控制区位置" aria-hidden="true">⠿</span><button id="start-game" class="primary" type="button">开始</button><button id="pause-game" type="button" disabled>暂停</button><button id="open-settings" type="button">设置</button></div>
+  <div id="feed" class="feed" hidden aria-live="polite"></div>
+  <div id="effect-status" hidden aria-live="off" role="group" aria-label="持续效果HUD"></div>
+  <div id="hud-edit-banner" hidden>HUD 布局预览 · 拖动卡片调整位置<button id="finish-hud-preview" type="button">完成布局</button></div>
+  <div id="wind-indicator" hidden aria-live="off"></div>
+</main>
+<div id="win-overlay" class="win-overlay" hidden>
+  <section class="win-dialog" role="dialog" aria-modal="true" aria-labelledby="win-title" aria-describedby="win-level">
+    <div class="win-header"><h2 id="win-title">关卡通过</h2><button id="win-close" type="button" aria-label="关闭通关弹窗">×</button></div>
+    <p id="win-level"></p><div id="win-bowls" hidden></div>
+    <div class="win-metrics"><div><span>完成高度</span><strong id="win-layers"></strong><small id="win-height-goal"></small></div><div><span>用时</span><strong id="win-time"></strong></div><div><span>接住 / 掉落</span><strong id="win-drops"></strong></div></div>
+    <p id="win-progress"></p><p id="win-next-description"></p>
+    <div class="win-actions"><button id="win-next" class="primary" type="button">下一关</button><button id="win-retry" type="button">重玩本关</button></div>
+  </section>
+</div>
+<div id="drawer-backdrop" hidden></div>
+<aside id="drawer" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+  <div class="drawer-head"><h2 id="settings-title">冰淇淋接球版设置 · V13 全按钮版</h2><button id="close-settings" aria-label="关闭设置">×</button></div>
+  <nav class="tabs" aria-label="设置分类"><button data-tab="levels" class="active">关卡</button><button data-tab="gifts">捣乱</button><button data-tab="appearance">素材</button><button data-tab="display">显示</button><button data-tab="test">控制 / 测试</button></nav>
+  <div class="drawer-content">
+    <section data-pane="levels">
+      <div class="physics-controls"><div class="physics-choice"><span>物理手感</span><div id="physics-mode" role="group" aria-label="物理手感"><button type="button" data-physics="arcade" aria-pressed="true">稳定接球</button><button type="button" data-physics="realistic" aria-pressed="false">真实物理</button><button type="button" data-physics="sticky" aria-pressed="false">粘性物理</button></div><span id="physics-active"></span></div><label id="adhesion-control" hidden>粘性强度 <output id="adhesion-value">65%</output><input id="adhesion" type="range" min="0" max="100" value="65" step="5"></label></div>
+      <p id="physics-status" class="status" role="status" aria-live="polite"></p><p id="physics-help" class="help"></p><p class="help">切换物理手感或粘性强度会重开当前关卡，清空本局堆叠和计时；关卡配置、素材、礼物规则与已通关记录保留。</p>
+      <div class="difficulty-controls"><label>难度预设<select id="difficulty-preset"><option value="standard">标准</option><option value="hard" selected>困难</option><option value="expert">极限</option></select></label><button id="apply-difficulty" type="button">应用到本关并重开</button><span id="difficulty-current" class="help"></span></div>
+      <p id="difficulty-help" class="help">困难：更窄的盘子、更快的下坠、更密的掉落与更高目标。仅在点击应用后修改本关参数；旧存档不会自动覆盖。</p>
+      <div class="level-tools"><label>选择关卡<select id="editor-level" aria-label="选择编辑关卡"></select></label><div class="tool-buttons"><button id="add-level">新增</button><button id="copy-level">复制</button><button id="move-level-up">上移</button><button id="move-level-down">下移</button><button id="delete-level" class="danger">删除</button></div></div>
+      <form id="level-form">
+        <div class="form-grid"><label>关卡名称<input id="level-name" type="text" maxlength="40" required></label><label>模式<select id="level-mode"></select></label></div><p id="mode-description" class="help"></p>
+        <div class="form-grid">
+          <label>目标高度（px）<input id="level-targetHeight" type="number" min="20" max="10000" step="any" required></label><label>倒计时（秒）<input id="level-duration" type="number" min="1" max="3600" step="1" required></label>
+          <label>掉落间隔（秒）<input id="level-spawnInterval" type="number" min="0.15" max="5" step="any" required></label><label>盘子移动速度<input id="level-move" type="number" min="40" max="5000" step="1" required></label>
+          <label>下坠倍率<input id="level-fall" type="number" min="0.3" max="3" step="0.01" required></label><label>冰球大小倍率<input id="level-size" type="number" min="0.6" max="1.5" step="0.01" required></label>
+          <label id="catch-overlap-field">接稳比例（仅稳定接球）<input id="level-catchOverlap" type="number" min="0.1" max="0.8" step="any" required></label>
+          <label>盘子承接宽度<input id="level-bowlWidth" type="number" min="100" max="500" step="0.1" required></label><label>掉落总数模式<select id="level-attemptMode"><option value="unlimited">无限</option><option value="limited">指定次数</option></select></label>
+          <label id="attempts-field">初始掉落总数<input id="level-attempts" type="number" min="0" max="100000" step="1" required></label>
+        </div>
+        <div id="mode-fields" class="form-grid">
+          
+          
+          <label data-modes="wind">风力倍率<input id="level-windForce" type="number" min="0" max="5" step="0.1" required></label><label data-modes="wind">风向切换周期（秒）<input id="level-windPeriod" type="number" min="1" max="60" step="0.1" required></label><label data-modes="wind">每次持续吹风（秒）<input id="level-gustDuration" type="number" min="0.2" max="59.8" step="0.1" required></label>
+          <label data-modes="giant">第一球尺寸倍率<input id="level-largeScale" type="number" min="0.5" max="2" step="0.01" required></label><label data-modes="giant">第二球尺寸倍率<input id="level-smallScale" type="number" min="0.3" max="1.5" step="0.01" required></label>
+        </div>
+        <p class="help">开始后自动随机掉落冰球。鼠标移动、触屏拖动、← / → 或 A / D 控制盘子。稳定接球接住后固定；真实和粘性物理下冰球持续碰撞、滚动，移动过快可能滑落。接稳比例只用于稳定接球。切换或关闭设置时会保存修改并重开所编辑关卡。</p>
+        <p class="help">按盘子上实际接稳的高度通关，球缩小后需要接住更多球。默认大小单球约 50 高；目标以舞台为基准。盘子速度可设 40～5000，大小交替倍率与冰球大小倍率相乘。掉落总数可选无限或指定数量。</p>
+        <div class="tool-buttons"><button id="save-level" class="primary" type="submit">保存并加载本关</button><button id="load-level" type="button">加载已保存的本关</button></div>
+      </form>
+      <p id="editor-status" class="status" role="status"></p>
+      <div class="tool-buttons"><button id="export-levels">导出关卡配置</button><button id="import-levels">导入关卡配置</button></div><input id="levels-file" type="file" accept="application/json,.json" hidden>
+    </section>
+    <section data-pane="gifts" hidden>
+      <h3>捣乱与礼物绑定</h3><p class="help">填写实际收到的礼物名称，为每条规则选择效果和参数。同名多条规则同时触发，数值为 0 时不触发。</p>
+      <p class="help">持续效果的连送数量乘持续时间，强度不自动放大。同类重复触发延长时间，最长 600 秒；相反风向或盘宽效果以后触发的为准。爆炸仍按礼物数量放大半径，上限 1000。</p>
+      <p class="help">盘子最小宽度为场上或待掉落最大冰球直径的 1.5 倍。融化速度按每秒减少原直径的百分比设置；缩小后的尺寸不会恢复。变成冰球期间，场上和新掉落的球都变硬、低粘性，时间结束后恢复所选物理手感。</p>
+      <div id="rules"></div><button id="add-rule">＋ 添加礼物规则</button><button id="reset-rules" class="subtle">恢复示例规则</button>
+    </section>
+    <section data-pane="appearance" hidden>
+      <h3>冰淇淋图片</h3><p class="help">勾选启用的图片。新掉落的球使用当前素材，场上的球保留原图片。</p><div id="skin-summary" class="skin-summary"></div><div id="scoop-skins" class="scoop-skins"></div>
+      <input id="scoop-file" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden><button id="add-scoop-image" class="wide">＋ 添加图片</button><p class="help">PNG、JPG、WebP，每张最多 8 MB。共可保留 24 种，包括 12 种内置图片和 12 种自定义图片。</p>
+      <h3>冰球图片</h3><div class="ice-editor"><img id="ice-skin-preview" alt="冰球图片预览"><div><strong id="ice-image-name">默认冰球</strong><p class="help">用于“变成冰球”效果，场上与新掉落的冰球都会使用。建议上传圆形、透明背景的 PNG；图片等比例显示，碰撞仍为圆球。</p><div class="tool-buttons"><button id="replace-ice-image" type="button">选择冰球图片</button><button id="reset-ice-image" type="button">恢复默认冰球</button></div></div></div><input id="ice-file" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+      <h3>盘子图片</h3><div class="bowl-editor"><div id="bowl-image-preview" class="bowl-image-preview"><img id="bowl-skin-preview" alt="盘子图片预览"><span id="rim-preview-line"></span></div><span id="bowl-image-name">默认盘子</span></div>
+      <input id="bowl-file" type="file" accept="image/png,image/jpeg,image/webp" hidden><button id="replace-bowl-image" class="wide">选择盘子图片</button><label class="field-stack">图片接球线<span class="rim-controls"><input id="bowl-rim" type="range" min="0" max="80" value="8"><output id="bowl-rim-value">8%</output></span></label><p class="help">将虚线对齐图片的盘面。图片只改变外观，碰撞面为水平承接面，宽度由关卡参数设置。</p><button id="reset-bowl-image">恢复默认盘子</button>
+      <h3>素材配置</h3><div class="tool-buttons"><button id="export-appearance">导出素材配置</button><button id="import-appearance">导入素材配置</button><button id="reset-appearance">恢复默认素材</button></div><input id="appearance-file" type="file" accept="application/json,.json" hidden><p id="appearance-result" class="status" role="status"></p>
+    </section>
+    <section data-pane="display" hidden>
+      <h3>画面与信息</h3><label class="switch-row">透明背景<input id="transparent" type="checkbox" role="switch"></label><label class="switch-row">游戏音效<input id="sound" type="checkbox" role="switch"></label><label class="switch-row">显示礼物提示<input id="show-feed" type="checkbox" role="switch"></label>
+      <div class="form-grid"><label>信息字号<input id="hud-size" type="number" min="16" max="64" step="1"></label><label>信息文字颜色<input id="hud-color" type="color"></label><label>信息背景透明度<input id="hud-opacity" type="range" min="0" max="100"></label><label>非透明背景颜色<input id="background-color" type="color"></label></div><div class="tool-buttons"><button id="reset-hud-position">重置信息位置</button><button id="reset-control-position">重置控制区位置</button></div>
+      <p class="help">信息区与开始／暂停按钮独立。拖动信息框或控制区左侧的拖动柄调整位置，双击空白或点击设置打开面板。位置自动保存。</p>
+      <h3>持续效果 HUD</h3>
+      <label class="switch-row">显示效果倒计时<input id="effects-visible" type="checkbox" role="switch"></label>
+      <div class="form-grid"><label>效果文字颜色<input id="effects-color" type="color"></label><label>效果背景透明度<input id="effects-opacity" type="range" min="0" max="100"></label></div>
+      <p class="help">每种效果单独显示累计剩余时间，多个效果可同时显示。重复礼物延长该效果的时间，暂停时同步停表，到期自动隐藏。爆炸为瞬时效果，不显示倒计时。</p>
+      <h3>HUD 大小与位置</h3>
+      <div class="form-grid"><label>调整对象<select id="layout-target"><option value="info">关卡信息</option><option value="controls">开始／暂停控制区</option><option value="wind">关卡阵风提示</option></select></label><label><span id="layout-size-label">字号</span><input id="layout-size" type="number" min="12" max="64" step="1"></label><label>排列方式<select id="layout-placement"><option value="auto">自动排列</option><option value="manual">指定位置</option></select></label><label>横向位置（%）<input id="layout-x" type="number" min="0" max="100" step=".1"></label><label>纵向位置（%）<input id="layout-y" type="number" min="0" max="100" step=".1"></label></div>
+      <div class="tool-buttons"><button id="preview-effect-hud" type="button">预览并拖动 HUD</button><button id="reset-selected-hud" type="button">重置此 HUD</button><button id="reset-effects-hud" type="button">重置全部效果布局</button></div>
+      <p class="help">效果卡片可逐个设置字号和位置，设置自动保存。自动排列会适应屏幕；指定位置以画面左上角为基准。预览不触发效果，预览期间暂停游戏。</p>
+    </section>
+    <section data-pane="test" hidden>
+      <h3>关卡控制</h3><div class="tool-buttons"><button id="drop" class="primary">开始自动掉落</button><button id="pause">暂停</button><button id="restart">重开本关</button><button id="next-level">下一关</button></div>
+      <p class="help">鼠标移动 / 触屏拖动 / ← → / A D：控制盘子；空格或 P：开始、暂停或继续；Enter：通过后下一关；R：重开；Esc：关闭设置。无需手动投放。</p>
+      <h3>捣乱效果测试</h3><div id="test-buttons" class="test-grid"></div>
+      <div class="form-grid"><label>模拟礼物名称<input id="test-gift-name" type="text" maxlength="80"></label><label>模拟礼物数量<input id="test-gift-count" type="number" value="1" min="1" max="10000"></label></div><button id="test-gift">发送模拟礼物</button><p id="test-result" class="status" aria-live="polite"></p>
+      <h3>当前参数</h3><p id="test-state" class="help"></p><h3>整蛊机连接</h3><p id="connection" class="connection">等待连接</p><p id="connection-detail" class="help"></p>
+    </section>
+  </div><div class="drawer-footer"><span id="toast" role="status"></span><button id="close-panel" class="primary">关闭设置</button></div>
+</aside>
+<script>/* ASSETS */</script><script>/* LEVELS */</script><script>/* RIGID */</script><script>/* ENGINE */</script><script>/* GIFTS */</script><script>/* CAMPAIGN */</script><script>/* APPEARANCE */</script><script>/* COPY_PROFILE */</script><script>/* APP */</script>
+</body></html>

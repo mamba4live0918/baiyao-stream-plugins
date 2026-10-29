@@ -1,0 +1,13 @@
+# salmon_slice_broken · 内置 image_gen
+
+参考图：`assets/raw/tools/salmon_slice.png`。`transparent_background=true`，本地参考图机制；先使用view_image查看，再生成。
+
+实际提示词：
+
+Use case: precise-object-edit. Asset type: transparent 2D cooking-game sprite, salmon_slice_broken. Input image is the edit target and exact style/composition reference. Change only this single cartoon salmon sashimi slice: it has been cut crookedly and separates into 2 or 3 small uneven pieces lying close together, so the overall group occupies approximately the same centered bounding rectangle and same size as the original single slice. Preserve the orange salmon color, cream-white fat stripes, dark brown #49372d clean outlines, flat cartoon shading with one shadow and small white highlights, upper-left light, same 3/4 viewing angle, same framing and same transparent canvas. This is cute non-graphic food, no blood. The gaps between the 2–3 pieces must be truly transparent. No plate, knife, board, scenery, letters, numbers, symbols, logo, watermark, ground shadow or glow. Crisp alpha edges. The final sprite will be displayed around 50 x 30 at reference short-side 1080; keep the pieces readable at that small scale. Do not change to photorealistic or 3D style.
+
+生成原文件：`C:/Users/Mamba4live/.codex/generated_images/01a16305-977c-7b20-aac3-361c8a2dbf7f/exec-6b312fbe-b27a-48e8-977c-231220d98541.png`。
+
+工作区原图：`assets/raw/tools/salmon_slice_broken.png`。
+
+SHA256：`9b0ebadaebaf22be97aed1ac3d3eea1d7f3f7eae10f396365df53dc99acdbd56`。

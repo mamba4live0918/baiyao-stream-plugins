@@ -1,0 +1,29 @@
+/* 插件自带加班机：设置②里的「加班机」一块 + 直播画面棋盘上方的倒计时牌（俄罗斯方块和萌宠消消乐用同一份） */
+#broadcast-settings .lot{margin-top:12px;padding-top:10px;border-top:1px dashed #6f97a866}
+#broadcast-settings .lot-title{margin:4px 0 4px;font:700 14px/1.6 "Microsoft YaHei",sans-serif;color:#ffd27a}
+#broadcast-settings .lot-sub{margin:14px 0 2px;font:700 13px/1.6 "Microsoft YaHei",sans-serif;color:#e2f2f8}
+#broadcast-settings .lot-body[hidden]{display:none}
+#broadcast-settings .lot-face{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:8px 0;padding:10px 13px;border-radius:10px;background:#0d171d;border:1px solid #6f97a855}
+#broadcast-settings .lot-face small{font-size:12px;color:#a9c3cd}
+#broadcast-settings .lot-time{font:800 26px/1.1 "Microsoft YaHei",sans-serif;color:#eef6f8;font-variant-numeric:tabular-nums}
+#broadcast-settings .lot-inline{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+#broadcast-settings .lot-inline input[type=number]{width:84px}
+#broadcast-settings .lot-check{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+#broadcast-settings .lot-gifts{display:grid;gap:6px;margin:6px 0}
+#broadcast-settings .lot-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+#broadcast-settings .lot-row input[type=text]{width:100px!important;flex:none}
+#broadcast-settings .lot-row input[type=number]{width:54px!important;flex:none}
+#broadcast-settings .lot-row select{width:70px!important;flex:none}
+#broadcast-settings .lot-row button{min-height:28px;padding:3px 9px}
+#broadcast-settings .lot-empty{margin:2px 0}
+/* 直播画面上的牌子：和上面的状态栏同一种浅色底板 */
+.lot-plate{position:relative;display:flex;align-items:baseline;gap:8px;margin:0 4px 8px;padding:6px 12px;background:#f8fbefed;border:1px solid #d8e3ca;border-radius:13px;box-shadow:0 2px 6px #2a452017;color:#3a5b41;font:13px/1.4 "Microsoft YaHei",sans-serif;white-space:nowrap}
+.lot-plate[hidden]{display:none}
+.lot-plate .lot-plate-label{font-size:calc(11px / var(--stage-scale,1));color:#7b9170;font-weight:500}
+.lot-plate .lot-plate-time{font-size:calc(18px / var(--stage-scale,1));font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.lot-plate .lot-plate-net{margin-left:auto;font-size:calc(11px / var(--stage-scale,1));color:#9a744d;font-weight:600}
+.lot-plate[data-done=true] .lot-plate-time,.lot-plate[data-done=true] .lot-plate-label{color:#b5603f}
+.lot-plate .lot-plate-net.flash{padding:1px 8px;border-radius:8px;background:#2f7a5f;color:#fff;animation:lotFlash .35s ease-out}
+.lot-plate .lot-plate-net.flash.sub{background:#b5603f}
+@keyframes lotFlash{0%{transform:scale(.8);opacity:.4}60%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.lot-plate .lot-plate-net.flash{animation:none}}

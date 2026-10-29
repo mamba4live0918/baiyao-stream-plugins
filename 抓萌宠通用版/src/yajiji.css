@@ -1,0 +1,28 @@
+body[data-theme=yajiji]{--rose:#ebac51;--rose-deep:#b67934;--cocoa:#665845;--milk:#fffdf6;--mint:#dff4ee;color:#665845}
+body[data-theme=yajiji] .stats-surface,body[data-theme=yajiji] .waiting-surface{background:#fffdf3ef;border-color:#f1d593;box-shadow:0 4px 16px #cb9b4e24;color:#715c3f}
+body[data-theme=yajiji] .metric-content b,body[data-theme=yajiji] #waiting-count{color:#c28431}
+body[data-theme=yajiji] .metric-label,body[data-theme=yajiji] .waiting-footer{color:#92784e}
+body[data-theme=yajiji] .metric-icon{color:#ba852d;background:#fff0bd}
+body[data-theme=yajiji] .home-icon{color:#778f9c;background:#e2f1f0}
+body[data-theme=yajiji] .gear,body[data-theme=yajiji] #toolbar{background:#fffdf2ed;color:#9e7439;border-color:#f2ddab;box-shadow:0 5px 18px #bf98452b}
+body[data-theme=yajiji] .primary{background:linear-gradient(#ffcd67,#eda73f);box-shadow:inset 0 2px #ffefb4,0 3px #cb8c30;color:#674915}
+body[data-theme=yajiji] .secondary{color:#9e793f;border-color:#efd6a0!important}
+body[data-theme=yajiji] .call{color:#ffbd57;-webkit-text-stroke-color:#fffdf2;filter:drop-shadow(0 3px 0 #a8753740)}
+body[data-theme=yajiji] #settings,body[data-theme=yajiji] .settings-head{background:#fffdf6;color:#76624a}
+body[data-theme=yajiji] #settings h3{color:#a18142;border-color:#efdfbc}
+body[data-theme=yajiji] #settings button{background:#f8ecd0;color:#957541}
+body[data-theme=yajiji] #settings input,body[data-theme=yajiji] #settings select{color:#786044;border-color:#e5d1a3;background:#fffffc}
+body[data-theme=yajiji] #settings .settings-tabs button[aria-selected=true]{background:#dcaf57;color:#fffdf8}
+body[data-theme=yajiji] #settings p{color:#a28b6a}
+body[data-theme=yajiji] .pet-mode-controls,body[data-theme=yajiji] .chant-controls,body[data-theme=yajiji] .manual-add-card,body[data-theme=yajiji] .effect-card{background:linear-gradient(130deg,#fff6d9,#edf9f5);border-color:#ead9ac}
+body[data-theme=yajiji] .media-card{background:#fffefb;border-color:#ebddbc}
+body[data-theme=yajiji] .media-card>img{background:radial-gradient(#fffdf2,#f4f8fb)}
+body[data-theme=yajiji] .media-card.selected{border-color:#e3bd65;box-shadow:0 0 0 3px #fff4d3}
+body[data-theme=yajiji] #settings .audio-level-range{accent-color:#d8ad51}
+body[data-theme=yajiji] #pen .pen-hint{background:#fffdf0ef;border-color:#efd092;color:#9b773d}
+body[data-theme=yajiji] #pen.over{filter:drop-shadow(0 0 8px #ffe7a5)}
+body[data-theme=yajiji] #grip-fx{border-color:#e9c468;background:radial-gradient(circle,#fffce970,#ccefe838 58%,transparent 73%);box-shadow:0 0 13px #d5aa544d;color:#b28b34}
+body[data-theme=yajiji] .fx-cue{background:linear-gradient(120deg,#fffcefec,#e8f8f6ed);color:#aa813f;box-shadow:0 8px 24px #b69b502c}
+body[data-theme=yajiji] .fx-cue b{background:#efbf61;color:#fffef0}
+body[data-theme=yajiji] .spark{color:#edc358;text-shadow:0 1px 1px white}
+body[data-theme=yajiji] #boom-fx{border-color:#edcc79;box-shadow:0 0 0 10px #fff6d16e,0 0 0 18px #dcf5ef50}

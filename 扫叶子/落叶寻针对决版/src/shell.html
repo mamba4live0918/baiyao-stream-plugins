@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>落叶寻针 · 2.5D 小样（礼物效果）</title>
+<script>/*__KEYSHIM__*/</script>
+<style>/*__STYLE__*/</style>
+</head><body>
+<div id="stage">
+  <canvas id="scene" aria-label="落叶堆"></canvas>
+  <canvas id="fx2d" aria-hidden="true"></canvas>
+  <div id="overlay">
+    <div id="needle-tag" class="needle-tag" hidden><span id="needle-text">露出 0%</span><i class="pull-ring"></i></div>
+    <div id="win" class="win" hidden><strong>拔出来了！</strong><span id="win-detail"></span><button id="again" type="button">再来一堆</button></div>
+    <div class="hint">单击捡叶子 · 针露出够多后按住拔出 · 双击空白处打开礼物设置</div>
+    <div id="face-edit" class="face-edit" hidden>
+      <div id="face-ring" class="face-ring" title="按住拖动位置"><i id="face-handle" class="face-handle" title="拖动缩放"></i></div>
+      <div id="face-tip" class="face-tip"><span>按住圈内拖动位置 · 拖右边圆点调大小</span><button id="face-done" type="button">完成</button></div>
+    </div>
+    <div id="message" class="message" hidden></div>
+  </div>
+</div>
+<aside id="panel" class="panel">
+  <header><b>2.5D 小样调试</b><button id="panel-close" type="button" title="收起（H）">收起</button></header>
+  <label>镜头仰角 <output id="elevation-out"></output><input id="elevation" type="range" min="45" max="75" step="1"></label>
+  <label>每层厚度 <output id="thickness-out"></output><input id="thickness" type="range" min="2" max="8" step="0.5"></label>
+  <label>叶量 <output id="count-out"></output><input id="count" type="range" min="600" max="2000" step="100"></label>
+  <label>反光阈值 <output id="glint-out"></output><input id="glint" type="range" min="3" max="15" step="1"></label>
+  <label>拔针露出阈值 <output id="threshold-out"></output><input id="threshold" type="range" min="10" max="100" step="5"></label>
+  <label>按住时长 <output id="hold-out"></output><input id="hold" type="range" min="0.5" max="5" step="0.1"></label>
+  <label class="check"><input id="xray" type="checkbox"> 透视显示针（调试）</label>
+  <div class="row"><button id="regen" type="button">重新铺叶</button><button id="expose" type="button">露出针（调试）</button><button id="gift-settings" type="button" data-lg-keep-open>礼物设置</button></div>
+  <dl id="stats"></dl>
+  <div id="sim" class="sim"></div>
+  <p class="note">叶量、厚度改完点「重新铺叶」生效；其他设置立即生效，并保存在本机浏览器。</p>
+</aside>
+<button id="panel-open" class="panel-open" type="button" hidden>调试（H）</button>
+<script>/*__CORE__*/</script>
+<script>/*__APP__*/</script>
+</body></html>

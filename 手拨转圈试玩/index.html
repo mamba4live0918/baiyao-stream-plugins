@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>手拨转圈 · 试玩</title>
+<style>
+  :root {
+    --bg: #0e0f16;
+    --ink: #eef0ff;
+    --sub: #9ea4c4;
+    --line: rgba(255, 255, 255, .09);
+    --pink: #ff8dbf;
+    --blue: #8bcbff;
+    --gold: #ffd84d;
+    --btn: #22253a;
+    --btn-hover: #2d3152;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(1400px 800px at 50% -20%, #272b4a 0%, var(--bg) 60%);
+    color: var(--ink);
+    font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+    overflow: hidden;
+  }
+  .app { height: 100%; display: grid; grid-template-rows: auto 1fr auto; gap: 14px; padding: 18px 24px 20px; }
+
+  header { display: grid; gap: 8px; }
+  .title-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: .1em; }
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; color: var(--sub); }
+  .flow b { color: var(--ink); font-weight: 700; padding: 5px 12px; border-radius: 999px; background: rgba(255, 255, 255, .06); border: 1px solid var(--line); }
+  .flow i { font-style: normal; opacity: .55; }
+  .aside { margin: 0; font-size: 13.5px; color: var(--sub); }
+
+  .stages { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; min-height: 0; }
+  .col { display: grid; grid-template-rows: auto 1fr; gap: 10px; min-height: 0; }
+  .tag { display: flex; align-items: center; gap: 12px; min-height: 32px; }
+  .letter { flex: none; width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-weight: 900; font-size: 17px; color: #17131f; }
+  .A .letter { background: var(--pink); }
+  .B .letter { background: var(--blue); }
+  .name { font-size: 19px; font-weight: 800; white-space: nowrap; }
+  .note { font-size: 13.5px; color: var(--sub); line-height: 1.45; }
+  .note em { font-style: normal; font-weight: 700; padding: 1px 7px; border-radius: 6px; margin-right: 6px; white-space: nowrap; }
+  .A .note em { color: #1c2a12; background: #9be37a; }
+  .B .note em { color: #2b1d05; background: #ffc35c; }
+
+  .stage {
+    position: relative; overflow: hidden; min-height: 0;
+    border-radius: 22px; border: 1px solid var(--line);
+    background: radial-gradient(85% 75% at 50% 30%, #272b45 0%, #181a28 68%, #131520 100%);
+    touch-action: none; cursor: grab;
+  }
+  .stage.holding { cursor: grabbing; }
+  .glow { position: absolute; left: 8%; right: 8%; bottom: -36%; height: 70%; pointer-events: none; }
+  .A .glow { background: radial-gradient(closest-side, rgba(255, 141, 191, .14), transparent); }
+  .B .glow { background: radial-gradient(closest-side, rgba(139, 203, 255, .14), transparent); }
+  .actor, .ghost { position: absolute; left: 0; top: 0; pointer-events: none; will-change: transform; }
+  .A .actor, .A .ghost { transform-origin: 50% 50%; }
+  .B .actor { transform-origin: 49% 50%; }
+  .actor img, .ghost img { display: block; width: 100%; height: 100%; -webkit-user-drag: none; }
+  .ghost { opacity: 0; }
+  .fx { position: absolute; inset: 0; pointer-events: none; }
+  .hand { position: absolute; left: 0; top: 0; overflow: visible; filter: drop-shadow(0 12px 16px rgba(0, 0, 0, .35)); will-change: transform; }
+  .star { position: absolute; left: 0; top: 0; opacity: 0; overflow: visible; will-change: transform, opacity; }
+  .burst { position: absolute; width: 0; height: 0; }
+  .burst svg { position: absolute; left: 0; top: 0; overflow: visible; animation: pop .62s cubic-bezier(.2, 1.5, .4, 1) both; }
+  @keyframes pop {
+    0%   { transform: translate(-50%, -50%) rotate(var(--r)) scale(.25); opacity: 0; }
+    15%  { opacity: 1; }
+    38%  { transform: translate(-50%, -50%) rotate(var(--r)) scale(1.08); }
+    70%  { opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(var(--r)) scale(1); opacity: 0; }
+  }
+  .toast {
+    position: absolute; left: 50%; top: 54px; z-index: 5;
+    padding: 10px 18px; border-radius: 999px; font-size: 15px; font-weight: 700; white-space: nowrap;
+    background: rgba(20, 21, 33, .9); border: 1px solid rgba(255, 216, 77, .45); box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+    transform: translate(-50%, -8px); opacity: 0; pointer-events: none;
+  }
+  .toast.show { animation: toast 1.7s ease both; }
+  @keyframes toast {
+    0%   { opacity: 0; transform: translate(-50%, -8px); }
+    12%  { opacity: 1; transform: translate(-50%, 0); }
+    78%  { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -4px); }
+  }
+
+  .controls { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  button {
+    font: inherit; font-size: 16px; font-weight: 800; color: var(--ink);
+    background: var(--btn); border: 1px solid var(--line); border-radius: 14px; padding: 12px 22px;
+    cursor: pointer; box-shadow: 0 4px 0 rgba(0, 0, 0, .4);
+    transition: transform .08s ease, box-shadow .08s ease, background-color .15s ease;
+  }
+  button:hover { background: var(--btn-hover); }
+  button:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0, 0, 0, .4); }
+  button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  button.primary { color: #2b0f1e; background: linear-gradient(180deg, #ffa6cd, #ff74ad); border-color: transparent; }
+  button.primary:hover { background: linear-gradient(180deg, #ffb4d6, #ff83b6); }
+  .hint { flex: 1; min-width: 220px; font-size: 14px; color: var(--sub); }
+  .hint b { color: var(--ink); }
+  .sound { font-size: 14px; padding: 10px 16px; }
+
+  @media (max-width: 860px) {
+    body { overflow: auto; }
+    .app { height: auto; min-height: 100%; }
+    .stages { grid-template-columns: 1fr; }
+    .col { height: 56vh; min-height: 340px; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="glove" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ddd8ee"/>
+    </linearGradient>
+    <g id="hand-shape">
+      <rect x="34" y="58" width="130" height="34" rx="17"/>
+      <rect x="20" y="92" width="144" height="35" rx="17.5"/>
+      <rect x="32" y="127" width="132" height="33" rx="16.5"/>
+      <rect x="56" y="159" width="108" height="28" rx="14"/>
+      <rect x="128" y="56" width="120" height="134" rx="44"/>
+      <rect x="134.5" y="8.5" width="34" height="80" rx="17" transform="rotate(-41.6 151.5 48.5)"/>
+    </g>
+    <path id="star-shape" d="M0-10 2.35-3.24 9.51-3.09 3.8 1.24 5.88 8.09 0 4-5.88 8.09-3.8 1.24-9.51-3.09-2.35-3.24Z"
+      fill="#ffd84d" stroke="#2a2333" stroke-width="2" stroke-linejoin="round"/>
+  </defs>
+</svg>
+
+<div class="app">
+  <header>
+    <div class="title-row">
+      <h1>手拨转圈 · 试玩</h1>
+      <div class="flow"><b>观众送礼</b><i>→</i><b>大手伸进来拨一下</b><i>→</i><b>皮套转圈，转晕冒星星</b></div>
+    </div>
+    <p class="aside">抖音那个是 AI 拿一张照片生成的几秒视频，要等几十秒才出来，直播里没法实时用。下面是直播间能实时做的版本，左右两种转法同时演示，对比着看。</p>
+  </header>
+
+  <main class="stages">
+    <section class="col A">
+      <div class="tag">
+        <span class="letter">A</span><span class="name">平面转圈</span>
+        <span class="note"><em>白曜现成能做</em>像风车一样转。踢飞时那个空中转两圈就是这个动作。</span>
+      </div>
+      <div class="stage" data-mode="plane">
+        <div class="glow"></div>
+        <div class="ghost"><img src="avatar.webp" alt="" draggable="false"></div>
+        <div class="ghost"><img src="avatar.webp" alt="" draggable="false"></div>
+        <div class="actor"><img src="avatar.webp" alt="白曜皮套" draggable="false"></div>
+        <div class="fx"></div>
+      </div>
+    </section>
+    <section class="col B">
+      <div class="tag">
+        <span class="letter">B</span><span class="name">转身</span>
+        <span class="note"><em>要另外接 OBS</em>像陀螺一样转身。皮套没有背面，转到背后用变暗的镜像顶替。</span>
+      </div>
+      <div class="stage" data-mode="turn">
+        <div class="glow"></div>
+        <div class="actor"><img src="avatar.webp" alt="白曜皮套" draggable="false"></div>
+        <div class="fx"></div>
+      </div>
+    </section>
+    <div class="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <footer class="controls">
+    <div class="btns">
+      <button class="primary" data-act="tap">拨一下</button>
+      <button data-act="strong">用力拨</button>
+      <button data-act="combo">连拨 5 下</button>
+    </div>
+    <div class="hint">也可以自己拨：<b>按住鼠标在皮套上快速一划</b>；转的时候<b>按住不动</b>就是刹车。</div>
+    <button class="sound" aria-pressed="true">🔊 声音：开</button>
+  </footer>
+</div>
+
+<template id="hand-tpl">
+  <svg class="hand" viewBox="0 0 300 205" aria-hidden="true" focusable="false">
+    <use href="#hand-shape" fill="#2a2333" stroke="#2a2333" stroke-width="12" stroke-linejoin="round"/>
+    <use href="#hand-shape" fill="url(#glove)"/>
+    <g fill="none" stroke="#2a2333" stroke-width="5" stroke-linecap="round">
+      <path d="M52 92H134"/>
+      <path d="M49 127H136"/>
+      <path d="M71 159H138"/>
+      <path d="M180 78Q162 106 180 136" opacity=".4"/>
+    </g>
+    <rect x="236" y="46" width="56" height="152" rx="18" fill="url(#glove)" stroke="#2a2333" stroke-width="6"/>
+    <path d="M255 56V188M271 56V188" stroke="#2a2333" stroke-width="4" stroke-linecap="round" opacity=".3"/>
+  </svg>
+</template>
+
+<script>
+(() => {
+  'use strict';
+
+  const TAU = Math.PI * 2;
+  const AVATAR_ASPECT = 1170 / 900;
+  const HAND = { w: 300, h: 205, tipX: 20, tipY: 109.5 };
+  const DIZZY_SECONDS = 2.3;
+  const SHAKE_SECONDS = 0.28;
+  const KINDS = {
+    tap:    { power: 1,   flicks: 1, toast: '🎁 观众送了个礼物 → 拨一下' },
+    strong: { power: 1.9, flicks: 1, toast: '🎁 观众送了个大礼物 → 用力拨' },
+    combo:  { power: 0.8, flicks: 5, toast: '🎁 观众连送 5 个 → 连拨 5 下' },
+  };
+  // omega in rad/s; base = what one flick adds.
+  const PHYS = {
+    plane: { base: 15, max: 44 },
+    turn:  { base: 14, max: 44 },
+  };
+  // The spin slows down exponentially and is aimed so it comes back to "facing front"
+  // at catchV; from there a spring gives one small wobble and stops.
+  const SPIN = { catchV: 3.2, decay: 0.9, maxDecay: 6, brake: 9, springW: 9, springZeta: 0.35 };
+
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = (e0, e1, x) => { const t = clamp((x - e0) / (e1 - e0), 0, 1); return t * t * (3 - 2 * t); };
+  const ease = {
+    linear: t => t,
+    outCubic: t => 1 - (1 - t) ** 3,
+    inCubic: t => t ** 3,
+    inOutSine: t => (1 - Math.cos(Math.PI * t)) / 2,
+  };
+
+  let clock = 0;
+
+  // ---------- sound: everything is synthesized, no files ----------
+  const audio = (() => {
+    let ac = null, master = null, noise = null, windGain = null, windFilter = null;
+    let on = true, lastDizzy = -1;
+
+    function init() {
+      if (ac) { if (ac.state === 'suspended') ac.resume(); return; }
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      ac = new AC();
+      master = ac.createGain();
+      master.gain.value = on ? 0.9 : 0;
+      master.connect(ac.destination);
+      const len = ac.sampleRate * 2;
+      noise = ac.createBuffer(1, len, ac.sampleRate);
+      const d = noise.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      const src = ac.createBufferSource();
+      src.buffer = noise;
+      src.loop = true;
+      windFilter = ac.createBiquadFilter();
+      windFilter.type = 'bandpass';
+      windFilter.Q.value = 1.4;
+      windFilter.frequency.value = 400;
+      windGain = ac.createGain();
+      windGain.gain.value = 0;
+      src.connect(windFilter).connect(windGain).connect(master);
+      src.start();
+    }
+
+    function noiseHit({ type = 'bandpass', freq, to, q = 1, dur, vol }) {
+      if (!ac || !on) return;
+      const t = ac.currentTime;
+      const src = ac.createBufferSource();
+      src.buffer = noise;
+      const f = ac.createBiquadFilter();
+      f.type = type;
+      f.Q.value = q;
+      f.frequency.setValueAtTime(freq, t);
+      if (to) f.frequency.exponentialRampToValueAtTime(to, t + dur);
+      const g = ac.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      src.connect(f).connect(g).connect(master);
+      src.start(t, Math.random() * 1.5);
+      src.stop(t + dur + 0.05);
+    }
+
+    function tone({ type = 'sine', from, to, dur, vol, vibrato = 0 }) {
+      if (!ac || !on) return;
+      const t = ac.currentTime;
+      const o = ac.createOscillator();
+      o.type = type;
+      o.frequency.setValueAtTime(from, t);
+      o.frequency.exponentialRampToValueAtTime(to, t + dur);
+      if (vibrato) {
+        const lfo = ac.createOscillator();
+        const depth = ac.createGain();
+        lfo.frequency.value = 8;
+        depth.gain.value = vibrato;
+        lfo.connect(depth).connect(o.frequency);
+        lfo.start(t);
+        lfo.stop(t + dur + 0.05);
+      }
+      const g = ac.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g).connect(master);
+      o.start(t);
+      o.stop(t + dur + 0.05);
+    }
+
+    return {
+      init,
+      isOn: () => on,
+      setOn(v) {
+        on = v;
+        if (master) master.gain.setTargetAtTime(v ? 0.9 : 0, ac.currentTime, 0.02);
+      },
+      swish(p = 1) { noiseHit({ freq: 600, to: 3000, q: 1.2, dur: 0.16, vol: Math.min(0.35, 0.16 * p) }); },
+      slap(p = 1) {
+        const k = Math.min(p, 1.6);
+        noiseHit({ freq: 2400, q: 0.7, dur: 0.07, vol: 0.55 * k });
+        noiseHit({ type: 'lowpass', freq: 900, q: 0.5, dur: 0.11, vol: 0.5 * k });
+        tone({ from: 165, to: 55, dur: 0.13, vol: 0.5 * k });
+      },
+      dizzy() {
+        if (!ac || ac.currentTime - lastDizzy < 0.6) return;
+        lastDizzy = ac.currentTime;
+        tone({ type: 'triangle', from: 640, to: 420, dur: 0.8, vol: 0.12, vibrato: 30 });
+      },
+      wind(speed, phase) {
+        if (!ac) return;
+        const t = ac.currentTime;
+        const v = on ? Math.min(0.2, speed / 150) * (0.3 + 0.7 * Math.abs(Math.sin(phase))) : 0;
+        windGain.gain.setTargetAtTime(v, t, 0.03);
+        windFilter.frequency.setTargetAtTime(260 + Math.min(speed, 44) * 40, t, 0.05);
+      },
+    };
+  })();
+
+  // ---------- pieces drawn on the stage ----------
+  const HAND_TPL = document.getElementById('hand-tpl');
+
+  function makeStar() {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '-12 -12 24 24');
+    s.setAttribute('class', 'star');
+    s.innerHTML = '<use href="#star-shape"/>';
+    return s;
+  }
+
+  function burstSVG(size, big) {
+    const count = big ? 12 : 9;
+    let rays = '';
+    for (let i = 0; i < count; i++) {
+      const a = (i / count) * TAU + (Math.random() - 0.5) * 0.35;
+      const r0 = 46 + Math.random() * 8;
+      const r1 = r0 + 22 + Math.random() * (big ? 26 : 16);
+      rays += `<line x1="${(Math.cos(a) * r0).toFixed(1)}" y1="${(Math.sin(a) * r0).toFixed(1)}" x2="${(Math.cos(a) * r1).toFixed(1)}" y2="${(Math.sin(a) * r1).toFixed(1)}"/>`;
+    }
+    return `<svg viewBox="-100 -100 200 200" width="${size}" height="${size}">
+      <g stroke="#ffe680" stroke-width="7" stroke-linecap="round">${rays}</g>
+      <text x="0" y="16" text-anchor="middle" font-size="${big ? 62 : 52}" font-weight="900"
+        fill="#fff" stroke="#2a2333" stroke-width="10" stroke-linejoin="round" paint-order="stroke"
+        font-family="Microsoft YaHei UI, PingFang SC, sans-serif">${big ? '啪!!' : '啪!'}</text></svg>`;
+  }
+
+  // Hand path, written as if the hand comes in from the right and flicks leftward.
+  // Positions are the middle fingertip; dir > 0 mirrors everything around midX.
+  function planHand(g, kind) {
+    const k = KINDS[kind];
+    const strong = kind === 'strong';
+    const cx = g.contactX, cy = g.contactY;
+    const off = { x: g.W + g.handW * 0.06, y: cy - g.aH * 0.10, r: 6 };
+    const ready = { x: cx + g.aW * 0.16, y: cy - g.aH * 0.025, r: 14 };
+    const thru = { x: cx - g.aW * (strong ? 0.34 : 0.24), y: cy + g.aH * 0.02, r: strong ? -26 : -16 };
+    const flickSeconds = strong ? 0.11 : 0.13;
+    const cross = (ready.x - cx) / (ready.x - thru.x);
+    const segs = [], events = [], swishes = [];
+    let t = 0;
+    const seg = (from, to, d, e) => { segs.push({ t0: t, t1: t + d, from, to, e }); t += d; };
+    seg(off, ready, k.flicks > 1 ? 0.24 : 0.3, ease.outCubic);
+    for (let i = 0; i < k.flicks; i++) {
+      swishes.push(t);
+      events.push({ t: t + flickSeconds * cross, power: k.power });
+      seg(ready, thru, flickSeconds, ease.linear);
+      if (i < k.flicks - 1) seg(thru, ready, 0.15, ease.inOutSine);
+    }
+    seg(thru, off, 0.34, ease.inCubic);
+    return { segs, events, swishes, dur: t, power: k.power };
+  }
+
+  class Stage {
+    constructor(el) {
+      this.el = el;
+      this.mode = el.dataset.mode;
+      this.phys = PHYS[this.mode];
+      this.actor = el.querySelector('.actor');
+      this.img = this.actor.querySelector('img');
+      this.ghosts = [...el.querySelectorAll('.ghost')];
+      this.fx = el.querySelector('.fx');
+      this.theta = 0;
+      this.omega = 0;
+      this.phase = 'spring';
+      this.target = 0;
+      this.decay = SPIN.decay;
+      this.resting = true;
+      this.spinAccum = 0;
+      this.dizzyAt = -99;
+      this.starsOn = false;
+      this.lift = 0;
+      this.shakeUntil = 0;
+      this.shakeAmp = 0;
+      this.hands = [];
+      this.bursts = [];
+      this.ptr = null;
+      this.g = null;
+      this.stars = [0, 1, 2].map(() => this.fx.appendChild(makeStar()));
+      this.bindPointer();
+      this.layout();
+      this.render();
+      new ResizeObserver(() => { this.layout(); this.render(); }).observe(el);
+    }
+
+    layout() {
+      const r = this.el.getBoundingClientRect();
+      const W = r.width, H = r.height;
+      if (!W || !H) return;
+      let aH = H * 0.82, aW = aH * AVATAR_ASPECT;
+      if (aW > W * 0.94) { aW = W * 0.94; aH = aW / AVATAR_ASPECT; }
+      const aL = (W - aW) / 2;
+      const aT = H - aH * 0.94; // bottom 6% hangs below the frame, like the cut-off bust on stream
+      const plane = this.mode === 'plane';
+      const handW = clamp(aW * 0.6, 150, 560);
+      this.g = {
+        W, H, aL, aT, aW, aH, handW, handH: handW * HAND.h / HAND.w,
+        contactX: aL + aW * (plane ? 0.60 : 0.74),  // plane: side of the head; turn: right chest
+        contactY: aT + aH * (plane ? 0.17 : 0.63),
+        midX: aL + aW * (plane ? 0.47 : 0.49),
+        pivotX: aL + aW * 0.5,
+        pivotY: aT + aH * 0.5,
+        headX: aL + aW * 0.465,
+        headY: aT + aH * 0.02,
+      };
+      const box = { left: aL + 'px', top: aT + 'px', width: aW + 'px', height: aH + 'px' };
+      for (const n of [this.actor, ...this.ghosts]) Object.assign(n.style, box);
+      const starPx = Math.max(22, aW * 0.085) + 'px';
+      for (const s of this.stars) { s.style.width = starPx; s.style.height = starPx; }
+    }
+
+    addHand(kind, dir, silent) {
+      if (!this.g) this.layout();
+      if (!this.g) return;
+      const g = this.g;
+      const node = HAND_TPL.content.firstElementChild.cloneNode(true);
+      node.setAttribute('width', g.handW.toFixed(1));
+      node.setAttribute('height', g.handH.toFixed(1));
+      node.style.transformOrigin = `${(HAND.tipX / HAND.w * g.handW).toFixed(1)}px ${(HAND.tipY / HAND.h * g.handH).toFixed(1)}px`;
+      this.fx.insertBefore(node, this.stars[0]);
+      const h = { plan: planHand(g, kind), node, dir, silent, g, t: 0, fired: 0, swished: 0 };
+      this.hands.push(h);
+      this.poseHand(h);
+    }
+
+    poseHand(h) {
+      const { plan, g } = h;
+      let s = plan.segs[plan.segs.length - 1];
+      for (const sg of plan.segs) { if (h.t <= sg.t1) { s = sg; break; } }
+      const k = s.e(clamp((h.t - s.t0) / (s.t1 - s.t0), 0, 1));
+      let x = lerp(s.from.x, s.to.x, k);
+      const y = lerp(s.from.y, s.to.y, k);
+      let r = lerp(s.from.r, s.to.r, k);
+      let sx = 1;
+      if (h.dir > 0) { x = 2 * g.midX - x; r = -r; sx = -1; }
+      const ox = HAND.tipX / HAND.w * g.handW, oy = HAND.tipY / HAND.h * g.handH;
+      h.node.style.transform = `translate(${(x - ox).toFixed(1)}px, ${(y - oy).toFixed(1)}px) rotate(${r.toFixed(2)}deg) scaleX(${sx})`;
+    }
+
+    updateHands(dt) {
+      if (!this.hands.length) return;
+      for (const h of this.hands) {
+        h.t += dt;
+        const p = h.plan;
+        while (h.swished < p.swishes.length && h.t >= p.swishes[h.swished]) {
+          if (!h.silent) audio.swish(p.power);
+          h.swished++;
+        }
+        while (h.fired < p.events.length && h.t >= p.events[h.fired].t) {
+          this.contact(h, p.events[h.fired]);
+          h.fired++;
+        }
+        this.poseHand(h);
+      }
+      const done = this.hands.filter(h => h.t >= h.plan.dur);
+      if (done.length) {
+        done.forEach(h => h.node.remove());
+        this.hands = this.hands.filter(h => h.t < h.plan.dur);
+      }
+    }
+
+    contact(h, ev) {
+      const g = h.g;
+      // leftward flick -> negative: plane spins counter-clockwise, turn swings the right side toward the viewer
+      this.impulse((h.dir < 0 ? -1 : 1) * this.phys.base * ev.power);
+      // the "啪" lands a bit ahead of the fingertip so the passing hand doesn't cover it
+      const hitX = g.contactX - g.aW * 0.12;
+      this.burst(h.dir < 0 ? hitX : 2 * g.midX - hitX, g.contactY - g.aH * 0.02, ev.power);
+      if (!h.silent) audio.slap(ev.power);
+      if (ev.power > 1.5) { this.shakeUntil = clock + SHAKE_SECONDS; this.shakeAmp = 10; }
+    }
+
+    impulse(dw) {
+      this.omega = clamp(this.omega + dw, -this.phys.max, this.phys.max);
+      this.resting = false;
+      this.plan(SPIN.decay);
+    }
+
+    // Choose the facing-front angle to land on, and the decay that reaches it at catch speed.
+    plan(decay) {
+      const v = Math.abs(this.omega);
+      const sign = Math.sign(this.omega) || 1;
+      if (v <= SPIN.catchV) { this.catchAt(Math.round(this.theta / TAU) * TAU); return; }
+      const want = (v - SPIN.catchV) / decay;
+      let target = Math.round((this.theta + sign * want) / TAU) * TAU;
+      if (sign * (target - this.theta) < 0.15) target += sign * TAU;
+      let k = (v - SPIN.catchV) / (sign * (target - this.theta));
+      if (k > SPIN.maxDecay) {
+        target += sign * TAU;
+        k = (v - SPIN.catchV) / (sign * (target - this.theta));
+      }
+      this.phase = 'spin';
+      this.target = target;
+      this.decay = k;
+    }
+
+    catchAt(target) {
+      this.phase = 'spring';
+      this.target = target;
+      if (this.spinAccum > TAU * 1.4 && clock - this.dizzyAt > DIZZY_SECONDS) {
+        this.dizzyAt = clock;
+        audio.dizzy();
+      }
+      this.spinAccum = 0;
+    }
+
+    burst(x, y, power) {
+      const n = document.createElement('div');
+      n.className = 'burst';
+      n.style.left = x.toFixed(1) + 'px';
+      n.style.top = y.toFixed(1) + 'px';
+      n.style.setProperty('--r', (Math.random() * 24 - 12).toFixed(1) + 'deg');
+      n.innerHTML = burstSVG(Math.round(this.g.aW * (0.26 + 0.1 * Math.min(power, 2))), power > 1.5);
+      this.fx.appendChild(n);
+      this.bursts.push({ node: n, at: clock });
+    }
+
+    dropOldBursts() {
+      if (!this.bursts.length) return;
+      const keep = [];
+      for (const b of this.bursts) { if (clock - b.at > 0.7) b.node.remove(); else keep.push(b); }
+      this.bursts = keep;
+    }
+
+    // Holding the mouse still on the avatar stops it where it is; letting go springs it back to front.
+    physics(dt) {
+      if (this.resting) return;
+      const braking = this.isBraking();
+      const n = Math.max(1, Math.ceil(dt * 240)), h = dt / n;
+      for (let i = 0; i < n; i++) {
+        if (this.phase === 'spin') {
+          const sign = Math.sign(this.omega) || 1;
+          this.omega *= Math.exp(-(this.decay + (braking ? SPIN.brake : 0)) * h);
+          this.theta += this.omega * h;
+          this.spinAccum += Math.abs(this.omega) * h;
+          if (sign * (this.theta - this.target) >= 0) this.catchAt(this.target);
+          else if (Math.abs(this.omega) < SPIN.catchV * 0.5) this.catchAt(Math.round(this.theta / TAU) * TAU);
+        } else if (braking) {
+          this.omega *= Math.exp(-SPIN.brake * h);
+          this.theta += this.omega * h;
+        } else {
+          // spring that softens when far from front, so letting go at a big angle swings back instead of snapping
+          const x = this.theta - this.target;
+          const pull = SPIN.springW * SPIN.springW * x / (1 + 0.8 * Math.abs(x));
+          this.omega += (-pull - 2 * SPIN.springZeta * SPIN.springW * this.omega) * h;
+          this.theta += this.omega * h;
+        }
+      }
+      if (this.phase === 'spring' && !braking && !this.hands.length
+        && Math.abs(this.theta - this.target) < 0.002 && Math.abs(this.omega) < 0.02) {
+        this.theta = 0;
+        this.omega = 0;
+        this.resting = true;
+        this.spinAccum = 0;
+      }
+    }
+
+    render() {
+      const g = this.g;
+      if (!g) return;
+      let sx = 0, sy = 0;
+      if (clock < this.shakeUntil) {
+        const k = (this.shakeUntil - clock) / SHAKE_SECONDS;
+        sx = (Math.random() * 2 - 1) * this.shakeAmp * k;
+        sy = (Math.random() * 2 - 1) * this.shakeAmp * k * 0.6;
+      }
+      const aw = Math.abs(this.omega);
+      if (this.mode === 'plane') {
+        this.lift = g.aH * 0.07 * smooth(2, 14, aw);
+        const base = `translate(${sx.toFixed(1)}px, ${(sy - this.lift).toFixed(1)}px) rotate(`;
+        this.actor.style.transform = base + this.theta.toFixed(4) + 'rad)';
+        const ghostAlpha = smooth(9, 28, aw);
+        this.ghosts.forEach((n, i) => {
+          n.style.opacity = (ghostAlpha * (i ? 0.13 : 0.26)).toFixed(3);
+          n.style.transform = base + (this.theta - (i + 1) * 0.02 * this.omega).toFixed(4) + 'rad)';
+        });
+      } else {
+        const c = Math.cos(this.theta);
+        const persp = Math.round(g.aW * 2.4);
+        this.actor.style.transform = `translate(${sx.toFixed(1)}px, ${sy.toFixed(1)}px) perspective(${persp}px) rotateY(${this.theta.toFixed(4)}rad)`;
+        // edge-on gets a little darker; the back side (mirrored front) is clearly darker
+        const back = smooth(0, 0.35, -c);
+        const light = (0.62 + 0.38 * Math.abs(c)) * lerp(1, 0.52, back);
+        this.img.style.filter = this.resting ? '' : `brightness(${light.toFixed(3)}) saturate(${lerp(1, 0.55, back).toFixed(3)})`;
+      }
+      this.renderStars();
+    }
+
+    renderStars() {
+      const age = clock - this.dizzyAt;
+      if (!(age >= 0 && age < DIZZY_SECONDS)) {
+        if (this.starsOn) { this.stars.forEach(s => { s.style.opacity = '0'; }); this.starsOn = false; }
+        return;
+      }
+      this.starsOn = true;
+      const g = this.g;
+      const fade = Math.min(1, age / 0.2) * Math.min(1, (DIZZY_SECONDS - age) / 0.45);
+      const cx = g.headX, cy = g.headY - (this.mode === 'plane' ? this.lift : 0);
+      const rx = g.aW * 0.15, ry = g.aH * 0.04;
+      this.stars.forEach((s, i) => {
+        const a = age * 4.4 + i * TAU / 3;
+        const depth = (Math.sin(a) + 1) / 2;
+        s.style.opacity = (fade * (0.5 + 0.5 * depth)).toFixed(3);
+        s.style.transform = `translate(${(cx + Math.cos(a) * rx).toFixed(1)}px, ${(cy + Math.sin(a) * ry).toFixed(1)}px) translate(-50%, -50%) scale(${(0.7 + 0.4 * depth).toFixed(3)}) rotate(${(a * 1.6).toFixed(3)}rad)`;
+      });
+    }
+
+    busy() {
+      return this.hands.length > 0 || this.bursts.length > 0 || !this.resting
+        || clock - this.dizzyAt < DIZZY_SECONDS || clock < this.shakeUntil;
+    }
+
+    update(dt) {
+      this.updateHands(dt);
+      this.physics(dt);
+      this.dropOldBursts();
+      this.render();
+      return this.busy();
+    }
+
+    // ---------- mouse: fast swipe = flick, hold still = brake ----------
+    inside(x, y) {
+      const g = this.g;
+      if (!g) return false;
+      return x > g.aL + g.aW * 0.08 && x < g.aL + g.aW * 0.92 && y > g.aT - g.aH * 0.1 && y < g.H;
+    }
+
+    isBraking() {
+      const p = this.ptr;
+      if (!p) return false;
+      const still = performance.now() - p.t > 70 || p.speed < 260;
+      return still && this.inside(p.x, p.y);
+    }
+
+    mouseFlick(x, y, vx, vy) {
+      const g = this.g;
+      let dw;
+      if (this.mode === 'plane') {
+        const rx = x - g.pivotX, ry = y - (g.pivotY - this.lift);
+        dw = 2.6 * (rx * vy - ry * vx) / (g.aH * g.aH * 0.25);
+      } else {
+        dw = 2.2 * vx / (g.aW * 0.5);
+      }
+      dw = clamp(dw, -30, 30);
+      if (Math.abs(dw) < 1.5) return;
+      this.impulse(dw);
+      const power = clamp(Math.abs(dw) / this.phys.base, 0.4, 2);
+      this.burst(x, y, power);
+      audio.slap(power * 0.85);
+      wake();
+    }
+
+    bindPointer() {
+      const el = this.el;
+      const pos = e => { const r = el.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+      el.addEventListener('pointerdown', e => {
+        audio.init();
+        const [x, y] = pos(e);
+        try { el.setPointerCapture(e.pointerId); } catch { /* capture is only a nicety */ }
+        this.ptr = { id: e.pointerId, x, y, t: performance.now(), vx: 0, vy: 0, speed: 0, lastFlick: 0 };
+        el.classList.add('holding');
+        wake();
+      });
+      el.addEventListener('pointermove', e => {
+        const p = this.ptr;
+        if (!p || p.id !== e.pointerId) return;
+        const [x, y] = pos(e);
+        const now = performance.now();
+        const dt = Math.max(4, now - p.t) / 1000;
+        p.vx = lerp(p.vx, (x - p.x) / dt, 0.6);
+        p.vy = lerp(p.vy, (y - p.y) / dt, 0.6);
+        p.x = x; p.y = y; p.t = now;
+        p.speed = Math.hypot(p.vx, p.vy);
+        if (p.speed > 1000 && this.inside(x, y) && now - p.lastFlick > 140) {
+          p.lastFlick = now;
+          this.mouseFlick(x, y, p.vx, p.vy);
+        }
+        if (!this.resting) wake();
+      });
+      const end = e => {
+        if (this.ptr && this.ptr.id === e.pointerId) { this.ptr = null; el.classList.remove('holding'); }
+      };
+      el.addEventListener('pointerup', end);
+      el.addEventListener('pointercancel', end);
+    }
+  }
+
+  // ---------- loop: only runs while something moves ----------
+  const stages = [...document.querySelectorAll('.stage')].map(el => new Stage(el));
+  let rafId = 0, last = 0, paused = false;
+
+  function step(dt) {
+    clock += dt;
+    let busy = false, top = stages[0];
+    for (const s of stages) {
+      if (s.update(dt)) busy = true;
+      if (Math.abs(s.omega) > Math.abs(top.omega)) top = s;
+    }
+    audio.wind(Math.abs(top.omega), top.theta);
+    return busy;
+  }
+
+  function frame(now) {
+    rafId = 0;
+    const dt = clamp((now - last) / 1000, 0, 0.05);
+    last = now;
+    if (step(dt)) rafId = requestAnimationFrame(frame);
+    else audio.wind(0, 0);
+  }
+
+  function wake() {
+    if (rafId || paused) return;
+    last = performance.now();
+    rafId = requestAnimationFrame(frame);
+  }
+
+  // ---------- controls ----------
+  const toast = document.querySelector('.toast');
+  function showToast(text) {
+    toast.textContent = text;
+    toast.classList.remove('show');
+    void toast.offsetWidth;
+    toast.classList.add('show');
+  }
+
+  function trigger(kind) {
+    if (!KINDS[kind]) return;
+    showToast(KINDS[kind].toast);
+    stages.forEach((s, i) => s.addHand(kind, -1, i > 0));
+    wake();
+  }
+
+  document.querySelectorAll('[data-act]').forEach(b => {
+    b.addEventListener('click', () => { audio.init(); trigger(b.dataset.act); });
+  });
+
+  const soundBtn = document.querySelector('.sound');
+  soundBtn.addEventListener('click', () => {
+    audio.init();
+    const on = !audio.isOn();
+    audio.setOn(on);
+    soundBtn.textContent = on ? '🔊 声音：开' : '🔇 声音：关';
+    soundBtn.setAttribute('aria-pressed', String(on));
+  });
+
+  // test hook: step the animation without requestAnimationFrame
+  window.shoubo = {
+    trigger,
+    advance(ms) {
+      paused = true;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+      for (let i = 0, n = Math.round(ms / 1000 * 60); i < n; i++) step(1 / 60);
+      return this.state();
+    },
+    resume() { paused = false; wake(); },
+    state: () => stages.map(s => ({
+      mode: s.mode, theta: +s.theta.toFixed(3), omega: +s.omega.toFixed(3), resting: s.resting, hands: s.hands.length,
+    })),
+  };
+})();
+</script>
+</body>
+</html>

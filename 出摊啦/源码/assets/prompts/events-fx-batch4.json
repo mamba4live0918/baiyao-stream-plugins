@@ -1,0 +1,531 @@
+[
+  {
+    "id": "chili_pile",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE small mound of bright tomato-red chopped chili condiment with a few darker flakes, friendly food illustration, not realistic or gross. Logical80×65, mound bottom centered near y58, no bowl, spoon or container.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-ffbc06c0-6c68-46d6-a14f-e63338321651.png",
+    "rawPath": "raw/events/chili_pile.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.777Z",
+    "displaySize": {
+      "width": 80,
+      "height": 65
+    }
+  },
+  {
+    "id": "wasabi_pile",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE small swirl mound of pale wasabi-green paste condiment, rounded ridges with one cel shadow. Logical80×65, mound bottom centered near y58, no bowl, spoon or container.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-be8ee4fb-c55c-40a5-996b-726bb914d931.png",
+    "rawPath": "raw/events/wasabi_pile.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.778Z",
+    "displaySize": {
+      "width": 80,
+      "height": 65
+    }
+  },
+  {
+    "id": "flame_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE stylized orange-and-yellow flame cluster, 3 big smooth flame tongues, friendly comedic danger not frightening. Dark-brown thin outline, flat red-orange outside and golden center, no glow, particles, smoke, fuel or base. Logical140×200, root center at(70,192), flames within x8..132 y8..192; this is frame1 of a three-frame flicker, keep root position.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-95c60cdc-79e4-4135-a8e1-7ad102af2001.png",
+    "rawPath": "raw/events/flame_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.780Z",
+    "displaySize": {
+      "width": 140,
+      "height": 200
+    }
+  },
+  {
+    "id": "smoke_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE soft gray smoke puff made of 4 overlapping rounded lobes, flat light-gray fill with simple darker-gray shadow. Slight semi-transparent outer edge and fully transparent surrounding area. No fire or chimney. Logical70×60, cluster center(35,30), entire puff within x4..66,y4..56; frame1 of smoke puff cycle.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-020c2898-6c36-4848-bb6c-7d350be08fc6.png",
+    "rawPath": "raw/events/smoke_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.781Z",
+    "displaySize": {
+      "width": 70,
+      "height": 60
+    }
+  },
+  {
+    "id": "foam_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE small white fire-extinguisher foam cloud, 4 rounded overlapping lobes, pale cool-gray shadow, tiny white highlights, deep-brown subtle cartoon outline. A few small foam bubbles connected to cloud. No nozzle or extinguisher. Logical70×60, center(35,30), fits within x4..66,y4..56; frame1 of foam cloud cycle.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-49e7ad29-9d96-4971-b528-4b3d5cf69cef.png",
+    "rawPath": "raw/events/foam_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.782Z",
+    "displaySize": {
+      "width": 70,
+      "height": 60
+    }
+  },
+  {
+    "id": "explosion_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE comic explosion impact starburst: large soft jagged golden-yellow star shape with orange outer spikes, deep-brown outline, simple single shadow. Friendly cartoony pop burst. Completely blank center, no text or punctuation. No smoke, debris or scenery. Logical280×230, center(140,115), full burst inside 8px margin, first of two punchy explosion frames.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-4cc1b689-dd5f-4756-946a-3a9608e53883.png",
+    "rawPath": "raw/events/explosion_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.783Z",
+    "displaySize": {
+      "width": 280,
+      "height": 230
+    }
+  },
+  {
+    "id": "bonk_star",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "undefinedONE small comic bonk impact star: pale golden-yellow 5-point irregular burst, orange small outline accents and dark-brown ink. Center blank. No letters, words, numbers or punctuation. Logical110×100, full small burst within6px margin.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-d7cca06f-e98f-42a8-a7b1-6049113322f7.png",
+    "rawPath": "raw/events/bonk_star.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.784Z",
+    "displaySize": {
+      "width": 110,
+      "height": 100
+    }
+  },
+  {
+    "id": "gunk_soot_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "undefinedONE SMALL sparse cartoon soot splat for a face-cleaning minigame, soft charcoal-gray irregular rounded blot with 3 tiny scattered flecks, partly translucent soft outer edge so face can be seen through. No face, eye, head, person, fire or text. Logical140×120, splat centered, modest coverage, shape within10px margin. This is light soot coverage state1; other levels will be denser.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-72821827-a179-402d-a4ea-85a0064a3889.png",
+    "rawPath": "raw/events/gunk_soot_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.785Z",
+    "displaySize": {
+      "width": 140,
+      "height": 120
+    }
+  },
+  {
+    "id": "gunk_noodle_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "undefinedONE SMALL sparse cluster of dangling cooked noodles as a silly face splat, 3 cream-golden curved noodle strands with dark-brown subtle ink outline, a couple of soup droplets, semi-transparent soft droplets. No bowl, face, head or person. Logical180×180, noodles hanging down from upper center but all within10px margin. Light coverage state1, other levels denser.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-390bbc96-f047-4b81-89c3-f9ff0e853ca0.png",
+    "rawPath": "raw/events/gunk_noodle_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.785Z",
+    "displaySize": {
+      "width": 180,
+      "height": 180
+    }
+  },
+  {
+    "id": "gunk_batter_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "undefinedONE SMALL sparse warm-cream pancake batter splat, rounded blob and two small hanging drips, pale golden shadow and partly translucent soft outer edge. Cute harmless sticky food for wiping off face. No pan, face, person or text. Logical150×130, centered within10px margin; light coverage state1, other levels denser.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-7bbcee44-24cd-4824-9f4e-60f762dc3e83.png",
+    "rawPath": "raw/events/gunk_batter_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.786Z",
+    "displaySize": {
+      "width": 150,
+      "height": 130
+    }
+  },
+  {
+    "id": "gunk_tea_1",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "undefinedONE SMALL sparse creamy milk-tea splash splat with 3 dark-brown tapioca pearls and two caramel-beige droplets, smooth rounded shape, one flat cel shadow, partly translucent soft liquid edge. Cute harmless face-cleaning game sticker, no cup, straw, face, person or text. Logical160×150 centered within10px margin; light coverage state1.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-365da3d9-a8fd-4faa-bd8a-075b426538b3.png",
+    "rawPath": "raw/events/gunk_tea_1.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.787Z",
+    "displaySize": {
+      "width": 160,
+      "height": 150
+    }
+  },
+  {
+    "id": "fish_slap",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "undefinedONE entire funny cartoon silver-blue fish flopping sideways in a gentle C curve, large surprised round eye, tiny closed mouth, tail fin, a few simple scales and pale belly. Friendly comedic face-slap sticker, no gore, blood, hooks or hands. Slightly diagonal, full fish visible within10px margin. Logical200×140. No surrounding splash or person.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-6da28277-7d6c-45d5-a3bf-626605898eeb.png",
+    "rawPath": "raw/events/fish_slap.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.789Z",
+    "displaySize": {
+      "width": 200,
+      "height": 140
+    }
+  },
+  {
+    "id": "flame_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is an exact animation-frame edit target. Keep same full canvas, fixed root center and total extents; bend the tall central flame tip toward the RIGHT, shift the two side tongues slightly left. Same flame layers and palette, no new objects. Preserve the same cute flat 2D style and original canvas framing; actual alpha transparency, no background, logos or watermark.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-9d56b5b6-1a06-4357-9cd3-326dfeeec4ef.png",
+    "rawPath": "raw/events/flame_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-95c60cdc-79e4-4135-a8e1-7ad102af2001.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.790Z",
+    "displaySize": {
+      "width": 140,
+      "height": 200
+    }
+  },
+  {
+    "id": "flame_3",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is an exact animation-frame edit target. Keep same full canvas, fixed root center and total extents; make the central flame tip fork into two curved tips, side tongues slightly taller. Same flame layers and palette, no new objects. Preserve the same cute flat 2D style and original canvas framing; actual alpha transparency, no background, logos or watermark.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-657e9337-ef26-4eb8-8766-d472da4a3285.png",
+    "rawPath": "raw/events/flame_3.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-95c60cdc-79e4-4135-a8e1-7ad102af2001.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.791Z",
+    "displaySize": {
+      "width": 140,
+      "height": 200
+    }
+  },
+  {
+    "id": "smoke_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is an exact animation-frame edit target. Keep same full canvas and center, slightly reshape the four gray smoke puff lobes as a second loop frame, shifting the upper puff toward the right. Same palette, shadow, clean transparent margins, no new objects. Preserve the same cute flat 2D style and original canvas framing; actual alpha transparency, no background, logos or watermark.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-b033ab79-bdd3-44fe-bc10-f421e5e5fe88.png",
+    "rawPath": "raw/events/smoke_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-020c2898-6c36-4848-bb6c-7d350be08fc6.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.792Z",
+    "displaySize": {
+      "width": 70,
+      "height": 60
+    }
+  },
+  {
+    "id": "foam_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is an exact animation-frame edit target. Keep same full canvas and center, reshape the white foam cloud lobes as the second loop frame, moving the small bubble positions slightly around it. Same palette/shadow and transparent margins, no new objects. Preserve the same cute flat 2D style and original canvas framing; actual alpha transparency, no background, logos or watermark.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-78d798c6-9e17-4856-b599-96c19a379178.png",
+    "rawPath": "raw/events/foam_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-49e7ad29-9d96-4971-b528-4b3d5cf69cef.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.793Z",
+    "displaySize": {
+      "width": 70,
+      "height": 60
+    }
+  },
+  {
+    "id": "foam_3",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is an exact animation-frame edit target. Keep same full canvas and center, reshape the white foam cloud lobes as third loop frame, central puff a little wider and three bubbles on left. Same palette/shadow, transparent margins, no new objects. Preserve the same cute flat 2D style and original canvas framing; actual alpha transparency, no background, logos or watermark.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-1500f5b6-60ed-449c-9a3b-fca34d5e5346.png",
+    "rawPath": "raw/events/foam_3.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-49e7ad29-9d96-4971-b528-4b3d5cf69cef.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.793Z",
+    "displaySize": {
+      "width": 70,
+      "height": 60
+    }
+  },
+  {
+    "id": "explosion_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is an exact animation-frame edit target. Keep same full canvas and center, create second starburst impact frame with the long upper-right spike shorter and lower-left spike longer. Same orange/yellow nested layers and deep brown outline. Blank center, absolutely no writing, numbers or punctuation. Preserve the same cute flat 2D style and original canvas framing; actual alpha transparency, no background, logos or watermark.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-5174d364-e402-4245-8153-6ed7348515fe.png",
+    "rawPath": "raw/events/explosion_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-4cc1b689-dd5f-4756-946a-3a9608e53883.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.795Z",
+    "displaySize": {
+      "width": 280,
+      "height": 230
+    }
+  },
+  {
+    "id": "gunk_soot_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level2 of the exact referenced face-cleaning game material: charcoal-gray soot blot, partly translucent soft edge, no face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Medium coverage, about half again as many strands/lobes/pearls as the light reference. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-ae1aca01-264f-49d8-94cd-6511b9a85890.png",
+    "rawPath": "raw/events/gunk_soot_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-72821827-a179-402d-a4ea-85a0064a3889.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.796Z",
+    "displaySize": {
+      "width": 140,
+      "height": 120
+    }
+  },
+  {
+    "id": "gunk_soot_3",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level3 of the exact referenced face-cleaning game material: charcoal-gray soot blot, partly translucent soft edge, no face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Heavy coverage, roughly twice the strands/lobes/pearls of the light reference, more drips but leave small transparent gaps. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-6cfe198d-3957-48df-a809-d084c7cf9913.png",
+    "rawPath": "raw/events/gunk_soot_3.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-72821827-a179-402d-a4ea-85a0064a3889.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.798Z",
+    "displaySize": {
+      "width": 140,
+      "height": 120
+    }
+  },
+  {
+    "id": "gunk_noodle_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level2 of the exact referenced face-cleaning game material: cream golden cooked hanging noodle strands with soup drops, no bowl or face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Medium coverage, about half again as many strands/lobes/pearls as the light reference. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-d418e612-775e-443d-8af1-fd056d98d556.png",
+    "rawPath": "raw/events/gunk_noodle_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-390bbc96-f047-4b81-89c3-f9ff0e853ca0.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.799Z",
+    "displaySize": {
+      "width": 180,
+      "height": 180
+    }
+  },
+  {
+    "id": "gunk_noodle_3",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level3 of the exact referenced face-cleaning game material: cream golden cooked hanging noodle strands with soup drops, no bowl or face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Heavy coverage, roughly twice the strands/lobes/pearls of the light reference, more drips but leave small transparent gaps. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-5593893f-4b82-48b2-aaad-ea29de90042f.png",
+    "rawPath": "raw/events/gunk_noodle_3.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-390bbc96-f047-4b81-89c3-f9ff0e853ca0.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.799Z",
+    "displaySize": {
+      "width": 180,
+      "height": 180
+    }
+  },
+  {
+    "id": "gunk_batter_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level2 of the exact referenced face-cleaning game material: warm cream pancake batter rounded blob with hanging drips and partly translucent liquid edge, no face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Medium coverage, about half again as many strands/lobes/pearls as the light reference. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-54eeb48f-70e6-4f80-bc7d-7d35cffe50fe.png",
+    "rawPath": "raw/events/gunk_batter_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-7bbcee44-24cd-4824-9f4e-60f762dc3e83.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.801Z",
+    "displaySize": {
+      "width": 150,
+      "height": 130
+    }
+  },
+  {
+    "id": "gunk_batter_3",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level3 of the exact referenced face-cleaning game material: warm cream pancake batter rounded blob with hanging drips and partly translucent liquid edge, no face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Heavy coverage, roughly twice the strands/lobes/pearls of the light reference, more drips but leave small transparent gaps. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-e53c6c9e-53f5-474d-bcf2-6da03be0624a.png",
+    "rawPath": "raw/events/gunk_batter_3.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-7bbcee44-24cd-4824-9f4e-60f762dc3e83.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.802Z",
+    "displaySize": {
+      "width": 150,
+      "height": 130
+    }
+  },
+  {
+    "id": "gunk_tea_2",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level2 of the exact referenced face-cleaning game material: caramel beige milk tea splash with dark brown pearls and partly translucent liquid edge, no cup or face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Medium coverage, about half again as many strands/lobes/pearls as the light reference. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-1dd32d70-ccf7-43be-93d0-1a2f36b26c21.png",
+    "rawPath": "raw/events/gunk_tea_2.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-365da3d9-a8fd-4faa-bd8a-075b426538b3.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.803Z",
+    "displaySize": {
+      "width": 160,
+      "height": 150
+    }
+  },
+  {
+    "id": "gunk_tea_3",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is a density-variant edit target for the same transparent game sprite. Create density level3 of the exact referenced face-cleaning game material: caramel beige milk tea splash with dark brown pearls and partly translucent liquid edge, no cup or face. Keep the SAME full canvas framing, center, overall palette and illustrated style. Heavy coverage, roughly twice the strands/lobes/pearls of the light reference, more drips but leave small transparent gaps. Preserve actual alpha surrounding material and soft semitransparent edges. No person, eyes, face, lettering, icons or other objects.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-6ebea65e-0148-4490-a726-72a0c74e51ca.png",
+    "rawPath": "raw/events/gunk_tea_3.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-365da3d9-a8fd-4faa-bd8a-075b426538b3.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.804Z",
+    "displaySize": {
+      "width": 160,
+      "height": 150
+    }
+  },
+  {
+    "id": "fuse_box",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE small wall-mounted electrical fuse box, muted gray-green metal cabinet with dark brown outline, open front showing a blank cream inner switch panel and a small empty lever pivot socket. No actual lever: it is a separate sprite. Two small screw heads only, rounded corners, one cel shadow. Logical90×130, full box inside5px margin. No wiring, sparks, text, digits, warning symbols or logos.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-563af8da-54b9-4578-ae30-fa8b38beb371.png",
+    "rawPath": "raw/events/fuse_box.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.805Z",
+    "displaySize": {
+      "width": 90,
+      "height": 130
+    }
+  },
+  {
+    "id": "wanted_poster",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent PNG sprite for existing cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d ink outline about3–4 logical pixels, warm flat colors, one simple cel shadow, tiny white highlights, upper-left light. True alpha transparent background, clean edges, no scene, ground, external cast shadow, letters, numbers, symbols, logo, watermark, person or frame. Single isolated material, full silhouette within modest transparent margins. ONE completely blank warm kraft-paper wanted poster sheet, gently curled lower corners, dark-brown rough outline, one small red pushpin centered at top. Very subtle paper flecks, wide empty central area for code to draw portrait and name. Logical150×200, full paper within5px margin. No printed border panels, words, letters, numbers, drawings or portraits.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-171ccdac-a040-4041-9266-7b6972748b7c.png",
+    "rawPath": "raw/events/wanted_poster.png",
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "selected": true,
+    "generatedAt": "2026-10-22T15:26:21.808Z",
+    "displaySize": {
+      "width": 150,
+      "height": 200
+    }
+  },
+  {
+    "id": "fuse_lever",
+    "group": "events",
+    "batch": 4,
+    "tool": "image_gen built-in",
+    "selected": true,
+    "prompt": "Use case: stylized-concept. Create ONE SEPARATE power-switch lever overlay matching the reference cartoon fuse box; reference is STYLE and mechanical attachment reference ONLY, not an edit target. Output contains only the lever itself: a chunky short warm brown metal shaft with a rounded tomato-red insulated grip at its upper end and one round brown/gray pivot rivet base near the lower middle. Front slight three-quarter view matching box, straight upright lever. Logical40×65 transparent frame, pivot centered at logical(20,39), grip spans around x9..31 y5..23, shaft connects grip to pivot; entire lever visible with transparent margin. No box, mounting panel, person, hand, cord, letters, numbers, symbols or text. Match deep brown #49372d outlines 3–4 logicalpx, warm flat fills, ONE simple cel shadow, small upper-left white highlights. True clean alpha transparency, no floor or cast shadow outside prop.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-4344-7cf1-82d8-3452c9fe9376\\exec-563af8da-54b9-4578-ae30-fa8b38beb371.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16428-05f8-7380-8240-da48089c1e9c\\exec-8e675dfe-fb5f-4686-bc5b-5593544d5ae3.png",
+    "rawPath": "raw/events/fuse_lever.png",
+    "generatedAt": "2026-10-22T15:26:40.163Z",
+    "displaySize": {
+      "width": 40,
+      "height": 65
+    },
+    "anchor": {
+      "name": "pivot",
+      "x": 23.5,
+      "y": 48.5,
+      "units": "logical-px"
+    },
+    "registrationNote": "Observed generated pivot is lower than requested; anchor uses actual approximate visual pivot, not prompt target (20,39)."
+  }
+]

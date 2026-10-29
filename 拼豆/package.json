@@ -1,0 +1,19 @@
+{
+  "name": "songlan-peg-bead-studio",
+  "version": "5.6.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "0.20.0",
+    "lucide": "^1.47.0",
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "playwright": "1.58.2"
+  }
+}

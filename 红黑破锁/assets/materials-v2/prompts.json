@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "release": "V2.0",
+  "source": "Built-in image_gen.imagegen; brand-new generation; transparent_background=true; no API, CLI or reference images",
+  "asset_directory": "红黑破锁/assets/materials-v2",
+  "image_editing": "None. Generated PNG alpha was copied unchanged. Pillow was used only to inspect size, alpha and visible bounds.",
+  "assets": [
+    {
+      "asset": "forged-steel-chain",
+      "prompt": "Use case: product-mockup. Asset type: transparent PNG chain material for a livestream overlay, one isolated horizontal repeating chain segment. Primary request: photorealistic forged steel chain in cool charcoal gray. Subject: a straight row of seven physically interwoven thick oval chain links, alternating face-on and edge-on orientation, each link passes through the next with believable metal occlusion and clear hollow centers. Materials: rough forged gunmetal steel, cold gray brushed facets, fine hammer marks, subtly worn edges, restrained silver highlights, realistic weight. Composition: front view aligned perfectly horizontally, complete end links and complete silhouette, roomy alpha margin on every side, chain uses most of image width and a narrow central horizontal band. Broad soft studio lighting makes every ring readable on light and dark livestream backgrounds. Actual transparent alpha background, transparent in link holes; no scene, no floor, no shadow plate, no text, symbols, logo, watermark, extra props, ribbons or padlock. Only the isolated chain, no cropping. Make it suitable to repeat horizontally as a chain texture.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-78c90a71-3adb-451f-a1bb-3dafb103e75e.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\forged-steel-chain.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "forged-steel",
+      "kind": "chain",
+      "qa": {
+        "name": "forged-steel-chain.png",
+        "width": 2172,
+        "height": 724,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 73.93,
+        "alpha_bbox": [
+          36,
+          23,
+          2146,
+          698
+        ],
+        "visible_alpha32_bbox": [
+          39,
+          217,
+          2132,
+          500
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bytes": 1080818,
+        "passed": true
+      },
+      "visual_review": "Complete horizontal interwoven links; readable material; no text or external props; suitable as repeating segment."
+    },
+    {
+      "asset": "forged-steel-padlock",
+      "prompt": "Use case: product-mockup. Asset type: transparent PNG padlock for a livestream overlay. Primary request: one photorealistic forged steel padlock in cool charcoal gray, matching a thick forged gunmetal oval-link chain. Subject: front-facing closed heavy padlock, thick rounded U-shaped steel shackle, substantial compact center lock body, subtle mechanical keyhole, clear stable symmetric silhouette. Materials: rough forged gunmetal steel, cold gray brushed facets, fine hammer marks, worn silver edge highlights and natural micro-scratches. Composition: straight-on orthographic product view, centered, shackle and body fully visible, full outline within generous transparent margin; left and right body edges are clean connection areas for overlay chains. Broad soft studio lighting, readable on dark and light livestreams. Genuine transparent alpha background including space inside shackle. No chains attached, no separate objects, no stand, floor, shadow plate, cast background shadow, glow background, text, numbers, symbols, logo or watermark. Only this complete padlock.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-d7183e41-3a59-4794-94e7-df392317b652.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\forged-steel-padlock.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "forged-steel",
+      "kind": "padlock",
+      "qa": {
+        "name": "forged-steel-padlock.png",
+        "width": 1145,
+        "height": 1374,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 41.73,
+        "alpha_bbox": [
+          0,
+          30,
+          1091,
+          1374
+        ],
+        "visible_alpha32_bbox": [
+          93,
+          34,
+          1052,
+          1342
+        ],
+        "edge_alpha_max": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "bytes": 2312642,
+        "passed": true
+      },
+      "visual_review": "Complete front-facing matching-material padlock; thick shackle; stable silhouette; no external chain or background plate."
+    },
+    {
+      "asset": "antique-brass-chain",
+      "prompt": "Use case: product-mockup. Asset type: transparent PNG chain material for a livestream overlay, isolated straight horizontal repeating segment. Primary request: photorealistic antique brass chain, warm aged yellow brass. Subject: seven thick oval chain links physically interwoven in a straight horizontal row, alternating face-on and edge-on rings, with truthful over-and-under threading and clear hollow centers. Materials: solid aged yellow brass, warm ochre metal, fine scratches, modest dark patina in recesses, polished golden edge wear, realistic subtle reflections, no rust flakes or dirt props. Composition: exact horizontal front view, complete end rings and uncropped silhouette, chain occupies most of width and a narrow central band, alpha margin on all sides, designed as a horizontal repeated chain segment. Soft neutral studio lighting keeps aged gold readable on light and dark overlays. Genuine transparent alpha background and link holes. No scene, floor, shadow plate, smoke, ribbons, padlock, lettering, decorative text, logo or watermark. Only the isolated interwoven brass chain.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-16b695e9-707f-4b64-b814-84c56950fa81.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\antique-brass-chain.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "antique-brass",
+      "kind": "chain",
+      "qa": {
+        "name": "antique-brass-chain.png",
+        "width": 2164,
+        "height": 727,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 76.2,
+        "alpha_bbox": [
+          47,
+          10,
+          2130,
+          701
+        ],
+        "visible_alpha32_bbox": [
+          52,
+          217,
+          2112,
+          503
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bytes": 1033105,
+        "passed": true
+      },
+      "visual_review": "Complete horizontal interwoven links; readable material; no text or external props; suitable as repeating segment."
+    },
+    {
+      "asset": "antique-brass-padlock",
+      "prompt": "Use case: product-mockup. Asset type: transparent PNG padlock for a livestream overlay. Primary request: one photorealistic antique brass closed padlock matching an aged yellow brass oval-link chain. Subject: stable symmetrical frontal padlock with a thick rounded U-shaped shackle and solid compact lock body, a small centered mechanical keyhole, complete robust contour. Materials: solid aged brass in warm ochre and old yellow-gold, fine abrasion, dark patina only in recesses, softly polished golden worn edges, truthful metal texture and reflections. Composition: exact straight-on product view with no tilt, centered full shackle and body, transparent margin on every side; clear side edges of lock body allow four overlay chains to connect near the body perimeter. Broad soft neutral studio light, readable on any livestream. Actual transparent alpha background, transparent shackle opening. No external attached chains, scene, floor, pedestal, background shadow plate, smoke, glow backdrop, inscriptions, letters, numbers, logo or watermark. Only the complete padlock.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-e8c66da8-f890-48e4-9b7f-2271220b9439.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\antique-brass-padlock.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "antique-brass",
+      "kind": "padlock",
+      "qa": {
+        "name": "antique-brass-padlock.png",
+        "width": 1266,
+        "height": 1243,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 55.75,
+        "alpha_bbox": [
+          123,
+          17,
+          1234,
+          1243
+        ],
+        "visible_alpha32_bbox": [
+          214,
+          32,
+          1052,
+          1216
+        ],
+        "edge_alpha_max": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "bytes": 1882640,
+        "passed": true
+      },
+      "visual_review": "Complete front-facing matching-material padlock; thick shackle; stable silhouette; no external chain or background plate."
+    },
+    {
+      "asset": "arcane-anime-chain",
+      "prompt": "Use case: stylized-concept. Asset type: transparent PNG horizontal chain material for a livestream overlay. Primary request: anime fantasy arcane sealing chain in deep violet and electric indigo-blue. Subject: one straight horizontal segment of seven thick oval rings physically interwoven, alternating broad face-on and narrow edge-on links with correct over-and-under connection, transparent hollow centers. Style: premium polished anime game item, precise cel-shaded edge light and subtle painterly metal shading, blue-violet enchanted alloy with cyan bevel highlights, limited pale luminous seams on the material itself, no text or runes. Composition: exact horizontal frontal view, complete end rings and complete visible contour, broad transparent margin around the entire object, chain dominates width and a narrow central band, appropriate for horizontal repetition. Genuine transparent alpha background and holes, no global glow veil outside chain. No characters, scene, floor, shadow plate, particles, padlock, magic circles, glyphs, letters, numbers, logo or watermark. Only this readable physically linked purple-blue chain.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-2fa021a1-db48-4562-b1af-fbeb65bb36bb.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\arcane-anime-chain.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "arcane-anime",
+      "kind": "chain",
+      "qa": {
+        "name": "arcane-anime-chain.png",
+        "width": 2172,
+        "height": 724,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 73.85,
+        "alpha_bbox": [
+          31,
+          19,
+          2140,
+          698
+        ],
+        "visible_alpha32_bbox": [
+          42,
+          176,
+          2130,
+          499
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "bytes": 916008,
+        "passed": true
+      },
+      "visual_review": "Complete horizontal interwoven links; readable material; no text or external props; suitable as repeating segment."
+    },
+    {
+      "asset": "arcane-anime-padlock",
+      "prompt": "Use case: stylized-concept. Asset type: transparent PNG padlock for a livestream overlay. Primary request: one anime fantasy arcane sealing padlock in deep violet and electric indigo-blue, matching an enchanted blue-violet metal chain. Subject: stable symmetrical front view of a closed padlock, thick rounded U-shaped shackle, compact strong central lock body with clean beveled side edges and a centered faceted blue-violet crystal surrounding a conventional keyhole. Style: premium anime game item, crisp cel-shaded rim lights and refined painted metallic gradients, cyan bevel highlights and controlled pale luminous insets only on the object. No writing or rune symbols. Composition: centered orthographic front view, full shackle and body entirely visible within generous alpha margin, clean lock-body perimeter to accept overlay chains. Actual transparent alpha background and transparent hole inside shackle. No attached external chain, particles, magic circle, floor, backdrop, shadow plate, text, glyphs, numbers, logo or watermark. Only the complete padlock with its vivid violet-blue material.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-0dde94c7-2bbb-47b6-80f0-e0d32e8a5622.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\arcane-anime-padlock.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "arcane-anime",
+      "kind": "padlock",
+      "qa": {
+        "name": "arcane-anime-padlock.png",
+        "width": 1205,
+        "height": 1305,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 53.75,
+        "alpha_bbox": [
+          0,
+          21,
+          1191,
+          1305
+        ],
+        "visible_alpha32_bbox": [
+          142,
+          42,
+          1064,
+          1263
+        ],
+        "edge_alpha_max": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "bytes": 1701466,
+        "passed": true
+      },
+      "visual_review": "Complete front-facing matching-material padlock; thick shackle; stable silhouette; no external chain or background plate."
+    },
+    {
+      "asset": "candy-toon-chain",
+      "prompt": "Use case: stylized-concept. Asset type: transparent PNG horizontal repeating chain material for a livestream overlay. Primary request: charming cream-colored toy chain in pastel strawberry pink and champagne gold, animated cartoon style. Subject: seven chunky rounded oval links physically interwoven in a perfectly horizontal row, alternating face-on and edge-on orientation with truthful threading and open transparent centers. Materials/style: high quality animated toy illustration, smooth glossy rounded polymer-like enamel, cream-pink links with restrained soft gold edging, warm vanilla cream bevel highlights, softly shaded 3D cartoon finish, clean confident contours, tactile and elegant rather than flat vector. Composition: complete end rings and full uncropped silhouette, central thin horizontal band across most of a wide canvas, generous alpha margin; suitable to repeat as a horizontal chain segment. Actual transparent alpha background including link holes. No ribbons, stars, loose decorations, padlock, characters, floor, shadow plate, colored background, text, logo or watermark. Only this interwoven pastel pink-cream-gold toy chain.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-c5d2a033-15f6-404e-ae5a-c80b8825d592.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\candy-toon-chain.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "candy-toon",
+      "kind": "chain",
+      "qa": {
+        "name": "candy-toon-chain.png",
+        "width": 2172,
+        "height": 724,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 61.23,
+        "alpha_bbox": [
+          19,
+          11,
+          2157,
+          724
+        ],
+        "visible_alpha32_bbox": [
+          25,
+          156,
+          2148,
+          567
+        ],
+        "edge_alpha_max": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "bytes": 998376,
+        "passed": true
+      },
+      "visual_review": "Complete horizontal interwoven links; readable material; no text or external props; suitable as repeating segment."
+    },
+    {
+      "asset": "candy-toon-padlock",
+      "prompt": "Use case: stylized-concept. Asset type: transparent PNG padlock for a livestream overlay. Primary request: one charming cream toy padlock in pastel strawberry pink and champagne gold, matching rounded glossy pink-cream-gold toy chain links. Subject: a closed padlock, thick softly rounded U-shaped shackle, compact rounded lock body, conventional centered keyhole inside a small champagne-gold inset, stable symmetrical frontal silhouette with clean connection edges. Materials/style: premium animated toy illustration with smooth glossy cream-pink enamel, softly shaded 3D cartoon volume, champagne-gold trim, warm vanilla bevel highlights, polished but gentle finish, rounded tactile proportions, no lettering or ornamental icons. Composition: exact centered orthographic front view, full shackle and entire body visible with generous transparent margin, no cropped edges. Genuine transparent alpha background and open alpha inside shackle. No external chains, ribbons, extra objects, confetti, floor, scene, background or shadow plate, global glow, text, logo or watermark. Only this complete pink-cream-gold padlock.",
+      "tool_output_path": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a10f06-aab6-7be0-abe6-4b357548ae0b\\exec-6a010e78-7731-4ee2-a58b-dca9f8b38a0e.png",
+      "saved_path": "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\红黑破锁\\assets\\materials-v2\\candy-toon-padlock.png",
+      "source": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "style": "candy-toon",
+      "kind": "padlock",
+      "qa": {
+        "name": "candy-toon-padlock.png",
+        "width": 1145,
+        "height": 1374,
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "transparent_percent": 49.91,
+        "alpha_bbox": [
+          0,
+          25,
+          1085,
+          1332
+        ],
+        "visible_alpha32_bbox": [
+          88,
+          75,
+          1057,
+          1265
+        ],
+        "edge_alpha_max": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "bytes": 1161547,
+        "passed": true
+      },
+      "visual_review": "Complete front-facing matching-material padlock; thick shackle; stable silhouette; no external chain or background plate."
+    }
+  ]
+}

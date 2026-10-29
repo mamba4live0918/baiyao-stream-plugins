@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN" data-controls-visible="false"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>出摊啦 V1.6</title>
+<style>
+:root{--ink:#49372d;--paper:#fff8e8;--u:1;font-family:"Microsoft YaHei UI","Microsoft YaHei",sans-serif;color:var(--ink)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible{outline:3px solid #f6799b;outline-offset:3px}[hidden]{display:none!important}
+#stage{position:fixed;inset:0;width:100%;height:100%;touch-action:none;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23000' stroke-opacity='.6' stroke-width='5'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23fff' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23ff4f86' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") 16 16,crosshair}
+#topbar{position:fixed;top:14px;left:14px;right:14px;display:flex;align-items:flex-start;gap:8px;z-index:30;pointer-events:none}.badge{background:var(--paper);border:2px solid var(--ink);box-shadow:0 3px 0 #49372d;border-radius:12px;padding:8px 14px;font-weight:bold}#brand{font-size:20px;letter-spacing:2px}#status{font-size:12px;display:block;font-weight:normal;letter-spacing:0;margin-top:4px;color:#7b6b59}#open-button{margin-left:auto}#settings-button{font-size:17px}#count{position:fixed;right:14px;top:calc(305px * var(--u) + 52px);font-size:14px;z-index:3;pointer-events:none}
+/* Hidden before the bundle runs, so OBS never flashes operator controls. */
+#topbar{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
+#topbar>*{pointer-events:none}
+:root[data-controls-visible="true"] #topbar,:root[data-trial="true"] #topbar{opacity:1;visibility:visible;transition:opacity .18s ease}
+:root[data-controls-visible="true"] #topbar>*,:root[data-trial="true"] #topbar>*{pointer-events:auto}
+@media(prefers-reduced-motion:reduce){#topbar{transition:none}}
+#notice{position:fixed;left:50%;top:15%;transform:translateX(-50%);max-width:85%;padding:12px 18px;border:2px solid var(--ink);background:#fff6d5;border-radius:14px;box-shadow:3px 4px 0 #49372d;z-index:80;font-weight:bold;text-align:center;pointer-events:none}
+#crowd-outside{position:fixed;right:14px;top:calc(305px * var(--u));z-index:12;font-size:clamp(11px,calc(19px * var(--u)),19px);pointer-events:none}#asset-error{position:fixed;left:15px;bottom:20px;padding:12px;background:#fff1dc;color:#8b402e;z-index:1000}
+#kitchen-stage{position:fixed;inset:0;width:100%;height:100%;z-index:10;pointer-events:none}#kitchen-hits{position:fixed;inset:0;z-index:11;pointer-events:none}.kitchen-hit{position:fixed;pointer-events:auto;opacity:0;background:transparent;border:0;padding:0;touch-action:none}.kitchen-hit[data-draggable="true"]{cursor:grab}.kitchen-hit:focus-visible{opacity:1;background:transparent;outline:3px dashed #7faa68;border-radius:12px}:root[data-cooking-drag="true"] *{cursor:grabbing!important}
+@media(max-width:600px){#topbar{top:9px;left:9px;right:9px;gap:6px}.badge{padding:7px 9px}#brand{font-size:16px}#status{font-size:10px}#open-button,#settings-button{font-size:12px}#count{font-size:12px;right:10px}}
+</style></head><body>
+<canvas id="stage" aria-label="透明出摊舞台"></canvas>
+<canvas id="kitchen-stage" aria-label="出摊工具和出餐反馈"></canvas>
+<header id="topbar" inert aria-hidden="true"><div class="badge" id="brand">出摊啦<span id="status">面馆 · 准备开店</span></div><button class="badge" id="open-button">开店</button><button class="badge" id="settings-button" data-settings-toggle aria-label="打开设置">⚙ 设置</button></header>
+<div id="notice" role="status" hidden></div>
+<div id="crowd-outside" class="badge" hidden></div><div id="asset-error" hidden></div>
+<script>__INLINE_BUNDLE__</script></body></html>

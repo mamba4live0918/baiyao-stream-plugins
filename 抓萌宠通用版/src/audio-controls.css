@@ -1,0 +1,6 @@
+.audio-level-control{display:flex;align-items:center;gap:10px;min-width:0;padding:6px 0;font-size:12px}
+.audio-level-label{flex:0 0 auto}
+#settings .audio-level-range{min-width:70px;width:160px;max-width:100%;flex:1;padding:0;accent-color:#b95c80}
+.audio-level-value{width:42px;text-align:right;font-variant-numeric:tabular-nums}
+.audio-row .audio-level-control,.tier-row .audio-level-control{grid-column:1/-1;width:100%}
+#master-audio-controls{margin:8px 0 14px}

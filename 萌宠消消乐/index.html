@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f8ef">
+  <title>萌宠消消乐 · 无尽试玩</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ctext y='32' font-size='32'%3E🍀%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pranks.css">
+  <link rel="stylesheet" href="billing.css">
+  <link rel="stylesheet" href="broadcast-ui.css">
+  <link rel="stylesheet" href="live-settings.css">
+  <link rel="stylesheet" href="overtime-ui.css">
+</head>
+<body class="transparent">
+<div class="preview-backdrop" aria-hidden="true"><div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div><div class="leaf l4"></div></div>
+<main class="app">
+  <header class="header">
+    <div><h1>萌宠消消乐<span class="title-spark" aria-hidden="true">✦</span></h1><p>交换小动物，收集好心情</p></div>
+    <div class="header-actions"><span class="local-label"><i></i>无尽试玩</span>
+      <button class="icon-button" id="sound" title="开启音效" aria-label="开启音效" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="sound-waves" d="M15 8q4 4 0 8m3-11q7 7 0 14"/><path class="sound-off" d="m16 10 5 5m0-5-5 5"/></svg></button>
+      <button class="icon-button" id="transparent" title="透明直播模式" aria-label="透明直播模式" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M9 3H4a1 1 0 0 0-1 1v5m12-6h5a1 1 0 0 1 1 1v5M3 15v5a1 1 0 0 0 1 1h5m6 0h5a1 1 0 0 0 1-1v-5"/></svg></button>
+    </div>
+  </header>
+  <div class="game-layout">
+    <section class="game-column" aria-label="消除游戏">
+      <div class="journey"><span>好心情收集中</span><div class="progress-track"><div id="progress-fill"></div><b class="star s1">★</b><b class="star s2">★</b><b class="star s3">★</b></div><span id="progress-text">0 / 36</span></div>
+      <div class="board-frame">
+        <div class="billing-hud"><div><span>下次收分</span><strong id="fee-countdown">未开始</strong></div><div><span>每次应交</span><strong id="fee-target">3,000</strong></div><div><span>不足就加班</span><strong id="fee-penalty">+10 分钟</strong></div></div>
+        <div id="prank-status" class="prank-status" role="status">观众暂时很乖</div>
+        <div class="hud"><div><span>已走步数</span><strong id="moves">0</strong></div><div class="score-block"><span>可用积分</span><strong id="score">0</strong></div><div><span>最高连消</span><strong id="combo">—</strong></div></div>
+        <div class="board-shell"><div id="board" role="group" aria-label="8 行 8 列消除棋盘"><div class="cells" aria-hidden="true"></div><div id="pieces"></div></div>
+          <div class="combo-toast" id="combo-toast" aria-live="polite"></div>
+          <div class="pause-overlay" id="pause-overlay" hidden><span class="pause-symbol">Ⅱ</span><h2>休息一下</h2><p>小动物们正在等你回来</p><button id="resume" class="primary-button">继续消除</button></div>
+        </div>
+      </div>
+      <div class="toolbar"><button id="hint" class="tool hint"><svg viewBox="0 0 24 24"><path d="M9 18h6m-5 3h4M8 14a6 6 0 1 1 8 0l-1 3H9l-1-3Z"/></svg>提示</button><button id="shuffle" class="tool"><svg viewBox="0 0 24 24"><path d="M3 7h3c5 0 7 10 12 10h3m-4-4 4 4-4 4M3 17h3c2 0 3-2 4-4m4-2c1-2 2-4 4-4h3m-4-4 4 4-4 4"/></svg>洗牌</button><button id="restart" class="tool restart"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 1-3-5l3 3m0-6v6h-6"/></svg>重置棋盘</button><button id="pause" class="tool pause" aria-label="暂停游戏" title="暂停 / 继续"><svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg></button></div>
+      <div class="prank-controls"><button id="pranks" aria-expanded="false">观众整活台</button><button id="billing-settings-toggle" aria-expanded="false">收分设置</button><button id="auto-prank" role="switch" aria-checked="false">自动折磨：关</button></div>
+      <p class="play-tip">点击相邻两只小动物交换，也可以拖动 <span>·</span> 三只相同即可消除</p>
+    </section>
+    <aside class="side-panel">
+      <section class="billing-settings" aria-label="收分和加班设置">
+        <h2>定时收分</h2><p class="billing-intro">积分不够，白曜加班机就加时间</p>
+        <div class="fee-field"><label for="fee-interval">收分周期</label><span><input id="fee-interval" type="number" min="10" max="3600" step="1" value="60"> 秒</span></div>
+        <div class="fee-field"><label for="fee-amount">每次收取</label><span><input id="fee-amount" type="number" min="1" max="1000000" step="1" value="3000"> 分</span></div>
+        <div class="fee-field"><label for="fee-minutes">不足加班</label><span><input id="fee-minutes" type="number" min="1" max="180" step="1" value="10"> 分钟</span></div>
+        <div class="fee-field"><label for="fee-difficulty">游戏难度</label><select id="fee-difficulty"><option value="standard">标准</option><option value="hard" selected>困难</option><option value="hell">地狱</option></select></div>
+        <p id="fee-difficulty-note">每只 40 分 · 连消倍率最多 3 倍</p>
+        <div class="fee-link-switch"><label><input id="fee-enabled" type="checkbox" checked> 积分不够就加班</label><span id="fee-connection" role="status">正在连接…</span></div>
+        <p id="fee-totals">已收 0 期 · 积分不足 0 次</p><p id="fee-last" role="status">首个有效消除后开始计时</p>
+        <details id="fee-connection-settings"><summary>不在白曜里用：填连接码</summary><div class="fee-field"><label for="fee-key">连接码</label><input id="fee-key" type="text" maxlength="12" placeholder="ABCD-2345" autocomplete="off" spellcheck="false"></div><div class="fee-connect-buttons"><button id="fee-connect">连接</button><button id="fee-test">测试连接</button></div><p>在白曜里用不用填。菘蓝里、直接放进 OBS 时，填白曜「加班机 → 加班设置 → 插件连接」里的连接码，再点「连接」。测试连接只试不存，不改时间。</p></details><p id="fee-test-result" role="status">重置棋盘不重置收分倒计时。</p>
+      </section>
+      <section class="goals"><div class="section-title"><h2><span class="little-leaf" aria-hidden="true"></span>本轮目标</h2><span id="round">第 01 轮</span></div><p class="goal-caption">完成奖励 600 分，接着玩下一轮</p><div class="goal-list" id="goals"></div></section>
+      <section class="interactions"><h2><svg viewBox="0 0 24 24"><path d="M15 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2m22 0v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/><circle cx="8" cy="7" r="4"/></svg>观众整活台</h2><p>6 种折磨，3 个救命道具 · 点击模拟</p>
+        <div class="gift-grid">
+        <button class="gift ice" data-effect="ice"><span class="gift-art"><svg viewBox="0 0 48 48"><path d="m24 4 18 10v21L24 45 6 35V14Z"/><path d="m6 14 18 11 18-11M24 25v20M12 14l12-7 12 7-12 7Z"/></svg></span><span><strong>冰块捣乱</strong><small>冻结 5 只 · 相邻消除可破冰</small></span><b>+</b></button>
+        <button class="gift bomb" data-effect="bomb"><span class="gift-art"><svg viewBox="0 0 48 48"><circle cx="22" cy="29" r="15"/><path d="m30 16 5-7m-2 3 6 2m-4-4 1-7m-2 7-6-4"/><path class="shine" d="M13 27c0-4 2-6 5-7"/></svg></span><span><strong>炸弹助攻</strong><small>炸开一片 3 × 3 区域</small></span><b>+</b></button>
+        <button class="gift rainbow" data-effect="rainbow"><span class="gift-art rainbow-art"></span><span><strong>彩虹助攻</strong><small>送你一颗全色消除彩虹球</small></span><b>+</b></button>
+        <button class="gift prank-bad" data-effect="chain"><span class="prank-symbol">⛓</span><span><strong>锁链伺候</strong><small>锁 6 只 · 需 2 次相邻消除</small></span></button>
+        <button class="gift prank-bad" data-effect="fog"><span class="prank-symbol">≋</span><span><strong>迷雾蒙眼</strong><small>小动物藏起来 10 秒</small></span></button>
+        <button class="gift prank-bad" data-effect="chaos"><span class="prank-symbol">⇄</span><span><strong>全盘乱序</strong><small>刚记好的位置全换了</small></span></button>
+        <button class="gift prank-bad" data-effect="curse"><span class="prank-symbol">ϟ</span><span><strong>手滑诅咒</strong><small>12 秒内无效交换扣 100</small></span></button>
+        <button class="gift prank-bad prank-danger" data-effect="challenge"><span class="prank-symbol">◷</span><span><strong>限时催命</strong><small>10 秒消 12 只，失败扣 500</small></span></button>
+        <button class="gift prank-good" data-effect="cleanse"><span class="prank-symbol">✧</span><span><strong>饶你一命</strong><small>解锁、破冰、解除全部诅咒</small></span></button>
+        </div>
+      </section>
+      <section class="activity"><h2><svg viewBox="0 0 24 24"><path d="M21 11a9 9 0 0 1-9 9H8l-5 2 1-6a9 9 0 1 1 17-5Z"/><path d="M7 10h.1M12 10h.1M17 10h.1"/></svg>最新动态</h2><div id="activity" role="status"><span class="log-dot"></span><span>等你来消除第一组小动物</span></div></section>
+      <div class="endless-note"><span>∞</span><div><strong>慢慢玩，没有终点</strong><p>不限时间 · 不限步数 · 尽情连消</p></div></div>
+    </aside>
+  </div>
+  <footer><span>三连消除</span><i></i><span>四连生成直线特效</span><i></i><span>五连生成彩虹球</span><span class="offline-label">支持菘蓝 / 白曜礼物接入</span></footer>
+</main>
+<script src="engine.js"></script><script src="baiyao-overtime-client.js"></script><script src="local-overtime.js"></script><script src="overtime.js"></script><script src="collector.js"></script><script src="live-input.js"></script><script src="live-settings.js"></script><script src="broadcast-ui.js"></script><script src="overtime-ui.js"></script><script src="game.js"></script>
+</body></html>

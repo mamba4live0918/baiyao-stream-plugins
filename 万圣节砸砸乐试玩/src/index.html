@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>万圣节砸砸乐 · 试玩</title>
+<style>
+<!--@CSS@-->
+</style>
+</head>
+<body>
+<header class="top">
+  <p class="eyebrow">白曜重工 · 砸砸乐 · 万圣节限定试玩</p>
+  <h1>不给糖就捣蛋</h1>
+  <p class="lead">点下面的按钮当作观众送礼物。在画面上按住鼠标拖动，就是你在晃头：南瓜塔、绷带、头上的蝙蝠都会跟着晃。</p>
+</header>
+<main class="wrap">
+  <div class="stage-box"><canvas id="stage" aria-label="直播画面预览"></canvas></div>
+  <section class="panel" aria-label="试玩按钮">
+    <div class="row">
+      <span class="tag trick">捣蛋</span>
+      <button type="button" data-trick="tower">南瓜叠叠乐</button>
+      <button type="button" data-trick="flood">南瓜淹没</button>
+      <button type="button" data-trick="ghost">小幽灵附身</button>
+      <button type="button" data-trick="potion">变身药水</button>
+      <button type="button" data-trick="mummy">木乃伊缠绕</button>
+      <button type="button" data-trick="bats">蝙蝠倒挂</button>
+      <button type="button" data-trick="random" class="accent">随机捣蛋</button>
+      <label class="check"><input type="checkbox" id="combo"> 连送 5 次</label>
+    </div>
+    <div class="row">
+      <span class="tag treat">保护</span>
+      <button type="button" id="candy1">送 1 颗糖</button>
+      <button type="button" id="candy5">送 5 颗糖</button>
+      <button type="button" id="scare">大礼物：吓飞蝙蝠</button>
+      <span class="hint">糖攒满 20 颗：所有捣蛋解除，再给 15 秒保护罩</span>
+    </div>
+    <div class="row">
+      <span class="tag self">皮套</span>
+      <span class="hint">在画面上按住拖动 = 晃头</span>
+      <label class="check"><input type="checkbox" id="auto"> 自动轻轻晃</label>
+      <button type="button" id="shake">使劲甩头</button>
+      <button type="button" id="reset">全部清空</button>
+      <label class="check"><input type="checkbox" id="mute"> 静音</label>
+    </div>
+    <div class="row">
+      <span class="tag pool">随机池</span>
+      <span class="hint">「随机捣蛋」只从亮着的里面抽：</span>
+      <span id="pool" class="chips"></span>
+    </div>
+  </section>
+  <p class="foot">画面里的南瓜、幽灵、药水、绷带、蝙蝠、糖果都是临时用代码画的，正式版换成 Codex 画的图。药水变身和附身在真插件里由 VTS 完成（缩放、倒立、染色、透明、飘起来），这里用立绘模拟。画面上的字只写观众昵称和发生了什么。</p>
+</main>
+<script type="text/plain" id="avatar-src"><!--@AVATAR@--></script>
+<script>
+<!--@JS@-->
+</script>
+</body>
+</html>

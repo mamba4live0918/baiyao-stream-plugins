@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>擦玻璃 · 试玩台</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:"Microsoft YaHei",sans-serif;overflow:hidden}
+#bg{position:fixed;left:0;right:0;top:46px;bottom:0}
+body[data-bg=avatar] #bg,body[data-bg=live] #bg{background:radial-gradient(ellipse at 50% 30%,#d9c3b0 0,#d9c3b000 22%),radial-gradient(ellipse at 13% 56%,#597b8399,transparent 40%),radial-gradient(ellipse at 80% 20%,#a4746866,transparent 40%),linear-gradient(130deg,#273944,#4d3d58 60%,#263932)}
+body[data-bg=day] #bg{background:#e2e5d9}
+body[data-bg=night] #bg{background:#273b3b}
+body[data-bg=grid] #bg{background-color:#fff;background-image:conic-gradient(#d6d8d4 25%,transparent 0 50%,#d6d8d4 0 75%,transparent 0);background-size:32px 32px}
+/* 立绘高度 = 插件区短边的 0.958 倍、贴底居中：横屏竖屏下脸都正好在插件默认的露脸框里 */
+#avatar{position:fixed;left:50%;bottom:0;height:calc(min(100vw, 100vh - 46px) * .958);transform:translateX(-50%);pointer-events:none;display:none}
+body[data-bg=avatar] #avatar{display:block}
+nav{position:fixed;left:0;right:0;top:0;height:46px;padding:0 16px;display:flex;align-items:center;gap:8px;background:#fafaf3f2;border-bottom:1px solid #ffffff80;color:#526451;font-size:12px;z-index:5;white-space:nowrap;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav>*{flex:none}
+nav strong{font-size:13px;letter-spacing:1px;margin-right:auto}
+/* 窄屏：去掉提示那句，按钮放不下就横着滑 */
+@media (max-width:900px){nav span{display:none}nav{padding:0 10px;gap:6px}}
+nav span{color:#8a988c}
+button{font:inherit;border:1px solid #ccd4c8;background:transparent;color:#51604f;padding:5px 10px;border-radius:20px;cursor:pointer}
+button.on{background:#55735e;color:#fff;border-color:#55735e}
+iframe{position:fixed;left:0;top:46px;width:100%;height:calc(100% - 46px);border:0;background:transparent}
+</style>
+</head>
+<body data-bg="avatar">
+<div id="bg"></div>
+<img id="avatar" alt="" src="__AVATAR__">
+<nav><strong>擦玻璃 · 试玩台</strong>
+<span>背景只在试玩台里，插件本身是透明的</span>
+<button data-bg="avatar" class="on">皮套立绘</button><button data-bg="live">直播背景</button><button data-bg="day">浅色</button><button data-bg="night">深色</button><button data-bg="grid">透明格</button>
+<button id="mode" title="切换：带试玩面板 / 直播时的样子">看直播时的样子</button>
+</nav>
+<iframe id="demo" src="擦玻璃.html?demo=1" title="擦玻璃" allow="autoplay"></iframe>
+<script>
+const frame = document.getElementById('demo');
+const mode = document.getElementById('mode');
+let live = false;
+document.querySelectorAll('button[data-bg]').forEach(b => b.onclick = () => {
+  document.body.dataset.bg = b.dataset.bg;
+  document.querySelectorAll('button[data-bg]').forEach(x => x.classList.toggle('on', x === b));
+});
+mode.onclick = () => {
+  live = !live;
+  mode.classList.toggle('on', live);
+  mode.textContent = live ? '回到试玩（带面板）' : '看直播时的样子';
+  frame.src = live ? '擦玻璃.html' : '擦玻璃.html?demo=1';
+};
+</script>
+</body>
+</html>

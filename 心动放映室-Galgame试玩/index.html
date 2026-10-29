@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>心动放映室 · 透明 Galgame 试玩</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23dea0bc' d='M12 21 3 12C-3 3 7-2 12 5c5-7 15-2 9 7Z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="ui.css?v=3">
+<link rel="stylesheet" href="themes.css?v=1">
+<link rel="stylesheet" href="feedback.css?v=3">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></symbol>
+<symbol id="i-log" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m6 3 15 9-15 9V3Z"/></symbol>
+<symbol id="i-volume" viewBox="0 0 24 24"><path d="m11 5-6 4H2v6h3l6 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
+<symbol id="i-restart" viewBox="0 0 24 24"><path d="M3 11a9 9 0 1 1 2.7 6.4M3 4v7h7"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 4v16M16 4v16"/></symbol>
+<symbol id="i-next" viewBox="0 0 24 24"><path d="m6 6 6 6-6 6M13 6l6 6-6 6"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M21 14v7H3V3h7"/></symbol>
+<symbol id="i-heart-crack" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/><path d="m12 5-2 5 4 2-3 5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.7 6.3L21 12l-6.3 2.7L12 21l-2.7-6.3L3 12l6.3-2.7L12 3Z"/></symbol>
+</defs></svg>
+<header class="preview-header preview-ui"><div class="brand"><strong>心动放映室</strong><small>透明互动 ADV / 试玩</small></div><div class="theme-switcher" role="group" aria-label="界面主题"><span>主题</span><button class="theme-option" data-set-theme="night" aria-pressed="true" style="--swatch:#c78ca9">夜樱心约</button><button class="theme-option" data-set-theme="sky" aria-pressed="false" style="--swatch:#69bce2">晴空来信</button><button class="theme-option" data-set-theme="candy" aria-pressed="false" style="--swatch:#ec9ac1">糖心物语</button><button class="theme-option" data-set-theme="washi" aria-pressed="false" style="--swatch:#bc4832">墨染花札</button><button class="theme-option" data-set-theme="orbit" aria-pressed="false" style="--swatch:#66d7f2">星轨终端</button></div><div class="header-right"><span class="demo-label">插画仅供预览</span><a class="output-link" href="index.html" target="_blank" rel="noopener">透明输出<svg class="icon"><use href="#i-out"/></svg></a></div></header>
+<main class="frame" id="frame" aria-label="Galgame 互动舞台"><div class="stage" id="stage">
+<div class="scenery" aria-hidden="true"></div>
+<section class="chapter" aria-label="当前章节"><span>CHAPTER <span id="chapterNumber">01</span></span><i class="chapter-separator"></i><span class="chapter-label" id="roundLabel">赴约</span></section>
+<div class="rounds" aria-label="三幕剧情进度"><i class="round-dot active"></i><i class="round-dot"></i><i class="round-dot"></i></div>
+<section class="status" aria-label="好感度"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg><span id="score" class="score">50</span><div class="affinity-gems" id="affinityGems" aria-hidden="true"><i class="active"></i><i class="active"></i><i></i><i></i><i></i></div><div class="sr-only meter" role="progressbar" aria-label="当前好感度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><div id="meterFill"></div></div><span class="sr-only" id="relationship">你们的关系：有一点在意</span></section><div class="delta" id="delta"></div>
+<div class="route-note" id="routeNote">此刻，你会怎么回答？</div>
+<section class="choice-area" id="choiceArea" hidden><div class="choice-heading">把这一刻，交给你决定<small id="voteClock">YOUR CHOICE</small></div><div id="choices"></div><div class="choice-hint" id="choiceHint">点击选择 · 或按键盘 1 / 2 / 3</div></section>
+<section class="ending" id="ending" hidden><div class="ending-kicker" id="endingKicker"></div><h2 id="endingTitle"></h2><p id="endingDescription"></p><button id="endingRestart">再赴一次约</button><span class="ending-score" id="endingScore"></span></section>
+<img src="dialogue-skin.png" alt="" class="dialogue-skin" id="dialogueSkin" draggable="false">
+<section class="dialogue" id="dialogue" aria-label="剧情对话"><div class="nameplate" id="speaker">小晚</div><p class="dialogue-text" id="dialogueText"></p><div class="dialogue-bottom"><span class="dialogue-caption" id="dialogueCaption"></span><div class="dialogue-actions">
+<button class="text-button" id="historyButton" aria-expanded="false"><svg class="icon"><use href="#i-log"/></svg><span>对话记录</span></button>
+<button class="text-button" id="autoButton" aria-pressed="false"><svg class="icon"><use href="#i-play"/></svg><span>自动</span></button>
+<button class="text-button" id="soundButton" aria-pressed="false"><svg class="icon"><use href="#i-volume"/></svg><span>音效关</span></button>
+<button class="text-button" id="restartButton"><svg class="icon"><use href="#i-restart"/></svg><span>重开</span></button>
+<button class="text-button" id="pauseButton"><svg class="icon"><use href="#i-pause"/></svg><span>暂停</span></button>
+</div></div><button class="advance" id="advanceButton"><span class="sr-only">显示全文</span><span class="diamond"><svg class="icon"><use href="#i-next"/></svg></span></button></section>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<section class="history" id="history" aria-label="对话记录" hidden><div class="panel-title">故事的回声<button class="close" id="closeHistory" aria-label="关闭记录"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="history-list" id="historyList"></div></section>
+<div class="pause-screen" id="pauseScreen" hidden><div class="pause-card"><div class="pause-symbol"><svg class="icon"><use href="#i-pause"/></svg></div><h2>故事暂歇</h2><p id="pauseReason">等你回来，故事再继续。</p><button id="resumeButton">继续故事</button></div></div>
+</div></main>
+<footer class="preview-footer preview-ui"><div class="footer-left"><div class="backdrop-switch" aria-label="预览背景"><button data-backdrop="scene" class="active" aria-pressed="true">场景预览</button><button data-backdrop="checker" aria-pressed="false">透明棋盘格</button><button data-backdrop="clear" aria-pressed="false">深色底</button></div><span class="size-note">OBS / 1920 × 1080</span></div><div class="sim-controls"><span class="sim-label">互动模拟</span><button id="voteButton">模拟弹幕投票</button><button id="cheerButton" class="rose"><svg class="icon"><use href="#i-heart"/></svg>心动应援 +5</button><button id="troubleButton"><svg class="icon"><use href="#i-spark"/></svg>捣乱一下 −5</button></div></footer>
+<div class="preview-help preview-ui"><span><kbd>SPACE</kbd> 继续</span><span><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> 选择</span><span><kbd>P</kbd> 暂停</span><span class="offline">本地试玩 · 尚未连接直播平台</span></div>
+<div class="sr-only" id="announcer" aria-live="polite"></div>
+
+<script src="feedback.js?v=3"></script>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const FX=window.HeartRoomFeedback;
+const preview=new URLSearchParams(location.search).get('preview')==='1';
+document.body.className=preview?'preview':'output';
+document.body.dataset.backdrop='scene';
+const rounds=[
+ {label:'第一幕 · 赴约',line:'你终于来啦。我还以为……你把今天的约定忘了呢。',caption:'她把目光移向窗外，却悄悄等着你的回答。',choices:[
+  {text:'因为要见你，出门前多照了几次镜子。',delta:18,response:'诶？谁、谁问你这个了……那下次，不许让我等这么久。'},
+  {text:'迟到？我明明是卡着开播提醒来的。',delta:-12,response:'所以，你只是来看直播的啊。好吧……是我想多了。'},
+  {text:'路上看到一家花店，就突然走不动了。',delta:2,response:'花店？那……花呢？你不会只看了一眼就走了吧？'}]},
+ {label:'第二幕 · 靠近',line:'如果有一天，我的直播间只剩下一个人……你还会来吗？',caption:'玩笑说到一半，她忽然认真起来。',choices:[
+  {text:'那我就当那个，一直给你回声的人。',delta:18,response:'笨蛋……说得这么认真，我都不知道怎么接下去了。'},
+  {text:'会啊，毕竟我还没领到你的粉丝牌。',delta:5,response:'原来只是为了牌子呀？……不过，你来就好。'},
+  {text:'那得看看隔壁今天播什么。',delta:-18,response:'好、很好。你最好现在就去，别让我看见你偷笑！'}]},
+ {label:'第三幕 · 心意',line:'天快黑了。今天最后一个问题……明天，你还想见到我吗？',caption:'这一次，她没有躲开你的眼睛。',choices:[
+  {text:'想。不止明天，以后的每一天都想。',delta:20,response:'那就说好了。明天的第一句“晚上好”，我留给你。'},
+  {text:'当然，我们可是最好的直播搭子。',delta:0,response:'直播搭子啊……嗯，也是一个很好的约定。'},
+  {text:'明天再说吧，我先去抢个福袋。',delta:-20,response:'福袋！又是福袋！好啦，你的专属位置……暂时没收！'}]}
+];
+const endings={
+ good:{kicker:'TRUE END · 01 / 心动结局',title:'明天，也要第一个见你',description:'人海里有很多个晚上。\n而她开始期待的，是有你在的那一个。',line:'晚安……还有，谢谢你今天选择了我。明天也不许迟到哦。'},
+ friend:{kicker:'FRIEND END · 02 / 陪伴结局',title:'最佳直播搭子',description:'有些心意，暂时还没有说出口。\n不过，明天的直播间仍然为你留着位置。',line:'那就明天见，老地方。我知道，你一定会来的。'},
+ bad:{kicker:'CHAOS END · 03 / 翻车结局',title:'恭喜，获得冷板凳一张',description:'你精准避开了所有心动选项。\n她决定把你的备注改成：“福袋派来的卧底”。',line:'今晚禁止你在隔壁领福袋！……算了，记得回来报平安。'}
+};
+let s,raf=0,lastFrame=0,audio=null,sound=false,auto=false;
+const history=[];
+const nodes={};['score','meterFill','relationship','delta','choiceArea','choices','voteClock','choiceHint','dialogueText','dialogueCaption','advanceButton','toast','history','historyList','ending','roundLabel','routeNote','pauseScreen','voteButton','cheerButton','troubleButton'].forEach(id=>nodes[id]=$(id));
+function setAdvance(label){nodes.advanceButton.setAttribute('aria-label',label);nodes.advanceButton.title=label;nodes.advanceButton.innerHTML='<span class="sr-only"></span><span class="diamond"><svg class="icon"><use href="#i-next"/></svg></span>';nodes.advanceButton.querySelector('.sr-only').textContent=label;}
+function updateGems(){document.querySelectorAll('#affinityGems i').forEach((e,i)=>e.classList.toggle('active',i<Math.floor(s.score/20)));}
+function fit(){const r=$('frame').getBoundingClientRect();$('stage').style.setProperty('--scale',Math.min(r.width/1600,r.height/900));}
+new ResizeObserver(fit).observe($('frame'));window.addEventListener('resize',fit);fit();
+function addHistory(who,line){history.push({who,line});if(history.length>24)history.shift();renderHistory();}
+function renderHistory(){nodes.historyList.replaceChildren(...history.map(item=>{const e=document.createElement('div');e.className='history-entry';const b=document.createElement('b');b.textContent=item.who;const t=document.createElement('div');t.textContent=item.line;e.append(b,t);return e;}));nodes.historyList.scrollTop=nodes.historyList.scrollHeight;}
+function announce(line){$('announcer').textContent=line;}
+function toast(line){nodes.toast.textContent=line;nodes.toast.classList.add('visible');s.toastUntil=s.time+2.8;}
+function noteTone(up=true){if(!sound)return;try{audio??=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')void audio.resume().catch(()=>{});const t=audio.currentTime;[up?523:330,up?659:261].forEach((f,i)=>{const o=audio.createOscillator(),g=audio.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0,t+i*.1);g.gain.linearRampToValueAtTime(.035,t+i*.1+.02);g.gain.exponentialRampToValueAtTime(.001,t+i*.1+.28);o.connect(g).connect(audio.destination);o.start(t+i*.1);o.stop(t+i*.1+.3);});}catch{sound=false;updateSound();}}
+function changeScore(amount,source='choice'){
+ const from=Number(nodes.score.textContent),old=s.score;
+ s.score=Math.max(0,Math.min(100,s.score+amount));
+ const actual=s.score-old;updateGems();nodes.meterFill.style.width=s.score+'%';
+ document.querySelector('.meter').setAttribute('aria-valuenow',s.score);
+ nodes.relationship.textContent='你们的关系：'+(s.score>=85?'藏不住的心动':s.score>=65?'越来越靠近':s.score>=40?'有一点在意':s.score>=20?'气氛有点微妙':'她记住你了，真的');
+ nodes.delta.style.color=amount<0?'var(--fx-negative)':'var(--t-accent)';nodes.delta.textContent=(actual>=0?'+':'')+actual;nodes.delta.classList.remove('show');void nodes.delta.offsetWidth;nodes.delta.classList.add('show');
+ FX.react({amount:actual,requested:amount,source,time:s.time,from,to:s.score});noteTone(amount>=0);
+}
+function typeLine(line,next){s.line=Array.from(line);s.typed=0;s.typeElapsed=0;s.afterType=next;s.phase='typing';nodes.dialogueText.textContent='';nodes.dialogueText.classList.add('typing');nodes.choiceArea.hidden=true;nodes.advanceButton.disabled=false;setAdvance('显示全文');addHistory('小晚',line);}
+function completeType(){if(s.phase!=='typing')return;s.typed=s.line.length;nodes.dialogueText.textContent=s.line.join('');nodes.dialogueText.classList.remove('typing');const next=s.afterType;s.phase=next;s.autoAt=s.time+2.5;announce(s.line.join(''));if(next==='choosing')showChoices();else if(next==='ending')showEnding();else{nodes.advanceButton.disabled=false;setAdvance('继续故事');}}
+function showRound(){nodes.ending.hidden=true;nodes.roundLabel.textContent=rounds[s.round].label.split(' · ')[1];$('chapterNumber').textContent=String(s.round+1).padStart(2,'0');document.querySelectorAll('.round-dot').forEach((e,i)=>{e.classList.toggle('active',i===s.round);e.classList.toggle('done',i<s.round);});nodes.routeNote.hidden=false;nodes.routeNote.textContent='此刻，你会怎么回答？';nodes.dialogueCaption.textContent=rounds[s.round].caption;typeLine(rounds[s.round].line,'choosing');updateControls();}
+function showChoices(){nodes.choiceArea.classList.remove('settling');delete nodes.choiceArea.dataset.winner;nodes.choiceArea.hidden=false;nodes.voteClock.textContent='YOUR CHOICE';nodes.voteClock.classList.remove('voting-clock');nodes.choiceHint.textContent='点击选择 · 或按键盘 1 / 2 / 3';nodes.choices.replaceChildren(...rounds[s.round].choices.map((c,i)=>{const b=document.createElement('button');b.className='choice';b.dataset.index=i;b.innerHTML='<svg class="choice-frame" viewBox="0 0 760 66" preserveAspectRatio="none" aria-hidden="true"><path class="surface" d="M28 1H732L759 33 732 65H28L1 33Z"/><path class="trim" d="M31 6H729L750 33 729 60H31L10 33Z"/></svg><span class="vote-bar"></span><span class="choice-number">0'+(i+1)+'</span><span class="choice-text"></span><span class="vote-count"></span><span class="choice-arrow" aria-hidden="true"></span>';b.querySelector('.choice-text').textContent=c.text;b.addEventListener('click',()=>pick(i));return b;}));nodes.advanceButton.disabled=true;setAdvance('等待你的回答');updateControls();}
+function pick(index,settled=false){
+ if(s.paused||!Number.isInteger(index)||index<0||index>2)return;
+ if(s.phase==='voting'&&!settled){castVote('you',index);toast('模拟弹幕：你投给了 '+(index+1)+' 号选项');return;}
+ if(s.phase!=='choosing'&&!(s.phase==='voting'&&settled))return;
+ s.phase='resolving';s.voteEnd=0;s.pendingChoice={index,settled,at:s.time+FX.selectionDuration};
+ nodes.voteClock.textContent=settled?'投票已结束':'你的心意';nodes.voteClock.classList.remove('voting-clock');
+ nodes.advanceButton.disabled=true;setAdvance('等待她的回应');
+ FX.selection(index,s.time,settled);updateControls();
+}
+function commitChoice(index,settled){
+ const c=rounds[s.round].choices[index];s.pendingChoice=null;s.phase='response';s.votes.clear();
+ nodes.choiceArea.hidden=true;nodes.choiceArea.classList.remove('settling');delete nodes.choiceArea.dataset.winner;
+ nodes.routeNote.textContent=(settled?'弹幕共同选择：':'你的选择：')+c.text;
+ addHistory(settled?'模拟弹幕的选择':'你的选择',c.text);changeScore(c.delta,settled?'vote':'choice');
+ nodes.dialogueCaption.textContent=c.delta>10?'心跳好像，漏了一拍。':c.delta<0?'空气忽然安静了两秒。':'故事正在悄悄向前。';
+ typeLine(c.response,'response');updateControls();
+}
+function advance(){if(s.paused)return;if(s.phase==='typing'){completeType();return;}if(s.phase==='response'){s.round++;if(s.round<rounds.length)showRound();else{const key=s.score>=85?'good':s.score>=40?'friend':'bad';s.endingKey=key;nodes.routeNote.hidden=true;nodes.roundLabel.textContent='我们的结局';$('chapterNumber').textContent='FIN';nodes.dialogueCaption.textContent='这段故事，由你们一起写完。';typeLine(endings[key].line,'ending');updateControls();}}}
+function showEnding(){const e=endings[s.endingKey];nodes.choiceArea.hidden=true;nodes.ending.hidden=false;$('endingKicker').textContent=e.kicker;$('endingTitle').textContent=e.title;$('endingDescription').textContent=e.description;$('endingDescription').style.whiteSpace='pre-line';$('endingScore').textContent='最终好感度 '+s.score;$('advanceButton').disabled=true;setAdvance('故事已收录');document.querySelectorAll('.round-dot').forEach(e=>{e.classList.add('done');e.classList.remove('active');});announce(e.title);updateControls();}
+function startVote(){if(s.paused)return;if(s.phase==='typing'&&s.afterType==='choosing')completeType();if(s.phase!=='choosing'){toast('在剧情选项出现时，可以发起模拟投票。');return;}s.phase='voting';s.votes.clear();s.voteEnd=s.time+10;s.nextBot=s.time+.2;s.botIndex=0;nodes.choiceHint.textContent='模拟弹幕投票中 · 点击选项可投票 / 改票';nodes.voteClock.classList.add('voting-clock');nodes.routeNote.textContent='这一次，让弹幕决定故事的方向。';toast('离线模拟：10 秒后，票数最多的选项胜出');renderVotes();FX.voteStart(s.time);updateControls();}
+function castVote(uid,index){if(s.phase!=='voting'||s.paused||index<0||index>2||s.votes.size>=80&&!s.votes.has(uid))return;const previous=s.votes.get(uid);if(previous===index)return;s.votes.set(uid,index);renderVotes();FX.votePulse(index,s.time,previous!==undefined);}
+function renderVotes(){const counts=[0,0,0];for(const i of s.votes.values())counts[i]++;const total=Math.max(1,s.votes.size);Array.from(nodes.choices.children).forEach((e,i)=>{e.querySelector('.vote-count').textContent=counts[i]+' 票';FX.voteBar(i,counts[i]/total*100,s.time);e.classList.toggle('active',s.votes.get('you')===i);});}
+function intervention(amount){if(s.paused||s.phase==='ending'||s.phase==='resolving'||s.endingKey)return;if(s.time<s.interactAt){toast('给心跳一点喘息时间，稍后再试。');return;}s.interactAt=s.time+2;changeScore(amount,'audience');const text=amount>0?'模拟应援：有人偷偷递来了一颗心。':'模拟捣乱：你们的气氛被弹幕戳了一下。';announce(text);addHistory('观众互动模拟',text);}
+function updateControls(){const ended=s.phase==='ending'||Boolean(s.endingKey);nodes.voteButton.disabled=s.paused||s.phase==='voting'||s.phase==='resolving'||ended;nodes.voteButton.textContent=s.phase==='voting'?'投票进行中…':'模拟弹幕投票';nodes.cheerButton.disabled=s.paused||s.phase==='resolving'||ended;nodes.troubleButton.disabled=s.paused||s.phase==='resolving'||ended;}
+function setPaused(value,reason='故事已暂停，等你回来。'){if(!s)return;s.paused=value;nodes.pauseScreen.hidden=!value;document.body.classList.toggle('paused',value);$('pauseReason').textContent=reason;lastFrame=performance.now();updateControls();if(value&&audio?.state==='running')void audio.suspend().catch(()=>{});if(!value&&sound&&audio?.state==='suspended')void audio.resume().catch(()=>{});}
+function restart(){FX.clear();s={round:0,score:50,time:0,paused:false,phase:'typing',pendingChoice:null,line:[],typed:0,typeElapsed:0,afterType:'choosing',autoAt:0,toastUntil:0,interactAt:0,votes:new Map(),voteEnd:0,nextBot:0,botIndex:0,endingKey:null};history.length=0;nodes.toast.classList.remove('visible');nodes.delta.classList.remove('show');nodes.ending.hidden=true;nodes.history.hidden=true;$('historyButton').setAttribute('aria-expanded','false');nodes.pauseScreen.hidden=true;document.body.classList.remove('paused');nodes.score.textContent='50';updateGems();nodes.meterFill.style.width='50%';document.querySelector('.meter').setAttribute('aria-valuenow','50');nodes.relationship.textContent='你们的关系：有一点在意';lastFrame=performance.now();showRound();}
+function updateSound(){$('soundButton').querySelector('span').textContent=sound?'音效开':'音效关';$('soundButton').classList.toggle('active',sound);$('soundButton').setAttribute('aria-pressed',String(sound));}
+// A visual novel uses elapsed UI time, not a physics step. Allow 1 Hz host rendering without slowing votes; visibility pause handles background gaps.
+function tick(now){const dt=Math.min(Math.max((now-lastFrame)/1000,0),1);lastFrame=now;if(s&&!s.paused){s.time+=dt;FX.tick(s.time);if(s.phase==='resolving'&&s.pendingChoice&&s.time>=s.pendingChoice.at){const pending=s.pendingChoice;commitChoice(pending.index,pending.settled);}if(s.phase==='typing'){s.typeElapsed+=dt;const n=Math.min(s.line.length,Math.floor(s.typeElapsed/.045));if(n!==s.typed){s.typed=n;nodes.dialogueText.textContent=s.line.slice(0,n).join('');}if(n>=s.line.length)completeType();}if(s.phase==='response'&&auto&&s.time>=s.autoAt)advance();if(s.phase==='voting'){nodes.voteClock.textContent='弹幕投票 · '+Math.max(0,Math.ceil(s.voteEnd-s.time))+'s';if(s.time>=s.nextBot&&s.botIndex<32){castVote('sim-'+s.botIndex,Math.floor(Math.random()*3));s.botIndex++;s.nextBot=s.time+.24;}if(s.time>=s.voteEnd){const counts=[0,0,0];for(const i of s.votes.values())counts[i]++;const winner=counts.indexOf(Math.max(...counts));toast('模拟投票结束：'+(winner+1)+' 号选项获选（平票按选项顺序）');pick(winner,true);}}if(s.time>=s.toastUntil)nodes.toast.classList.remove('visible');}raf=requestAnimationFrame(tick);}
+$('dialogue').addEventListener('click',e=>{if(!e.composedPath().some(node=>node instanceof HTMLButtonElement))advance();});nodes.advanceButton.addEventListener('click',advance);$('restartButton').addEventListener('click',restart);$('endingRestart').addEventListener('click',restart);$('pauseButton').addEventListener('click',()=>setPaused(true));$('resumeButton').addEventListener('click',()=>setPaused(false));$('autoButton').addEventListener('click',()=>{auto=!auto;$('autoButton').classList.toggle('active',auto);$('autoButton').setAttribute('aria-pressed',String(auto));toast(auto?'自动继续已开启；剧情选项仍由你决定。':'已切换为手动继续。');});$('soundButton').addEventListener('click',()=>{sound=!sound;updateSound();noteTone();});$('historyButton').addEventListener('click',()=>{nodes.history.hidden=!nodes.history.hidden;$('historyButton').setAttribute('aria-expanded',String(!nodes.history.hidden));});$('closeHistory').addEventListener('click',()=>{nodes.history.hidden=true;$('historyButton').setAttribute('aria-expanded','false');});nodes.voteButton.addEventListener('click',startVote);nodes.cheerButton.addEventListener('click',()=>intervention(5));nodes.troubleButton.addEventListener('click',()=>intervention(-5));document.querySelectorAll('[data-backdrop]').forEach(b=>{if(b.tagName!=='BUTTON')return;b.addEventListener('click',()=>{document.body.dataset.backdrop=b.dataset.backdrop;document.querySelectorAll('button[data-backdrop]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});});});
+window.addEventListener('keydown',e=>{if(e.repeat||e.ctrlKey||e.metaKey||e.altKey||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;const k=e.key.toLowerCase();if(k==='p'){e.preventDefault();setPaused(!s.paused);return;}if(k==='escape'){if(!nodes.history.hidden){nodes.history.hidden=true;$('historyButton').setAttribute('aria-expanded','false');}else if(s.paused)setPaused(false);return;}if(k==='r'){e.preventDefault();restart();return;}if(s.paused)return;if(k===' '){e.preventDefault();advance();}else if(['1','2','3'].includes(k)){e.preventDefault();pick(Number(k)-1);}else if(k==='f2'){e.preventDefault();startVote();}else if(k==='h')intervention(5);else if(k==='j')intervention(-5);});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)setPaused(true,'窗口已切到后台。回来后，点击继续故事。');});window.addEventListener('pagehide',()=>{cancelAnimationFrame(raf);FX.clear();if(audio)void audio.close().catch(()=>{});});window.addEventListener('pageshow',e=>{if(e.persisted){lastFrame=performance.now();raf=requestAnimationFrame(tick);setPaused(true);}});
+restart();raf=requestAnimationFrame(tick);
+})();
+</script>
+<div class="sr-only" id="themeStatus" aria-live="polite"></div>
+<script src="themes.js?v=1"></script>
+</body>
+</html>

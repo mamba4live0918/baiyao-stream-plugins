@@ -1,0 +1,6 @@
+{
+  "hit": {"file":"slap-hand.png","contact":{"x":0.61,"y":0.37},"widthScale":1.7},
+  "pinch": {"file":"pinch-hand-contact-v5.png","contact":{"x":0.89085,"y":0.20744},"widthScale":2.1,"pads":[{"x":0.891,"y":0.164,"angle":30},{"x":0.929,"y":0.244,"angle":-35}]},
+  "kickShoe": {"file":"kick-shoe-v4.png","contact":{"x":0.976,"y":0.405},"widthScale":3.2},
+  "kickBarefoot": {"file":"kick-barefoot-v4.png","contact":{"x":0.932,"y":0.35},"widthScale":3.2}
+}

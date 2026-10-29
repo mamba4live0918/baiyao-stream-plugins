@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "counter_noodle_mid-attempt-1",
+      "assetIds": [
+        "counter_noodle_mid"
+      ],
+      "attempt": 1,
+      "selected": false,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:19:29.491Z",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D game sprite, ONE horizontally tileable middle slice of a cartoon noodle-stall counter, filename counter_noodle_mid. Reference image is STYLE ONLY: match its warm dark-brown #49372d outlines, cute clean shapes, flat colors, single gentle shadow, upper-left light. No person. New image canvas aspect ratio 512:420, ideally 1536x1260; orthographic front view with a slightly elevated camera showing a narrow tabletop above the front panel. Precise normalized construction: tabletop rear edge y=6% of canvas, tabletop front edge y=25%, thin front lip down to y=31%, front panel y=31% through y=94%. Pure transparent alpha above y=6% and below y=96%. Counter spans fully to left and right image edges, cut straight through at x=0 and x=100%. Absolutely no vertical side outlines or vertical edge shadows on either image boundary, no side walls, no perspective taper. These two image edges MUST seamlessly repeat horizontally, with all horizontal bands/colors matching at both edges. Tabletop warm tomato red #de6a4b, front lip darker red #b94735, main front panel light warm cream #f2d6ad with a simple broad tomato-red lower band; leave the entire middle empty for a separate round shop sign. Untextured flat broad fills, avoid decorative seams, vertical panel lines, wood grain, symbols, food, tools, plants, legs, ground and cast shadow. All outlines dark brown, visually 3 to 4px when sprite is shown 256x210. Transparent background. No text, numbers, characters, logos, currency signs, icons, patterns, watermark or border around canvas. Only this ONE middle slice.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-75afac7a-bcbf-49ef-836e-dbe7ceabd165.png"
+      ],
+      "rawPath": "raw/counters/counter_noodle_mid-attempt-1.png",
+      "note": "独立中片备用；最终优先采用完整柜台母图裁切。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/customers/customer_01_happy.png"
+      ]
+    },
+    {
+      "id": "counter_noodle_mid-attempt-2",
+      "assetIds": [
+        "counter_noodle_mid"
+      ],
+      "attempt": 2,
+      "selected": false,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:19:29.494Z",
+      "prompt": "Edit target: the supplied noodle counter middle-slice PNG. Keep its exact warm tomato-red tabletop, darker red lip, cream front panel, tomato-red bottom band, dark-brown horizontal outlines, orthographic front view and transparent alpha. Change ONLY the flatness and tileability: REMOVE every diagonal white highlight slash and REMOVE all horizontal gradients, using a single uniform solid color across each horizontal band. The leftmost column and rightmost column at every y must be identical RGBA, so this image can be seamlessly tiled left-to-right. No left or right border, no vertical outlines, no rounded corners at either boundary. The artwork should reach both horizontal boundaries. Preserve transparent area outside the counter. Keep no lettering, no signs, no decorations, no symbols, no watermark, no floor. One transparent 2D game counter middle tile, aspect 512:420.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-c12f5230-e4d3-4432-aa2e-89c8f245cf8b.png"
+      ],
+      "rawPath": "raw/counters/counter_noodle_mid.png",
+      "note": "独立中片备用；最终优先采用完整柜台母图裁切。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-75afac7a-bcbf-49ef-836e-dbe7ceabd165.png"
+      ]
+    },
+    {
+      "id": "counter_noodle_left-attempt-1",
+      "assetIds": [
+        "counter_noodle_left"
+      ],
+      "attempt": 1,
+      "selected": false,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:22:11.633Z",
+      "prompt": "Use case: stylized-concept. Asset counter_noodle_left: ONE LEFT END CAP of the exact counter in the supplied reference, on real transparent alpha. Reference is a counter middle tile, use its exact palette and horizontal band heights. Output tall canvas aspect256:420. Keep the exact band positions as reference relative to canvas: empty transparent upper26%; tabletop tomato-red strip from26% to36%, darker red lip36% to42%, blank lightcream front42% to82%, dark-brown separator at82%, tomato-red bottom band83% to92%, transparent below92%. This left cap connects on its RIGHT image boundary to that middle tile: all horizontal bands reach right edge with no right vertical outline, no right round corner, no side face. At LEFT, close the counter with a modest rounded upper-left tabletop corner and a clean dark-brown left edge, xabout10% ofcanvas; the lower-left corner similarlyrounded. Straight-on orthographic view, no taper. Deepbrown #49372d outlines, cute flat 2D cartoon, one flat shadow, upper-left light; uniform broad fill colors, no texture, no gradient. Do not include any right cap, any whole full-length counter, scene or ground. No sign, food, items, icons, people, text, letters, numbers or logo. One separate left-cap sprite only, same construction and proportions as reference.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-dcdba540-4aea-47b4-8e62-5de811c42c83.png"
+      ],
+      "rawPath": "raw/counters/counter_noodle_left.png",
+      "note": "独立端片备用；最终优先采用完整柜台母图裁切以保证接缝。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/counters/counter_noodle_mid.png"
+      ]
+    },
+    {
+      "id": "counter_noodle_right-attempt-1",
+      "assetIds": [
+        "counter_noodle_right"
+      ],
+      "attempt": 1,
+      "selected": false,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:22:11.969Z",
+      "prompt": "Use case: stylized-concept. Create counter_noodle_right, a ONE RIGHT-END CAP game sprite on real transparent alpha. The reference is the matching LEFT end cap; produce its exact horizontal mirror counterpart, preserving the entire palette, flat color bands, dark-brown outline thickness, all band y positions, transparent top/bottom space, canvas ratio 256:420, and size. Mirror the outline geometry so the rounded closed outer edge is on the RIGHT and the LEFT edge is sliced open flush at the image boundary with NO vertical line and no side face. This is one individual right-end cap sprite, not a complete counter. Preserve tomato-red tabletop, darker-red lip, large blank warmcream front and tomato-red bottom band. No additional elements, no shop sign, decorations, people, utensils, food, floor, cast shadow, letters, numbers, icons, logos or text. Flat cute 2D cel shading, warm deepbrown outlines. Precisely align y positions and colors to reference to connect to its middle tile.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-baced2c7-6cea-4037-97ed-37f921f6238f.png"
+      ],
+      "rawPath": "raw/counters/counter_noodle_right.png",
+      "note": "独立端片备用；最终优先采用完整柜台母图裁切以保证接缝。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-dcdba540-4aea-47b4-8e62-5de811c42c83.png"
+      ]
+    },
+    {
+      "id": "counter_noodle_sign-attempt-1",
+      "assetIds": [
+        "counter_noodle_sign"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:22:12.302Z",
+      "prompt": "Use case: stylized-concept. ONE isolated circular shop-sign backing sprite counter_noodle_sign for a cute 2D livestream cooking game. Perfectly round cream-colored blank center surrounded by a thick tomato-red rim, dark brown #49372d outline, a single simple darker red shadow on lower-right and a small soft white highlight on upper-left rim. Front view, no perspective; whole circle centered within square transparent canvas, approximately88%ofcanvasdiameter, even transparent margins. Flat cute cartoon with broad clean color fills, consistent medium-thick ink (3-4px at120px display), no photorealism or gradients. The center must be EMPTY, clean warmcream, wide enough for code to place one character later. No writing of any kind, no letters, numbers, food, icon, mascot, emblem, logo, hooks, hanging strings, decorations, watermark or background. Actual transparent alpha outside the circle. Output square aspect1:1, finalsizewill240x240.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-bd0feac4-f69a-4e8b-a760-e42ee2497ce5.png"
+      ],
+      "rawPath": "raw/counters/counter_noodle_sign.png",
+      "note": "",
+      "transparentBackground": true,
+      "referencedImagePaths": []
+    },
+    {
+      "id": "counter_noodle_master-attempt-1",
+      "assetIds": [
+        "counter_noodle_left",
+        "counter_noodle_mid",
+        "counter_noodle_right"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:22:54.768Z",
+      "prompt": "Use case: stylized-concept. One COMPLETE noodle-stall counter MASTER SPRITE to export into matching left/middle/right pieces later. Real transparent alpha background. Wide landscape canvas aspect1024:420 (approximately2.44:1). Counter is front-facing orthographic, slightly elevated only enough to see a narrow horizontal tabletop. Cute flat 2D game cartoon, darkbrown #49372d clean thick outlines, broad flat colors, one simple lower-right cel shadow, upper-left lighting. Whole counter silhouette almostfills canvas with even small transparent margin. Top two outer corners gently rounded; two bottom outer corners gently rounded. Simple solid TOMATO-RED tabletop surface, darker red thin front lip, broad warm cream blank front panel, tomato-red lower band. These are strictly straight HORIZONTAL bands: tabletop top19%ofcounterheight, darkerlip8%, blankfront58%, lowerband15%. Each band is one uniform solid color ALL THE WAY ACROSS the image; no horizontal gradients or center highlights. No internal vertical lines, no handles, no doors, no woodgrain, no stripes, no diagonal highlights. The entire central 75% width is completely uninterrupted constant horizontal color bands so ANY central vertical strip can repeat horizontally. Darkbrown outlines appear only at OUTSIDE silhouette and horizontal band dividers. Leave front completely empty for separate circular shop plaque. No sign, text, letters, numbers, symbols, icons, food, people, wheels, legs, accessories, floor, ground shadow, watermark, or checkerboard. One full counter only, isolated transparent clean edges.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-73630365-03cf-4f17-b203-e41c56bc0fb7.png"
+      ],
+      "rawPath": "raw/counters/counter_noodle_master.png",
+      "derivation": "完整柜台母图经同一尺寸规范后，左/右端取中心线两侧区域；中片由中心像素列裁切后水平缩放。保留原图色彩，不绘制或修改像素。",
+      "transparentBackground": true,
+      "referencedImagePaths": []
+    },
+    {
+      "id": "counter_pancake_master-attempt-1",
+      "assetIds": [
+        "counter_pancake_left",
+        "counter_pancake_mid",
+        "counter_pancake_right"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:24:36.627Z",
+      "prompt": "Use case: stylized-concept. Generate ONE COMPLETE pancake-stall counter MASTER SPRITE on real transparent alpha, filename counter_pancake_master. The provided reference is the exact construction and drawing-style reference. Preserve its full wide front-view silhouette, slightly elevated flat tabletop, broad simple horizontal bands, rounded outside corners, dark brown outlines, blank front and transparent margins. Change palette to an EGG-YELLOW pancake stall: warm palegold tabletop #f3cb65, mustard-gold thin frontlip #c99b36, broad warmcream blank frontpanel #fae8ba, golden-yellow lowerband #e4b64d. Wide landscape aspect1024:420. Every color band is horizontally level, one uniform color across the central75%width, no gradient left-to-right, no vertical internal lines. Keep flat cute 2D cartoon, darkbrown #49372d clean outlines, one simple cel-shadow, upper-left light, no realistic texture. This full generated counter will be cropped into three matching pieces; central vertical slice must be repeatable. Empty front for separate sign. No sign, text, letters, digits, logos, food, utensils, person, face, wheels, legs, handles, ground, castshadow, background, watermark, ornament, decoration or diagonal white highlights. One entire counter only.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-a7a051a6-d6dc-4a1d-a253-5ab1143ad38f.png"
+      ],
+      "rawPath": "raw/counters/counter_pancake_master.png",
+      "derivation": "完整柜台母图裁左右两端，中心像素列水平缩放为中片；不改色，不绘制。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/counters/counter_noodle_master.png"
+      ]
+    },
+    {
+      "id": "counter_pancake_sign-attempt-1",
+      "assetIds": [
+        "counter_pancake_sign"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:24:36.979Z",
+      "prompt": "Use case: stylized-concept. ONE isolated circular shop-sign backing sprite counter_pancake_sign for a cute 2D livestream cooking game. Reference is a red-rim sign for shape/style only; make a matching sign with an EGG-YELLOW GOLD rim instead of red. Perfectly round warm cream EMPTY center surrounded by thick warmgold #edbd48 rim, darkbrown #49372d outline, simple darker mustard lower-right shadow and one small upper-left white rim highlight. Straight front view, circle centered square transparent canvas, diameter92%ofcanvas, evenmargin. Flat cute 2D cartoon, broad clean colors, mediumthick darkbrown ink (3-4px at120pxdisplay). The center is completely blank for code lettering later. No writing, letters, numbers, food, icon, mascot, emblem, logo, hooks, strings, decoration, watermark, gradient, backdrop or floor. Actual transparent alpha outside circle. One round plaque only.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-4baca8bc-c3f3-4cdd-bf49-5f8f981f05dd.png"
+      ],
+      "rawPath": "raw/counters/counter_pancake_sign.png",
+      "derivation": "尺寸规范为240×240。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/counters/counter_noodle_sign.png"
+      ]
+    },
+    {
+      "id": "counter_tea_master-attempt-1",
+      "assetIds": [
+        "counter_tea_left",
+        "counter_tea_mid",
+        "counter_tea_right"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:26:27.581Z",
+      "prompt": "Use case: stylized-concept. Generate ONE COMPLETE milk-tea-stall counter MASTER SPRITE, counter_tea_master, on real transparent alpha. Reference is the exact shape and drawing style; preserve wide front-view silhouette, broad slightly elevated tabletop and horizontal bands, outside rounded corners, darkbrown outlines and blank panel. Palette is MINT: tabletop lightmint #99d6ba, thin darker green frontlip #5c9f86, broad palecreamy mint blank frontpanel #e0ead4, lowerband mintgreen #7dbd9f. Wide landscape aspect1024:420. Every band perfectly horizontal and uninterrupted across central75%width, same uniform color across each band, no left-right gradient or texture. Cute flat 2D cartoon, darkbrown #49372d clean outlines, one simple celshade, upper-left light. Whole silhouette nearlyfillscanvas with small even transparent margin; outline only around outside and horizontal band divisions. The entire counter will be exported as three matching slices, so central vertical strip should repeat invisibly. Leave all front empty for separate circle plaque. No plaque in this image. No text, letters, digits, logos, icons, ornaments, plants, tea cups, food, tools, people, faces, wheels, legs, handles, doors, vertical panel dividers, floor, shadowonfloor, watermark or checkerboard. One full counter sprite only.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-497b1582-c73e-4761-b84c-e586580cda60.png"
+      ],
+      "rawPath": "raw/counters/counter_tea_master.png",
+      "derivation": "完整柜台母图裁左右两端，中心像素列水平缩放为中片；不改色，不绘制。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/counters/counter_noodle_master.png"
+      ]
+    },
+    {
+      "id": "counter_tea_sign-attempt-1",
+      "assetIds": [
+        "counter_tea_sign"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:26:27.927Z",
+      "prompt": "Use case: stylized-concept. ONE circular blank shop-sign sprite counter_tea_sign for cute 2D game. Reference red-rim sign is shape/style only; generate matching circle but MINT GREEN rim instead of red. Perfect round warmcream completelyempty center, thick mint #8ccdb1 rim, darkbrown #49372d outer and inner outlines, one darker green lower-right celshadow, one tiny white upperleft rim highlight. Straightfrontview, centered square transparent canvas, entire circle visible with even small margins, diameter92%canvas. Cute flatcartoon with mediumthick cleanbrown ink (3-4px at120px display), single shadow, broad flatfills. Real transparent alpha outsidecircle. No text, letter, number, icon, leaf, cup, food, mascot, logo, emblem, hanging string, hook, writing, decoration, pattern, floor, watermark or backdrop. Center MUST stay clean blank cream for code character later. One plaque only.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-f6adf428-ffff-4fe3-81ad-14463440156f.png"
+      ],
+      "rawPath": "raw/counters/counter_tea_sign.png",
+      "derivation": "尺寸规范为240×240。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/counters/counter_noodle_sign.png"
+      ]
+    },
+    {
+      "id": "counter_sushi_master-attempt-1",
+      "assetIds": [
+        "counter_sushi_left",
+        "counter_sushi_mid",
+        "counter_sushi_right"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:28:52.307Z",
+      "prompt": "Use case: stylized-concept. Generate ONE COMPLETE Japanese sushi-stall counter MASTER SPRITE, counter_sushi_master, real transparent alpha. Reference is exact silhouette, proportions, band positions, mediumthick darkbrown outlines and cute 2D drawing style. Preserve whole wide counter frontview, slightly elevated horizontal tabletop, rounded outside corners and blank front panel, but palette/material is JAPANESE LIGHT WOOD TABLETOP plus NAVY FRONT. Tabletop is simple warm honey lightwood #d7a86d, thin frontlip darker amberwood #a87945; main large frontpanel is solid deep navyblue #344963, lowerband is slightly darker navy #273b52. No woodgrain or planks; flatcolor suggests wood. Wide landscapeaspect1024:420. Every band straight level horizontal, no vertical internal lines or ornaments, center75%width totally empty constantcolor bands so a center vertical strip is repeatable. Darkbrown #49372d outlines only outside/horizontaldividers, simple upperleft light with one gentle celshadow. Whole sprite fillscanvas with small even transparent margin. All central front empty for separate round shop sign. No plaque/sign here, no text, letters, digits, Japanese characters, fish, food, knife, utensils, people, face, emblem, logo, plants, curtain, doors, handles, wheels, legs, flooring, groundshadow, watermark or checkerboard. One full counter sprite only.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-ef92dcf8-9fe6-41c9-a4b1-8701dd37392e.png"
+      ],
+      "rawPath": "raw/counters/counter_sushi_master.png",
+      "derivation": "完整柜台母图裁左右两端，中心像素列水平缩放为中片；不改色，不绘制。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/counters/counter_noodle_master.png"
+      ]
+    },
+    {
+      "id": "counter_sushi_sign-attempt-1",
+      "assetIds": [
+        "counter_sushi_sign"
+      ],
+      "attempt": 1,
+      "selected": true,
+      "tool": "image_gen.imagegen",
+      "createdAt": "2026-10-22T10:28:52.639Z",
+      "prompt": "Use case: stylized-concept. ONE circular blank shop-sign backing sprite counter_sushi_sign for a cute 2D Japanese cookinggame. Reference red-rim plaque is geometry/style only; create matching circle with NAVYBLUE rim #344963 instead of red, completelyempty warmcream center, thick darkbrown #49372d inner/outerinkoutline, one simple darker navy lower-right celshadow, one small upperleft white highlight on rim. Frontview, no perspective, centered square transparentcanvas, entirecircle visible with even smallmargin, diameter92%canvas. Clean cute flatcartoon, mediumthick brownink (3-4px at120px display), broad flatcolors, upperleft light. Actual transparent alpha outsidecircle. Center remains blank cream for a code-rendered character later. No Japanese text, writing, letters, digits, fish, sushi, food, icon, emblem, mascot, logo, pattern, wooden texture, hooks, hangingstrings, ornaments, background, floor or watermark. One round plaque only.",
+      "originalImages": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-6a65b0fc-f691-498f-bd8c-9fda4f2ea8b0.png"
+      ],
+      "rawPath": "raw/counters/counter_sushi_sign.png",
+      "derivation": "尺寸规范为240×240。",
+      "transparentBackground": true,
+      "referencedImagePaths": [
+        "assets/raw/counters/counter_noodle_sign.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+/* Four independent chains run from the viewport corners into the center lock. */
+#typing-lock-overlay{position:fixed;inset:0;border-radius:0;--lock-arm-length:55vw;--lock-angle:30deg;--lock-thickness:42px}
+#typing-lock-overlay .lock-strand.chain-arm{left:50%;top:50%;width:var(--lock-arm-length);height:var(--lock-thickness);margin-top:calc(var(--lock-thickness)*-.5);transform-origin:0 50%;z-index:2}
+#typing-lock-overlay .chain-arm .lock-chain{height:100%;width:100%;transform-origin:100% 50%;transform:scaleX(1);filter:drop-shadow(0 6px 5px #000c)}
+/* Left arms point the other way; flip them vertically so all four chains show the same lit side and shadow. */
+#typing-lock-overlay .chain-arm.arm-tl{transform:rotate(calc(180deg + var(--lock-angle))) scaleY(-1)}
+#typing-lock-overlay .chain-arm.arm-tr{transform:rotate(calc(-1 * var(--lock-angle)))}
+#typing-lock-overlay .chain-arm.arm-bl{transform:rotate(calc(180deg - var(--lock-angle))) scaleY(-1)}
+#typing-lock-overlay .chain-arm.arm-br{transform:rotate(var(--lock-angle))}
+#typing-lock-overlay .chain-arm.lock-tier-strand{display:none;top:calc(50% + 12px);height:calc(var(--lock-thickness)*.52);opacity:.7;z-index:3}
+#typing-lock-overlay:is([data-tier=rare],[data-tier=legendary]) .chain-arm.lock-tier-strand{display:block}
+#typing-lock-overlay .lock-center{z-index:6}
+#typing-lock-overlay[data-motion=on].lock-wrapping .chain-arm .lock-chain{animation:cornerChainReach 1.28s cubic-bezier(.2,.75,.24,1) both!important}
+#typing-lock-overlay[data-motion=on].lock-wrapping .arm-tr .lock-chain{animation-delay:.08s!important}
+#typing-lock-overlay[data-motion=on].lock-wrapping .arm-bl .lock-chain{animation-delay:.16s!important}
+#typing-lock-overlay[data-motion=on].lock-wrapping .arm-br .lock-chain{animation-delay:.24s!important}
+#typing-lock-overlay[data-motion=on].lock-wrapping .lock-tier-strand .lock-chain{animation-delay:.28s!important}
+#typing-lock-overlay[data-motion=on].lock-opening .chain-arm .lock-chain{animation:cornerChainBreak .55s ease-in both!important}
+@keyframes cornerChainReach{0%{transform:scaleX(0);opacity:.2}72%{transform:scaleX(1.05);opacity:1}100%{transform:scaleX(1);opacity:1}}
+@keyframes cornerChainBreak{to{transform:scaleX(.08);opacity:0;filter:brightness(2)}}
+#typing-lock-overlay[data-motion=off] .chain-arm .lock-chain{animation:none!important;transform:scaleX(1)!important}
+@media(max-width:650px){#typing-lock-overlay{--lock-thickness:30px}#typing-lock-overlay .chain-arm.lock-tier-strand{top:calc(50% + 8px)}}
+/* Only active challenge guidance is visible on the transparent stream surface. */
+.topbar,.arena-head,.arena-foot,.bottom,.arena-copy,#arena:before,#arena:after{display:none!important}
+#arena:focus{outline:none}
+#toast{display:none!important}body.settings-visible #toast{display:block!important}
+#typing-lock-overlay .lock-center,html[data-theme=horror] #typing-lock-overlay .lock-center,#typing-lock-overlay[data-tier=legendary] .lock-center{width:clamp(145px,19vw,245px)!important;height:clamp(145px,19vw,245px)!important;min-width:0!important;max-width:none!important;padding:0!important;background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;display:grid!important;place-items:center!important}
+#typing-lock-overlay .lock-heading{display:flex!important;width:100%;height:auto;min-height:0!important;gap:9px;font:600 15px/1.5 var(--ui-font);color:var(--lock-ui-ink)}
+#typing-lock-overlay .lock-emblem,#typing-lock-overlay[data-tier=legendary] .lock-emblem{display:block!important;width:100%!important;height:100%!important}
+#typing-lock-overlay #typing-lock-support,#typing-lock-overlay #typing-lock-queue,#typing-lock-overlay .lock-royal-seal{display:none!important}
+#typing-lock-overlay{--lock-ui-bg:#180e1df2;--lock-ui-ink:#ffe8ee;--lock-ui-line:#ad455d;--lock-ui-accent:#ef6680;--lock-ui-track:#361925}
+html[data-theme=cyber] #typing-lock-overlay{--lock-ui-bg:#071924f2;--lock-ui-ink:#d9fbff;--lock-ui-line:#18b3cc;--lock-ui-accent:#27dcf4;--lock-ui-track:#133846}
+html[data-theme=typewriter] #typing-lock-overlay{--lock-ui-bg:#28392ff5;--lock-ui-ink:#f4e5bd;--lock-ui-line:#b89a61;--lock-ui-accent:#d7b570;--lock-ui-track:#45533f}
+html[data-theme=notebook] #typing-lock-overlay{--lock-ui-bg:#fffbf0f5;--lock-ui-ink:#264765;--lock-ui-line:#658096;--lock-ui-accent:#486d91;--lock-ui-track:#e4dfd0}
+html[data-theme=pixel] #typing-lock-overlay{--lock-ui-bg:#102b40f5;--lock-ui-ink:#d0f6ec;--lock-ui-line:#7a629d;--lock-ui-accent:#86cbe5;--lock-ui-track:#233e54}
+html[data-theme=chalk] #typing-lock-overlay{--lock-ui-bg:#244337f5;--lock-ui-ink:#f3edda;--lock-ui-line:#a7b99c;--lock-ui-accent:#d3ddbb;--lock-ui-track:#345849}
+html[data-theme=terminal] #typing-lock-overlay{--lock-ui-bg:#07190af5;--lock-ui-ink:#c1f49d;--lock-ui-line:#6c9f54;--lock-ui-accent:#9bed66;--lock-ui-track:#163b1c}
+html[data-theme=cream] #typing-lock-overlay{--lock-ui-bg:#fffaedf5;--lock-ui-ink:#714633;--lock-ui-line:#dfac9d;--lock-ui-accent:#b86480;--lock-ui-track:#f0ded2}
+#typing-lock-overlay .lock-info{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);width:min(330px,calc(100vw - 32px));padding:12px 15px 10px;background:var(--lock-ui-bg);color:var(--lock-ui-ink);border:1px solid var(--lock-ui-line);border-radius:8px;box-shadow:0 5px 20px #0005;font-family:var(--ui-font)}
+#typing-lock-overlay .lock-progress-row{display:flex!important;margin:10px 0 7px;gap:10px}
+#typing-lock-overlay .lock-meter{height:27px;background:var(--lock-ui-track);border-color:var(--lock-ui-line)}
+#typing-lock-overlay #typing-lock-fill{background:var(--lock-ui-accent);opacity:.48}
+#typing-lock-overlay #typing-lock-progress{font:600 13px/1 Consolas,monospace;color:var(--lock-ui-ink)}
+#typing-lock-overlay #typing-lock-layers{font:600 24px/1.1 Consolas,monospace;color:var(--lock-ui-ink);text-shadow:none}
+#typing-lock-overlay #typing-lock-grade,#typing-lock-overlay .lock-heading kbd{color:var(--lock-ui-accent)}
+@media(max-height:480px){#typing-lock-overlay .lock-info{top:100%;padding:6px 10px}#typing-lock-overlay .lock-heading{font-size:12px}#typing-lock-overlay .lock-progress-row{margin:5px 0}}
+/* 阴影和光晕加在锁头外层：锁梁和锁身各自带裁切，把滤镜加在它们身上会把阴影切成方块。 */
+#typing-lock-overlay .lock-art{position:absolute;inset:0;filter:drop-shadow(0 6px 9px rgb(0 0 0 / .42)) drop-shadow(0 0 20px var(--theme-glow,#b43b58))}
+#typing-lock-overlay .lock-body,#typing-lock-overlay .lock-shackle{filter:none}
+@media(max-width:650px){#typing-lock-overlay .lock-center,html[data-theme=horror] #typing-lock-overlay .lock-center{width:clamp(140px,38vw,195px)!important;height:clamp(140px,38vw,195px)!important}}
+/* 自定义档位名称可能很长：面板内省略，不溢出到锁链上。 */
+#typing-lock-overlay #typing-lock-grade{max-width:9em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#typing-lock-overlay .lock-heading strong{white-space:nowrap}
+
+/* ---------- 特效（V1.6）：只用 transform / opacity，动画偏好为关闭时不生成 ---------- */
+#lock-fx{position:absolute;left:50%;top:50%;width:0;height:0;z-index:7;pointer-events:none}
+#lock-fx .fx-spark{position:absolute;left:-3px;top:-14px;width:6px;height:28px;border-radius:4px;background:linear-gradient(#fff 0,#fff 25%,var(--theme-glow,#ef6680) 65%,transparent);box-shadow:0 0 10px var(--theme-glow,#ef6680),0 0 3px #fff;will-change:transform,opacity}
+#lock-fx .fx-shard{position:absolute;left:-9px;top:-9px;width:18px;height:18px;filter:drop-shadow(0 0 5px var(--theme-glow,#ef6680));background:linear-gradient(135deg,#fff 0,var(--theme-glow,#ef6680) 60%,#0000 100%);clip-path:polygon(50% 0,100% 40%,70% 100%,0 70%);will-change:transform,opacity}
+#lock-fx .fx-ring{position:absolute;left:-80px;top:-80px;width:160px;height:160px;border-radius:50%;border:5px solid var(--theme-glow,#ef6680);box-shadow:0 0 22px var(--theme-glow,#ef6680),inset 0 0 18px var(--theme-glow,#ef6680);will-change:transform,opacity}
+#lock-fx .fx-flash{position:absolute;left:-150px;top:-150px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#fff 0,#ffffffd0 14%,color-mix(in srgb,var(--theme-glow,#ef6680) 80%,transparent) 34%,transparent 68%);will-change:transform,opacity}
+#typing-lock-overlay .lock-emblem::after{content:'';position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--theme-glow,#b43b58) 45%,transparent) 0,transparent 62%);opacity:.45;z-index:-1;pointer-events:none}
+#typing-lock-overlay[data-motion=on].lock-held .lock-emblem::after{animation:lockAura 2.4s ease-in-out infinite}
+@keyframes lockAura{0%,100%{opacity:.3;transform:scale(.92)}50%{opacity:.7;transform:scale(1.06)}}
+#typing-lock-overlay[data-motion=off] .lock-emblem::after{animation:none}
+
+/* ---------- 禁用按键（V1.8）：倒计时条 + 锁头上的禁止标志 ---------- */
+#typing-lock-overlay .lock-freeze{margin:0 0 7px;padding:4px 8px;border-radius:4px;background:#ff3b5c;color:#fff;font:600 13px/1.4 var(--ui-font);text-align:center;letter-spacing:1px;box-shadow:0 0 12px #ff3b5c88}
+#typing-lock-overlay .lock-freeze[hidden]{display:none!important}
+#typing-lock-overlay .lock-freeze b{font:700 16px/1 Consolas,monospace;margin:0 2px}
+#typing-lock-overlay.lock-frozen .lock-heading kbd{text-decoration:line-through;text-decoration-thickness:2px;opacity:.6}
+#typing-lock-overlay.lock-frozen .lock-meter{filter:grayscale(.7) brightness(.85)}
+#typing-lock-overlay.lock-frozen .lock-art{filter:grayscale(.55) brightness(.8) drop-shadow(0 6px 9px rgb(0 0 0 / .42)) drop-shadow(0 0 16px #ff3b5c)}
+#typing-lock-overlay .lock-emblem::before{content:'';position:absolute;left:18%;top:22%;width:64%;height:64%;box-sizing:border-box;border:clamp(7px,1.1vw,12px) solid #ff3b5c;border-radius:50%;background:linear-gradient(45deg,transparent calc(50% - clamp(4px,.55vw,6px)),#ff3b5c 0 calc(50% + clamp(4px,.55vw,6px)),transparent 0);filter:drop-shadow(0 0 6px #000a);opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s;z-index:3;pointer-events:none}
+#typing-lock-overlay.lock-frozen .lock-emblem::before{opacity:.92;transform:scale(1)}
+#typing-lock-overlay[data-motion=on].lock-frozen .lock-emblem::before{animation:banPulse 1.2s ease-in-out infinite}
+@keyframes banPulse{0%,100%{opacity:.92;transform:scale(1)}50%{opacity:.7;transform:scale(.94)}}
+#lock-fx .fx-ban{border-color:#ff3b5c;box-shadow:0 0 22px #ff3b5c,inset 0 0 18px #ff3b5c}

@@ -1,0 +1,9 @@
+<div id="pet-panel" class="pet-panel" role="dialog" aria-labelledby="pet-panel-title" hidden>
+<header><strong id="pet-panel-title">单只宠物</strong><button id="pet-close" type="button" aria-label="关闭宠物面板">×</button></header>
+<label for="pet-size">单只大小 <span><input id="pet-size" type="number" min="25" max="1000" step="0.01" inputmode="decimal"> %</span></label>
+<input id="pet-size-range" type="range" min="25" max="1000" step="1" aria-label="单只大小滑杆">
+<div class="pet-size-actions"><small id="pet-actual-size"></small><button id="pet-size-save" type="button">保存大小</button></div>
+<label for="pet-name">宠物名字<input id="pet-name" type="text" autocomplete="off"></label>
+<p id="pet-feedback" role="status" aria-live="polite"></p><button id="pet-name-save" type="button">确认取名</button>
+<div id="pet-delete-actions" class="pet-delete-actions" hidden><button id="pet-delete" type="button">删除此宠物</button><button id="pet-delete-cancel" type="button" hidden>取消</button></div>
+</div>

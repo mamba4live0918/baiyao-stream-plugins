@@ -1,0 +1,4 @@
+糖圆体（猫啃网糖圆体 MaoKen TangYuan）· SIL Open Font License 1.1
+文件 tj-round.woff2 与 白曜重工/assets/fonts/baiyao-round.woff2 逐字节相同（白曜 0.20.0 已核对来源与许可）。
+上游：https://github.com/NightFurySL2001/TangYuan-font
+完整许可见插件根目录《字体许可-糖圆体-OFL.txt》。

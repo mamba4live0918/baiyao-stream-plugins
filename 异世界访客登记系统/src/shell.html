@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="BYSL"><title>异世界访客登记系统 · V2</title><style>/* INLINE_STYLE */</style></head>
+<body>
+<main id="overlay" aria-label="透明直播画面">
+  <section id="registry" aria-label="异世界访客名册">
+    <header class="registry-head"><div class="rule"><span class="spark">✦</span><i></i></div><h1>异世界访客名册</h1><div class="host-line"><span id="registry-host">异世界的凛序</span><i></i><span>✦</span></div></header>
+    <div id="list-window"><ol id="visitor-list" aria-label="已登记访客"></ol><div id="empty-state"><span class="empty-star">✧</span><p>名册已展开<br><span>等待第一位异世界访客</span></p></div></div>
+    <footer><div class="rule fine"><i></i><span>✦</span><i></i></div><p id="register-prompt">发送「登记」 · 留下你的异世界足迹</p><p class="count-line"><i></i><span id="visitor-count">已登记 0 位访客</span><i></i></p></footer>
+  </section>
+  <section id="celebration" aria-live="polite" aria-atomic="true" hidden>
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div id="spark-field" aria-hidden="true"></div>
+    <div id="effect-art" class="role-art" data-role="0" aria-hidden="true"></div>
+    <div class="celebration-copy"><div class="celebration-kicker">✦ <span id="effect-title">转正纪念</span> ✦</div><h2 id="effect-host">异世界的凛序</h2><div id="effect-role" class="effect-role">旅人 · ★</div><div class="effect-rule">──── ✦ ────</div><p id="effect-person"></p><p id="effect-subtitle">此刻星光，为你而来</p></div>
+  </section>
+  <div id="arrival" role="status" hidden></div><div id="test-marker" hidden>演示中 · 不计入真实名册</div>
+</main>
+<div id="notice" role="status" hidden></div>
+<div id="panel-backdrop" hidden>
+<section id="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-heading" tabindex="-1">
+  <header class="panel-head"><div><p class="panel-eyebrow">异世界访客登记系统 · V2</p><h2 id="settings-heading">名册控制台</h2></div><button id="close-panel" type="button" class="icon-button" aria-label="关闭设置">×</button></header>
+  <nav aria-label="设置分类" id="tabs"><button type="button" data-tab="overview" class="active">概览</button><button type="button" data-tab="appearance">外观</button><button type="button" data-tab="rules">互动规则</button><button type="button" data-tab="data">名册备份</button></nav>
+  <div class="panel-content">
+    <div data-pane="overview">
+      <div class="status-line"><span id="connection-dot" class="status-dot"></span><strong id="connection-status">正在连接菘蓝</strong></div>
+      <p class="help" id="connection-detail">等待事件通道</p><p class="help" id="event-status">尚未收到直播事件</p>
+      <div id="storage-warning" class="warning" hidden></div>
+      <div class="overview-stats"><div><strong id="total-stat">0</strong><span>已登记访客</span></div><div><strong id="guardian-stat">0</strong><span>守护者</span></div><div><strong id="queue-stat">0</strong><span>待展示祝福</span></div></div>
+      <section class="setting-section"><h3>效果预演</h3><p class="help">预演使用独立演示名册，不修改真实积分。直播事件始终记入真实名册。</p><div class="button-row"><button type="button" id="demo-start" class="primary">开始预演</button><button type="button" id="demo-stop" hidden>退出预演</button></div>
+      <div id="demo-controls" hidden><div class="field-row"><label>模拟观众 ID<input id="demo-id" value="demo-001" maxlength="196"></label><label>模拟昵称<input id="demo-name" value="月见" maxlength="80"></label></div><div class="button-row"><button type="button" id="demo-register">发送「登记」</button><button type="button" id="demo-chat">发送普通弹幕</button><button type="button" id="demo-gift">送 10 个礼物</button><button type="button" id="demo-bless">转正祝福</button></div><p class="help" id="demo-result">预演已开始，真实名册保持不变。</p><div class="button-row role-previews"><button type="button" data-preview-role="0">旅人卡面</button><button type="button" data-preview-role="1">星使卡面</button><button type="button" data-preview-role="2">守护者卡面</button></div></div></section>
+      <section class="setting-section"><h3>菘蓝接入</h3><p class="help">当前按昵称＋头像识别观众。改名后可在「名册备份」中修改名字并保留等级；换头像仍须另行核对。同昵称且同头像无法区分；没有头像时只能按昵称识别。以后收到稳定观众 ID 时优先使用 ID，不自动合并旧档案。</p><label>本地 WebSocket 地址<input id="bridge-url" value="ws://localhost:9910" spellcheck="false"></label><p class="help">默认沿用当前菘蓝本地事件端口。仅连接本机；端口以菘蓝设置为准。</p><button type="button" id="reconnect">保存地址并重新连接</button></section>
+      <p class="help footnote">双击透明画面或按 Esc 打开设置；点击面板外侧可关闭。全透明上屏需使用菘蓝透明插件层或支持透明的浏览器源。</p>
+    </div>
+    <div data-pane="appearance" hidden><form id="appearance-form">
+      <label>主播名称<input name="hostName" value="异世界的凛序" maxlength="30" required></label>
+      <div class="field-row"><label>名册横向位置（%）<input name="x" type="number" min="0" max="100" step="1" required></label><label>名册纵向位置（%）<input name="y" type="number" min="0" max="100" step="1" required></label></div>
+      <div class="field-row"><label>名册宽度（像素）<input name="width" type="number" min="260" max="700" required></label><label>昵称字号（像素）<input name="fontSize" type="number" min="16" max="40" required></label></div>
+      <div class="field-row"><label>最多同时显示人数<input name="visibleRows" type="number" min="3" max="8" required></label><label>滚动间隔（秒）<input name="scrollSec" type="number" min="2" max="30" required></label></div>
+      <div class="field-row"><label>星光颜色<input name="accent" type="color"></label><label>动画<select name="motion"><option value="system">跟随系统</option><option value="on">开启</option><option value="off">关闭</option></select></label></div>
+      <div class="field-row"><label>祝福横向位置（%）<input name="effectX" type="number" min="0" max="100" required></label><label>祝福纵向位置（%）<input name="effectY" type="number" min="0" max="100" required></label></div>
+      <div class="field-row"><label>祝福尺寸（像素）<input name="effectSize" type="number" min="280" max="800" required></label><label>祝福显示时长（秒）<input name="effectSec" type="number" min="3" max="15" required></label></div>
+      <p class="help">底色固定全透明。超出画面时自动收回可视范围；空间不足时减少同时显示的人数，保留字号并继续滚动。动画关闭仍显示祝福文字。</p><button type="submit" class="primary">保存外观</button><p id="appearance-feedback" role="status" class="form-feedback"></p>
+    </form></div>
+    <div data-pane="rules" hidden><form id="rules-form">
+      <div class="field-row"><label>登记关键词<input name="registerKeyword" maxlength="30" required></label><label>祝福关键词<input name="blessingKeyword" maxlength="30" required></label></div>
+      <p class="help">去掉首尾空格后整条弹幕匹配。登记弹幕不加分；只有已登记观众累计互动分。</p>
+      <div class="field-row"><label>每条有效弹幕加分<input name="chatPoints" type="number" min="0" max="1000" required></label><label>同观众计分冷却（秒）<input name="chatCooldownSec" type="number" min="0" max="3600" required></label></div>
+      <label>每个礼物加分（0 为关闭）<input name="giftPoints" type="number" min="0" max="1000" required></label><p class="help">礼物需包含观众 ID。按礼物数量累计，不按价格；缺少可靠 ID 的事件不会合并到昵称相同的人。</p>
+      <div class="level-note"><span>旅人 <b>★</b></span><span>0 分起</span></div>
+      <div class="field-row"><label>星使 ★★ 所需分数<input name="starThreshold" type="number" min="1" max="1000000" required></label><label>守护者 ★★★ 所需分数<input name="guardianThreshold" type="number" min="2" max="1000000" required></label></div>
+      <label>同观众祝福冷却（秒）<input name="blessingCooldownSec" type="number" min="0" max="3600" required></label><p class="help">修改门槛会更新名册中的称号。祝福最多排队 30 条，满额后忽略新特效；真实互动仍可累计。</p>
+      <button type="submit" class="primary">保存互动规则</button><p id="rules-feedback" role="status" class="form-feedback"></p>
+    </form></div>
+    <div data-pane="data" hidden>
+      <h3>你的异世界名册</h3><p class="help">点击观众旁的「修改名字」，输入其新的直播平台昵称，可保留积分、等级和登记时间。头像须与原记录相同；新昵称已有同头像档案时，核对后才可合并。切换浏览器或设备前，请导出备份。</p>
+      <div class="button-row"><button type="button" id="export-backup" class="primary">导出完整备份</button><button type="button" id="choose-import">导入备份</button><input id="import-file" type="file" accept=".json,application/json" hidden></div>
+      <label>查找观众<input id="search-visitor" placeholder="输入昵称或 ID" maxlength="196"></label><p class="help" id="search-summary"></p><div id="data-list"></div>
+      <section class="setting-section"><h3>清空真实名册</h3><p class="help">会清除全部登记和积分。建议先导出备份；外观和互动规则保留。</p><button type="button" id="request-reset" class="danger">清空名册…</button></section>
+    </div>
+  </div>
+  <footer class="panel-footer"><span id="save-status">本地保存</span><span>BYSL · 全透明插件</span></footer>
+</section></div>
+<div id="confirm-backdrop" hidden><section class="confirm-box" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title"><h2 id="confirm-title"></h2><p id="confirm-copy"></p><div id="rename-fields" hidden><label for="rename-nickname">新的平台昵称</label><input id="rename-nickname" maxlength="128" autocomplete="off"><p id="rename-preview"></p><label id="merge-choice" hidden><input id="rename-merge" type="checkbox"><span>我已核实这两份档案属于同一观众，同意合并</span></label></div><p id="confirm-error" role="alert"></p><div class="button-row"><button type="button" id="confirm-no">取消</button><button type="button" id="confirm-yes" class="primary">确认</button></div></section></div>
+<script>/* INLINE_ENGINE */</script><script>/* INLINE_BRIDGE */</script><script>/* INLINE_APP */</script>
+</body></html>

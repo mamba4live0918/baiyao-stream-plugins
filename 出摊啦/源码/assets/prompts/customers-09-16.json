@@ -1,0 +1,326 @@
+{
+  "range": "09-16",
+  "tool": "image_gen.imagegen",
+  "records": [
+    {
+      "id": "customer_09_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story.\nAsset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 09 happy.\nInput image 1 is a STYLE REFERENCE ONLY: match its friendly rounded Q cartoon bust proportions, small dark dot/oval eyes and dark-brown #49372d ink. Make a distinctly DIFFERENT identity.\nSubject: light-skinned young adult man, round thin dark glasses, simple black bowl-cut hair, cyan hoodie; happy small curved smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Keep proportions suitable for 110x130 display and eventual 220x260 export; compact portrait canvas with transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: clean thick dark-brown outlines, simple flat color fills, hard cel shading with only one shadow tone per material, sparse tiny white highlight only. Small simple dot eyes, never large glossy anime eyes. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props, background, gradient or texture. Output a single happy sprite, not a sheet.\nIdentity correction: BLACK BOWL-CUT HAIR is mandatory: a smooth rounded cap silhouette with a blunt nearly horizontal fringe above the glasses, no center part, no side-swept fringe, no messy/wavy strands. Keep a clearly different face identity from the style-reference person. Use crisp flat cel color, not soft airbrushed gradients.",
+      "localRawName": "assets/raw/customers/customer_09_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-4e89d749-3824-40cd-adac-b8c07b472c84.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 2
+    },
+    {
+      "id": "customer_09_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 09 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: replace the smile with a tiny straight horizontal closed mouth, relaxed level eyebrows; eyes keep same position and simple dot shape; reduce smile cheek marks only if necessary. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, hair, ears, neck, glasses, hoodie, colors and EVERY pixel outside the face unchanged. Never redraw the body or hairstyle. Preserve dark-brown #49372d line style, flat hard cel one-shadow colors, small simple dot eyes. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_09_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-89c9801f-82a2-4b50-bf78-13f088519cfe.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_09_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 09 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth, mild annoyance; keep simple dot eyes and keep the existing glasses exact. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, hair, ears, neck, glasses, hoodie, colors and EVERY pixel outside the face unchanged. Never redraw the body or hairstyle. Preserve dark-brown #49372d line style, flat hard cel one-shadow colors, small simple dot eyes. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_09_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-2cf62b5c-c33e-4d63-8b57-600877325883.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_09_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 09 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed eyebrows, visibly redder cheek patches, a small open protesting mouth; keep simple dot eyes and keep the existing glasses exact. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, hair, ears, neck, glasses, hoodie, colors and EVERY pixel outside the face unchanged. Never redraw the body or hairstyle. Preserve dark-brown #49372d line style, flat hard cel one-shadow colors, small simple dot eyes. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_09_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-af1fa093-8757-4eab-b770-9a5a1222a508.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_10_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story. Asset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 10 happy. Input image 1 is a STYLE REFERENCE ONLY. Make a DIFFERENT identity, not a recolor of the reference person.\nSubject: medium-skinned young adult woman with a smooth short auburn bob, plain plum-purple shirt. No glasses, no jacket, no white inner shirt. Clearly feminine face and small simple dot eyes. Happy small curved closed smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Match reference's large rounded Q-cartoon head-to-bust ratio. Designed for 110x130 display and eventual 220x260 export, compact portrait canvas with clear transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: thick dark-brown #49372d outlines, small dark dot/oval eyes, simple flat color fills, hard cel shading with ONE shadow tone per material, sparse tiny white highlights. No gradients or realistic textures. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props or background. Never large glossy anime eyes. Output ONE happy sprite, not a sheet.",
+      "localRawName": "assets/raw/customers/customer_10_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-3524e0e2-397d-4f0b-a553-b64215691ead.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_11_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story. Asset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 11 happy. Input image 1 is a STYLE REFERENCE ONLY. Make a DIFFERENT identity, not a recolor of the reference person.\nSubject: dark-skinned young adult woman with compact tight black curls and a simple orange jacket over a plain cream shirt. No glasses, no badges. Clearly distinct face and small simple dot eyes. Happy small curved closed smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Match reference's large rounded Q-cartoon head-to-bust ratio. Designed for 110x130 display and eventual 220x260 export, compact portrait canvas with clear transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: thick dark-brown #49372d outlines, small dark dot/oval eyes, simple flat color fills, hard cel shading with ONE shadow tone per material, sparse tiny white highlights. No gradients or realistic textures. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props or background. Never large glossy anime eyes. Output ONE happy sprite, not a sheet.",
+      "localRawName": "assets/raw/customers/customer_11_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-fed3053f-9383-4872-8716-22168104fc6b.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_12_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story. Asset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 12 happy. Input image 1 is a STYLE REFERENCE ONLY. Make a DIFFERENT identity, not a recolor of the reference person.\nSubject: elderly light-tan man with neat gray side-parted short hair, a small gray beard, an olive green vest over a plain cream shirt. Gentle age lines, no glasses, no badge. Small simple dot eyes. Happy small curved closed smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Match reference's large rounded Q-cartoon head-to-bust ratio. Designed for 110x130 display and eventual 220x260 export, compact portrait canvas with clear transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: thick dark-brown #49372d outlines, small dark dot/oval eyes, simple flat color fills, hard cel shading with ONE shadow tone per material, sparse tiny white highlights. No gradients or realistic textures. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props or background. Never large glossy anime eyes. Output ONE happy sprite, not a sheet.",
+      "localRawName": "assets/raw/customers/customer_12_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-ac1e058f-736b-4a0c-9c22-03b0b1528a5e.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_10_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 10 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: tiny straight horizontal closed mouth, relaxed level eyebrows. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, auburn bob hair, ears, neck, plum shirt, colors and EVERY pixel outside the face unchanged. Never redraw the body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_10_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-23751ef2-2aae-48b2-9860-db37aff9d109.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_10_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 10 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth, mild annoyance. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, auburn bob hair, ears, neck, plum shirt, colors and EVERY pixel outside the face unchanged. Never redraw the body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_10_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-29d7335b-0ac9-44af-90ac-2ce3073aac6b.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_10_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 10 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed eyebrows, visibly redder cheek patches, a small open protesting mouth. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, auburn bob hair, ears, neck, plum shirt, colors and EVERY pixel outside the face unchanged. Never redraw the body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_10_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-1129bba3-1e51-4216-b70f-39533f61fd1e.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_11_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 11 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: tiny straight horizontal closed mouth, relaxed level eyebrows. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, tight black curls, ears, neck, dark skin tone, orange jacket, cream shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_11_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-1f4d10c7-4a00-40de-a132-ad0c3796f7d7.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_11_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 11 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth, mild annoyance. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, tight black curls, ears, neck, dark skin tone, orange jacket, cream shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_11_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-2159aa00-3370-4958-9bf6-0c37dd214f68.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_11_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 11 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed eyebrows, visibly redder cheek patches, a small open protesting mouth. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, tight black curls, ears, neck, dark skin tone, orange jacket, cream shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_11_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-da14ea1d-636f-47f7-bb8e-d25f4ed9bedb.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_12_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 12 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: tiny straight horizontal closed mouth visible between moustache and beard, relaxed level eyebrows. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, gray side-part hair, ears, neck, small gray beard and moustache, light-tan skin, olive vest, cream shirt, colors and EVERY pixel outside the face unchanged. Preserve the beard shape while changing the mouth inside it. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_12_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-6a90acb5-8679-4c4b-897c-64cf4f3e4fb1.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_12_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 12 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: gray eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth visible between moustache and beard, mild annoyance. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, gray side-part hair, ears, neck, small gray beard and moustache, light-tan skin, olive vest, cream shirt, colors and EVERY pixel outside the face unchanged. Preserve the beard shape while changing the mouth inside it. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_12_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-ae427829-99a8-4f20-b454-5796026273cf.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_12_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 12 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed gray eyebrows, visibly redder cheek patches, a small open protesting mouth visible between moustache and beard. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, gray side-part hair, ears, neck, small gray beard and moustache, light-tan skin, olive vest, cream shirt, colors and EVERY pixel outside the face unchanged. Preserve the beard shape while changing the mouth inside it. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_12_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-6697722e-5061-490f-bc00-9c5232b1c04c.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_13_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story. Asset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 13 happy. Input image 1 is a STYLE REFERENCE ONLY. Make a DIFFERENT identity, not a recolor of the reference person.\nSubject: peach-skinned young adult woman with dark brown braided hair in two short visible braids, a plain red headband without any emblem, simple navy blue shirt. No glasses, no jacket. Clearly distinct feminine face with small simple dot eyes. Happy small curved closed smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Match reference's large rounded Q-cartoon head-to-bust ratio. Designed for 110x130 display and eventual 220x260 export, compact portrait canvas with clear transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: thick dark-brown #49372d outlines, small dark dot/oval eyes, simple flat color fills, hard cel shading with ONE shadow tone per material, sparse tiny white highlights. No gradients or realistic textures. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props or background. Never large glossy anime eyes. Output ONE happy sprite, not a sheet.",
+      "localRawName": "assets/raw/customers/customer_13_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-fe99567f-db64-48b3-9de7-a9389a0432da.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_14_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story. Asset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 14 happy. Input image 1 is a STYLE REFERENCE ONLY. Make a DIFFERENT identity, not a recolor of the reference person.\nSubject: light-skinned teenage young man with short spiky teal hair and a plain black casual jacket over a cream shirt. No glasses, no beard, no badges. Youthful distinct face with small simple dot eyes. Happy small curved closed smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Match reference's large rounded Q-cartoon head-to-bust ratio. Designed for 110x130 display and eventual 220x260 export, compact portrait canvas with clear transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: thick dark-brown #49372d outlines, small dark dot/oval eyes, simple flat color fills, hard cel shading with ONE shadow tone per material, sparse tiny white highlights. No gradients or realistic textures. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props or background. Never large glossy anime eyes. Output ONE happy sprite, not a sheet.",
+      "localRawName": "assets/raw/customers/customer_14_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-0deca020-d355-4712-911f-4123bf369e44.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_15_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story. Asset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 15 happy. Input image 1 is a STYLE REFERENCE ONLY. Make a DIFFERENT identity, not a recolor of the reference person.\nSubject: tan-skinned young adult woman with very short black pixie-cut hair, a few simple freckles across her nose and cheeks, plain apricot-colored shirt. No glasses, no jacket. Clearly distinct feminine face with small simple dot eyes. Happy small curved closed smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Match reference's large rounded Q-cartoon head-to-bust ratio. Designed for 110x130 display and eventual 220x260 export, compact portrait canvas with clear transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: thick dark-brown #49372d outlines, small dark dot/oval eyes, simple flat color fills, hard cel shading with ONE shadow tone per material, sparse tiny white highlights. No gradients or realistic textures. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props or background. Never large glossy anime eyes. Output ONE happy sprite, not a sheet.",
+      "localRawName": "assets/raw/customers/customer_15_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-b9764711-3a32-41ae-9f07-f4339a008260.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_13_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 13 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: tiny straight horizontal closed mouth, relaxed level eyebrows. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, brown braided hair, red headband, ears, neck, peach skin tone, navy shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle or shift braids. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_13_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-bc749c0f-42e9-4120-a21f-f473a23eac42.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_13_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 13 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth, mild annoyance. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, brown braided hair, red headband, ears, neck, peach skin tone, navy shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle or shift braids. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_13_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-a625fc60-0198-41bf-9d4f-a35cc4026374.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_13_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 13 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed eyebrows, visibly redder cheek patches, a small open protesting mouth. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, brown braided hair, red headband, ears, neck, peach skin tone, navy shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle or shift braids. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_13_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-f229897f-a71e-43b6-b71e-fd60b8f9f9eb.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_14_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 14 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: tiny straight horizontal closed mouth, relaxed level eyebrows. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, teal spiky hair, ears, neck, light skin tone, black jacket, cream shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle or shift any hair spikes. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_14_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-385de0eb-f46b-45ef-bcfd-e09b4acaf05d.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_14_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 14 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth, mild annoyance. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, teal spiky hair, ears, neck, light skin tone, black jacket, cream shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle or shift any hair spikes. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_14_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-79b78e60-79f5-4678-a067-899bf43ba053.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_14_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 14 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed eyebrows, visibly redder cheek patches, a small open protesting mouth. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, teal spiky hair, ears, neck, light skin tone, black jacket, cream shirt, colors and EVERY pixel outside the face unchanged. Never redraw body or hairstyle or shift any hair spikes. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_14_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-87b318c7-ccd0-4f37-8493-1593eb0f1e89.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_16_happy",
+      "state": "happy",
+      "prompt": "Use case: illustration-story. Asset type: transparent customer portrait sprite for a Chinese street-food livestream game, character 16 happy. Input image 1 is a STYLE REFERENCE ONLY. Make a DIFFERENT identity, not a recolor of the reference person.\nSubject: medium-skinned adult man with short wavy brown hair, a small neat brown moustache with no beard, and a plum purple overshirt over a plain cream shirt. No glasses, no badge. A clearly adult face with small simple dark dot eyes, happy small curved closed smile and relaxed eyebrows.\nComposition: exactly one centered frontal head-to-chest bust, whole hair silhouette and both shoulders visible, no hands; upright symmetrical pose. Match reference's large rounded Q-cartoon head-to-bust ratio. Designed for 110x130 display and eventual 220x260 export, compact portrait canvas with clear transparent margin and chest base near bottom. No floor or cast shadow.\nStyle: thick dark-brown #49372d outlines, small dark dot/oval eyes, simple flat color fills, hard cel shading with ONE shadow tone per material, sparse tiny white highlights. No gradients or realistic textures. Real alpha transparency around the silhouette.\nConstraints: no text, numbers, lettering, logos, badge, watermark, frame, props or background. Never large glossy anime eyes. Output ONE happy sprite, not a sheet.",
+      "localRawName": "assets/raw/customers/customer_16_happy.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-eb3ed1d5-2a3f-41ad-94be-90f2122f4f8d.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_15_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 15 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: tiny straight horizontal closed mouth, relaxed level eyebrows. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, black pixie-cut hair, all freckles, ears, neck, tan skin tone, apricot shirt, colors and EVERY pixel outside the face unchanged. Keep the nose/cheek freckles exactly as in the target even when cheek blush changes. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_15_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-7d1c4fb1-4150-4391-9b03-e97537c7479a.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_15_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 15 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth, mild annoyance. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, black pixie-cut hair, all freckles, ears, neck, tan skin tone, apricot shirt, colors and EVERY pixel outside the face unchanged. Keep the nose/cheek freckles exactly as in the target even when cheek blush changes. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_15_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-ee719576-c181-49cd-8c6c-32a63d3c3019.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_15_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 15 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed eyebrows, visibly redder cheek patches, a small open protesting mouth. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, black pixie-cut hair, all freckles, ears, neck, tan skin tone, apricot shirt, colors and EVERY pixel outside the face unchanged. Keep the nose/cheek freckles exactly as in the target even when cheek blush changes. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_15_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-7c9073a8-c43f-45b0-8ea0-71efc118ddfa.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_16_neutral",
+      "state": "neutral",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 16 neutral. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to a neutral waiting expression: tiny straight horizontal closed mouth below the moustache, relaxed level eyebrows. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, short wavy brown hair, neat brown moustache shape, ears, neck, medium skin tone, plum overshirt, cream shirt, colors and EVERY pixel outside the face unchanged. Never remove or reshape the moustache; change the mouth below it. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_16_neutral.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-fb274585-0861-44e0-b274-4648e64c1e1b.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_16_impatient",
+      "state": "impatient",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 16 impatient. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an impatient expression: eyebrows slightly lowered and furrowed toward the nose, tiny downturned closed mouth below the moustache, mild annoyance. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, short wavy brown hair, neat brown moustache shape, ears, neck, medium skin tone, plum overshirt, cream shirt, colors and EVERY pixel outside the face unchanged. Never remove or reshape the moustache; change the mouth below it. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_16_impatient.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-3843c3bf-ec46-4e5a-a228-13aa8354b42e.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "customer_16_angry",
+      "state": "angry",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent cartoon customer portrait sprite, character 16 angry. Image 1 is the EDIT TARGET and identity anchor. Change ONLY the facial expression to an angry but cute expression: strongly furrowed eyebrows, visibly redder cheek patches, a small open protesting mouth below the moustache. Keep small simple dot eyes in the same positions. Preserve the exact original canvas dimensions, transparent alpha, framing, scale, center, outer silhouette, head position, short wavy brown hair, neat brown moustache shape, ears, neck, medium skin tone, plum overshirt, cream shirt, colors and EVERY pixel outside the face unchanged. Never remove or reshape the moustache; change the mouth below it. Never redraw body or hairstyle. Preserve dark-brown #49372d line style and flat hard cel one-shadow colors. No glossy anime eyes, text, lettering, numbers, logo, watermark, badge, frame, props, extra effects or background. Output one single sprite with genuine alpha transparency.",
+      "localRawName": "assets/raw/customers/customer_16_angry.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-fb34bdc7-6183-43e3-a91b-8af681ae8538.png",
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    }
+  ]
+}

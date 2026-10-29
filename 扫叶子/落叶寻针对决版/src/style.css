@@ -1,0 +1,35 @@
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;font-family:"Microsoft YaHei UI","PingFang SC",sans-serif;color:#5b3a24}
+#stage{position:absolute;left:0;top:0;width:1440px;height:810px;transform-origin:0 0}
+#scene{position:absolute;left:0;top:0;width:100%;height:100%;display:block;background:transparent;touch-action:none;cursor:pointer}
+#overlay{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.needle-tag{position:absolute;transform:translate(-50%,-160%);display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:#fff6e6f2;border:1px solid #d9b88a;box-shadow:0 6px 16px #3b22111f;font-size:15px;font-weight:700;white-space:nowrap}
+.needle-tag.ready{background:#fff3c4;border-color:#e0a93b;color:#8a4b00;animation:pulse .9s ease-in-out infinite}
+.pull-ring{display:none;width:22px;height:22px;border-radius:50%;background:conic-gradient(#e08a1e calc(var(--p,0)*1turn),#f2dcc0 0)}
+.needle-tag.pulling .pull-ring{display:block}
+.win{position:absolute;left:50%;top:110px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 28px;border-radius:22px;background:#fff7e8f5;border:1px solid #e3c28f;box-shadow:0 14px 34px #3b22112e;pointer-events:auto}
+.win strong{font:700 34px/1.2 "STSong","Songti SC",serif;color:#8a4b1f}
+.win button,.panel button,.panel-open{font:inherit;border:1px solid #d6b07e;background:#fbe7c6;color:#6b3f1d;border-radius:999px;padding:6px 14px;cursor:pointer}
+.win button:hover,.panel button:hover,.panel-open:hover{background:#f7d9a8}
+.hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);white-space:nowrap;padding:8px 14px;border-radius:14px;background:#fff6e6e6;border:1px solid #e3c9a3;font-size:14px}
+.message{position:absolute;left:50%;top:40%;transform:translateX(-50%);max-width:640px;padding:14px 22px;border-radius:16px;background:#fff3e0;border:1px solid #d99a6c;font-size:16px}
+.panel{position:fixed;right:16px;top:16px;width:280px;max-height:calc(100% - 32px);overflow:auto;padding:14px;border-radius:18px;background:#fff8ecf7;border:1px solid #e1c496;box-shadow:0 12px 30px #3b221126;font-size:13px;display:flex;flex-direction:column;gap:8px}
+.panel header{display:flex;justify-content:space-between;align-items:center}
+.panel label{display:flex;flex-direction:column;gap:2px}
+.panel label.check{flex-direction:row;align-items:center;gap:6px}
+.panel output{font-weight:700}
+.panel .row{display:flex;gap:6px;flex-wrap:wrap}
+.panel dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:4px 0}
+.panel dt{opacity:.7}.panel dd{margin:0;font-weight:700}
+.panel .note{margin:0;opacity:.7;font-size:12px}
+.panel-open{position:fixed;right:16px;bottom:16px}
+@keyframes pulse{50%{transform:translate(-50%,-160%) scale(1.06)}}
+#fx2d{position:absolute;left:0;top:0;width:100%;height:100%;display:block;background:transparent;pointer-events:none}
+.face-edit{position:absolute;inset:0;pointer-events:none}
+.face-ring{position:absolute;transform:translate(-50%,-50%);border-radius:50%;border:3px dashed #fffaf0;background:radial-gradient(circle,#fff3dc22 0 60%,#ffd9a044 100%);box-shadow:0 0 0 2px #d9822bcc,inset 0 0 0 2px #d9822b88,0 8px 30px #3b221133;pointer-events:auto;cursor:move;touch-action:none}
+.face-handle{position:absolute;right:-13px;top:50%;width:24px;height:24px;margin-top:-12px;border-radius:50%;background:#fffaf0;border:3px solid #d9822b;box-shadow:0 3px 8px #3b221140;cursor:ew-resize}
+.face-tip{position:absolute;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:8px 10px 8px 16px;border-radius:999px;background:#fff8ecf5;border:1px solid #e1c496;box-shadow:0 10px 24px #3b221126;font-size:14px;white-space:nowrap;pointer-events:auto}
+.face-tip button{font:inherit;font-weight:700;border:1px solid #c9772a;background:#f2a650;color:#fff;border-radius:999px;padding:5px 16px;cursor:pointer}
+.face-tip button:hover{background:#e08a1e}
+.panel .sim:empty{display:none}

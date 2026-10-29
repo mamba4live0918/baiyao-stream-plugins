@@ -1,0 +1,10 @@
+{
+  "name": "kuaidi-2d",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "build": "node build.mjs",
+    "qa": "node qa/e2e.mjs all"
+  }
+}

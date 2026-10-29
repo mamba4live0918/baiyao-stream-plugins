@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>淘金 · 簸箕版 · 试玩</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:'Microsoft YaHei UI','Microsoft YaHei',sans-serif;background:#121619;color:#e9e9e0}
+body{display:flex;flex-direction:column}
+button,a{font:inherit}
+header{padding:12px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #ffffff12;background:#151a1e}
+h1{font-size:17px;letter-spacing:3px;margin:0;font-weight:600}
+.wordmark{color:#d9b48a;margin-right:12px}
+.caption{font-size:11px;color:#859094;margin-top:5px}
+.tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tools span{font-size:11px;color:#849095;margin-right:6px}
+.swatch{width:23px;height:23px;border:2px solid #6f7474;border-radius:50%;background:#222c30;padding:0;cursor:pointer}
+.swatch[data-bg="light"]{background:#e6ddd0}
+.swatch[data-bg="grid"]{background:conic-gradient(#747b7d 25%,#c0c5c3 0 50%,#747b7d 0 75%,#c0c5c3 0);background-size:10px 10px}
+.swatch[data-bg="live"]{background:linear-gradient(145deg,#65496d,#253f4b)}
+.swatch.active{outline:2px solid #dec098;outline-offset:3px}
+.tools a,.tools .reset{font-size:12px;color:#d4c6b3;background:#2a3032;border:1px solid #45494a;text-decoration:none;border-radius:6px;padding:6px 11px;margin-left:8px;cursor:pointer}
+.view{flex:1;min-height:0;position:relative;background:radial-gradient(ellipse at 48% 28%,#35433f,#142023 70%);transition:background .2s}
+.view.light{background:#e6ddd0}
+.view.grid{background-color:#bfc6c4;background-image:linear-gradient(45deg,#808986 25%,transparent 25%),linear-gradient(-45deg,#808986 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#808986 75%),linear-gradient(-45deg,transparent 75%,#808986 75%);background-size:36px 36px;background-position:0 0,0 18px,18px -18px,-18px 0}
+.view.live{background:radial-gradient(ellipse at 50% 30%,#d9c3b0 0,#d9c3b000 22%),radial-gradient(ellipse at 13% 56%,#597b8399,transparent 40%),radial-gradient(ellipse at 80% 20%,#a4746866,transparent 40%),linear-gradient(130deg,#273944,#4d3d58 60%,#263932)}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:transparent}
+.hint{position:absolute;bottom:10px;right:16px;background:#151c20cc;border:1px solid #ffffff13;padding:6px 10px;border-radius:7px;font-size:11px;color:#b4c0c0;pointer-events:none}
+.footer{font-size:11px;color:#7e8a8c;display:flex;justify-content:space-between;padding:8px 22px;background:#151a1e;border-top:1px solid #ffffff10;gap:12px}
+.footer span:last-child{color:#b0a08b}
+@media(max-width:800px){header{padding:10px 12px}.tools span{display:none}.footer{font-size:9px;padding:6px 12px}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1><span class="wordmark">白曜</span>淘金 · 簸箕版 · 试玩</h1><div class="caption">观众送矿砂，你端着簸箕淘，观众来捣乱 · 插件本身是透明底</div></div>
+  <div class="tools"><span>检查底色</span>
+    <button class="swatch active" data-bg="dark" title="深色底" aria-label="深色底"></button>
+    <button class="swatch" data-bg="light" title="浅色底" aria-label="浅色底"></button>
+    <button class="swatch" data-bg="grid" title="透明棋盘格" aria-label="透明棋盘格"></button>
+    <button class="swatch" data-bg="live" title="直播背景模拟" aria-label="直播背景模拟"></button>
+    <button class="reset" id="restart">重新载入</button>
+    <a id="standalone" href="淘金-簸箕.html" target="_blank">独立打开 ↗</a>
+  </div>
+</header>
+<div class="view" id="view">
+  <iframe id="game" src="淘金-簸箕.html?demo=1" title="淘金簸箕版试玩" allowtransparency="true"></iframe>
+  <div class="hint">背景只属于这个预览容器，插件文件本身为透明底。</div>
+</div>
+<footer class="footer"><span>按住左右拖 = 晃簸箕 · 往下拖 = 往前倒水 · 点石头扔掉 · 点小偷抓住 · 要撞了就按住 · H 收起试玩面板 · S 或右上角齿轮 = 设置</span><span>真实直播接入尚待现场联调</span></footer>
+<script>
+const frame = document.getElementById('game');
+const view = document.getElementById('view');
+const focusGame = () => { try { frame.contentWindow.focus(); } catch (e) {} };
+frame.addEventListener('load', focusGame);
+view.addEventListener('pointerdown', () => setTimeout(focusGame, 0));
+document.querySelectorAll('[data-bg]').forEach(b => b.onclick = () => {
+  view.className = 'view ' + b.dataset.bg;
+  document.querySelectorAll('[data-bg]').forEach(x => x.classList.toggle('active', x === b));
+  focusGame();
+});
+document.getElementById('restart').onclick = () => { frame.src = '淘金-簸箕.html?demo=1&r=' + Date.now(); };
+</script>
+</body>
+</html>

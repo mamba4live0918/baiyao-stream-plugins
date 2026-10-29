@@ -1,0 +1,358 @@
+[
+  {
+    "id": "pot",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE empty wide soup cooking pot with two short side handles. Slightly elevated frontal 3/4 view, warm light-gray steel and cream rim, dark empty interior; friendly rounded silhouette, no lid, no burner, no liquid, no food, no steam. Registration: landscape 11:7 canvas intended logical220×140 (PNG440×280), centered, rim ellipse centered at logical(110,44), outer mouth ellipse spans logical x30..190 y18..70; body bottom at y130; side handles fit x8..212. Preserve a broad open mouth for independently generated water/noodle overlay layers. Entire pot fits canvas.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-6ec7839d-5a32-469d-8405-26e53868bfa1.png",
+    "rawPath": "raw/tools/pot.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:09:34.990Z"
+  },
+  {
+    "id": "bowl_empty",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE empty small cream ceramic noodle bowl with a simple tomato-red rim and a single cel-shadow on lower right. Slightly elevated frontal 3/4 view so the empty inner oval is visible. No food, soup, utensils, steam or decorations. Registration: landscape22:17 canvas logical110×85 (PNG220×170); bowl centered at x55, rim center(55,30), full bowl silhouette within x7..103 y12..79. Broad open oval mouth, unchanged fixed frame intended for four filled variants.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-3aae03fc-121e-47b6-a1c1-29acaef2a164.png",
+    "rawPath": "raw/tools/bowl_empty.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:09:34.991Z"
+  },
+  {
+    "id": "salmon_block_1",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE full, uncut fresh salmon loin block, cute appetizing coral-orange with a few clear creamy-white diagonal fat stripes and one darker orange lower side plane. Slightly elevated frontal view with top and front side visible; a long rounded rectangular block with softly tapered corners. NO raw gore, skin, ice, board, plate, knife, garnish or extra slices. Registration: very wide11:3 canvas logical220×60 (PNG440×120), left end fixed x8, right end x212, top y8 bottom y53. This is the FULL state of one block; subsequent half and small remaining-block variants keep the SAME left end and canvas.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-01c1c2f9-627f-456e-9013-df107ab72f65.png",
+    "rawPath": "raw/tools/salmon_block_1.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:09:34.993Z"
+  },
+  {
+    "id": "pot_water",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input image is an exact registration reference only. Create a SEPARATE transparent water-surface overlay for this same pot, on precisely the SAME canvas and in the SAME position. Remove all pot body, handles and rim from the output: only the water itself remains. One shallow, smooth, light-cyan elliptical water surface fitting INSIDE the reference pot mouth, at exactly its inner oval location and perspective, with two tiny white reflection strokes and one flat light-blue lower shade. The output must NOT contain a pot, rim, handles, food, bubbles, steam, floor, text or other objects. Keep every other pixel fully alpha-transparent, including the large lower area formerly occupied by the pot. Do NOT enlarge or recenter the oval. Match cute flat chibi style, deep-brown subtle water edge and upper-left lighting. Layer must align when placed over the unmodified reference at(0,0).",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-6ec7839d-5a32-469d-8405-26e53868bfa1.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-c413d8eb-d900-4f23-9b6b-0dbbe3aaf213.png",
+    "rawPath": "raw/tools/pot_water.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:12:08.096Z"
+  },
+  {
+    "id": "bowl_noodles_1",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is the exact bowl edit target. Change ONLY its empty interior by adding a SMALL serving of plain pale-golden cooked noodles: a low loose coil covering about one-quarter of the bowl opening, clearly the smallest of four fill levels. Keep EXACTLY the same bowl, red rim, cream ceramic, dark-brown outline, shadow, size, perspective, position, transparent margins and canvas. No soup, garnish, utensils, person, steam, text, logos or extra object. Do not recenter or resize the bowl. Clean actual alpha transparency.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-3aae03fc-121e-47b6-a1c1-29acaef2a164.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-13d82ef8-6378-47f4-8f80-69592778dd86.png",
+    "rawPath": "raw/tools/bowl_noodles_1.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:12:08.096Z"
+  },
+  {
+    "id": "bowl_noodles_2",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is the exact bowl edit target. Change ONLY its empty interior by adding a MEDIUM SMALL serving of plain pale-golden cooked noodles: a modest low coil covering about half the bowl opening, clearly fuller than a tiny one-quarter serving but less than a full mound. Keep EXACTLY the same bowl, red rim, cream ceramic, dark-brown outline, shadow, size, perspective, position, transparent margins and canvas. No soup, garnish, utensils, person, steam, text, logos or extra object. Do not recenter or resize the bowl. Clean actual alpha transparency.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-3aae03fc-121e-47b6-a1c1-29acaef2a164.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-d8bb35a9-0bbb-433a-8611-f31fc08285bf.png",
+    "rawPath": "raw/tools/bowl_noodles_2.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:12:08.096Z"
+  },
+  {
+    "id": "pot_noodles_1",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input image 1 is the pot's registered water overlay and image 2 is its pot; both are POSITION AND STYLE references. Generate ONLY a small loose coil of pale-golden cooked noodles for this pot, covering about one-quarter of the water oval. Preserve precisely the same full landscape canvas and perspective as the references. Keep the noodle footprint centered inside the existing water oval at the exact same coordinates. The visible noodles have clean dark warm-brown contour, simple golden cel shadow and a few white highlights; cute flat cartoon, light upper-left. Output ONLY noodles with alpha-transparent gaps, no pot, rim, handles, water, plate, bowl, garnish, steam, text, numbers, human or scene. All lower canvas below the existing water oval must stay transparent. Do not recenter or enlarge the food to fill the canvas; leave the registered empty margin intact. These will be layered over the unmodified pot and water at(0,0).",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-c413d8eb-d900-4f23-9b6b-0dbbe3aaf213.png",
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-6ec7839d-5a32-469d-8405-26e53868bfa1.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-bb864fa9-2d9d-4307-8c9f-e584d7ea3f34.png",
+    "rawPath": "raw/tools/pot_noodles_1.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "pot_noodles_2",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input image 1 is the pot's registered water overlay and image 2 is its pot; both are POSITION AND STYLE references. Generate ONLY a medium loose mound of pale-golden cooked noodles for this pot, covering about one-half of the water oval. Preserve precisely the same full landscape canvas and perspective as the references. Keep the noodle footprint centered inside the existing water oval at the exact same coordinates. The visible noodles have clean dark warm-brown contour, simple golden cel shadow and a few white highlights; cute flat cartoon, light upper-left. Output ONLY noodles with alpha-transparent gaps, no pot, rim, handles, water, plate, bowl, garnish, steam, text, numbers, human or scene. All lower canvas below the existing water oval must stay transparent. Do not recenter or enlarge the food to fill the canvas; leave the registered empty margin intact. These will be layered over the unmodified pot and water at(0,0).",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-c413d8eb-d900-4f23-9b6b-0dbbe3aaf213.png",
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-6ec7839d-5a32-469d-8405-26e53868bfa1.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-f3bc75fe-744f-4497-a573-ef6834da93cf.png",
+    "rawPath": "raw/tools/pot_noodles_2.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "pot_noodles_3",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input image 1 is the pot's registered water overlay and image 2 is its pot; both are POSITION AND STYLE references. Generate ONLY a large nearly full heap of pale-golden cooked noodles for this pot, covering about three-quarters of the water oval. Preserve precisely the same full landscape canvas and perspective as the references. Keep the noodle footprint centered inside the existing water oval at the exact same coordinates. The visible noodles have clean dark warm-brown contour, simple golden cel shadow and a few white highlights; cute flat cartoon, light upper-left. Output ONLY noodles with alpha-transparent gaps, no pot, rim, handles, water, plate, bowl, garnish, steam, text, numbers, human or scene. All lower canvas below the existing water oval must stay transparent. Do not recenter or enlarge the food to fill the canvas; leave the registered empty margin intact. These will be layered over the unmodified pot and water at(0,0).",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-c413d8eb-d900-4f23-9b6b-0dbbe3aaf213.png",
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-6ec7839d-5a32-469d-8405-26e53868bfa1.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-21e9d03f-9ab7-4637-8778-1c6f94c99357.png",
+    "rawPath": "raw/tools/pot_noodles_3.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "bowl_noodles_3",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is the exact bowl edit target. Change ONLY its empty interior by adding a LARGE serving of plain pale-golden cooked noodles: a rounded generous mound filling the bowl opening nearly up to the red rim, about three-quarters full. Clearly much fuller than the small half-opening serving, but NOT overflowing. Keep EXACTLY the same bowl, red rim, cream ceramic, dark-brown outline, shadow, size, perspective, position, transparent margins and canvas. No soup, garnish, utensils, person, steam, text, logos or extra object. Do not recenter or resize. Clean alpha transparency.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-3aae03fc-121e-47b6-a1c1-29acaef2a164.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-5f340300-52ec-4a89-be58-1077a4c3fdc5.png",
+    "rawPath": "raw/tools/bowl_noodles_3.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "bowl_noodles_4",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is the exact bowl edit target. Change ONLY its empty interior by adding a VERY FULL extra-large serving of plain pale-golden cooked noodles: a tall generous rounded mound rising visibly ABOVE the back red rim, the maximum of four quantity levels. No noodle spills outside the bowl silhouette sides. Keep EXACTLY the same bowl body, front red rim, cream ceramic, dark-brown outline, shadow, size, perspective, position, foot, transparent margins and canvas. Only the noodle height changes. No soup, garnish, utensils, person, steam, text, logos or extra object. Do not recenter or resize. Clean alpha transparency.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-3aae03fc-121e-47b6-a1c1-29acaef2a164.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-62d8259f-5e92-4633-a023-580384b23627.png",
+    "rawPath": "raw/tools/bowl_noodles_4.png",
+    "selected": false,
+    "generatedAt": "2026-10-22T13:24:19.007Z",
+    "reservedForLater": true,
+    "rejectionReason": "User v0.5 requires only bowl levels 1..3; retain raw output as unused backup"
+  },
+  {
+    "id": "salmon_block_2",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is the exact salmon block edit target. Show the SAME salmon loin after its RIGHT half has been sliced away: only the LEFT HALF remains, with a clean vertical cut face near canvas center. Keep original left edge, y position, thickness, orange color, white fat stripes, upper-left light, deep-brown line style and EXACT same wide11:3 canvas. Do not enlarge or recenter the remnant. Right half of canvas is now empty alpha transparency; no detached slices, knife, board, blood, garnish, text or other objects. One remaining half-length block only.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-01c1c2f9-627f-456e-9013-df107ab72f65.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-5721efea-9adb-45e4-a1f8-ee97494d9ee0.png",
+    "rawPath": "raw/tools/salmon_block_2.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "noodle_box",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE small open warm wooden box brimming with neat pale-golden round dried noodle cakes. Slightly elevated frontal 3/4 view, wood planks have a few simple grain marks. Readable food storage box silhouette, no lid, no utensils, no bag, no person. Square canvas logical100×100 (PNG200×200), complete object fits x5..95 y7..94 with alpha margins.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-a70b217d-2023-445d-b3fe-af949d9b5cdd.png",
+    "rawPath": "raw/tools/noodle_box.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "fish_box",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE small open cream-white foam food box holding several simple coral-orange salmon blocks with white fat stripes, appetizing and non-gory. Slightly elevated frontal3/4 view, no ice crystals, labels, lid, knife, board, people or separate objects outside box. Landscape10:9 canvas logical100×90 (PNG200×180), box centered and fully visible with5% alpha margin. Foam box has simple thick rim and one cel shadow.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-0fbf4a38-747a-447a-add1-d24bed179e0f.png",
+    "rawPath": "raw/tools/fish_box.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "cutting_board",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE long low rectangular warm wooden cutting board, subtly rounded corners, a few sparse simple wood-grain marks, visible narrow front thickness. Slightly elevated frontal perspective consistent with the pot and fish block, horizontal. No handle, hanging hole, knife, food, feet, lettering, labels or other items. Very wide11:2 canvas logical330×60 (PNG660×120), board spans x7..323 and y8..53; board is wide and flat with a broad unobstructed center surface for fish. Full object visible with alpha margins.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-89151450-50c0-44ee-90d8-223fe62b3e20.png",
+    "rawPath": "raw/tools/cutting_board.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "stove",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE wide low portable cartoon gas burner stove with dark charcoal metal top, simple iron pot-support ring, cream/silver front, and clearly visible cute BLUE gas flames around the top opening. No pot, no water, no food, no extra objects. Slightly elevated frontal view matching the reference style, wide8:3 canvas logical240×90 (PNG480×180); top support centered near(120,24), body bottom y84, full object within x8..232. A single plain round knob is fine, absolutely no markings/text/numbers. Must remain a low wide stove, not a tall oven.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-1eb35967-c501-4aed-8913-4d341d734831.png",
+    "selected": false,
+    "rejectionReason": "Unwanted soft outer glow/background around stove",
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "salmon_block_3",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is the exact salmon block edit target. Show the SAME salmon loin after most has been sliced from the RIGHT: only a SMALL LEFT-END QUARTER remains, about one-quarter original length, with a clean vertical cut face. Keep original left edge, y position, thickness, orange color, white fat stripes, upper-left light, deep-brown line style and EXACT same wide11:3 canvas. Do not enlarge or recenter the remnant. Remaining right three-quarters of canvas fully alpha transparent; no detached slices, knife, board, blood, garnish, text or other objects. One remaining small salmon block only.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-01c1c2f9-627f-456e-9013-df107ab72f65.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-020dade7-5428-4d2c-8170-c16f872d4f46.png",
+    "selected": false,
+    "rejectionReason": "Remaining salmon block is too long; not clearly a small remnant",
+    "generatedAt": "2026-10-22T13:24:19.007Z"
+  },
+  {
+    "id": "stove",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. ONE isolated low, wide gas stove sprite, cream rectangular front and dark charcoal top, a simple iron support ring with small solid BLUE flame shapes inside it, one blank round knob. Cute flat cartoon with thick crisp deep-brown outlines matching the reference jar's linework, simple solid color fills, only ONE hard-edge shadow shape INSIDE the object. Reference is STYLE ONLY: do NOT draw a jar. Upper-left tiny white highlights. Wide8:3 full canvas logical240×90; object fills~90% width and80%height. Absolutely NO glow, bloom, aura, haze, vignette, blur, ambient occlusion outside silhouette, soft shadow, gradient backdrop, black background, brown background, ground or scene. Every pixel outside the sharp closed stove silhouette is FULLY ALPHA TRANSPARENT. Blue flame shapes have hard edges with NO luminous effect outside them. No pot, food, words, numbers, symbols, people or other items.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-8c4af88b-0482-43cd-89df-c786ffa519b0.png",
+    "rawPath": "raw/tools/stove.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "salmon_block_3",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Exact edit target is the reference full salmon loin. Keep the SAME wide11:3 full canvas and the ORIGINAL LEFT END at the original position. Cut off and REMOVE the RIGHT80% of its length. Only a VERY SHORT LEFT-END STUB remains, no more than ONE FIFTH of the original full block length, almost as narrow as it is tall. Its right vertical cut face must lie near22% of the full canvas width, never beyond30%. Keep the original full block height, left outline, left fat stripes, orange colors and upper-left highlights. Do not center, zoom, rescale or widen the stub. The right~78% of the canvas is EMPTY ALPHA TRANSPARENCY. NO detached fish pieces, no board, knife, blood, shadows, background or text. This tiny remnant must be OBVIOUSLY MUCH SHORTER than a half block.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-01c1c2f9-627f-456e-9013-df107ab72f65.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-9c62bc56-f8dd-45aa-9902-58b55d94568a.png",
+    "rawPath": "raw/tools/salmon_block_3.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "strainer",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE empty metal noodle strainer, a shallow round wire-mesh scoop basket on the LEFT and long straight wooden handle extending diagonally toward the LOWER RIGHT. Cute simplified mesh holes cleanly readable, gray steel, cream highlights, warm wood handle with dark-brown outline. Slightly elevated view. No noodles, pot, water, hand, hanging ring or other objects. Horizontal11:7 canvas logical110×70 (PNG220×140), basket center(29,25), handle grip point(97,56), complete silhouette inside x5..105 y5..65. Maintain this fixed composition for its loaded variant.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-14cb7501-cb16-4661-9c2c-d7d656efdaf9.png",
+    "rawPath": "raw/tools/strainer.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "knife",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE long Japanese sashimi kitchen knife, a clean polished silver blade extending to LEFT with one pointed tip, a simple dark warm wooden handle at RIGHT. Friendly stylized cooking utensil, not threatening. No blood, markings, text, decorative symbols, sheath, hands, food or other objects. Mostly horizontal, slight diagonal down toward the right. Very wide17:5 canvas logical170×50 (PNG340×100); blade tip near(7,12), blade heel near(125,34), handle ends near(164,42), grip point(147,35). Full object fits with alpha margin. Single cel-shadow and tiny white blade highlight.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-84d2cec6-db34-48f4-95a2-25d72c1961e1.png",
+    "rawPath": "raw/tools/knife.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "strainer_noodles",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Reference is the exact empty strainer edit target. Add ONE SMALL loose coil of pale-golden cooked noodles sitting inside its mesh basket on the LEFT, representing one serving. Keep EXACTLY the same strainer basket, steel mesh, wooden handle, grip, size, perspective, position and full canvas; do not recenter or zoom. Cute flat golden noodles with one cel shadow and tiny white highlights, matching the existing deep-brown outlined style. No water, dripping liquid, pot, bowl, steam, person, lettering or new object. Preserve true alpha-transparent background and all handle edges.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-14cb7501-cb16-4661-9c2c-d7d656efdaf9.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-10d36e36-69f0-41f8-8a72-102281fdb917.png",
+    "rawPath": "raw/tools/strainer_noodles.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "salmon_slice",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Reference salmon block provides exact STYLE AND COLOR only. Draw ONE neatly cut single salmon sashimi slice, a small soft rounded rectangle in slightly elevated frontal perspective, appetizing coral orange with two or three clean cream-white diagonal fat stripes, deep-brown thin contour, one flat darker side plane, tiny upper-left white highlight. Do NOT include the large reference block. No plate, leaf, board, knife, blood, skin, ice or extra slices. Landscape5:3 canvas logical50×30 (PNG100×60), slice centered with5% true alpha margin. Absolutely no text, symbols, floor, shadow outside object, glow or backdrop.",
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-01c1c2f9-627f-456e-9013-df107ab72f65.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-59bb7d39-6e01-4b68-a47a-093140c62c95.png",
+    "rawPath": "raw/tools/salmon_slice.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "plate",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for a cute flat 2D chibi street-food livestream game. The reference image is STYLE ONLY: match its deep brown #49372d ink outlines, flat colors, one simple cel shadow, a few small white highlights, upper-left light. Do NOT include the reference jar itself. Clean real alpha transparency, no floor, backdrop, cast shadow outside object, people, hands, writing, numbers, logos, icons, watermark or border. Single isolated object, full silhouette visible with transparent margin. Keep outlines about 3–4 logical pixels at intended display size. Subject: ONE long shallow WHITE CERAMIC OVAL PLATE seen slightly from above, with exactly ONE fresh purple-green shiso/perilla leaf resting on its LEFT interior. Broad clean white empty center/right area where fish slices can be placed later. No food, fish, chopsticks, knife, sauce bowl, napkin, extra leaves or markings. Wide3:1 canvas logical180×60 (PNG360×120), oval plate centered spanning x5..175 y6..55, full outline visible. Deep-brown outline, cream cel-shadow on lower-right rim and tiny upper-left white highlight. The leaf is part of this single plate asset, all outside pixels alpha transparent.",
+    "references": [
+      "C:/Users/Mamba4live/Desktop/直播/自定义插件/出摊啦/源码/assets/src/props/coin_jar.png"
+    ],
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-3128ef8a-87b5-4a4f-824a-d4b1a0c7882e.png",
+    "rawPath": "raw/tools/plate.png",
+    "selected": true,
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "stove",
+    "group": "tools",
+    "batch": 2,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: background-extraction. Edit target is the reference stove sprite. Keep exactly the same low cream-and-charcoal gas stove, blue flame ring, knob, dark-brown linework, shape, perspective and canvas. REMOVE ALL of the soft brown glow, brown haze, gradients and cast shadow OUTSIDE the stove silhouette. Make every pixel outside the actual solid stove and blue flames fully alpha-transparent, including the whole border area. Crisp clean cutout with no brown halo. Keep the highlights and single cel shadow INSIDE the stove. Do not add any object, text, symbol, floor or backdrop. Output real transparent PNG.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-9265-7690-b4c0-4906fa14e18d\\exec-a28f887a-03c5-4978-99dc-4f92c23d8176.png",
+    "selected": false,
+    "rejectionReason": "Replaced by simpler flat blue-flame stove; apparent outer glow later verified to be hidden RGB with alpha 0",
+    "generatedAt": "2026-10-22T13:32:54.231Z"
+  },
+  {
+    "id": "salmon_slice_broken",
+    "prompt": "Use case: precise-object-edit. Asset type: transparent 2D cooking-game sprite, salmon_slice_broken. Input image is the edit target and exact style/composition reference. Change only this single cartoon salmon sashimi slice: it has been cut crookedly and separates into 2 or 3 small uneven pieces lying close together, so the overall group occupies approximately the same centered bounding rectangle and same size as the original single slice. Preserve the orange salmon color, cream-white fat stripes, dark brown #49372d clean outlines, flat cartoon shading with one shadow and small white highlights, upper-left light, same 3/4 viewing angle, same framing and same transparent canvas. This is cute non-graphic food, no blood. The gaps between the 2–3 pieces must be truly transparent. No plate, knife, board, scenery, letters, numbers, symbols, logo, watermark, ground shadow or glow. Crisp alpha edges. The final sprite will be displayed around 50 x 30 at reference short-side 1080; keep the pieces readable at that small scale. Do not change to photorealistic or 3D style.",
+    "tool": "image_gen built-in",
+    "sourcePath": "C:/Users/Mamba4live/.codex/generated_images/01a16305-977c-7b20-aac3-361c8a2dbf7f/exec-6b312fbe-b27a-48e8-977c-231220d98541.png",
+    "rawPath": "assets/raw/tools/salmon_slice_broken.png",
+    "selected": true,
+    "reference": "assets/raw/tools/salmon_slice.png",
+    "transparent_background": true,
+    "group": "tools",
+    "batch": 2,
+    "recordOriginalTool": "builtin image_gen"
+  }
+]

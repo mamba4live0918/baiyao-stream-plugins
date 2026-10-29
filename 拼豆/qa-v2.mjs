@@ -1,0 +1,54 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {chromium} from 'playwright';
+import {createPresetPattern,colorByHex} from './src/patterns.js';
+
+const root=import.meta.dirname,out=resolve(root,'tmp/qa-v2');await mkdir(out,{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--enable-webgl','--use-gl=angle','--use-angle=swiftshader']});
+const context=await browser.newContext({viewport:{width:1280,height:720},acceptDownloads:true});
+const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+page.on('dialog',d=>d.accept());
+const url=process.argv[2]||'http://127.0.0.1:8137/?qa=1';
+await page.goto(url);await page.waitForFunction(()=>document.querySelector('#progress-text')?.textContent.includes('/ 76'));
+await page.screenshot({path:resolve(out,'transparent.png'),omitBackground:true});
+await page.locator('#desk-toggle').click();await page.waitForTimeout(150);
+await page.screenshot({path:resolve(out,'workbench.png')});
+const renderStats=await page.evaluate(()=>window.__pegQa.stats());
+assert.ok(renderStats.drawCalls<500,'workbench should batch repeated 3D beads');
+assert.equal(await page.locator('#board-size-note').textContent(),'30 × 30');
+const pattern=createPresetPattern('cherries',30),target=pattern.cells.findIndex(c=>c==='#ef4b5a');
+const pickup=await page.evaluate(()=>window.__pegQa.palettePoint('P03'));
+await page.mouse.click(pickup.x,pickup.y);assert.match(await page.locator('#held-name').textContent(),/P03/);
+const drop=await page.evaluate(({row,col})=>window.__pegQa.cellPoint(row,col),{row:Math.floor(target/30),col:target%30});
+await page.mouse.move(drop.x,drop.y,{steps:8});await page.screenshot({path:resolve(out,'tweezers.png')});
+await page.mouse.click(drop.x,drop.y);assert.equal(await page.locator('#progress-text').textContent(),'1 / 76');
+await page.mouse.move(pickup.x,pickup.y);await page.mouse.down({button:'right'});await page.mouse.move(pickup.x+40,pickup.y+30,{steps:12});await page.mouse.up({button:'right'});
+const moved=await page.evaluate(()=>window.__pegQa.palettePoint('P03'));assert.ok(Math.hypot(moved.x-pickup.x,moved.y-pickup.y)>20);
+async function effect(label,amount){await page.locator('#settings-button').click();const row=page.locator('#rules .rule').filter({hasText:label});if(amount!==undefined){await row.locator('input[type=number]').fill(String(amount));await row.locator('input[type=number]').blur();}await row.getByRole('button',{name:'测试'}).click();await page.locator('#settings-overlay').getByRole('button',{name:'完成',exact:true}).click();await page.waitForTimeout(80);}
+await effect('帮助拼豆',7);const before=await page.locator('#progress-text').textContent();
+await effect('打翻装豆托盘');assert.equal(await page.locator('#progress-text').textContent(),before);await page.waitForTimeout(700);await page.screenshot({path:resolve(out,'tray-spill.png')});
+await page.keyboard.down('Space');await page.keyboard.down('Space');await page.keyboard.up('Space');
+for(let i=0;i<30&&await page.locator('#restore-panel').isVisible();i++){await page.keyboard.press('Space');await page.waitForTimeout(35);}
+assert.equal(await page.locator('#restore-panel').isVisible(),false);await page.waitForTimeout(700);assert.equal(await page.locator('#progress-text').textContent(),before);
+await effect('帮助拼豆',500);assert.equal(await page.locator('#progress-text').textContent(),'76 / 76');
+await page.locator('#iron-button').click();assert.equal(await page.locator('.iron-option').count(),5);
+const names=['澡巾烫','褶皱烘焙纸烫','毛巾烫','双面保孔烫','单面无孔烫'];
+for(let i=0;i<names.length;i++){await page.locator('.iron-option').filter({hasText:names[i]}).click();await page.waitForTimeout(180);await page.screenshot({path:resolve(out,`finish-${i+1}.png`)});}
+await page.locator('.iron-option').filter({hasText:'褶皱烘焙纸烫'}).click();
+await page.locator('#start-iron').click();await page.waitForTimeout(1200);await page.screenshot({path:resolve(out,'ironing.png')});
+await page.waitForFunction(()=>!document.getElementById('save-button').disabled&&document.querySelector('#iron-overlay.open'));
+await page.screenshot({path:resolve(out,'finished.png')});
+const pngPromise=page.waitForEvent('download');await page.locator('#download-button').click();await(await pngPromise).saveAs(resolve(out,'finished.png-export.png'));
+const glbPromise=page.waitForEvent('download');await page.locator('#download-glb-button').click();await(await glbPromise).saveAs(resolve(out,'finished.glb'));
+const glb=await readFile(resolve(out,'finished.glb'));assert.equal(glb.subarray(0,4).toString(),'glTF');
+const json=JSON.parse(glb.subarray(20,20+glb.readUInt32LE(12)).toString());assert.ok(json.materials.some(m=>m.normalTexture),'textured GLB must include its surface normal texture');
+await page.locator('#save-button').click();await page.waitForTimeout(150);
+const seed=await page.evaluate(()=>JSON.parse(localStorage.getItem('songlan-peg-studio-v2')).finished.textureSeed);
+await page.reload();await page.waitForFunction(()=>document.getElementById('iron-button')?.textContent==='检视成品');await page.locator('#iron-button').click();
+assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('songlan-peg-studio-v2')).finished.textureSeed),seed);
+await page.locator('#iron-overlay [data-close]').click();await page.locator('#gallery-button').click();await page.getByRole('button',{name:'3D 检视',exact:true}).click();
+assert.equal(await page.locator('#saved-finished-viewer canvas').count(),1);await page.screenshot({path:resolve(out,'saved-3d.png')});
+assert.deepEqual(errors,[]);
+const summary={url,manualPlacement:true,binDrag:true,trayPreservedProgress:before,styles:names,textureSeed:seed,glbBytes:glb.length,normalTexture:true,renderStats,errors};
+await writeFile(resolve(out,'summary.json'),JSON.stringify(summary,null,2));console.log(summary);await browser.close();

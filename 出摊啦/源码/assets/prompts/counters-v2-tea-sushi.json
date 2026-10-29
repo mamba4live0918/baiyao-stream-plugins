@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "range": "tea-sushi-v2",
+  "tool": "image_gen.imagegen",
+  "sourcePolicy": "generated-raster-only",
+  "records": [
+    {
+      "id": "counter_tea_master_v2",
+      "generationFamily": "counter_tea_v2",
+      "assetIds": [
+        "counter_tea_left",
+        "counter_tea_mid",
+        "counter_tea_right"
+      ],
+      "part": "master",
+      "shop": "tea",
+      "prompt": "Use case: illustration-story.\nAsset type: one complete physical street-stall counter sprite for a friendly Chinese livestream cooking game, tea shop version 2.\nInput image 1: approved new noodle counter STYLE AND CONSTRUCTION reference only; make the tea stall described below. Input image 2, if provided: customer 01 INK/COLOR/SHADING style reference only, never include a person.\nPrimary request: a tangible freestanding wooden vendor's counter, seen almost straight from the front with only the tabletop's narrow top plane visible. Wide landscape composition, 1024:420 aspect ratio. Show the whole standalone counter body, all outer corners and a clean transparent margin. No legs.\nConstruction: a substantial warm wooden tabletop with visible wood grain, clearly thick front edge, softly worn corners, a few tiny white edge highlights, dark-brown #49372d outlines and hard cel shadows. Make it look like an actual street stall counter, with believable thickness and hand-built joinery, not a flat colored rectangle or UI button. Only shallow top/front perspective; avoid a large side face or heavy 3D angle.\nTea design: mint-green painted frontboard. Across the middle 70 percent, repeat narrow pink and white vertical stripes with small pink/white polka dots in the mint spaces. Carry the repeating decorative rhythm continuously across the front, with no central emblem or one-off icon. A neat hanging cloth valance runs along the upper front edge below the tabletop; its soft folds and hem give it a welcoming small-shop character. Keep the tabletop visually clear.\nStyle: friendly 2D ink-and-cel illustration matching the reference. Strong clean brown contour, flat fills with a single clear shadow tone per material, sparse tiny white highlights, modest wood grain and small worn edges. Real alpha transparency outside the object.\nStrict exclusions: no letters, kanji, numbers, logos, symbols, badges, sign medallions, pictograms, people, faces, food, drinks, cups, tools, stools, legs, walls, canopy, room, scenery, floor, cast shadow or opaque backdrop. Do not create a UI control, colored button or diagram. One single complete counter, no variants or sprite sheet.\nReference lock: preserve the new noodle anchor's complete counter proportions and physical tabletop thickness. Replace all red paint and cloud motifs with ONLY this shop's requested decoration. No clouds, no red drapery copied from the reference.",
+      "localRawName": "assets/raw/counters-v2/counter_tea_master.png",
+      "rawSource": "raw/counters-v2/counter_tea_master.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-cd0d3885-48e8-434e-afed-74565c2577b9.png",
+      "referencePaths": [
+        "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_noodle_master.png"
+      ],
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "counter_tea_sign_v2",
+      "generationFamily": "counter_tea_v2",
+      "assetIds": [
+        "counter_tea_sign"
+      ],
+      "part": "sign",
+      "shop": "tea",
+      "prompt": "Use case: illustration-story.\nAsset type: separate blank round wooden shop-sign medallion sprite, tea stall version 2.\nInput image 1: approved new noodle SIGN is the edit target and construction reference. Keep its round wooden rim construction, blank cream center, canvas, framing and proportions. Change ONLY the red accent ring to mint green. Never copy a red accent. Preserve the empty center and the wood grain. Input image 2, if provided: customer 01 ink/color/shading reference only, never include a person.\nPrimary request: exactly one round, tangible wooden medallion, straight-on front view, centered with a clean transparent margin. Warm cream EMPTY circular center, a chunky wood-grained rim with a restrained mint-green accent. Clearly visible rim thickness, a few small rough worn corners/edge nicks and tiny white highlights, friendly handmade street-stall character. The center must be completely blank cream, ready for future content. No hanging hardware or rope.\nStyle: thick dark-brown #49372d outlines, simple 2D ink-and-cel illustration, flat wood/paint colors and hard cel one-shadow shading. Actual alpha transparency all around the wooden medallion.\nStrict exclusions: NO symbols, pictograms, letters, kanji, text, numbers, logos, faces, people, food, drinks, cups, badge icon, decorative central mark, border text, background or opaque canvas. Do not create a UI button, interface component or coin. One single blank sign, not a sheet.",
+      "localRawName": "assets/raw/counters-v2/counter_tea_sign.png",
+      "rawSource": "raw/counters-v2/counter_tea_sign.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-5b68709b-c955-4e9f-a7d8-5ea1f07fc748.png",
+      "referencePaths": [
+        "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_noodle_sign.png"
+      ],
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    },
+    {
+      "id": "counter_sushi_master_v2",
+      "generationFamily": "counter_sushi_v2",
+      "assetIds": [
+        "counter_sushi_left",
+        "counter_sushi_mid",
+        "counter_sushi_right"
+      ],
+      "part": "master",
+      "shop": "sushi",
+      "prompt": "Use case: precise-object-edit. Asset type: transparent sushi street-stall counter master sprite, version 2. Input image 1 is the EDIT TARGET. Change ONLY the wood color of the tabletop, its thick front edge, and wooden bottom/side frame to LIGHT RAW NATURAL WOOD: pale beige blond unfinished timber, clearly lighter and less orange than the target. Keep all wood grain, physical thickness, tiny white highlights, edge nicks and construction exact. Preserve the exact landscape canvas, object size, outlines, placement, perspective and every non-wood pixel. Keep the navy front panel with repeated WHITE SEIGAIHA semicircle wave pattern and the short warm-cream NOREN cloth valance completely unchanged. No red, no amber-brown stain on the tabletop. Match thick dark-brown #49372d contour and hard cel one-shadow style. Actual alpha transparency outside the object. No text, letters, kanji, numbers, logos, badges, people, food, tools, legs, walls, canopy, floor, cast shadow or backdrop. One complete physical counter, never a UI button.",
+      "localRawName": "assets/raw/counters-v2/counter_sushi_master.png",
+      "rawSource": "raw/counters-v2/counter_sushi_master.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-635e3186-dd16-43f8-9083-0cf7e358dbbc.png",
+      "referencePaths": [
+        "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-8937572a-c53b-430d-8f08-ec8dc94beba8.png"
+      ],
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 2,
+      "firstAttemptSourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-8937572a-c53b-430d-8f08-ec8dc94beba8.png",
+      "selectionReason": "Second attempt corrects amber wood to requested pale unfinished raw wood."
+    },
+    {
+      "id": "counter_sushi_sign_v2",
+      "generationFamily": "counter_sushi_v2",
+      "assetIds": [
+        "counter_sushi_sign"
+      ],
+      "part": "sign",
+      "shop": "sushi",
+      "prompt": "Use case: illustration-story.\nAsset type: separate blank round wooden shop-sign medallion sprite, sushi stall version 2.\nInput image 1: approved new noodle SIGN is the edit target and construction reference. Keep its round wooden rim construction, blank cream center, canvas, framing and proportions. Change ONLY the red accent ring to navy blue. Never copy a red accent. Preserve the empty center and the wood grain. Input image 2, if provided: customer 01 ink/color/shading reference only, never include a person.\nPrimary request: exactly one round, tangible wooden medallion, straight-on front view, centered with a clean transparent margin. Warm cream EMPTY circular center, a chunky light raw-wood-grained rim with a restrained navy-blue accent. Clearly visible rim thickness, a few small rough worn corners/edge nicks and tiny white highlights, friendly handmade street-stall character. The center must be completely blank cream, ready for future content. No hanging hardware or rope.\nStyle: thick dark-brown #49372d outlines, simple 2D ink-and-cel illustration, flat wood/paint colors and hard cel one-shadow shading. Actual alpha transparency all around the wooden medallion.\nStrict exclusions: NO symbols, pictograms, letters, kanji, text, numbers, logos, faces, people, fish, food, badge icon, decorative central mark, border text, background or opaque canvas. Do not create a UI button, interface component or coin. One single blank sign, not a sheet.",
+      "localRawName": "assets/raw/counters-v2/counter_sushi_sign.png",
+      "rawSource": "raw/counters-v2/counter_sushi_sign.png",
+      "sourceGeneratedPath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16317-570c-73e1-abbd-28f3a7baab84\\exec-b4fd87d3-464c-4580-a67b-e0107a7d0266.png",
+      "referencePaths": [
+        "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\raw\\counters-v2\\counter_noodle_sign.png"
+      ],
+      "tool": "image_gen.imagegen",
+      "selected": true,
+      "attempt": 1
+    }
+  ]
+}

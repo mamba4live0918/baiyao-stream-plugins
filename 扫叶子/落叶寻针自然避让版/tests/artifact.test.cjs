@@ -1,0 +1,5 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const html=fs.readFileSync(path.resolve(__dirname,'../../落叶寻针-v0.11-自然避让完整版.html'),'utf8');
+test('delivered HTML contains all scripts and images inline',()=>{assert.equal((html.match(/data:image\/png;base64,/g)||[]).length,2);assert.ok(!/<script[^>]+src=|<link[^>]+href=/i.test(html));assert.ok(!/C:\\Users|localhost:8766|\/assets\//.test(html));assert.ok(!/\/\*__(?:STYLE|CORE|APP)__\*\/|__LEAF_ATLAS__|__BRUSH_IMAGE__/.test(html));});
+test('all final HTML script blocks parse',()=>{const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];assert.equal(scripts.length,3);for(const [,script]of scripts)new vm.Script(script);});
+test('overlay root and canvas stay transparent; preview backgrounds live outside delivered file',()=>{assert.match(html,/html,body\{[^}]*background:transparent/);assert.match(html,/getContext\('2d',\{alpha:true\}\)/);assert.doesNotMatch(html,/color-scheme:dark/);assert.doesNotMatch(html,/id="preview-background"/);});

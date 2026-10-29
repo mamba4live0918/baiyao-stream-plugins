@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f1fd">
+  <title>AI 弟弟 · 群聊试验室</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✦</span><div><strong>弟弟的群聊试验室</strong><small>LOCAL CHAT LAB</small></div></div>
+      <div class="side-section"><span class="side-label">试聊空间</span><a class="nav-active" href="#conversation"><span>◉</span> 群聊对话 <span class="nav-arrow">↗</span></a><a class="nav-link" href="#settings-panel"><span>◇</span> 角色与记忆</a></div>
+      <div class="side-section"><span class="side-label">当前房间</span><div class="room-card"><span class="room-icon">✳</span><div><strong>弟弟的模拟群</strong><small>本地试聊 · 随时调整</small></div><span class="room-chevron">›</span></div></div>
+      <div class="side-note"><span class="note-icon">✧</span><strong>慢慢认识大家</strong><p>在这里试试他的性格、说话方式和记忆。满意之后，再考虑下一步。</p></div>
+      <div class="sidebar-bottom"><span class="status-dot"></span><div><strong>本地模拟中</strong><small>没有连接抖音</small></div></div>
+    </aside>
+
+    <main id="conversation" class="conversation">
+      <header class="chat-header"><div class="group-icon" aria-hidden="true">✳</div><div class="heading-copy"><div class="eyebrow">YOUR LITTLE CHAT ROOM <span>✦</span></div><h1>弟弟的模拟群 <span class="title-sparkle">✧</span></h1><p>把想说的话放进来，看看他会怎么接。</p></div><div class="local-badge"><span class="status-dot"></span> 本地试聊</div></header>
+      <div class="conversation-toolbar"><div class="toolbar-tab"><span>◉</span> 群聊对话 <i></i></div><div class="toolbar-caption">自由切换群友，模拟真实对话</div><button class="text-action" id="clear-chat" type="button">清空对话</button></div>
+      <div id="chat-log" class="chat-log" aria-live="polite" role="log"><div class="empty-state"><span class="empty-illustration">✧<b>✳</b></span><strong>故事从第一句话开始</strong><p>选择一位模拟群友，发一条消息。<br>叫到弟弟的名字，他就会回应你。</p></div></div>
+      <div class="composer-wrap"><div class="composer-top"><label for="member-select">以谁的身份发言</label><select id="member-select" aria-label="选择模拟群友"></select><button id="add-member" class="subtle-button" type="button">＋ 添加群友</button><button id="force-reply" class="reply-button" type="button">✦ 让弟弟说话</button></div><div class="composer"><textarea id="message-input" rows="2" maxlength="4000" placeholder="说点什么吧，比如：今天下播吃什么？" aria-label="输入聊天消息"></textarea><button id="send-message" type="button" aria-label="发送消息"><span>发送</span> <b>➤</b></button></div><div class="composer-hint"><span id="status" class="status-text" role="status" aria-live="polite">先在右侧填写 DeepSeek 密钥，再开始试聊</span><span>Enter 发送 · Shift + Enter 换行</span></div></div>
+    </main>
+
+    <aside id="settings-panel" class="settings-panel">
+      <div class="panel-heading"><div><span class="eyebrow">MAKE IT YOURS</span><h2>调教你的 AI 弟弟 <span>✦</span></h2><p>边聊边调整，让他慢慢有自己的样子。</p></div></div>
+      <section class="settings-card api-card"><div class="card-title"><div><span class="section-kicker">04 / CONNECTION</span><h3>连接 AI</h3></div><span class="card-icon">⌘</span></div><label for="api-key">DeepSeek API 密钥</label><div class="key-field"><input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="在此输入 API Key"><button id="toggle-key" type="button" aria-label="显示或隐藏密钥">显示</button></div><p class="field-help">密钥仅在当前会话中使用，不会保存。</p></section>
+      <section class="settings-card character-card"><div class="card-title"><div><span class="section-kicker">01 / CHARACTER</span><h3>角色设定</h3></div><span class="card-icon">✦</span></div><label for="bot-name">弟弟的名字</label><input id="bot-name" type="text" maxlength="80" placeholder="给他起个名字"><label for="persona">性格与说话习惯</label><textarea id="persona" rows="5" maxlength="3000" placeholder="例如：我是白曜的 AI 弟弟，嘴上爱开玩笑，心里很关心大家……"></textarea><p class="field-help">可以写性格、称呼、关系和口头禅。</p></section>
+      <section class="settings-card frequency-card"><div class="card-title"><div><span class="section-kicker">02 / INTERACTION</span><h3>互动频率</h3></div><span id="frequency-value" class="value-chip">30%</span></div><p class="card-description">没被叫到时，他主动接话的概率。</p><input id="frequency" type="range" min="0" max="100" step="5" value="30" aria-label="互动频率"><div class="range-labels"><span>安静一点</span><span>更爱聊天</span></div><button id="pause-toggle" class="pause-button" type="button">暂停弟弟回复</button></section>
+      <section class="settings-card memory-card"><div class="card-title"><div><span class="section-kicker">03 / MEMORY</span><h3>群友小本本 <span class="local-text">本地</span></h3></div><span class="card-icon">♡</span></div><p class="card-description">记录愿意让他记住的称呼、爱好和群内梗。</p><label for="memory-member">选择群友</label><select id="memory-member" aria-label="选择要编辑记忆的群友"></select><label for="memory">关于这位群友</label><textarea id="memory" rows="3" maxlength="500" placeholder="例如：喜欢猫，大家叫她小橘。"></textarea><div class="button-row"><button id="save-memory" class="primary-small" type="button">保存记忆</button><button id="forget-memory" class="subtle-button" type="button">清除</button><button id="extract-memory" class="subtle-button extract-button" type="button">从聊天提取</button></div></section>
+      <p class="privacy-note"><span>♡</span> 聊天和记忆保存在本机。生成回复时，人设、近期聊天和已保存的群友记忆会发送给 DeepSeek。</p>
+    </aside>
+  </div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

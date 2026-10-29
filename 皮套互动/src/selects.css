@@ -1,0 +1,20 @@
+/* Native selects remain the application's data interface; all visible menus stay inside the page. */
+.ui-select{display:inline-block;position:relative;vertical-align:middle;min-width:0;max-width:100%;line-height:normal}
+.ui-select>select[hidden]{display:none!important}
+.ui-select>.ui-select-trigger{display:flex;align-items:center;gap:10px;justify-content:space-between;width:100%;min-width:0;max-width:100%;margin:0;padding:8px 10px;border:1px solid #364557;border-radius:5px;background:#101721;color:var(--text,#f2f5fa);font:inherit;text-align:left;line-height:1.35;cursor:pointer}
+.ui-select-trigger::after{content:'';display:block;flex:none;width:7px;height:7px;margin:0 2px 4px 4px;border-right:2px solid var(--muted,#a2afc0);border-bottom:2px solid var(--muted,#a2afc0);transform:rotate(45deg)}
+.ui-select>.ui-select-trigger:hover{background:#202d3c;border-color:#60717e}
+.ui-select>.ui-select-trigger:focus-visible,.ui-select>.ui-select-trigger[aria-expanded=true]{outline:2px solid var(--accent,#d4ff65);outline-offset:2px}
+.ui-select>.ui-select-trigger:disabled{opacity:.4;cursor:not-allowed}
+.ui-select-text{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ui-select-menu{position:fixed;z-index:10000;box-sizing:border-box;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;margin:0;padding:5px;border:1px solid #60717e;border-radius:7px;background:var(--surface,#131a24);color:var(--text,#f2f5fa);box-shadow:0 12px 32px #0009;font:14px/1.4 Segoe UI,Microsoft YaHei,system-ui,sans-serif;scrollbar-width:thin;scrollbar-color:#60717e #131a24}
+.ui-select-menu>.ui-select-option{display:block;box-sizing:border-box;width:100%;min-width:0;margin:0;padding:9px 10px;border:1px solid transparent;border-radius:4px;background:transparent;color:inherit;font:inherit;text-align:left;white-space:normal;overflow-wrap:anywhere;cursor:pointer;line-height:1.4}
+.ui-select-menu>.ui-select-option:hover,.ui-select-menu>.ui-select-option.is-active{background:#293743;border-color:#637d49}
+.ui-select-menu>.ui-select-option[aria-selected=true]{color:var(--accent,#d4ff65);font-weight:650}
+.ui-select-menu>.ui-select-option:disabled{opacity:.4;cursor:not-allowed;background:transparent;border-color:transparent}
+.ui-select-empty{padding:9px 10px;color:var(--muted,#a2afc0)}
+.resolution-row label>.ui-select{width:220px;max-width:min(220px,62vw);font-size:13px}
+.wide-label>.ui-select{width:62%;max-width:62%;font-size:12px}
+.anchor-controls>.ui-select{width:84px}
+.rule-row>.ui-select{width:100%;max-width:100%;font-size:inherit}
+@media(max-width:700px){.resolution-row label>.ui-select{max-width:min(210px,60vw)}.rule-row>.ui-select{font-size:12px}.rule-row .ui-select-trigger{padding:8px 6px;gap:4px}.ui-select-menu{font-size:13px}}

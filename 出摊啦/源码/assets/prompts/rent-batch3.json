@@ -1,0 +1,72 @@
+[
+  {
+    "id": "landlady_stand",
+    "prompt": "Use case: stylized-concept. Asset type: production transparent raster sprite for the existing cute 2D chibi street-food livestream game 出摊啦. Input image1 is STYLE ONLY, not an edit target: match deep-brown #49372d outlines about3–4 logical pixels, flat warm colors, one cel shadow, tiny white highlights, light upper left. True alpha transparent background, clean cutout, no floor or cast shadow outside object. No text, letters, numbers, symbols, logos, watermarks or realistic rendering. Subject: ONE friendly funny middle-aged landlady, full body frontal slight three-quarter view, large head and short chibi body, curly dark brown hair with visible pink hair rollers, peach blouse, small floral apron, warm dark skirt and slippers. Kindly but firm expression, both eyebrows visible. Left forearm bent open in front of her waist with empty palm facing up, reserved for separate small account book overlay. Right hand loosely rests at side. Do NOT draw book or stamp in this sprite. Composition logical200×260, feet bottom center, whole silhouette within x10..190 y8..252. Generous transparent margin, no other objects. This is neutral standing pose; next variant will raise right arm with red rubber stamp, keep head/body/feet registration identical.",
+    "group": "rent",
+    "batch": 3,
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-3b81d17c-42f4-44ae-a2df-69dd6fca649d.png",
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "rawPath": "raw/rent/landlady_stand.png",
+    "generatedAt": "2026-10-22T14:37:49.895Z"
+  },
+  {
+    "id": "landlady_book",
+    "prompt": "Use case: stylized-concept. Asset type: production transparent raster sprite for the existing cute 2D chibi street-food livestream game 出摊啦. Input image1 is STYLE ONLY, not an edit target: match deep-brown #49372d outlines about3–4 logical pixels, flat warm colors, one cel shadow, tiny white highlights, light upper left. True alpha transparent background, clean cutout, no floor or cast shadow outside object. No text, letters, numbers, symbols, logos, watermarks or realistic rendering. Subject: ONE small open blank account notebook, cute thick cream pages, warm brown cover, slightly tilted upward frontal three-quarter view, empty double-page spread and a plain small blank stamp space. No lines, handwriting, ruled marks, hand, person or stamp. Logical70×65, whole isolated notebook fits canvas with small transparent margin, intended overlay on a chibi character's left palm.",
+    "group": "rent",
+    "batch": 3,
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-acee09ec-8cc1-4348-9482-9aac1b825917.png",
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "rawPath": "raw/rent/landlady_book.png",
+    "generatedAt": "2026-10-22T14:37:49.898Z"
+  },
+  {
+    "id": "rent_sign",
+    "prompt": "Use case: stylized-concept. Asset type: production transparent raster sprite for the existing cute 2D chibi street-food livestream game 出摊啦. Input image1 is STYLE ONLY, not an edit target: match deep-brown #49372d outlines about3–4 logical pixels, flat warm colors, one cel shadow, tiny white highlights, light upper left. True alpha transparent background, clean cutout, no floor or cast shadow outside object. No text, letters, numbers, symbols, logos, watermarks or realistic rendering. Subject: ONE small horizontal hanging rental countdown sign, warm cream wooden plaque in dark brown rounded wood frame, small two cord loops attached at the top, rounded corners, subtle wood grain on border only. Large clean blank cream central panel roughly logical x18..222 y27..87 for code-rendered countdown and score. No drawn clock, numbers, text, icons or coins. Composition logical240×100, complete isolated plaque and cords within x4..236 y3..97. Wide layout, front view, lightly worn street-stall look.",
+    "group": "rent",
+    "batch": 3,
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-4abd19b1-4653-4ab2-b0aa-9524e4acfd59.png",
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "rawPath": "raw/rent/rent_sign.png",
+    "generatedAt": "2026-10-22T14:37:49.900Z"
+  },
+  {
+    "id": "overtime_clock",
+    "prompt": "Use case: stylized-concept. Asset type: production transparent raster sprite for the existing cute 2D chibi street-food livestream game 出摊啦. Input image1 is STYLE ONLY, not an edit target: match deep-brown #49372d outlines about3–4 logical pixels, flat warm colors, one cel shadow, tiny white highlights, light upper left. True alpha transparent background, clean cutout, no floor or cast shadow outside object. No text, letters, numbers, symbols, logos, watermarks or realistic rendering. Subject: ONE retro cute punch-clock timer outer housing, wide horizontal muted mint-green enamel case, softly rounded corners, cream inset LARGE blank screen, warm brown dark outlines, two small round unmarked copper knobs on right edge, sturdy little feet. Screen blank light cream, flat non-glowing; logical x24..271 y28..113 suitable for two code-rendered text rows. No analog dial, clock hands, numbers, ticks, labels, letters or pictograms. Logical320×150 composition, front view, complete isolated casing with transparent margin. No paper sheet, person or other objects.",
+    "group": "rent",
+    "batch": 3,
+    "tool": "image_gen built-in",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-468d9ba4-1b37-4f96-8f25-102805170468.png",
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\customers\\customer_01_happy.png"
+    ],
+    "rawPath": "raw/rent/overtime_clock.png",
+    "generatedAt": "2026-10-22T14:37:49.902Z"
+  },
+  {
+    "id": "landlady_stamp",
+    "group": "rent",
+    "batch": 3,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is the exact standing landlady sprite edit target. Create her second animation frame on the EXACT SAME canvas size, scale and registration, preserving head, hair pink rollers, face, left upturned palm, torso, floral apron, skirt, legs, feet, all colors, cel shading and clean alpha exactly. Change ONLY her right arm (on viewer's LEFT): lift that forearm forward to chest height, holding a small red wooden rubber stamp, stamp face pointing downward toward the center blank area in front of her waist. Slight firm amused eyebrow expression allowed, but do not move head. No notebook in image; it will be a separate overlay. Do not crop, recenter or zoom. Keep feet at exactly the same coordinates. Same deep brown ink and flat cartoon style. No text, letters, symbols, numbers, background or cast shadow outside subject. True alpha transparent.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-8b81db87-c023-43fc-aba7-f81987880248.png",
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16305-977c-7b20-aac3-361c8a2dbf7f\\exec-3b81d17c-42f4-44ae-a2df-69dd6fca649d.png"
+    ],
+    "rawPath": "raw/rent/landlady_stamp.png",
+    "generatedAt": "2026-10-22T14:37:49.903Z"
+  }
+]

@@ -1,0 +1,28 @@
+Overlay Studio 1.0.0 — 2026-10-19
+
+交付：Windows x64便携目录及ZIP，包含独立运行时，不需要Node。AI功能调用本机Codex；包内不含用户登录文件或密钥。
+
+验证通过：
+- Node核心回归17/17：路径/文件校验、项目持久化、历史恢复、失败/取消保护、流式解析、日志脱敏、重复任务拦截、空输出及未修改输出拒绝、任务技能资源。
+- 真实本机Codex：已有ChatGPT登录、默认模型配置、workspace-write，生成并保存7903字节的透明HTML测试作品。
+- 实际浏览器UI：创建模板、F2控制台、落球互动、保存草稿、规则及登录读取；启动制作→切设置→返回→取消→导出原版。
+- 未保存描述保护：返回编辑保留修改，明确放弃后才切换。
+- 1280与680宽布局无横向溢出；浏览器控制台无相关error/warn。
+- 打包exe实际启动并加载包内页面，识别Codex 0.163.0-alpha.10.2及ChatGPT登录；等待界面就绪后截图。
+- Vite生产构建通过；exe名称、图标、版本1.0.0已写入。
+
+设计核对：
+概念 design/concept.png；最终打包应用渲染 design/app-preview.png。
+view_image对照：侧栏/双栏布局、白灰绿配色、字体层级、按钮表单几何、透明预览及制作进度区域。
+功能性差异：新增作品名称/保存草稿、真实禁用态、透明与单HTML固定启用、灵感与可运行模板分开标注、未保存提示。小屏允许纵向滚动。
+
+参考：
+https://www.ui-skills.com/
+https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md
+https://developers.openai.com/codex/noninteractive/
+UI Skills用于评估与设计参考。App随包提供的核心技能是build-live-overlay-games。
+
+未验证：真实OBS/菘蓝/整蛊机事件、直播长时运行、第二台电脑。Electron原生打开/保存对话框未人工逐键测试；浏览器导出路径及底层内容已验证。
+AI需要本机Codex及网络；预览/导出本地运行。生成成功不代表真实宿主或玩法质量已经验收。
+
+构建备注：Node26下第三方打包器的ZIP解压未完成，最终脚本改为复用已安装的官方Electron运行时，复制明确列出的生产文件并用resedit写图标/版本。npm run package可重建。

@@ -1,0 +1,89 @@
+/* V5: each theme changes the card construction, type, avatar, label and action. */
+#stage .review-card::before,#stage .review-card::after{content:"";position:absolute;pointer-events:none;z-index:-1;box-sizing:border-box}
+#stage .review-card::before{inset:8px;border-radius:calc(var(--radius) - 5px);opacity:var(--card-opacity)}
+#stage .review-card::after{inset:0;border-radius:inherit}
+#stage .current-top{position:relative}.sticker svg{width:100%;height:100%;pointer-events:none;display:block}.mini-sticker svg{width:28px;height:28px}.theme-choice::after{display:none}.theme-choice .theme-mark{width:30px;height:30px;opacity:.65;position:absolute;right:32px;color:var(--sw-accent);--accent:var(--sw-accent);--card-border:var(--sw-border);--card-text:var(--sw-text);--card-rgb:24,35,37}.ornament-choice{width:58px;height:58px;display:grid;place-items:center;--accent:#57ad94;--card-border:#527b6c;--card-text:#fff4de;--card-rgb:25,45,40}.ornament-choice svg{width:36px;height:36px}
+#stage .current .person-line>.grow{max-width:100%}
+#stage .state-tag{color:var(--card-text);background:transparent;border:1px solid var(--accent)}
+html[data-theme=glass] #stage .review-card{border-width:1px;box-shadow:inset 0 1px 0 #ffffff55,0 6px 22px #0001;backdrop-filter:blur(7px)}
+html[data-theme=glass] #stage .review-card::before{inset:5px;border:1px solid var(--card-border);background:linear-gradient(130deg,#ffffff13 0 18%,transparent 18% 78%,#ffffff0a 78%)}
+html[data-theme=glass] #stage .current .person-line{flex-direction:column;text-align:center;gap:10px}
+html[data-theme=glass] #stage .current-top{justify-content:center}
+html[data-theme=glass] #stage .current-top .equalizer{position:absolute;right:0}
+html[data-theme=glass] #stage .avatar{outline:1px solid var(--accent);outline-offset:4px;border-width:2px;box-shadow:inset 0 0 0 3px #ffffff33}
+html[data-theme=glass] #stage .ticket{border:1px solid var(--card-border);border-radius:20px;padding:3px 12px;display:inline-block}
+html[data-theme=glass] #stage .live-next{border-radius:30px;box-shadow:inset 0 1px 0 #ffffff44;background:linear-gradient(#ffffff12,#ffffff03),rgba(var(--card-rgb),var(--card-opacity))}
+html[data-theme=cream] #stage{font-family:"Microsoft YaHei","PingFang SC",sans-serif}
+html[data-theme=cream] #stage .review-card{border:1px solid var(--card-border);box-shadow:2px 4px 0 color-mix(in srgb,var(--card-border) 25%,transparent);padding:22px}
+html[data-theme=cream] #stage .review-card::before{inset:7px;border:1px dashed var(--accent);background-image:radial-gradient(var(--card-border) .6px,transparent .8px);background-size:9px 9px}
+html[data-theme=cream] #stage .current .person-line{flex-direction:column;text-align:center;gap:12px}
+html[data-theme=cream] #stage .current-top{justify-content:center}
+html[data-theme=cream] #stage .equalizer{display:none}
+html[data-theme=cream] #stage .state-tag{border-style:dashed;border-radius:9px;font-family:Georgia,"KaiTi",serif;font-size:15px;letter-spacing:2px;background:color-mix(in srgb,var(--accent) 10%,transparent)}
+html[data-theme=cream] #stage .avatar{border:3px solid var(--card-border);outline:2px solid var(--card-text);outline-offset:3px;background:rgb(var(--card-rgb));color:var(--card-text);border-radius:43% 43% 47% 47%}
+html[data-theme=cream] #stage .person-name{font-weight:900;letter-spacing:1px}
+html[data-theme=cream] #stage .ticket{font-family:Georgia,serif;font-style:italic}
+html[data-theme=cream] #stage .live-next{border:2px dashed var(--accent);border-radius:25px;background:color-mix(in srgb,var(--accent) 15%,rgb(var(--card-rgb)));justify-content:center}
+html[data-theme=cream] #stage .live-queue-actions{border-top-style:dashed}
+html[data-theme=neon] #stage{font-family:"Bahnschrift","Microsoft YaHei",sans-serif}
+html[data-theme=neon] #stage .review-card{border:2px solid var(--card-border);box-shadow:5px 5px 0 color-mix(in srgb,var(--accent) 24%,transparent),inset 0 0 20px color-mix(in srgb,var(--accent) 6%,transparent);padding:22px}
+html[data-theme=neon] #stage .review-card::before{inset:6px;border-left:3px solid var(--accent);border-right:1px solid var(--accent);border-top:1px solid var(--card-border);background:repeating-linear-gradient(0deg,transparent 0 5px,color-mix(in srgb,var(--accent) 5%,transparent) 5px 6px)}
+html[data-theme=neon] #stage .review-card::after{width:48px;height:5px;inset:auto 16px -3px auto;background:var(--accent);box-shadow:-230px 0 0 var(--card-border)}
+html[data-theme=neon] #stage .current .person-line{flex-direction:column;text-align:center;gap:13px}
+html[data-theme=neon] #stage .state-tag{border:2px solid var(--accent);border-radius:0;letter-spacing:3px;font-weight:900;background:rgb(var(--card-rgb));box-shadow:3px 2px 0 var(--card-border)}
+html[data-theme=neon] #stage .avatar{border-radius:0;border:3px solid var(--accent);outline:2px solid var(--card-border);outline-offset:4px;box-shadow:inset 4px 4px 0 #ffffff22}
+html[data-theme=neon] #stage .ticket{font-family:Consolas,monospace;letter-spacing:3px;color:var(--accent);font-size:12px}
+html[data-theme=neon] #stage .live-next{border-radius:0;border:2px solid var(--accent);box-shadow:3px 3px 0 var(--card-border);font-family:Consolas,"Microsoft YaHei",monospace;letter-spacing:2px}
+html[data-theme=pixel] #stage{font-family:Consolas,"SimHei",monospace}
+html[data-theme=pixel] #stage .review-card{border:4px solid var(--card-border);box-shadow:5px 5px 0 rgb(var(--card-rgb));padding:23px}
+html[data-theme=pixel] #stage .review-card::before{inset:4px;border:2px solid var(--card-text);background:repeating-linear-gradient(90deg,transparent 0 7px,#ffffff03 7px 8px)}
+html[data-theme=pixel] #stage .review-card::after{inset:10px auto auto 10px;width:5px;height:5px;background:var(--card-text);box-shadow:0 0 0 2px var(--card-border)}
+html[data-theme=pixel] #stage .current .person-line{flex-direction:column;text-align:center;gap:12px}
+html[data-theme=pixel] #stage .state-tag{border-radius:0;background:var(--card-text);color:rgb(var(--card-rgb));border:3px double rgb(var(--card-rgb));font-size:15px}
+html[data-theme=pixel] #stage .avatar{border-radius:0;border:4px solid var(--card-text);outline:3px solid var(--card-border);outline-offset:2px;background:rgb(var(--card-rgb));color:var(--card-text);image-rendering:pixelated}
+html[data-theme=pixel] #stage .person-name{font-family:Consolas,"SimHei",monospace;letter-spacing:2px;text-shadow:2px 2px 0 rgb(var(--card-rgb))}
+html[data-theme=pixel] #stage .ticket{font-family:Consolas,monospace;letter-spacing:2px}
+html[data-theme=pixel] #stage .live-next{border-radius:0;border:3px double var(--card-text);font-size:16px;box-shadow:3px 3px 0 var(--card-border)}
+html[data-theme=pixel] #stage .live-queue-actions{border-top:2px dashed var(--card-border)}
+html[data-theme=sakura] #stage{font-family:Georgia,"KaiTi","Microsoft YaHei",serif}
+html[data-theme=sakura] #stage .review-card{border-radius:30px 12px 30px 12px;border:1px solid var(--accent);box-shadow:2px 3px 0 color-mix(in srgb,var(--accent) 18%,transparent);padding:23px}
+html[data-theme=sakura] #stage .review-card::before{border:1px solid var(--card-border);border-radius:24px 7px 24px 7px;background:repeating-linear-gradient(0deg,transparent 0 27px,color-mix(in srgb,var(--accent) 9%,transparent) 27px 28px)}
+html[data-theme=sakura] #stage .current .person-line{flex-direction:column;align-items:center;text-align:center;gap:12px}
+html[data-theme=sakura] #stage .state-tag{border-radius:7px;border:1px dashed var(--accent);font-size:15px;letter-spacing:4px}
+html[data-theme=sakura] #stage .equalizer{height:17px}
+html[data-theme=sakura] #stage .avatar{border:3px double var(--accent);outline:1px solid var(--card-border);outline-offset:4px}
+html[data-theme=sakura] #stage .ticket{font-style:italic;font-family:Georgia,serif;letter-spacing:2px}
+html[data-theme=sakura] #stage .live-next{border-radius:28px;border:3px double var(--accent);font-family:Georgia,"KaiTi",serif;font-size:17px;justify-content:center;letter-spacing:2px}
+html[data-theme=ocean] #stage .review-card{border-radius:var(--radius);border:2px solid var(--accent);box-shadow:inset 0 0 0 4px rgb(var(--card-rgb));padding:23px}
+html[data-theme=ocean] #stage .review-card::before{inset:5px;border:1px solid var(--card-border);border-radius:calc(var(--radius) - 6px);background:radial-gradient(ellipse at bottom,transparent 55%,color-mix(in srgb,var(--accent) 9%,transparent) 56% 57%,transparent 58%),repeating-radial-gradient(circle at 20% 70%,transparent 0 26px,color-mix(in srgb,var(--accent) 4%,transparent) 27px 28px)}
+html[data-theme=ocean] #stage .current .person-line{flex-direction:column;text-align:center;gap:13px}
+html[data-theme=ocean] #stage .current-top{justify-content:center}
+html[data-theme=ocean] #stage .equalizer{position:absolute;right:2px;height:16px}
+html[data-theme=ocean] #stage .avatar{border:5px solid var(--card-border);outline:2px dashed var(--accent);outline-offset:4px;box-shadow:0 0 0 7px rgb(var(--card-rgb));background:rgb(var(--card-rgb));color:var(--card-text)}
+html[data-theme=ocean] #stage .state-tag{border:3px double var(--card-border);border-radius:25px;font-family:Georgia,"Microsoft YaHei",serif}
+html[data-theme=ocean] #stage .ticket{font-family:Consolas,monospace;letter-spacing:3px}
+html[data-theme=ocean] #stage .live-next{border-radius:30px;border:3px double var(--accent);justify-content:center}
+html[data-theme=sunset] #stage{font-family:"Bahnschrift","Microsoft YaHei",sans-serif}
+html[data-theme=sunset] #stage .review-card{border:3px solid var(--accent);border-radius:8px;padding:22px;box-shadow:4px 4px 0 color-mix(in srgb,var(--card-border) 28%,transparent)}
+html[data-theme=sunset] #stage .review-card::before{inset:5px;border:1px solid var(--card-text);border-radius:2px;background:repeating-linear-gradient(-45deg,transparent 0 5px,color-mix(in srgb,var(--accent) 6%,transparent) 5px 8px)}
+html[data-theme=sunset] #stage .current-top{padding-bottom:14px;margin-bottom:18px;border-bottom:2px dashed var(--card-border);justify-content:center}
+html[data-theme=sunset] #stage .equalizer{display:none}
+html[data-theme=sunset] #stage .state-tag{font-size:18px;border-radius:0;background:var(--accent);color:rgb(var(--card-rgb));border:3px double rgb(var(--card-rgb));letter-spacing:2px}
+html[data-theme=sunset] #stage .avatar{border:3px solid var(--accent);outline:1px solid var(--card-text);outline-offset:3px}
+html[data-theme=sunset] #stage .person-name{font-size:21px;font-weight:900;letter-spacing:1px}
+html[data-theme=sunset] #stage .ticket{font-family:Consolas,monospace;font-size:12px;font-weight:700;letter-spacing:2px}
+html[data-theme=sunset] #stage .live-queue-actions{border-top:2px dashed var(--card-border)}
+html[data-theme=sunset] #stage .live-next{border-radius:2px;border:4px double var(--accent);font-size:16px;font-weight:900;justify-content:center;letter-spacing:1px}
+html[data-theme=gold] #stage{font-family:Georgia,"Songti SC","SimSun",serif}
+html[data-theme=gold] #stage .review-card{border:1px solid var(--card-border);border-radius:7px;padding:24px;box-shadow:inset 0 0 0 4px rgb(var(--card-rgb)),0 5px 15px #0002}
+html[data-theme=gold] #stage .review-card::before{inset:6px;border:3px double var(--accent);border-radius:2px;background:repeating-linear-gradient(80deg,transparent 0 4px,#ffffff02 4px 5px)}
+html[data-theme=gold] #stage .current .person-line{flex-direction:column;text-align:center;gap:14px}
+html[data-theme=gold] #stage .current-top{justify-content:center}
+html[data-theme=gold] #stage .equalizer{display:none}
+html[data-theme=gold] #stage .state-tag{border-radius:0;border:3px double var(--accent);font-weight:400;font-size:18px;letter-spacing:4px}
+html[data-theme=gold] #stage .avatar{border:4px double var(--accent);outline:1px solid var(--card-border);outline-offset:5px;background:rgb(var(--card-rgb));color:var(--accent)}
+html[data-theme=gold] #stage .person-name{font-family:Georgia,"Songti SC","SimSun",serif;font-weight:700;letter-spacing:2px}
+html[data-theme=gold] #stage .ticket{font-family:Georgia,serif;font-style:italic;letter-spacing:3px;font-size:12px}
+html[data-theme=gold] #stage .live-queue-actions{border-top:1px solid var(--accent)}
+html[data-theme=gold] #stage .live-next{font-family:Georgia,"Songti SC","SimSun",serif;border:3px double var(--accent);border-radius:25px;justify-content:center;font-size:16px;letter-spacing:2px}
+.theme-choice[data-theme=cream]{border-style:dashed;border-radius:16px}.theme-choice[data-theme=neon]{border-radius:2px;box-shadow:inset 3px 0 var(--sw-accent)}.theme-choice[data-theme=pixel]{border-radius:0;border-width:3px;border-style:double;font-family:Consolas,"SimHei",monospace}.theme-choice[data-theme=sakura]{border-radius:16px 5px;font-family:Georgia,"KaiTi",serif}.theme-choice[data-theme=ocean]{border-radius:25px;border-style:double;border-width:3px}.theme-choice[data-theme=sunset]{border:3px double var(--sw-accent);border-radius:4px}.theme-choice[data-theme=gold]{border:3px double var(--sw-accent);font-family:Georgia,"SimSun",serif}

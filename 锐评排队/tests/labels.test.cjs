@@ -1,0 +1,5 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const M=require('../src/model.js');
+test('custom display title and reviewing label survive validation and JSON backup',()=>{const d=M.create();d.settings.title='小熊锐评现场';d.settings.reviewingLabel='主包正在看';const restored=M.validate(JSON.parse(JSON.stringify(d)));assert.equal(restored.settings.title,'小熊锐评现场');assert.equal(restored.settings.reviewingLabel,'主包正在看');});
+test('V1 backup without reviewing label receives default without changing title or queue',()=>{const d=M.create();delete d.settings.reviewingLabel;d.settings.title='旧标题';const restored=M.validate(d);assert.equal(restored.settings.reviewingLabel,'正在评价');assert.equal(restored.settings.title,'旧标题');assert.deepEqual(restored.engine,d.engine);});
+test('reviewing label rejects blank, excessive length and non-string values',()=>{for(const value of ['', '  ', '字'.repeat(21),{},null,42]){const d=M.create();d.settings.reviewingLabel=value;assert.throws(()=>M.validate(d));}});

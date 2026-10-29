@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>快递分拣台 · 3D</title>
+<style>
+:root{--f:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif}
+html,body{margin:0;height:100%;background:transparent;overflow:hidden;font-family:var(--f);user-select:none;-webkit-user-select:none}
+#bg{position:fixed;inset:0;display:none;pointer-events:none}
+#bg.dark{display:block;background:radial-gradient(ellipse at 45% 35%,#46505b,#171b20 75%)}
+#bg.light{display:block;background:linear-gradient(#f4efe7,#d9cfbf)}
+#bg.checker{display:block;background:repeating-conic-gradient(#c9c9c9 0 25%,#f2f2f2 0 50%) 0 0/26px 26px}
+#bg.room{display:block;background:linear-gradient(180deg,#8d9aa3 0%,#b9b2a6 55%,#6f6558 100%)}
+#stage{position:fixed;left:0;top:0;width:100%;height:100%}
+#stageFrame{position:fixed;left:0;top:34%;width:100%;height:66%;pointer-events:none}
+#cv{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;outline:none}
+#hud{position:fixed;inset:0;pointer-events:none}
+#loading{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);color:#fff;background:rgba(20,22,26,.7);padding:10px 18px;border-radius:12px;font-size:14px}
+
+/* 计数 */
+#counter{position:absolute;left:42%;top:2%;display:flex;align-items:stretch;background:linear-gradient(180deg,rgba(34,37,42,.86),rgba(20,22,26,.86));border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08);padding:12px 20px 12px 18px;color:#fff;gap:18px;transform-origin:left top}
+#counter .col{display:flex;flex-direction:column;justify-content:center;min-width:64px}
+#counter .lbl{font-size:13px;color:rgba(255,255,255,.55);letter-spacing:.08em}
+#counter .num{font-size:44px;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-.02em;transition:color .3s}
+#counter .num.sm{font-size:28px;margin-top:6px;color:rgba(255,255,255,.9)}
+#counter .sep{width:1px;background:rgba(255,255,255,.1);margin:4px 0}
+#remain.up{color:#ffb08a}#remain.down{color:#9ff0c0}
+.bump{animation:bump .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.28)}100%{transform:scale(1)}}
+/* 标签用 translate 属性定位、transform 居中缩放（原点 0 0）；跳动只动 scale 属性，以锚点为中心，不会覆盖定位 */
+@keyframes bumpS{0%{scale:1}40%{scale:1.28}100%{scale:1}}
+#counter.done .work{display:none}
+#counter{display:grid!important;grid-template-columns:auto 1px auto;column-gap:18px;row-gap:6px;width:max-content}
+#counter.off{display:none!important}
+body.layout-mode #counter.off{display:grid!important}
+#counter .lv{grid-column:1/-1;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.04em;margin:-2px 0 -6px;white-space:nowrap}
+#counter .lv.hurry{color:#ff8a70}
+#queueLine{grid-column:1/-1;font-size:12px;color:rgba(255,255,255,.65);white-space:nowrap}
+#counter .check .no,#counter.fail .check .ok{display:none}#counter.fail .check .no{display:inline}
+#counter.fail .check{background:#e2503f;box-shadow:0 0 0 6px rgba(226,80,63,.2)}
+#counter.off,#board.off{display:none!important}
+#counter.off.force{display:grid!important}
+#counter .fin{display:none;align-items:center;gap:12px}
+#counter.done .fin{display:flex}
+.check{width:40px;height:40px;border-radius:50%;background:#4fcf86;display:grid;place-items:center;box-shadow:0 0 0 6px rgba(79,207,134,.18)}
+.fin b{font-size:28px;font-weight:800}
+.fin small{display:block;font-size:13px;color:rgba(255,255,255,.6);margin-top:2px}
+#nextBtn{pointer-events:auto;margin-left:6px;border:0;border-radius:12px;background:#ea7437;color:#fff;font:700 14px var(--f);padding:9px 14px;cursor:pointer;box-shadow:0 4px 12px rgba(234,116,55,.35)}
+#nextBtn:hover{background:#f0844a}
+#nextBtn[hidden]{display:none}
+
+/* 入口排队 */
+#hop{position:absolute;left:0;top:0;transform-origin:0 0;padding:4px 10px 4px 8px;border-radius:999px;background:rgba(22,24,28,.85);color:#fff;font:800 14px var(--f);display:flex;align-items:center;gap:6px;transform:translate(-50%,-100%);white-space:nowrap}
+#hop i{width:12px;height:12px;border-radius:3px;background:#d7a468;display:block;box-shadow:inset 0 -2px 0 rgba(0,0,0,.15)}
+#hop.pop{animation:bumpS .35s cubic-bezier(.2,1.6,.4,1)}
+.binc{position:absolute;left:0;top:0;transform-origin:0 0;min-width:26px;height:26px;padding:0 8px;border-radius:13px;background:rgba(255,255,255,.95);color:#2a2018;font:800 15px var(--f);display:grid;place-items:center;transform:translate(-50%,-50%);box-shadow:0 3px 10px rgba(0,0,0,.2)}
+.binc.pop{animation:bumpS .35s cubic-bezier(.2,1.6,.4,1)}
+
+/* 署名 */
+.tag{position:absolute;left:0;top:0;transform-origin:0 0;transform:translate(-50%,-100%);white-space:nowrap;display:flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(20,22,26,.88);color:#fff;font:500 16px var(--f);box-shadow:0 8px 22px rgba(0,0,0,.28);transition:opacity .35s}
+.tag .ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.tag .ic svg{width:15px;height:15px}
+.tag b{color:#ffb56b;font-weight:800}
+.tag.in{animation:tagin .42s cubic-bezier(.2,1.5,.4,1)}
+.tag.pop{animation:bumpS .3s cubic-bezier(.2,1.6,.4,1)}
+@keyframes tagin{0%{opacity:0;scale:.6;margin-top:10px}100%{opacity:1;scale:1;margin-top:0}}
+#ghost{position:absolute;left:0;top:0;width:22px;height:28px;display:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+/* 互动分档 */
+.tiercard .hd{font:800 13px var(--f);margin-bottom:4px}
+.tiergrid{display:grid;gap:4px 5px;align-items:center;font-size:12px}
+.tiergrid b{font-size:11px;line-height:1.25;color:#8a7f73;text-align:center;font-weight:700}
+.tiergrid input{font:12.5px var(--f);border:1px solid #d9d0c3;border-radius:7px;padding:3px 4px;width:100%;box-sizing:border-box;text-align:center;min-width:0}
+.tiergrid input.tname{text-align:left;font-weight:700}
+.tiergrid input[type=radio]{width:auto;margin:0 auto;accent-color:#e0703a}
+.tiergrid .trun,.tiergrid .tdel{border:0;border-radius:7px;padding:3px 0;font:700 12px var(--f);background:#ece5da;color:#4a4038;cursor:pointer}
+.tiergrid .trun{background:#2b2621;color:#fff}.tiergrid .tdel:disabled{opacity:.35;cursor:default}
+.tiercard .tadd{margin-top:6px;border:1px dashed #d4c6b4;border-radius:8px;background:transparent;color:#8a6a4a;font:700 12px var(--f);padding:5px 10px;cursor:pointer}
+.tiercard .tadd:disabled{opacity:.5;cursor:default}
+/* 玩法切换 */
+.modeseg{grid-template-columns:1fr 1fr;margin:0 0 8px}.modeseg button{font-size:13px;padding:7px 0}
+/* 垃圾品种列表 */
+#gItems{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin:6px 0}
+#gItems .gcat{grid-column:1/-1;font:700 12px var(--f);color:#fff;border-radius:7px;padding:3px 8px;margin-top:6px}
+#gItems .g0{background:#2a6fcf}#gItems .g1{background:#d6403a}#gItems .g2{background:#2f9b55}#gItems .g3{background:#3d4246}
+#gItems .gitem{display:flex;align-items:center;gap:5px;font-size:12.5px;white-space:nowrap}
+#gItems .gitem span{flex:1;overflow:hidden;text-overflow:ellipsis}
+#gItems .gitem select,#gItems .gitem .inline-select{width:84px;font-size:12px}
+.card .lvgrid label.g0{color:#2a6fcf}.card .lvgrid label.g1{color:#c9443a}.card .lvgrid label.g2{color:#2a8a4c}.card .lvgrid label.g3{color:#555c62}
+/* 拿起垃圾时头顶的名字 */
+#heldName{position:absolute;left:0;top:0;display:none;transform-origin:center bottom;padding:5px 12px;border-radius:999px;background:rgba(20,22,26,.9);color:#fff;font:800 16px var(--f);white-space:nowrap;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+/* 分错翻倍的红色大字 */
+.multpop{position:absolute;left:0;top:0;pointer-events:none;font:900 54px var(--f);color:#ff3b2f;-webkit-text-stroke:3px #fff;paint-order:stroke fill;text-shadow:0 6px 16px rgba(120,10,0,.45);white-space:nowrap;opacity:0}
+.multpop.x3{color:#ff1f6b;font-size:66px}
+#auditPill{grid-column:1/-1;justify-self:start;font:800 12.5px var(--f);color:#fff;background:#d4382c;border-radius:999px;padding:3px 10px;margin-top:2px;box-shadow:0 0 0 3px rgba(212,56,44,.25);animation:auditBlink 1s steps(2) infinite}
+#auditPill:empty{display:none}
+@keyframes auditBlink{50%{box-shadow:0 0 0 6px rgba(212,56,44,.08)}}
+#finStats{display:block;font-size:12.5px;color:#ffb08a;margin-top:2px}
+#finStats:empty{display:none}
+#demoPill{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(234,116,55,.92);color:#fff;font:700 12.5px var(--f);padding:5px 14px;border-radius:999px;display:none}
+
+/* 互动说明牌 */
+#board{position:absolute;left:81%;top:2%;transform-origin:left top;background:linear-gradient(180deg,rgba(34,37,42,.86),rgba(20,22,26,.86));border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.28);padding:10px 12px 8px;color:#fff;min-width:210px}
+#board[hidden]{display:none}
+#board h4{margin:0 0 6px 2px;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.08em;display:flex;align-items:center;gap:6px}
+#board h4 small{margin-left:auto;font-weight:600;color:rgba(255,255,255,.35)}
+#board ul.flip{animation:flip .45s ease}
+@keyframes flip{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
+#board h4 #linkDot{width:7px;height:7px;border-radius:50%;background:#6b737a;display:inline-block}
+#board h4 #linkDot.on{background:#4fcf86;box-shadow:0 0 0 3px rgba(79,207,134,.2)}
+#board ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+#board li{position:relative;display:grid;grid-template-columns:22px auto 1fr;align-items:center;gap:8px;font-size:13.5px;white-space:nowrap;padding:2px 2px 4px}
+#board li .ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center}
+#board li .ic svg{width:13px;height:13px}
+#board li .k{font-weight:700;color:#ffd7a8}
+#board li .v{color:rgba(255,255,255,.88);text-align:right}
+#board li .bar{position:absolute;left:30px;right:2px;bottom:0;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+#board li .bar::after{content:"";position:absolute;inset:0;width:calc(var(--p,0)*100%);background:#ff8fa3;transition:width .3s}
+.scantag{position:absolute;left:0;top:0;transform:translate(-50%,-100%);display:none;align-items:center;white-space:nowrap;padding:5px 11px;border-radius:999px;background:rgba(200,40,30,.9);color:#fff;font:700 13px var(--f);box-shadow:0 4px 12px rgba(0,0,0,.25)}
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:rgba(20,22,26,.92);color:#fff;font:600 13.5px var(--f);padding:9px 16px;border-radius:12px;transition:.2s;z-index:5;max-width:80vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* 面板 */
+#gear{position:fixed;right:14px;bottom:14px;z-index:7;width:40px;height:40px;border-radius:50%;border:0;background:rgba(28,31,35,.8);color:#fff;font-size:19px;cursor:pointer;opacity:0;transition:opacity .2s;z-index:3}
+body.corner #gear,#gear:focus-visible{opacity:1}
+body.panel-open #gear,body.layout-mode #gear{display:none}
+#panel{z-index:5;position:fixed;right:14px;bottom:14px;width:440px;max-width:calc(100vw - 28px);max-height:calc(100% - 28px);transform-origin:right bottom;overflow:auto;background:rgba(251,248,242,.97);color:#2b2621;border-radius:16px;box-shadow:0 14px 44px rgba(0,0,0,.3);padding:14px 14px 10px;font-size:13px;display:none;z-index:3;box-sizing:border-box}
+body.panel-open #panel{display:block}
+#panel .ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:15px}
+#panel button{font-family:inherit;cursor:pointer}
+#pclose{border:0;background:none;font-size:20px;line-height:1;color:#8a7f73}
+.f{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:7px 0}
+.f input,.f select{font-family:inherit;font-size:13px;border:1px solid #d9d0c3;border-radius:8px;padding:5px 7px;background:#fff;width:128px;box-sizing:border-box}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:6px 0 4px}
+.grid button{border:0;border-radius:11px;padding:9px 6px;font-size:13.5px;font-weight:700;color:#fff;display:flex;flex-direction:column;align-items:center;gap:2px;transition:transform .08s}
+.grid button:active{transform:scale(.96)}
+.grid small{font-weight:400;font-size:11px;opacity:.85}
+.grid.g3{grid-template-columns:1fr 1fr 1fr}.grid.g3 button{font-size:13px;padding:8px 4px}
+.grid.g4{grid-template-columns:repeat(4,1fr)}.grid.g4 button{font-size:12.5px;padding:8px 3px}
+.b11{background:#c0392b}.b12{background:#8a6a2e}.b13{background:#3a3f45}.b8{background:#d9811c}.b9{background:#2c7fb8}.b10{background:#8a6a4a}.b1{background:#e0703a}.b2{background:#8b5a2b}.b3{background:#2f9a74}.b4{background:#5b6570}.b5{background:#7a5bd0}.b6{background:#4f95b8}.b7{background:#c8372d}
+.wide{width:100%;border:0;border-radius:10px;padding:9px;font-size:13.5px;font-weight:700;background:#2b2621;color:#fff}
+.wide.on{background:#e0703a}.wide.ghost{background:#ece5da;color:#4a4038;font-weight:600}
+.sec{margin:12px 0 5px;font-size:12px;color:#8a7f73;font-weight:700}
+.seg{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;background:#ece5da;border-radius:10px;padding:3px}
+.seg button{border:0;border-radius:8px;padding:6px 0;background:transparent;font-size:12px;color:#4a4038}
+.seg button.on{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12);font-weight:700}
+.chk{display:flex;align-items:flex-start;gap:6px;margin:8px 0;line-height:1.5}
+.chk input{margin-top:3px;flex:none}
+.note{font-size:11.5px;color:#8a7f73;line-height:1.55;margin:10px 0 2px}
+.row{margin:8px 0}
+#tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;background:#ece5da;border-radius:10px;padding:3px;margin-bottom:8px}
+#tabs button{border:0;border-radius:8px;padding:7px 0;background:transparent;font-size:12.5px;color:#4a4038}
+#tabs button.on{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12);font-weight:700}
+[data-page][hidden]{display:none}
+.rule{background:#fff;border:1px solid #e6ddd0;border-radius:10px;padding:7px;margin:6px 0;display:grid;gap:5px;overflow:hidden}
+.rule input.match{width:0;flex:1}
+.rule .l1,.rule .l2{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.rule select,.rule input{font-family:inherit;font-size:12.5px;border:1px solid #d9d0c3;border-radius:7px;padding:4px 5px;background:#fff;min-width:0}
+.rule .match{flex:1}.rule .src{width:62px}.rule .eff{width:84px}.rule .tier{width:70px}.rule .val{width:42px}.rule .cd{width:40px;margin:0 3px}
+.rule .unit{font-size:11.5px;color:#8a7f73;min-width:30px}
+.rule .cdw{font-size:11.5px;color:#8a7f73;display:flex;align-items:center;margin-left:auto}
+.rule button{border:0;border-radius:7px;padding:4px 7px;font-size:12px;background:#ece5da;color:#4a4038}
+.rule .x{background:transparent;color:#b0a597;font-size:15px;padding:2px 4px}
+.btns{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.btns button,.btns label.fb{border:0;border-radius:9px;padding:8px 11px;font:600 12.5px var(--f);background:#ece5da;color:#4a4038;cursor:pointer}
+.btns .primary{background:#2b2621;color:#fff}
+.btns label.fb input{display:none}
+.status{background:#1f2622;color:#a8e0bb;border-radius:9px;padding:9px 10px;font-size:12.5px;margin:4px 0 8px}
+.log{background:#f3eee6;border-radius:9px;padding:8px;font-size:11.5px;line-height:1.6;max-height:220px;overflow:auto;color:#4a4038;word-break:break-all}
+.sim{display:grid;grid-template-columns:70px 1fr 56px auto;gap:5px;align-items:center}
+.sim select,.sim input{font-family:inherit;font-size:12.5px;border:1px solid #d9d0c3;border-radius:7px;padding:5px;background:#fff;min-width:0}
+.sim button{border:0;border-radius:8px;padding:6px 10px;font:700 12.5px var(--f);background:#2b2621;color:#fff}
+
+body.panel-left #gear{right:auto;left:14px}
+body.panel-left #panel{right:auto;left:14px;transform-origin:left bottom}
+#panel .ph .acts{display:flex;gap:6px;align-items:center}
+#panel .ph .acts button{border:0;border-radius:8px;padding:5px 10px;font:700 12px var(--f);background:#2b2621;color:#fff}
+.f input[type=checkbox]{width:auto;margin:0 4px 0 0;vertical-align:-2px}
+.f>span{display:inline-flex;align-items:center;white-space:nowrap}
+.f .v{font-size:12px;color:#8a7f73;min-width:38px;text-align:right}
+.f input[type=range]{width:150px;padding:0;border:0;background:transparent;accent-color:#e0703a}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.f2 .f input{width:70px}
+.card{background:#fff;border:1px solid #e6ddd0;border-radius:12px;padding:9px 10px;margin:8px 0}
+.card.cur{border-color:#e0703a;box-shadow:0 0 0 2px rgba(224,112,58,.18)}
+.card .hd{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.card .hd input{flex:1;font:700 13px var(--f);border:1px solid #d9d0c3;border-radius:7px;padding:5px 7px;min-width:0}
+.card .hd button{border:0;border-radius:7px;padding:5px 8px;font:600 12px var(--f);background:#ece5da;color:#4a4038}
+.card .hd button.go{background:#e0703a;color:#fff}
+.card .lvgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px 8px}
+.card .lvgrid label{display:flex;flex-direction:column;font-size:11px;color:#8a7f73;gap:2px}
+.card .lvgrid input{font:13px var(--f);border:1px solid #d9d0c3;border-radius:7px;padding:4px 5px;width:100%;box-sizing:border-box}
+.card .lvgrid label.c0{color:#c9443a}.card .lvgrid label.c1{color:#b78510}.card .lvgrid label.c2{color:#2a6fb8}
+.presets{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.presets button{border:0;border-radius:8px;padding:6px 10px;font:600 12px var(--f);background:#ece5da;color:#4a4038}
+.presets button.on{background:#2b2621;color:#fff}
+.inline-select{display:inline-flex;min-width:0;max-width:100%;vertical-align:middle}
+.inline-select-trigger{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-width:70px;padding:5px 8px;border:1px solid #d9d0c3;border-radius:7px;background:#fff;color:#2b2621;font:12.5px var(--f);text-align:left;cursor:pointer}
+.inline-select-trigger>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inline-select-chevron{flex:none;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+.inline-select-popup{position:fixed;z-index:1000;box-sizing:border-box;overflow-y:auto;padding:5px;background:#fffdf9;color:#2b2621;border:1px solid #d9d0c3;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.inline-select-option{display:block;width:100%;box-sizing:border-box;padding:8px 10px;border:0;border-radius:7px;background:transparent;color:inherit;font:12.5px var(--f);text-align:left;cursor:pointer}
+.inline-select-option[aria-selected=true]{background:#f6e2d5;color:#b0501f;font-weight:700}
+.inline-select-option:hover,.inline-select-option:focus{background:#ece5da;outline:0}
+.native-select-state{display:none!important}
+.f .inline-select{width:128px}.rule .inline-select.src{width:66px}.rule .inline-select.eff{width:90px}.rule .inline-select.tier{width:74px}.sim .inline-select{width:100%}
+/* 布局调整模式 */
+.edit-frame{display:none;position:absolute;inset:0;border:2px dashed rgba(255,170,90,.95);border-radius:6px;background:rgba(255,160,80,.06);cursor:move;pointer-events:auto;z-index:2}
+.edit-frame .lbl{position:absolute;left:8px;top:6px;font:700 13px var(--f);color:#fff;background:rgba(224,112,58,.95);padding:3px 9px;border-radius:999px}
+.edit-frame .rz{position:absolute;right:-9px;bottom:-9px;width:18px;height:18px;border-radius:50%;background:#e0703a;border:2px solid #fff;cursor:nwse-resize;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+body.layout-mode .edit-frame{display:block}
+body.layout-mode #counter,body.layout-mode #board{pointer-events:auto}
+body.layout-mode #counter.off,body.layout-mode #board.off{display:flex!important;opacity:.35}
+#layoutBar{display:none;position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:6;background:rgba(20,22,26,.92);color:#fff;font:600 13px var(--f);padding:8px 10px 8px 16px;border-radius:999px;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+#layoutBar button{border:0;border-radius:999px;padding:6px 14px;font:700 13px var(--f);background:#e0703a;color:#fff;cursor:pointer}
+body.layout-mode #layoutBar{display:flex}
+body.no-badges #hop,body.no-badges .scantag{display:none!important}
+body.no-bincount .binc{display:none!important}
+body.no-cursor #ghost,body.no-cursor #demoPill{display:none!important}
+/* 露头圆编辑 */
+.head-edit{position:fixed;inset:0;z-index:6;pointer-events:none}
+.head-edit[hidden]{display:none}
+.head-ring{position:absolute;box-sizing:border-box;border:2px dashed rgba(255,244,206,.95);border-radius:50%;background:rgba(255,236,190,.08);box-shadow:0 0 0 1px rgba(80,50,20,.35),inset 0 0 0 1px rgba(80,50,20,.25);pointer-events:auto;cursor:move;touch-action:none}
+.head-tip{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 13px var(--f);color:#fff7e0;text-shadow:0 1px 3px rgba(60,35,15,.9);white-space:nowrap;pointer-events:none}
+.head-dot{position:absolute;right:-11px;top:50%;width:20px;height:20px;margin-top:-11px;border-radius:50%;background:#aed3e4;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);cursor:ew-resize}
+.head-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:8px 10px 8px 16px;border-radius:999px;background:rgba(20,22,26,.92);color:#fff;font:600 13px var(--f);box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:auto;white-space:nowrap}
+.head-bar em{font-style:normal;color:#ffb08a}
+.head-bar em:empty{display:none}
+.head-bar button{border:0;border-radius:999px;padding:6px 14px;font:700 13px var(--f);background:#e0703a;color:#fff;cursor:pointer}
+.head-edit.nobar .head-bar{display:none}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div id="stage"><canvas id="cv" tabindex="0"></canvas></div>
+<div id="stageFrame"><div class="edit-frame" data-edit="scene"><span class="lbl">分拣台位置 · 拖动移动，拖右下角圆点改大小</span><i class="rz"></i></div></div>
+<div id="hud">
+  <div id="counter">
+    <div class="lv" id="lvLine"></div>
+    <div class="col work"><div class="lbl">剩余</div><div class="num" id="remain">0</div></div>
+    <div class="fin"><div class="check"><svg width="20" height="20" viewBox="0 0 20 20"><path class="ok" d="M4 10.5l4 4 8-9" fill="none" stroke="#123a22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path class="no" d="M5 5l10 10M15 5L5 15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg></div><div><b id="finTitle">收工</b><small id="finInfo"></small><small id="finStats"></small></div><button id="nextBtn">下一关</button></div>
+    <div class="sep"></div>
+    <div class="col"><div class="lbl">已收</div><div class="num sm" id="deliv">0</div></div>
+    <div id="auditPill"></div>
+    <div id="queueLine"></div>
+    <div class="edit-frame" data-edit="counter"><i class="rz"></i></div>
+  </div>
+  <div id="hop"><i></i><span id="hopN">0</span></div>
+  <div class="binc" id="bc0">0</div><div class="binc" id="bc1">0</div><div class="binc" id="bc2">0</div><div class="binc" id="bc3">0</div>
+  <div id="heldName"></div>
+  <div id="board"><h4><span id="linkDot"></span>直播间互动<small></small></h4><ul></ul><div class="edit-frame" data-edit="board"><i class="rz"></i></div></div>
+  <div id="scanTag" class="scantag">扫码台 · 撕掉面单的件拿过来扫一下</div>
+  <div id="tags"></div>
+  <svg id="ghost" viewBox="0 0 22 28"><path d="M2 2 L2 22 L7.5 17 L11 25.5 L14.5 24 L11 16 L18.5 16 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  <div id="demoPill">自动演示中</div>
+</div>
+<div id="layoutBar">拖动分拣台、计数牌、说明牌调整位置，拖橙色圆点改大小 <button id="layoutDone">完成</button></div>
+<div id="loading">正在准备分拣台…</div>
+<div id="toast" role="status"></div>
+<button id="gear" title="打开设置（双击画面空白处 / H）" aria-label="打开设置">⚙</button>
+<div id="panel" role="dialog" aria-label="快递分拣管理">
+  <div class="ph"><b>快递分拣 · 管理</b><div class="acts"><button id="pclose">隐藏设置</button></div></div>
+  <div class="seg modeseg" id="modeSeg"><button data-mode="express">快递分拣</button><button data-mode="garbage">垃圾分类</button></div>
+  <div id="tabs"><button data-tab="test" class="on">测试</button><button data-tab="levels">玩法</button><button data-tab="rules">互动</button><button data-tab="fx">参数</button><button data-tab="view">画面</button><button data-tab="link">连接</button><button data-tab="backup">备份</button></div>
+
+  <section data-page="test">
+    <label class="f">观众名<input id="nm" placeholder="留空随机" maxlength="12"></label>
+    <div class="sec">直接触发效果（按各互动的默认档；每一档可以在「参数」页单独点 ▶ 试）</div>
+    <div class="grid g4" id="fxBtns"></div>
+    <div class="sec">批量堆积预览</div>
+    <label class="f">场上上限（可自定义）<input id="bulkCap" type="number" min="1" max="50000" step="1" value="150"></label>
+    <label class="f">加件数量<input id="bulkCount" type="number" min="1" max="50000" step="1" value="150"></label>
+    <label class="f">本次物件大小（1为原尺寸）<input id="bulkScale" type="number" min="0.1" max="1" step="0.05" value="1"></label>
+    <div class="btns"><button id="bulkTruck">货车加件</button><button id="bulkPile">直接放到场上</button></div>
+    <div class="btns"><button id="fitPile">查看整堆</button><button id="normalView">恢复普通取景</button></div>
+    <p class="note">场上上限与直接加件数量均支持1–50000。大批量直接放入场地，保留当前取景；只有点「查看整堆」才缩放。可见物件均可拖出，包括被压住、缠胶带和盲盒；短点仍可拆胶带或打开盲盒。静止物件合批显示，抓取时恢复单件物理。这些按钮是本地模拟。</p>
+    <div class="sec">模拟直播事件（走互动规则，和真实礼物一样处理）</div>
+    <div class="sim"><select id="simType" aria-label="事件类型"><option value="gift">礼物</option><option value="chat">弹幕</option><option value="like">点赞</option><option value="follow">关注</option><option value="member">进场</option></select><input id="simText" placeholder="礼物名" value="玫瑰"><input id="simCount" type="number" min="1" max="1000" value="1" title="个数"><button id="simSend">发送</button></div>
+    <div class="btns"><button data-g="combo">连送 ×5</button><button id="demoBtn" class="primary">▶ 自动演示</button><button id="stopAll">停止所有效果</button><button id="restart">重开本关</button></div>
+    <div class="sec">预览背景（插件本身始终透明）</div>
+    <div class="seg" id="bgSeg"><button data-bg="none">透明</button><button data-bg="room">房间</button><button data-bg="dark">深色</button><button data-bg="light">浅色</button><button data-bg="checker">棋盘</button></div>
+    <p class="note">快捷键：H 开关设置，1–9、0 直接触发效果（0 = 抽查），Esc 放下手里的包裹。设置打开时会出现在直播画面里，开播前点「隐藏设置」。</p>
+  </section>
+
+  <section data-page="levels" hidden>
+    <label class="chk"><input id="endlessMode" type="checkbox">无尽模式（仅观众互动加件）</label>
+    <p class="note">空场等待观众；礼物、弹幕等按互动规则加件。清空后继续等待，累计已收不清零。清空重开、切换玩法或刷新会开始新的统计；刷新只保存设置，不保存待处理队列。</p>
+    <div id="legacyLevels">
+    <p class="note" style="margin-top:0">每关由货车运来。红/黄/蓝是普通件数量；「缠胶带」「无面单」从普通件里挑出来加工；盲盒会砸在工作台上，拆开炸出「盲盒内件数」。倍速是这一关的传送带速度倍数；限时 0 为不限时，超时算失败。</p>
+    <div id="levelList"></div>
+    <div class="btns"><button id="addLevel">＋ 添加关卡</button><button id="saveLevels" class="primary">保存关卡</button><button id="resetLevels">恢复示例关卡</button></div>
+    <div class="sec">过关后</div>
+    <label class="f">过关 / 超时后<select id="sAfter" aria-label="过关后"><option value="wait">等主播点按钮</option><option value="auto">自动进入下一关</option></select></label>
+    <label class="f">自动等待秒数<input type="number" id="sAutoSec" min="2" max="60"></label>
+    <label class="chk"><input type="checkbox" id="sLoop">最后一关过完后从第一关循环</label>
+    </div>
+    <div id="garbageCfg" hidden>
+      <div class="sec">垃圾分类设置</div>
+      <label class="f">桶的叫法<select id="gNaming" aria-label="桶的叫法"><option value="national">国标：厨余 / 其他</option><option value="shanghai">上海：湿垃圾 / 干垃圾</option></select></label>
+      <label class="chk"><input type="checkbox" id="gNames">拿起垃圾时头顶显示名字</label>
+      <p class="note">各地分类口径不同：可以关掉某种垃圾，或改它该进哪个桶（★ 为易错品种，「刁钻垃圾」从这里面挑）。改动从下一件生成的垃圾开始生效。</p>
+      <div id="gItems"></div>
+    </div>
+  </section>
+
+  <section data-page="rules" hidden>
+    <p class="note" style="margin-top:0">来源 → 效果。礼物名忽略大小写、全角半角和首尾空格，效果量 = 数值 × 礼物个数；弹幕含关键词即触发；点赞按全场累计；冷却按每位观众计算。示例礼物名请按直播间实际礼物修改。</p>
+    <div id="ruleList"></div>
+    <div class="btns"><button id="addRule">＋ 添加规则</button><button id="saveRules" class="primary">保存规则</button><button id="resetRules">恢复示例规则</button></div>
+  </section>
+
+  <section data-page="fx" hidden>
+    <div class="sec">传送带</div>
+    <label class="f">默认速度<input type="range" id="fBelt" min="0.3" max="3" step="0.1"><span class="v" id="fBeltV"></span></label>
+    <label class="f">上件间隔<input type="range" id="fGap" min="0.4" max="6" step="0.1"><span class="v" id="fGapV"></span></label>
+    <div class="sec">互动分档（每种互动想要几档就加几档，最多 12 档；名字、参数都能改）</div>
+    <p class="note" style="margin-top:0">「互动」页每条规则自己选用哪一档；规则里的数值就是这一档的数量，礼物个数只乘数量、不会自动升档。打 ◉ 的是默认档：测试按钮、快捷键、没选档位的规则、白曜动作没写档位时用它。白曜动作名后加档位名或第几档选档，例如 <b>seal:重</b>、<b>seal:2</b>。</p>
+    <div id="tierCards"></div>
+    <div class="btns"><button id="tierReset">分档恢复默认</button></div>
+    <div class="sec">分错与场地</div>
+    <label class="f">分错后<select id="pWrong" aria-label="分错后"><option value="double">弹出并翻倍</option><option value="bounce">只弹回，不加件</option></select></label>
+    <label class="f">分错时变成几件<select id="pMult" aria-label="分错时变成几件"><option value="2">2 件（一变二）</option><option value="3">3 件</option><option value="4">4 件</option></select></label>
+    <label class="f">同时在场件数<input type="number" id="pCap" min="1" max="50000" step="1"></label>
+    <label class="f">件能跑到哪<select id="pRange" aria-label="件能跑到哪"><option value="window">整个窗口</option><option value="platform">只在地台上</option></select></label>
+    <label class="f">地台后方空间<select id="pBack" aria-label="地台后方空间"><option value="small">小</option><option value="mid">中</option><option value="large">大</option></select></label>
+    <label class="chk"><input type="checkbox" id="pBlob">地台外的件显示接地阴影</label>
+    <p class="note">同时在场件数可设置1–50000；「测试」页可直接放入一万件以上的物件。货车方式仍按上件速度卸货，达到你设定的场上上限后才排队。待处理总量最多100万件。大量静止物件冻结合批，抓取及附近物件按局部物理处理。</p>
+  </section>
+
+  <section data-page="view" hidden>
+    <div class="sec">分拣台布局</div>
+    <label class="f">布局<select id="pStage" aria-label="分拣台布局"></select></label>
+    <p class="note">柜台：一长条柜台横在画面底部，主播站在后面，垃圾在面前越堆越高，人物在画面中间时最和谐。经典俯视：斜着往下看的立体展台。切换后页面会重新载入、这一关重开；两种布局的分拣台位置和视角分开记。</p>
+    <div class="btns"><button id="layoutEdit" class="primary">拖动调整布局</button><button id="layoutReset">布局恢复默认</button></div>
+    <div class="sec">分拣台位置（分拣台框在这个区域里；3D 画面始终铺满整个窗口）</div>
+    <div class="presets" id="scenePresets"><button data-p="full">全屏</button><button data-p="bottom">下方大半屏</button><button data-p="strip">底部横条</button><button data-p="bl">左下角</button><button data-p="br">右下角</button></div>
+    <div class="f2"><label class="f">左 %<input type="number" id="scX" min="-50" max="100"></label><label class="f">上 %<input type="number" id="scY" min="-50" max="100"></label><label class="f">宽 %<input type="number" id="scW" min="10" max="150"></label><label class="f">高 %<input type="number" id="scH" min="10" max="150"></label></div>
+    <div class="sec">主播露头圆（和扫叶子一样给脸留一块：件挤不进去，画面上完全透明）</div>
+    <label class="chk"><input type="checkbox" id="hOn">开启露头圆</label>
+    <label class="f">圆的大小<input type="range" id="hR" min="3" max="45" step="0.5"><span class="v" id="hRV"></span></label>
+    <div class="btns"><button id="hEdit" class="primary">调整位置和大小</button><button id="hReset">回到默认位置</button></div>
+    <div class="sec">视角</div>
+    <div class="presets" id="camPresets"><button data-v="oblique">斜俯视</button><button data-v="high">高俯视</button><button data-v="front">低角度正面</button><button data-v="side">侧斜</button></div>
+    <label class="f">俯仰角<input type="range" id="cPitch" min="12" max="80" step="1"><span class="v" id="cPitchV"></span></label>
+    <label class="f">左右转<input type="range" id="cYaw" min="-40" max="40" step="1"><span class="v" id="cYawV"></span></label>
+    <label class="f">放大<input type="range" id="cZoom" min="60" max="250" step="5"><span class="v" id="cZoomV"></span></label>
+    <label class="f">左右移<input type="range" id="cPanX" min="-60" max="60" step="1"><span class="v" id="cPanXV"></span></label>
+    <label class="f">上下移<input type="range" id="cPanY" min="-60" max="60" step="1"><span class="v" id="cPanYV"></span></label>
+    <div class="sec">画面组件（开关与大小）</div>
+    <label class="f"><span><input type="checkbox" id="oCounter"> 计数牌</span><input type="range" id="sCounter" min="40" max="250" step="5"><span class="v" id="sCounterV"></span></label>
+    <label class="f"><span><input type="checkbox" id="oBoard"> 互动说明牌</span><input type="range" id="sBoard" min="40" max="250" step="5"><span class="v" id="sBoardV"></span></label>
+    <label class="f"><span><input type="checkbox" id="oTags"> 观众署名</span><input type="range" id="sTags" min="40" max="250" step="5"><span class="v" id="sTagsV"></span></label>
+    <label class="chk"><input type="checkbox" id="oBadges">车上件数、扫码台提示</label>
+    <label class="chk"><input type="checkbox" id="oBinCount">筐上的已收数字</label>
+    <label class="chk"><input type="checkbox" id="oCursor">自动演示光标与提示</label>
+    <div class="sec">管理面板</div>
+    <label class="f">面板大小<input type="range" id="pScale" min="60" max="160" step="5"><span class="v" id="pScaleV"></span></label>
+    <label class="f">面板位置<select id="pSide" aria-label="面板位置"><option value="right">右下</option><option value="left">左下</option></select></label>
+    <div class="sec">声音</div>
+    <label class="f"><span><input type="checkbox" id="sSound"> 音效</span><input type="range" id="sVol" min="0" max="100" step="5"><span class="v" id="sVolV"></span></label>
+    <div class="sec">性能</div>
+    <label class="f">渲染清晰度<select id="pfScale" aria-label="渲染清晰度"><option value="0.5">省电 50%</option><option value="0.75">75%</option><option value="1">标准 100%</option><option value="1.5">高清 150%</option></select></label>
+    <label class="f">帧率上限<select id="pfFps" aria-label="帧率上限"><option value="30">30</option><option value="45">45</option><option value="60">60</option><option value="144">不限（跟显示器）</option></select></label>
+    <label class="f">阴影<select id="pfShadow" aria-label="阴影"><option value="soft">柔和</option><option value="hard">简化</option><option value="off">关闭</option></select></label>
+    <label class="chk"><input type="checkbox" id="pfIdle">场上没动静时自动降到 12 帧</label>
+    <label class="chk"><input type="checkbox" id="pfAa">抗锯齿（改后刷新页面生效）</label>
+  </section>
+
+  <section data-page="link" hidden>
+    <div class="status" id="linkStatus">本地预览</div>
+    <label class="chk"><input type="checkbox" id="lLive"><span><b>接收直播互动</b>（关掉后礼物、弹幕、白曜动作都不执行，测试按钮仍可用）</span></label>
+    <label class="chk"><input type="checkbox" id="sWs">没有菘蓝 SDK 时连接本机礼物通道</label>
+    <label class="f">本机端口<input type="number" id="sPort" min="1" max="65535"></label>
+    <div class="presets"><button data-port="10030">10030 本机转发</button><button data-port="9910">9910 菘蓝整蛊机</button></div>
+    <p class="note">菘蓝插件宿主里自动走 SonglanPlugin（礼物、弹幕、点赞、关注、进场）；白曜重工上屏时同时接收 BaiyaoPlugin 动作：truck / blind / seal / speed / leak / strip / tape / kick / help（也认中文名，数值为效果量）。同一个礼物不要在白曜和本插件两边都配规则，否则会触发两次。同一事件 ID 10 秒内只处理一次。只让一个插件实例收礼。</p>
+    <div class="sec">最近收到的互动</div>
+    <div class="log" id="evLog"></div>
+  </section>
+
+  <section data-page="backup" hidden>
+    <p class="note" style="margin-top:0">设置存在当前浏览器里，OBS 浏览器源和普通浏览器是分开保存的。换环境时先导出，再到新环境导入。</p>
+    <div class="btns"><button id="exportAll" class="primary">导出全部设置</button><label class="fb">导入设置<input type="file" id="importAll" accept=".json,application/json"></label><button id="importOk" hidden class="primary">确认替换</button><button id="importNo" hidden>取消</button></div>
+    <p class="note" id="importInfo"></p>
+    <div class="sec">恢复</div>
+    <div class="btns"><button id="factory">全部恢复默认</button></div>
+  </section>
+</div>
+<script>__INLINE_BUNDLE__</script>
+</body>
+</html>

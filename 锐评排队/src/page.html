@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="author" content="BYSL"><meta name="description" content="BYSL 锐评排队 · 独立透明直播插件"><title>锐评候场室 · 操作页</title><style>/*__STYLE__*/
+/*__THEME_STYLE__*/</style><script>/*__SURFACE__*/</script></head>
+<body>
+<!-- BYSL · 锐评候场室 · 单文件签名 / v1.9.0 / 2026-09-20 -->
+<span hidden aria-hidden="true" data-bysl-signature="review-queue-v1">BYSL</span>
+<main id="canvas" aria-label="透明直播画面">
+ <section id="stage" aria-label="锐评队列"><button id="stage-move" class="stage-handle stage-move" type="button" aria-label="拖动整个队列" title="按住拖动整个队列；方向键微调">✥</button><header class="stage-heading"><h1 id="stage-title">锐评候场室</h1><span id="waiting-count"></span></header><div id="cards"></div><button id="stage-resize" class="stage-handle stage-resize" type="button" aria-label="缩放整个队列" title="按住等比例调整大小；方向键微调">↘</button></section>
+ <button id="open-panel" class="launcher" title="打开控制台，也可双击空白处或按 Esc">☷ 控制台</button>
+ <div id="preview-label">透明画面 · 关闭控制台即可上屏</div>
+</main>
+<aside id="panel" aria-label="主播控制台" hidden>
+ <header class="panel-header"><div><h2>控制台</h2><div class="connection"><i id="connection-dot"></i><span id="connection-status">正在启动</span></div></div><div class="panel-tools"><button id="menu-smaller" type="button" aria-label="缩小控制台字号" title="缩小控制台字号">A−</button><button id="menu-larger" type="button" aria-label="放大控制台字号" title="放大控制台字号">A＋</button><button id="close-panel" class="icon-button" aria-label="关闭控制台">×</button></div></header>
+ <nav id="tabs" aria-label="控制台分类"></nav>
+ <div id="storage-warning" class="warning" hidden></div>
+ <div id="panel-content"></div>
+ <footer class="panel-footer"><button id="next-btn" class="primary">完成并下一位 <span>→</span></button><button id="finish-btn">只完成</button></footer>
+</aside>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="modal"><div id="modal-content"></div></dialog>
+<input id="image-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+<input id="backup-file" type="file" accept=".json,application/json" hidden>
+<script>/*__THEMES__*/</script><script>/*__ENGINE__*/</script><script>/*__TRANSPORT__*/</script><script>/*__MODEL__*/</script><script>/*__STORAGE__*/</script><script>/*__MOTION__*/</script><script>/*__APP__*/</script>
+</body></html>

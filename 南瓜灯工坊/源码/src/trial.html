@@ -1,0 +1,45 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>南瓜灯工坊 · 试玩</title><style>
+*{box-sizing:border-box}body{margin:0;height:100vh;display:grid;grid-template-columns:290px 1fr;font:14px "Microsoft YaHei",sans-serif;color:#4a2a18;background:#efe6d8}
+aside{padding:20px 18px;overflow:auto;background:#fff5e2;border-right:3px solid #6e3a1c}
+h1{margin:0 0 4px;font-size:26px}h2{font-size:14px;margin:18px 0 6px;color:#8a5a3a}
+ol{margin:6px 0 0;padding-left:20px;line-height:1.9;font-size:13px;color:#6a4a32}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+button,select{font:inherit;border:2px solid #6e3a1c;border-radius:11px;padding:8px 6px;color:#5a2a12;background:#fffaf0;cursor:pointer;font-weight:700}
+button:hover{background:#ffe1aa}button.wide{grid-column:1/-1}button.main{background:#ffbe68}
+small{display:block;margin-top:16px;color:#8a6a4a;line-height:1.8}
+main{position:relative;min-width:0;overflow:hidden;background:repeating-conic-gradient(#d9d4cc 0% 25%,#e6e1d9 0% 50%) 0/32px 32px}
+#box{position:absolute;left:50%;top:50%;transform-origin:0 0}
+#avatar{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:88%;pointer-events:none}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
+</style></head><body><aside>
+<h1>南瓜灯工坊</h1>
+<ol><li>按住南瓜盖子往上拔</li><li>拖个模具到南瓜上，或者直接在瓜上画（画圈挖洞、画线刻缝）</li><li>点火棒拖到南瓜上，点亮</li><li>糖罐拖到南瓜口，倒糖</li></ol>
+<p style="font-size:13px;color:#6a4a32;line-height:1.8">做好的灯写着订的人的名字，跳到右边的塔上；叠满 6 盏小车拉走，送达一盏得一颗糖（满车多给 2 颗）。送走的灯挂到上面的<b>灯串</b>上：往左右拖能翻看，按住一盏能拎起来看是谁订的。<br>观众送「帮做礼物」会派<b>南瓜精灵</b>，把排队的南瓜直接变成灯；谁的灯送得多、谁送糖、谁派精灵，都上<b>贡献榜</b>。<br>观众叫来的捣蛋鬼会先讨糖：<b>点它就给糖</b>，它开心走掉；不给或糖不够，它就去推塔，越高的灯越容易摔碎，碎了挂「重做」重新排队。<br>灯串、贡献榜、糖罐的位置和大小：点画面上的「✥ 摆位置」拖。</p>
+<h2>来订单</h2><div class="grid">
+<button class="main" data-do="order1">弹幕点一个</button><button data-do="order5">一下来 5 个</button>
+<button data-do="order30">一下来 30 个</button><button data-do="face">点名要猫猫脸</button>
+<button data-do="help3" class="wide">观众派南瓜精灵帮做 3 盏</button></div>
+<h2>观众捣乱</h2><div class="grid">
+<button data-do="wind">妖风</button><button data-do="cat">黑猫</button>
+<button data-do="cat3">黑猫 ×3</button><button data-do="witch">女巫</button>
+<button data-do="ghost">小鬼</button><button data-do="stack">直接叠 5 盏</button>
+<button data-do="candy" class="wide">粉丝送糖 +10</button></div>
+<h2>其他</h2><div class="grid">
+<button data-do="settings">打开设置</button><button data-do="reset">清空重来</button>
+<button data-do="layout" class="wide">摆位置（灯串、贡献榜、糖罐）</button>
+<select id="size" class="wide"><option value="">画布：跟着窗口</option><option value="1920x1080">1920×1080 横屏</option><option value="2048x1536">2048×1536（4:3）</option><option value="1080x1920">1080×1920 竖屏</option><option value="2560x1080">2560×1080 带鱼屏</option></select></div>
+<small>这里的皮套图只是为了看位置；直播时 OBS 里只有南瓜、工具和塔，背景是透明的。</small>
+</aside><main id="scene"><div id="box"><img id="avatar" src="__AVATAR__" alt=""><iframe id="frame" title="南瓜灯工坊"></iframe></div></main>
+<script>
+const frame=document.getElementById('frame'),box=document.getElementById('box'),scene=document.getElementById('scene');
+frame.srcdoc=__EMBEDDED_HTML__;
+const api=()=>frame.contentWindow&&frame.contentWindow.pumpkinDemo;
+const acts={order1:a=>a.order(1,{via:'comment'}),order5:a=>a.order(5),order30:a=>a.order(30),face:a=>a.order(1,{face:'cat',via:'comment'}),
+help3:a=>a.help(3),layout:a=>a.edit(true),candy:a=>a.candy(10),wind:a=>a.mess('wind'),cat:a=>a.mess('cat'),cat3:a=>a.mess('cat',3),witch:a=>a.mess('witch'),ghost:a=>a.mess('ghost'),stack:a=>a.stack(5),settings:a=>a.openSettings(),reset:a=>a.reset()};
+document.querySelector('aside').addEventListener('click',e=>{const b=e.target.closest('button[data-do]');if(!b)return;const a=api();if(a)acts[b.dataset.do](a);});
+function fit(){const v=document.getElementById('size').value,W=scene.clientWidth,H=scene.clientHeight;
+if(!v){box.style.width=W+'px';box.style.height=H+'px';box.style.transform='translate(-50%,-50%)';return;}
+const [w,h]=v.split('x').map(Number),k=Math.min(W/w,H/h);box.style.width=w+'px';box.style.height=h+'px';box.style.transform=`translate(-50%,-50%) scale(${k})`;box.style.transformOrigin='center';box.style.left='50%';box.style.top='50%';
+box.style.transform=`translate(${-w/2}px,${-h/2}px) scale(${k})`;box.style.transformOrigin=`${w/2}px ${h/2}px`;}
+document.getElementById('size').onchange=fit;addEventListener('resize',fit);fit();
+</script></body></html>

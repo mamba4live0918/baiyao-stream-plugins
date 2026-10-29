@@ -1,0 +1,11 @@
+#pen{pointer-events:none;border-radius:0}
+#pen>img,#pen .pen-hint{pointer-events:none}
+#pen-hit{position:absolute;inset:0;pointer-events:none;touch-action:none;cursor:grab}
+#pen.is-locked #pen-hit{cursor:default}
+#pen.over{transform:translate(-50%,-50%)}
+#pen.manipulating{outline:none}
+#pen.manipulating>img{filter:drop-shadow(0 0 5px #dc8ba6)}
+#pen-lock,#pen-resize{z-index:2;pointer-events:none}
+#pen.shape-controls #pen-lock,#pen.shape-controls #pen-resize,#pen:focus-within #pen-lock,#pen:focus-within #pen-resize,#pen.manipulating #pen-lock,#pen.manipulating #pen-resize,#pen.is-locked #pen-lock{opacity:1;pointer-events:auto}
+#pen>.pen-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 15px 9px #66472d20)}
+#pen.manipulating>.pen-frame{filter:drop-shadow(0 0 5px #dc8ba6)}

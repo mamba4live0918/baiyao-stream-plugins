@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>皮套互动 · 打捏踢</title><style>/* INLINE_STYLE */</style></head>
+<body>
+<div id="stage" aria-label="直播互动透明画布"><div id="world"><div id="effects"></div><div id="live-markers" hidden></div></div></div>
+<button id="reopen" title="也可以双击画面打开设置" hidden>设置</button>
+<div id="settings-backdrop">
+<section id="settings" aria-label="皮套互动设置" role="dialog" aria-modal="true">
+<header><div><h1>皮套互动</h1><span class="subtitle">VTube Studio 互动控制</span></div><button id="close-settings" class="icon-button" aria-label="隐藏设置">×</button></header>
+<div id="storage-warning" class="warning" role="alert" hidden></div>
+<div class="connection-bar"><span id="connection-state" class="state">未连接 VTS</span><div class="connection-controls"><label>VTS 端口 <input id="vts-port" type="number" min="1" max="65535" value="8001"></label><button id="connect-vts" class="primary">连接 VTS</button><button id="disconnect-vts" hidden>断开</button><button id="refresh-vts" title="刷新模型、热键和输入参数" hidden>刷新模型</button></div></div>
+<div class="workspace">
+<section class="pane calibration">
+<div class="pane-heading"><h2>校准预览</h2><span id="model-name">演示配置</span></div>
+<div class="resolution-row"><label>画布分辨率 <select id="resolution-select"><option value="1280x720">1280 × 720 · 横屏</option><option value="1920x1080" selected>1920 × 1080 · 横屏</option><option value="2560x1440">2560 × 1440 · 横屏</option><option value="3840x2160">3840 × 2160 · 横屏</option><option value="720x1280">720 × 1280 · 竖屏</option><option value="1080x1920">1080 × 1920 · 竖屏</option><option value="custom">自定义</option></select></label><span id="canvas-info" class="muted"></span></div>
+<div id="custom-resolution" class="form-line" hidden><label>宽 <input id="scene-width" type="number" min="320" max="7680" value="1920"></label><span>×</span><label>高 <input id="scene-height" type="number" min="320" max="7680" value="1080"></label><button id="apply-resolution">应用</button></div>
+<div id="preview-shell"><div id="preview" aria-label="准星校准画布"><svg id="guide-model" viewBox="0 0 300 450" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="M103 126C91 114 91 88 101 86C82 4 218 4 199 86C209 88 209 114 197 126L177 151L179 171C245 185 238 211 256 302L282 395L253 407L212 316L199 257L190 370L223 450H77L110 370L101 257L88 316L47 407L18 395L44 302C62 211 55 185 121 171L123 151Z"/></svg><span id="guide-caption">示意轮廓 · 请在 OBS 中对齐真实皮套</span><div id="preview-effects"></div><div id="preview-markers"></div></div></div>
+<p class="hint">拖动准星，设置动作落点。坐标按画布比例保存。</p>
+<div class="anchor-controls"><select id="anchor-select" aria-label="选择准星"><option value="hit">打脸</option><option value="hitHead">打头</option><option value="pinchLeft">捏左</option><option value="pinchRight">捏右</option><option value="kick">踢</option></select><label>X <input id="anchor-x" type="number" min="0" max="100" step="0.1"> %</label><label>Y <input id="anchor-y" type="number" min="0" max="100" step="0.1"> %</label><button id="save-layout" class="primary">保存校准</button></div>
+<div class="calibration-bottom"><label class="checkbox"><input id="show-markers" type="checkbox"> 显示直播准星</label><button id="calibrate-live">直播画面校准</button><span id="calibration-state" class="muted">尚未校准</span></div>
+</section>
+<section class="pane actions"><h2>动作设置</h2><div class="action-tabs" role="tablist" aria-label="动作"><button data-action="hit" role="tab" aria-selected="true" class="selected">打</button><button data-action="pinch" role="tab" aria-selected="false">捏</button><button data-action="kick" role="tab" aria-selected="false">踢</button></div>
+<div class="action-intro"><div id="action-icon" aria-hidden="true"></div><div><strong id="action-title">掌击反馈</strong><p id="action-description" class="hint">强冲击、短暂定格，再弹回原位。</p></div></div>
+<label class="slider-line">手脚大小 <input id="action-size" type="range" min="2" max="100" step="1" value="16"><output id="size-value">16%</output></label>
+<label class="wide-label">精确大小（%）<input id="action-size-number" type="number" min="2" max="100" step="1" value="16"></label>
+<label id="effect-size-row" class="slider-line">冲击大小 <input id="action-effect-scale" type="range" min="25" max="300" step="5" value="100"><output id="effect-scale-value">100%</output></label>
+<div id="hit-extra"><label class="wide-label">打击部位 <select id="hit-target"><option value="face">打脸 · 侧向拍入</option><option value="head">打头 · 从上拍下</option></select></label><label class="slider-line">接触大小 <input id="hit-contact-scale" type="range" min="25" max="300" step="5" value="100"><output id="contact-scale-value">100%</output></label><label class="wide-label">接触肤色 <input id="hit-skin-color" type="text" maxlength="7" value="#f9e1d2" aria-label="打击接触肤色 HEX"></label><p class="hint small">分别把“打脸”和“打头”准星放在掌心接触位置；切换部位会切换准星。打头显示压痕线，肤色用于打脸衔接。</p></div>
+<label id="kick-shrink-row" class="slider-line" hidden>踢飞缩小幅度 <input id="kick-shrink" type="range" min="0" max="95" step="5" value="70"><output id="kick-shrink-value">70%</output></label>
+<label class="slider-line">动作强度 <input id="action-intensity" type="range" min="0" max="300" step="5" value="100"><output id="intensity-value">100%</output></label>
+<label class="slider-line">持续时间 <input id="action-duration" type="range" min="0.1" max="5" step="0.1" value="1"><output id="duration-value">1.0 秒</output></label>
+<label class="wide-label">来击方向 <select id="action-direction"><option value="left">从左侧</option><option value="right">从右侧</option></select></label>
+<label id="kick-variant-row" class="wide-label" hidden>踢击素材 <select id="kick-variant"><option value="shoe">穿鞋踢</option><option value="barefoot">赤脚踢</option></select></label>
+<label class="wide-label">同步热键 <select id="action-hotkey"><option value="">不触发</option></select></label>
+<div id="pinch-extra" hidden>
+<div class="pinch-look">
+<strong>皮肤衔接</strong><p class="hint small">选择脸颊接触处的肤色，捏痕会随夹紧、拉扯和松手变化。</p>
+<div class="skin-presets" role="group" aria-label="肤色预设">
+<button type="button" data-skin-color="#fff0e3" style="--tone:#fff0e3" aria-label="白皙肤色"><span></span>白皙</button>
+<button type="button" data-skin-color="#f9e1d2" style="--tone:#f9e1d2" aria-label="自然肤色"><span></span>自然</button>
+<button type="button" data-skin-color="#e6b999" style="--tone:#e6b999" aria-label="暖肤色"><span></span>暖肤</button>
+<button type="button" data-skin-color="#b88762" style="--tone:#b88762" aria-label="小麦肤色"><span></span>小麦</button>
+<button type="button" data-skin-color="#67472f" style="--tone:#67472f" aria-label="深肤色"><span></span>深肤</button>
+</div>
+<label class="wide-label">捏痕肤色 <span class="skin-input"><span id="skin-swatch" aria-hidden="true"></span><input id="pinch-skin-color" type="text" maxlength="9" spellcheck="false" autocomplete="off" placeholder="#FFE3D5" aria-label="捏痕肤色 HEX"></span></label>
+<label class="slider-line">捏痕大小 <input id="pinch-mark-scale" type="range" min="50" max="200" step="5" value="100"><output id="mark-scale-value">100%</output></label>
+<label class="slider-line">明显度 <input id="pinch-mark-opacity" type="range" min="0" max="100" step="5" value="85"><output id="mark-opacity-value">85%</output></label>
+<button id="save-pinch-look" type="button">保存捏痕设置</button>
+</div>
+<details class="pinch-advanced"><summary>模型专用捏脸参数（可选）</summary><label class="wide-label">已绑定的 VTS 输入参数 <select id="action-parameter"><option value="">只使用通用反馈</option></select></label><label class="wide-label">参数叠加量 <input id="parameter-value" type="number" step="0.1" value="0"></label><p class="hint small">捏痕是皮肤衔接特效；模型自身的脸颊变形仍需已有参数支持。</p></details>
+</div>
+<button id="save-action-settings" class="demo-button">保存动作与大小</button><div class="test-buttons"><button id="preview-action" class="outline">预览特效</button><button id="test-action" disabled>测试模型反应</button></div><button id="demo-actions" class="demo-button" disabled title="隐藏设置，5秒后依次演示打脸、打头、捏、穿鞋踢、赤脚踢，动作间留2秒">完整演示 · 5秒后开始</button><p class="hint small">预览不控制模型。热键执行一次，开关型表情需自行恢复。</p>
+</section></div>
+<section class="pane gifts"><div class="pane-heading"><h2>礼物绑定</h2><button id="add-rule">＋ 添加规则</button></div><div class="rule-head"><span>礼物名称</span><span>动作</span><span>次数 / 个</span><span></span></div><div id="gift-rules"></div><p id="rules-empty" class="hint">添加一条规则，把观众送来的礼物绑定到动作。</p><div class="gift-bottom"><span id="gift-state" class="muted">等待菘蓝 SDK</span><button id="connect-gifts">连接本机礼物通道</button><button id="save-rules">保存规则</button></div></section>
+<details class="advanced"><summary>声音、配置备份与适配说明</summary><div class="advanced-content"><label class="slider-line">音效音量 <input id="volume" type="range" min="0" max="100" value="40"><output id="volume-value">40%</output></label><div class="form-line"><button id="export-config">导出配置</button><button id="import-config">导入配置</button><input id="import-file" type="file" accept=".json,application/json" hidden></div><p>同长宽比更换清晰度会保持落点；横竖屏分别校准。OBS 的模型源和插件源需保持一致的画布对齐。改变模型摆放、裁剪或拉伸后请重新校准。准星不自动追踪脸部。</p><p>真实礼物需连接 VTS 并保存当前校准。刷新、断线、切模型或停止后请重新启用；只启用一个插件实例。踢的途中断线时，需在 VTS 中检查并恢复模型位置。</p><p>“直播画面校准”会隐藏面板，保留可拖动准星。完成后返回设置并保存；开播前关闭“显示直播准星”。双击透明画面可随时打开设置。</p></div></details>
+<footer><label class="live-toggle"><input id="enable-live" type="checkbox"><span class="switch-track"></span>启用礼物互动</label><span id="queue-state" class="muted">队列 0</span><div class="footer-actions"><button id="stop-all" class="danger">停止全部</button><button id="hide-settings" class="primary">隐藏设置</button></div></footer>
+</section></div>
+<div id="toast" role="status" hidden></div>
+<dialog id="import-dialog"><h2>替换插件配置？</h2><p id="import-summary"></p><p class="hint">将替换本浏览器内的模型适配与礼物规则，不包含 VTS 授权令牌。</p><div class="form-line"><button id="cancel-import">取消</button><button id="confirm-import" class="primary">确认替换</button></div></dialog>
+<script>/* INLINE_SCRIPT */</script>
+</body></html>

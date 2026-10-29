@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="horror">
+<head>
+<meta charset="utf-8">
+<script>/* KEY_SHIM_JS */</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>红黑破锁 · 独立直播互动插件</title>
+<style>/* APP_CSS */</style>
+<style>/* LOCK_CSS */</style>
+<style>/* ARM_CSS */</style>
+<style>/* INLINE_ASSETS */</style>
+<style>/* CUSTOM_ART_CSS */</style>
+<style>/* SCENES_CSS */</style>
+<style>/* MENU_V2_CSS */</style>
+<style>/* PRESENTATION_CSS */</style>
+<style>/* HIT_CSS */</style>
+<style>/* FUFU_FONT_CSS */</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">✣</span><span><strong>红黑破锁</strong><small>直播互动 · 独立版 V2.3.3</small></span></div>
+    <div class="top-actions"><span id="connection" class="connection">本地预览</span><button id="settings-open" type="button">⚙ 设置</button></div>
+  </header>
+  <main id="arena" tabindex="-1">
+    <div class="arena-decoration" aria-hidden="true"></div>
+    <div class="arena-head"><span class="eyebrow">THE CURSED LOCK</span><span id="arena-state" class="state-label">等待锁链降临</span></div>
+    <div class="arena-copy" id="idle-screen"><span class="idle-glyph">♱</span><h1>锁链尚未降临</h1><p>观众礼物会叠加锁层；主播连按指定按键，打碎每一道封印。</p><button id="quick-lock" type="button">模拟一层普通锁</button></div>
+    <!-- LOCK_OVERLAY -->
+    <div class="arena-foot"><span id="total-cleared">已破除 0 层</span><span id="last-event">等待第一份礼物</span></div>
+  </main>
+  <div class="bottom"><span>双击画面打开设置 · 长按无效，要一下一下连点 · 停手进度回落</span><span id="storage-status"></span></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+</div>
+<div id="settings-backdrop" hidden></div>
+<aside id="settings" hidden aria-label="红黑破锁设置">
+  <div class="settings-head"><div><span class="eyebrow">CONTROL PANEL</span><h2>红黑破锁 · 互动设置</h2></div><button id="settings-close" type="button" aria-label="关闭设置">×</button></div>
+  <nav id="menu-nav" aria-label="设置分类"><button data-menu-tab="play" type="button">玩法</button><button data-menu-tab="art" type="button">素材</button><button data-menu-tab="gifts" type="button">礼物互动</button><button data-menu-tab="demo" type="button">试玩</button><button data-menu-tab="backup" type="button">备份</button></nav>
+  <div class="settings-scroll">
+    <section data-menu-page="play"><h3>选择互动模式</h3><div id="mode" class="mode-cards" role="radiogroup" aria-label="模式"><button type="button" data-value="lock" role="radio" aria-checked="false"><strong>多条进度</strong><span>填满一条消一条 · ×N 为剩余条数</span></button><button type="button" data-value="cage" role="radio" aria-checked="false"><strong>牢笼拍门</strong><span>逐道解除封锁 · 全部解除后开门</span></button><button type="button" data-value="count" role="radio" aria-checked="false"><strong>累计次数</strong><span>只累加次数 · 每按一下减 1 · 到 0 结束</span></button></div><p id="mode-description" class="menu-lead"></p><p>下方只编辑当前模式。三种模式分别保存主题、按键、显示、音效选项与礼物规则；进行中的挑战结束或在试玩页清空后才能换模式。</p>
+      <div class="setting-group"><span>锁链主题</span><div id="theme" class="theme-cards" role="radiogroup" aria-label="锁链主题"><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="fufu"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">芙芙奈 · 奶酪鼠鼠</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="horror"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">暗黑恐怖 · 红黑</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="cyber"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">赛博终端</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="typewriter"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">复古打字机</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="notebook"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">手写纸张</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="pixel"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">像素游戏</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="chalk"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">课堂黑板</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="terminal"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">老式电脑</span></button><button type="button" class="theme-card" role="radio" aria-checked="false" data-value="cream"><span class="theme-card-lock" aria-hidden="true"></span><span class="theme-card-chain" aria-hidden="true"></span><span class="theme-card-name">可爱奶油</span></button></div></div>
+      <div class="setting-group"><span>画面大小</span><div id="display-size" class="choice-grid" role="group" aria-label="画面大小"><button type="button" data-value="standard">标准</button><button type="button" data-value="large">大</button><button type="button" data-value="xlarge">特大</button></div><p class="fine">默认“大”，让手机观众更容易看清进度；小窗口会自动缩放至可见范围。</p></div>
+      <div id="decay-settings" class="setting-group"><span>停手后进度回落</span><div id="decay-presets" class="choice-grid" role="group" aria-label="回落速度预设"><button type="button" data-value="0">不回落</button><button type="button" data-value="15">慢</button><button type="button" data-value="35">默认</button><button type="button" data-value="80">快</button></div><div class="form-grid" style="margin:10px 0 4px"><label>每秒回落（一层的 %，0–500）<input id="decay-rate" type="number" min="0" max="500" step="1"></label><label>停手多久后开始回落（秒，0–10）<input id="decay-delay" type="number" min="0" max="10" step="0.05"></label></div><p id="decay-hint" class="fine" style="margin:0"></p></div>
+      <div class="form-grid"><div class="setting-group"><span>动画偏好</span><div id="motion" class="choice-grid" role="group" aria-label="动画偏好"><button type="button" data-value="on">开启</button><button type="button" data-value="auto">跟随系统</button><button type="button" data-value="off">关闭</button></div></div><div class="setting-group"><span>破锁按键</span><div class="key-recorder"><div class="key-current">当前：<strong id="lock-key-current">空格</strong></div><div class="button-row"><button id="record-lock-key" type="button" aria-pressed="false">录入按键</button><button id="cancel-lock-key" class="secondary" type="button" hidden>取消录入</button></div><p id="lock-key-status" role="status" aria-live="polite">点击录入，再按一下想用的单个键，立即保存。</p></div><div id="lock-key" class="choice-grid" role="group" aria-label="破锁按键快捷选择"><button type="button" data-value="Space">空格</button><button type="button" data-value="KeyF">F</button><button type="button" data-value="KeyJ">J</button><button type="button" data-value="Enter">回车</button></div></div></div>
+    </section>
+    <section data-menu-page="gifts" id="gift-menu"><div class="rules-mode-heading"><span id="rules-scope"></span><h3 id="rules-title">礼物规则</h3><p id="rules-description" class="menu-lead"></p></div><p class="rules-help">① 填礼物名　② 选送礼效果　③ 填下面的数量。改完自动保存。</p><details class="rules-help-details"><summary>固定值、随机范围怎么填？为什么礼物名相同？</summary><p>两个数字一样就是固定值，例如 60～60；填 50～100 就是在范围内随机。直接在礼物这一行设置，不用另外建档位。</p><p>升级时沿用了原来的礼物，所以不同模式可能有相同的礼物名。三份设置独立保存，修改当前页不会改动其他模式。</p><p id="rules-random-help"></p></details><div id="rules"></div><button id="add-rule" class="secondary" type="button">＋ 新增礼物规则</button></section>
+    <section data-menu-page="art"><h3>锁链、锁头与牢笼素材</h3><p class="menu-lead">写实和动画套装可以独立选择；锁链会连接到锁头的可见边缘。主题负责字体与面板配色。</p><div class="menu-field"><span>内置素材套装</span><div id="material-choice" class="choice-grid" role="group" aria-label="内置素材套装"><button type="button" data-value="theme">使用主题原配素材</button><button type="button" data-value="forged-steel">写实 · 锻钢监牢</button><button type="button" data-value="antique-brass">写实 · 旧黄铜锁</button><button type="button" data-value="arcane-anime">动画 · 秘法封印</button><button type="button" data-value="candy-toon">动画 · 奶油玩具</button></div></div><p class="fine">上传素材优先于内置套装，点对应素材的“恢复默认”后使用所选内置套装。</p><p>各主题分别保存锁链、锁头，可单独替换或恢复默认。支持 PNG、JPEG、WebP，每张不超过 5 MB、4096 像素。推荐透明底图片和横向锁链片段，链条连接锁头边缘，牢笼逐步关闭。展开“素材示例与下载”可查看并下载透明 PNG。牢笼模式还可展开替换栏杆、上下横梁、门框和门扣。图片合计不超过90 MB，成功保存后才替换；可随设置备份迁移。</p><div id="custom-art"></div></section>
+    <section data-menu-page="art"><h3>音效</h3><p>每种音效可选默认、自定义或关闭。上传 3 MB、10 秒以内的音频（MP3、WAV、OGG 等），能正常解码并保存后才会替换；自定义音频只保存在当前浏览器。</p><label class="range-label">总音量 <span id="sound-master-value">80%</span><input id="sound-master" type="range" min="0" max="100" step="5" value="80"></label><div id="sounds"></div></section>
+    <section data-menu-page="demo"><h3>试玩与互动模拟</h3><p class="menu-lead">选择玩法后，模拟观众关笼、加固和援助；与真实礼物使用同一套效果。</p><p id="demo-description">模拟与真实礼物走相同规则。清空需要两次单独点击，双击不会确认。</p><div class="form-grid three"><label><span id="simulate-amount-label">增加层数</span><input id="simulate-layers" type="number" min="1" max="100000" value="1"></label><label id="simulate-target-label">每层连点次数<input id="simulate-target" type="number" min="1" max="99999" value="60"></label><label>加固倍率<input id="simulate-factor" type="number" min="1" max="1000" value="2"></label><label>减链点数<input id="simulate-points" type="number" min="1" max="10000000" value="60"></label></div><div class="button-row"><button id="simulate-lock" type="button">模拟加锁</button><button id="simulate-multiply" type="button">模拟加固／翻倍</button><button id="simulate-relief" class="secondary" type="button">模拟减链</button><button id="clear-locks" class="danger" type="button" data-armed="false">清空全部锁链</button></div><div class="form-grid" style="margin-top:14px"><label>禁用秒数<input id="simulate-seconds" type="number" min="1" max="3600" value="10"></label><div class="button-row" style="align-items:flex-end"><button id="simulate-freeze" class="secondary" type="button">模拟禁用按键</button><button id="unfreeze" class="secondary" type="button">解除禁用</button></div></div></section>
+    <section data-menu-page="backup"><h3>备份与迁移</h3><p>导出主题、按键、动画、礼物规则、每条礼物的数量、次数和倍率范围、自定义素材与音效，拿到别的电脑、OBS 或菘蓝里导入。导入先预览、确认后替换设置；当前锁链的难度不受影响。</p><div class="button-row"><button id="export-settings" type="button">导出设置</button><button id="import-settings" class="secondary" type="button">导入设置</button><input id="import-file" type="file" accept=".json,application/json" hidden></div><div id="import-preview" class="import-preview" hidden><p id="import-summary"></p><div class="button-row"><button id="import-confirm" type="button">确认导入</button><button id="import-cancel" class="secondary" type="button">取消</button></div></div></section>
+    <section data-menu-page="backup"><h3>直播连接与存储</h3><p>当前通道：<span id="settings-connection">未连接</span>。在菘蓝内优先使用 SDK；独立运行先连接本机 9910，再尝试旧通道 10030。断线后按 3–30 秒退避重连，未连接时仍能试玩。</p><p id="settings-storage-status" class="fine">锁链和设置只保存在当前浏览器。浏览器禁止存储或空间不足时，本页可临时运行，页面关闭后无法恢复。</p></section>
+  </div>
+</aside>
+<script>/* CORE_JS */</script>
+<script>/* RULES_JS */</script>
+<script>/* MODES_JS */</script>
+<script>/* CUSTOM_ART_JS */</script>
+<script>/* MATERIALS_V2_JS */</script>
+<script>/* SCENES_JS */</script>
+<script>/* MENU_V2_JS */</script>
+<script>/* GIFT_CHANNEL_JS */</script>
+<script>/* PRESENTATION_JS */</script>
+<script>/* HIT_JS */</script>
+<script type="text/plain" id="fufu-font-license">/* FUFU_FONT_LICENSE */</script>
+<script>/* APP_JS */</script>
+</body></html>

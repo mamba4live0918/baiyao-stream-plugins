@@ -1,0 +1,362 @@
+[
+  {
+    "id": "griddle",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d outlines about3–4 logical pixels, flat warm color, one cel shadow, small white highlights, upper-left light. Real alpha transparent background, clean edges, no floor, cast shadow outside object, person, hands, writing, numbers, logo or watermark. Single isolated complete object with transparent margin. ONE round black iron crepe griddle on a small friendly charcoal base, slightly elevated frontal view. Plate ellipse centered logical(140,84), outer plate bounds x16..264 y24..144, top cooking surface inner ellipse spans x29..251 y34..134. Base below reaches y207, two small unmarked front knobs, no food, utensils, flame or power cord. Canvas logical280×220. This is exact registration target for separate batter overlays; keep top surface broad and unobstructed.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-af85affa-73a8-48ac-92de-38faf3a39af0.png",
+    "rawPath": "raw/shops/griddle.png",
+    "displaySize": {
+      "width": 280,
+      "height": 220
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:18:24.596Z"
+  },
+  {
+    "id": "cup_back",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production raster sprite for cute flat 2D chibi street-food game. Reference is STYLE ONLY: deep-brown #49372d outlines about3–4 logical pixels, flat warm color, one cel shadow, small white highlights, upper-left light. Real alpha transparent background, clean edges, no floor, cast shadow outside object, person, hands, writing, numbers, logo or watermark. Single isolated complete object with transparent margin. ONE empty transparent bubble-tea cup BACK WALL layer, upright front view with slightly elevated oval open mouth. Canvas logical110×170. Open rim ellipse centered(55,23), bounds x13..97 y12..34. Tapering cup sides x15 at top to x26 at bottom y154, base ellipse centered(55,154) width58 height14. Show rear half of dark brown rim, rear wall with very light cyan transparent glass tint and sparse white highlights; lower/front rim stroke should be faint/absent because separate front layer will overlay later. Absolutely NO liquid, pearls, lid, straw, writing or hand. Full frame registration must be preserved for all future cup layers. Clean alpha, mostly transparent interior.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-99356d16-f612-4d7b-ab1e-bf2ee15daf3f.png",
+    "rawPath": "raw/shops/cup_back.png",
+    "displaySize": {
+      "width": 110,
+      "height": 170
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:19:00.513Z"
+  },
+  {
+    "id": "batter_bucket",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent raster sprite for cute flat 2D chibi street-food game. Style reference only: deep-brown #49372d outlines about3–4 logical pixels, flat color, one cel shadow, small white highlights, upper-left light. Clean real alpha, no floor/external shadow, people, hands, writing, numbers, logo or watermark. ONE small cream batter pail with warm wooden handle and pale-yellow batter visible inside top oval. Cute light tan wooden slats, no ladle, no splash, no writing. Logical90×100, top oval center(45,24), bottom around y91.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-8b6887b0-69ce-4636-a3da-6ebcdfd0cdb8.png",
+    "rawPath": "raw/shops/batter_bucket.png",
+    "displaySize": {
+      "width": 90,
+      "height": 100
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:20:12.678Z"
+  },
+  {
+    "id": "egg_basket",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent raster sprite for cute flat 2D chibi street-food game. Style reference only: deep-brown #49372d outlines about3–4 logical pixels, flat color, one cel shadow, small white highlights, upper-left light. Clean real alpha, no floor/external shadow, people, hands, writing, numbers, logo or watermark. ONE small shallow warm wicker basket containing four whole cream and pale peach chicken eggs. Cute flat simple basket weave, no cracks, chick, handle or additional objects. Logical90×90, silhouette within x6..84 y10..84.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-ae0e664a-a9f1-4962-a393-ff1643648e7a.png",
+    "rawPath": "raw/shops/egg_basket.png",
+    "displaySize": {
+      "width": 90,
+      "height": 90
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:20:52.253Z"
+  },
+  {
+    "id": "pearl_jar",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent raster sprite for cute flat 2D chibi street-food game. Style reference only: deep-brown #49372d outlines about3–4 logical pixels, flat color, one cel shadow, small white highlights, upper-left light. Clean real alpha, no floor/external shadow, people, hands, writing, numbers, logo or watermark. ONE glass storage jar filled with shiny dark-brown tapioca pearls, mint-green unmarked loose rim, lid absent. Slightly elevated frontal view with open oval mouth and rounded corners, many small pearls through transparent pale blue glass, no label or scoop. Logical90×120, centered full silhouette.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-114e5e9e-1e83-4ddd-88a1-2a3bacff3329.png",
+    "rawPath": "raw/shops/pearl_jar.png",
+    "displaySize": {
+      "width": 90,
+      "height": 120
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:21:23.955Z"
+  },
+  {
+    "id": "shaker",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. Production transparent raster sprite for cute flat 2D chibi street-food game. Style reference only: deep-brown #49372d outlines about3–4 logical pixels, flat color, one cel shadow, small white highlights, upper-left light. Clean real alpha, no floor/external shadow, people, hands, writing, numbers, logo or watermark. ONE small empty cocktail-style tea shaker BODY without lid, muted mint-green enamel and cream inner mouth. Friendly rounded taper shape, slightly elevated front view. Canvas logical105×130; open oval mouth centered(52.5,20) spans x19..86 y8..33, body taper to x27..78 at y120. No lid, handle, straw, food, label or marks. Keep mouth visible for separate lid overlay, same canvas registration.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-4234733d-0d41-4570-a87d-f3d1cd8afc81.png",
+    "rawPath": "raw/shops/shaker.png",
+    "displaySize": {
+      "width": 105,
+      "height": 130
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:21:48.499Z"
+  },
+  {
+    "id": "batter_disk_1",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is exact registration reference, NOT the output object. Create a SEPARATE small batter overlay for the reference griddle, keeping exact SAME full canvas size. Remove entire griddle/base/knobs; output only one pale cream-yellow small oval puddle of batter on its top surface center. Small initial pour should span approximately logical x109..171 y69..99 on a logical280×220 frame, centered around(140,84), in the same perspective as reference cooking plate. Simple dark-brown fine edge, one warm cream shadow and tiny white highlight. Every other pixel transparent. No griddle, plate, utensils, eggs, splashes, hands, text or shadow. Do NOT crop/recenter/zoom the puddle.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-12de5032-c21f-40ff-b8c1-76acbc1c2549.png",
+    "rawPath": "raw/shops/batter_disk_1.png",
+    "displaySize": {
+      "width": 280,
+      "height": 220
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-af85affa-73a8-48ac-92de-38faf3a39af0.png"
+    ],
+    "generatedAt": "2026-10-22T16:22:18.235Z"
+  },
+  {
+    "id": "cup_front",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is exact cup registration target. Output a SEPARATE FRONT GLASS overlay on the EXACT SAME canvas, keeping exactly same cup silhouette/position/scale. Remove all rear wall blue fill and interior shading. Retain ONLY the near/front half of the top rim, side outline strokes, lower/front base arc, and two narrow white shine strokes near outer side edges. All interior and all space outside strokes must have alpha0 so liquid and pearls remain plainly visible behind it. No cyan filled pane, no back rim, no rear wall, no liquid/pearls/lid/straw. Front rim and bottom arcs have deep-brown #49372d outlines consistent with input. Keep full canvas, never crop/zoom/recenter; no writing/logos/background.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-1d2a10ae-76e2-49e0-8045-0d9343929ba2.png",
+    "rawPath": "raw/shops/cup_front.png",
+    "displaySize": {
+      "width": 110,
+      "height": 170
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-99356d16-f612-4d7b-ab1e-bf2ee15daf3f.png"
+    ],
+    "generatedAt": "2026-10-22T16:22:44.175Z"
+  },
+  {
+    "id": "batter_disk_2",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is exact batter overlay registration target. Keep exact same full canvas size, center point, light direction and flat cream coloring. Enlarge ONLY the batter puddle to a medium spread oval about1.7 times the reference width and height, centered at the EXACT same point as existing puddle; retain same perspective/soft dark brown edge/tiny highlight. The entire rest of canvas stays alpha-transparent. No griddle/base/eggs/tools/letters. Do not crop, zoom, shift or recenter the whole frame.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-11b1989f-8d8d-49bc-9f62-3781dd98c3c7.png",
+    "rawPath": "raw/shops/batter_disk_2.png",
+    "displaySize": {
+      "width": 280,
+      "height": 220
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-12de5032-c21f-40ff-b8c1-76acbc1c2549.png"
+    ],
+    "generatedAt": "2026-10-22T16:26:07.519Z"
+  },
+  {
+    "id": "batter_disk_3",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input is exact batter overlay registration target. Keep exact same full canvas size, center point, light direction and flat cream coloring. Enlarge ONLY the batter puddle to a fully spread thin oval about2.65 times the reference width and height, centered at the EXACT same point as existing puddle. Broad crepe batter with a gently irregular edge and a few tiny warm cooking spots, same perspective, dark brown fine outline and white highlight. Every other pixel alpha-transparent. No griddle/base/eggs/tools/text. Do not crop, zoom, shift or recenter frame.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-86ae5810-fe40-4be6-a4d4-89b6c130f4fd.png",
+    "rawPath": "raw/shops/batter_disk_3.png",
+    "displaySize": {
+      "width": 280,
+      "height": 220
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-12de5032-c21f-40ff-b8c1-76acbc1c2549.png"
+    ],
+    "generatedAt": "2026-10-22T16:26:43.651Z"
+  },
+  {
+    "id": "egg_on_pancake",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. One production sprite for cute flat 2D chibi food stall game. Style reference only: deep-brown #49372d ink line3–4 logical px, flat colors, one cel shadow, tiny white highlights, upper-left light. Real alpha transparency, clean edges, no floor/external cast shadow/person/hands/writing/numbers/logo. ONE flat freshly cracked chicken egg for overlay on a pancake: irregular cream egg-white puddle with one golden round yolk slightly off-center, slightly elevated top-down perspective consistent with a griddle. Logical60×55 canvas, full silhouette with small margin. No shell, plate, pan, pepper, utensil or text.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-dc452695-1608-4639-bf9f-46133bce59ad.png",
+    "rawPath": "raw/shops/egg_on_pancake.png",
+    "displaySize": {
+      "width": 60,
+      "height": 55
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:27:18.600Z"
+  },
+  {
+    "id": "spatula",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. One production sprite for cute flat 2D chibi food stall game. Style reference only: deep-brown #49372d ink line3–4 logical px, flat colors, one cel shadow, tiny white highlights, upper-left light. Real alpha transparency, clean edges, no floor/external cast shadow/person/hands/writing/numbers/logo. ONE small crepe spatula, broad thin warm-gray stainless flat blade on left and short wooden rounded grip on right, handle/grip fully visible. Slightly elevated frontal view, diagonal only very slightly, isolated logical160×65 canvas. Grip point aroundlogical(133,35). No hand, food, stove or writing.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-8e72a5fb-0b02-4823-9083-be0edd346c1c.png",
+    "rawPath": "raw/shops/spatula.png",
+    "displaySize": {
+      "width": 160,
+      "height": 65
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:27:44.418Z"
+  },
+  {
+    "id": "pancake_bag",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. One production sprite for cute flat 2D chibi food stall game. Style reference only: deep-brown #49372d ink line3–4 logical px, flat colors, one cel shadow, tiny white highlights, upper-left light. Real alpha transparency, clean edges, no floor/external cast shadow/person/hands/writing/numbers/logo. ONE golden pancake roll in a small plain cream paper takeout sleeve. Top folded golden crepe peeks out, appetizing lightly toasted flat spots and tiny egg-yellow edge, simple sleeve has a broad EMPTY front patch for code quantity; no printed marks. Logical90×110, upright full silhouette, bottom centered near(45,104). No extra fillings, meat, toppings, garnish, plate, brand or writing.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-02818020-df15-4fc2-9bd9-ea29421792d0.png",
+    "rawPath": "raw/shops/pancake_bag.png",
+    "displaySize": {
+      "width": 90,
+      "height": 110
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:28:20.234Z"
+  },
+  {
+    "id": "cup_tea",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input cup is an EXACT full-canvas registration reference, not an object to keep. Keep EXACT SAME canvas size/scale/position. Remove the entire cup outline, wall, rim, base strokes, highlights. Output ONLY the described separate filling overlay inside its inner footprint; all other pixels true alpha0. Never crop/recenter/zoom. Same flat chibi deep-brown line/cel shading. No labels, words, digits or background. ONLY one smooth milk-tea liquid filling, warm beige tan color, top meniscus oval at approximately logical(55,57), fill tapering within cup inner sides to its base at logicaly151. Leave bottom strip clear enough for pearl overlay. Silhouette must fit INSIDE cup outer walls with about4logicalpx inset. No cup strokes, pearls, lid, straw, bubbles or solid container.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-0d5b3314-c278-4866-8b96-563711b664c8.png",
+    "rawPath": "raw/shops/cup_tea.png",
+    "displaySize": {
+      "width": 110,
+      "height": 170
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-99356d16-f612-4d7b-ab1e-bf2ee15daf3f.png"
+    ],
+    "generatedAt": "2026-10-22T16:28:47.883Z"
+  },
+  {
+    "id": "cup_pearls_1",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input cup is an EXACT full-canvas registration reference, not an object to keep. Keep EXACT SAME canvas size/scale/position. Remove the entire cup outline, wall, rim, base strokes, highlights. Output ONLY the described separate filling overlay inside its inner footprint; all other pixels true alpha0. Never crop/recenter/zoom. Same flat chibi deep-brown line/cel shading. No labels, words, digits or background. ONLY one spoon portion of round dark-brown shiny tapioca pearls resting at the cup's bottom, about7 small pearls in a LOW mound centered near logical(55,145), contained within x29..81 y134..153. Pearls no bigger than logical12px each. Large upper canvas must remain entirely empty/transparent. No cup/glass/shadow wall/liquid/lid/straw.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-cd298a37-b584-4077-9d4e-045362279220.png",
+    "rawPath": "raw/shops/cup_pearls_1.png",
+    "displaySize": {
+      "width": 110,
+      "height": 170
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-99356d16-f612-4d7b-ab1e-bf2ee15daf3f.png"
+    ],
+    "generatedAt": "2026-10-22T16:29:15.103Z"
+  },
+  {
+    "id": "cup_pearls_2",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input cup is an EXACT full-canvas registration reference, not an object to keep. Keep EXACT SAME canvas size/scale/position. Remove the entire cup outline, wall, rim, base strokes, highlights. Output ONLY the described separate filling overlay inside its inner footprint; all other pixels true alpha0. Never crop/recenter/zoom. Same flat chibi deep-brown line/cel shading. No labels, words, digits or background. ONLY two spoon portions of round dark-brown shiny tapioca pearls resting at the cup's bottom, about14 small pearls in a MEDIUM mound centered near logical(55,138), contained within x27..83 y119..153. Pearls no bigger than logical12px each. Large upper canvas entirely empty/transparent. No cup/glass/liquid/lid/straw or frame.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-05c15ea7-e462-4b5f-b51a-b429c11e4fbe.png",
+    "rawPath": "raw/shops/cup_pearls_2.png",
+    "displaySize": {
+      "width": 110,
+      "height": 170
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-99356d16-f612-4d7b-ab1e-bf2ee15daf3f.png"
+    ],
+    "generatedAt": "2026-10-22T16:29:43.137Z"
+  },
+  {
+    "id": "cup_pearls_3",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input cup is an EXACT full-canvas registration reference, not an object to keep. Keep EXACT SAME canvas size/scale/position. Remove the entire cup outline, wall, rim, base strokes, highlights. Output ONLY the described separate filling overlay inside its inner footprint; all other pixels true alpha0. Never crop/recenter/zoom. Same flat chibi deep-brown line/cel shading. No labels, words, digits or background. ONLY three spoon portions of round dark-brown shiny tapioca pearls resting at the cup's bottom, about21 small pearls in a TALLER mound centered near logical(55,129), contained within x25..85 y103..153. Pearls no bigger than logical12px each. Large upper canvas entirely empty/transparent. No cup/glass/liquid/lid/straw or frame.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-962b0996-8059-472a-954a-fead6f05fab1.png",
+    "rawPath": "raw/shops/cup_pearls_3.png",
+    "displaySize": {
+      "width": 110,
+      "height": 170
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-99356d16-f612-4d7b-ab1e-bf2ee15daf3f.png"
+    ],
+    "generatedAt": "2026-10-22T16:30:10.417Z"
+  },
+  {
+    "id": "cup_lid",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input cup is exact registration reference. Output only SEPARATE clear sealing film + one short mint-and-pink plain straw inserted through film. Keep exact same full canvas, do not crop/recenter/zoom. Film oval precisely covers the reference cup mouth at the same pixel position and size, with cream thin rim and two white highlights. Straw rises from film toward upper canvas edge, whole straw visible within frame. Remove all cup walls/base, liquid and pearls; everywhere else alpha0. Same cute brown ink style. No text, numbers, decorative symbols or logo.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-3ffb4778-8118-45b5-802d-86c88052b979.png",
+    "rawPath": "raw/shops/cup_lid.png",
+    "displaySize": {
+      "width": 110,
+      "height": 170
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-99356d16-f612-4d7b-ab1e-bf2ee15daf3f.png"
+    ],
+    "generatedAt": "2026-10-22T16:30:39.857Z"
+  },
+  {
+    "id": "shaker_lid",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: precise-object-edit. Input shaker BODY is exact registration reference. Create its SEPARATE matching lid on exactly the SAME full canvas and position. Lid seats precisely over original open mouth with a rounded mint-green dome, cream rim and small unmarked cap; fits the existing mouth width. REMOVE ENTIRE SHAKER BODY below lid; remaining canvas transparent. No hand, writing, marks, food, straw. Preserve style and upper-left highlight. Do not crop/recenter/zoom.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-50945cdc-10eb-454d-832b-77ad9a887f9d.png",
+    "rawPath": "raw/shops/shaker_lid.png",
+    "displaySize": {
+      "width": 105,
+      "height": 130
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-4234733d-0d41-4570-a87d-f3d1cd8afc81.png"
+    ],
+    "generatedAt": "2026-10-22T16:31:19.570Z"
+  },
+  {
+    "id": "bobbing_pearl",
+    "group": "shops",
+    "batch": 5,
+    "tool": "image_gen built-in",
+    "prompt": "Use case: stylized-concept. One production sprite for cute flat 2D chibi food stall game. Style reference only: deep-brown #49372d ink line3–4 logical px, flat colors, one cel shadow, tiny white highlights, upper-left light. Real alpha transparency, clean edges, no floor/external cast shadow/person/hands/writing/numbers/logo. ONE single round dark-brown tapioca pearl, tiny spherical simple flat cel shadow with one small white highlight. Logical14×14, centered with transparent margin. No plate, liquid, other pearls or writing.",
+    "sourcePath": "C:\\Users\\Mamba4live\\.codex\\generated_images\\01a16464-c0e0-7fd1-b571-ec91cd4c27bf\\exec-aa5d7987-42e8-4555-9f41-f7a849ba2882.png",
+    "rawPath": "raw/shops/bobbing_pearl.png",
+    "displaySize": {
+      "width": 14,
+      "height": 14
+    },
+    "selected": true,
+    "references": [
+      "C:\\Users\\Mamba4live\\Desktop\\直播\\自定义插件\\出摊啦\\源码\\assets\\src\\tools\\bowl_empty.png"
+    ],
+    "generatedAt": "2026-10-22T16:31:46.272Z"
+  }
+]
