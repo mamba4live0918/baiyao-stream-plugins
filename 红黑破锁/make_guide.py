@@ -1,56 +1,54 @@
 from argparse import ArgumentParser
-from html import escape
+from io import BytesIO
 from pathlib import Path
+from unicodedata import category
 import json
-from reportlab.pdfgen import canvas
+import re
+
+import matplotlib
+from fontTools.ttLib import TTFont as FontFile
+from pypdf import PdfReader, PdfWriter
 from reportlab.lib.colors import HexColor
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.platypus import Paragraph
+from reportlab.lib.textsplit import ALL_CANNOT_END, ALL_CANNOT_START
+from reportlab.lib.utils import ImageReader
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.lib.utils import ImageReader
+from reportlab.pdfgen import canvas
+from reportlab.platypus import Paragraph
+from reportlab.platypus import paragraph as rl_paragraph
 
 ROOT = Path(__file__).resolve().parent
-VERSION = 'V2.3.3'
-RELEASE_DATE = '2026-10-16'
-PAGES = 10
-QA_VERIFIED = True
-QA_SUMMARY = '本次验收数字见随交付提供的自测报告；真实直播与 OBS 客户端未测试。'
-# 只放经过检查的实际界面截图；键名见下方 screenshot() 调用。
-SCREENSHOT_MAP = ROOT / 'qa/2026-10-15-V2.3.1-自测/guide-shots.json'
-SCREENSHOTS = json.loads(SCREENSHOT_MAP.read_text(encoding='utf-8')) if SCREENSHOT_MAP.is_file() else {}
-SCREENSHOTS.update({'layer_rules':str(ROOT/'qa/2026-10-15-V2.3.2-自测/guide-cage.png'),'count_rules':str(ROOT/'qa/2026-10-15-V2.3.2-自测/guide-count.png')})
-SCREENSHOTS.update({key:str(ROOT/'qa/2026-10-16-V2.3.3-自测'/name) for key,name in [('modes','guide-modes.png'),('layer_rules','guide-cage.png'),('count_rules','guide-count.png')]})
-SCREENSHOT_CROPS = {}
-SCREENSHOTS['asset_example']=str(ROOT/'qa/2026-10-15-V2.3.1-自测/menu-lock-example.png')
+VERSION = 'V2.4'
+RELEASE_DATE = '2026-10-30'
+PAGES = 12
+# 配图由 E:/红黑破锁QA临时/菜单重做/scripts/guide-shots.cjs 从 V2.4 的 HTML 拍（没有光标；直播画面是透明底）
+SHOT_DIR = ROOT / 'qa/2026-10-30-V2.4-说明书配图'
+SCREENSHOTS = json.loads((SHOT_DIR / 'guide-shots.json').read_text(encoding='utf-8'))
 
-parser = ArgumentParser(description='生成红黑破锁 V2.3.3 使用说明')
+parser = ArgumentParser(description='生成红黑破锁 V2.4 使用说明')
 parser.add_argument('--output', type=Path, default=ROOT / '使用说明.pdf')
-parser.add_argument('--draft', action='store_true', help='生成文稿预览，不能用于正式交付')
-parser.add_argument('--qa-text', type=Path, help='本次已核实验收说明的 UTF-8 文本文件')
-parser.add_argument('--screenshots-json', type=Path, help='实际截图键到绝对路径的 JSON 字典')
+parser.add_argument('--draft', action='store_true', help='文稿预览：页脚标「文稿预览」，不能覆盖正式 使用说明.pdf')
 args = parser.parse_args()
 OUTPUT = args.output.resolve()
-if not args.draft and not QA_VERIFIED and not args.qa_text:
-    raise SystemExit('正式 PDF 等待本次验收结论；文稿预览请加 --draft 并指定临时 --output')
 if args.draft and OUTPUT == (ROOT / '使用说明.pdf').resolve():
     raise SystemExit('文稿不得覆盖正式 使用说明.pdf；请指定临时 --output')
-if args.qa_text:
-    QA_SUMMARY = escape(args.qa_text.read_text(encoding='utf-8-sig').strip()).replace('\n', '<br/>')
-    if not QA_SUMMARY:
-        raise SystemExit('验收说明文件为空，不生成说明书')
-if args.screenshots_json:
-    supplied = json.loads(args.screenshots_json.read_text(encoding='utf-8-sig'))
-    if not isinstance(supplied, dict) or not all(isinstance(k, str) and isinstance(v, str) for k, v in supplied.items()):
-        raise SystemExit('截图清单必须为键名到路径的 JSON 字典')
-    SCREENSHOTS.update(supplied)
 
-# Redistributable OFL font; do not embed proprietary Windows font files.
+# 正文用站酷快乐体（OFL，可以分发，不嵌 Windows 自带字体）。
+# 它没有 ①～⑧ ▶ ✕ →，这几个符号换 DejaVu Sans 画（许可允许嵌入，许可证附在 PDF 里）。
 FONT = ROOT / 'assets/fonts/ZCOOLKuaiLe-Regular.ttf'
-pdfmetrics.registerFont(TTFont('MSYH', str(FONT)))
-pdfmetrics.registerFont(TTFont('MSYH-BOLD', str(FONT)))
-pdfmetrics.registerFontFamily('MSYH', normal='MSYH', bold='MSYH-BOLD', italic='MSYH', boldItalic='MSYH-BOLD')
+FONT_LICENSE = ROOT / 'assets/fonts/ZCOOLKuaiLe-OFL.txt'
+SYMBOL_FONT = Path(matplotlib.get_data_path()) / 'fonts/ttf/DejaVuSans.ttf'
+SYMBOL_LICENSE = Path(matplotlib.get_data_path()) / 'fonts/ttf/LICENSE_DEJAVU'
+pdfmetrics.registerFont(TTFont('KUAILE', str(FONT)))
+pdfmetrics.registerFontFamily('KUAILE', normal='KUAILE', bold='KUAILE', italic='KUAILE', boldItalic='KUAILE')
+pdfmetrics.registerFont(TTFont('SYM', str(SYMBOL_FONT)))
+SYMBOLS = '①②③④⑤⑥⑦⑧▶✕→'
+BODY_GLYPHS = set(FontFile(str(FONT)).getBestCmap())
+SYMBOL_GLYPHS = set(FontFile(str(SYMBOL_FONT)).getBestCmap())
+TAGS = re.compile(r'<[^>]+>')
+
 W, H = A4
 RED, DARK = HexColor('#9B2740'), HexColor('#241721')
 MUTED, PALE, LINE = HexColor('#6E5A63'), HexColor('#F7EFF1'), HexColor('#E2D0D6')
@@ -58,11 +56,108 @@ LOWEST_CONTENT = 64
 page_bottoms = []
 
 
-def text(c, value, x, top, width, size=10.5, leading=18, color=DARK, bold=False):
-    style = ParagraphStyle('body', fontName='MSYH-BOLD' if bold else 'MSYH', fontSize=size,
-                           leading=leading, textColor=color, wordWrap='CJK')
-    block = Paragraph(value, style)
+def markup(value):
+    """检查每个字两种字体里至少有一个有（缺字会印成空白），再把符号换成 DejaVu Sans。"""
+    for ch in TAGS.sub('', value).replace('&amp;', '&'):
+        if ch in SYMBOLS:
+            if ord(ch) not in SYMBOL_GLYPHS:
+                raise ValueError(f'符号字体里没有：{ch}')
+        elif ord(ch) not in BODY_GLYPHS and not ch.isspace():
+            raise ValueError(f'正文字体里没有这个字：{ch}（U+{ord(ch):04X}）')
+    return re.sub(f'[{SYMBOLS}]', lambda m: f'<font name="SYM">{m.group(0)}</font>', value)
+
+
+# 中文换行：逗号句号、右括号不放行首，左括号不放行尾。
+# reportlab 自带的规则漏了全角逗号这些，两个标点连着时还会把第二个甩到下一行开头。
+NO_LINE_START = set(ALL_CANNOT_START) | set('，；：？！、。）」』】》〉’”…·～')
+NO_LINE_END = set(ALL_CANNOT_END) | set('（「『【《〈‘“')
+
+
+def glyph_width(u, max_width):
+    w = u.width
+    if hasattr(w, 'normalizedValue'):
+        w._normalizer = max_width
+        w = w.normalizedValue(max_width)
+    return w
+
+
+def bad_break(chars, cut):
+    """在 chars[cut] 前面换行，会不会让标点打头、左括号落单（空格不算）。"""
+    after = before = ''
+    for ch in chars[cut:]:
+        if not ch:  # <br/>
+            break
+        if not ch.isspace():
+            after = ch
+            break
+    for ch in reversed(chars[:cut]):
+        if ch and not ch.isspace():
+            before = ch
+            break
+    return after in NO_LINE_START or before in NO_LINE_END
+
+
+def kinsoku_split(frags, max_widths):
+    """照 reportlab 的 cjkFragSplit 一个字一个字排，只改换行的地方：英文单词整个挪到下一行；
+    会让标点打头或左括号落在行尾时，把前面的字一起挪下去（不往页边外挂）。"""
+    chars = []
+    for frag in frags:
+        value = frag.text.decode('utf8') if isinstance(frag.text, bytes) else frag.text
+        chars.extend([rl_paragraph.cjkU(ch, frag, 'utf8') for ch in value] if value else [rl_paragraph.cjkU(value, frag, 'utf8')])
+    lines, i, start, used, max_width = [], 0, 0, 0, max_widths[0]
+    while i < len(chars):
+        u = chars[i]
+        i += 1
+        used += glyph_width(u, max_width)
+        line_break = hasattr(u.frag, 'lineBreak')
+        if not line_break and not (used > max_width + rl_paragraph._FUZZ and used > 0):
+            continue
+        if not line_break and i > start + 1:
+            cut = i - 1
+            if u and ord(u) < 0x3000:  # 英文、数字：退到前一个空格或汉字后面
+                for j in range(i - 2, (start + i) >> 1, -1):
+                    if chars[j] and (category(chars[j]) == 'Zs' or ord(chars[j]) >= 0x3000):
+                        cut = j + 1
+                        break
+            while cut > start + 1 and bad_break(chars, cut):
+                cut -= 1
+            i = cut
+            used = sum(glyph_width(chars[k], max_width) for k in range(start, i))
+        lines.append(rl_paragraph.makeCJKParaLine(chars[start:i], max_width, used, max_width - used, line_break, False))
+        max_width = max_widths[min(len(lines), len(max_widths) - 1)]
+        start, used = i, 0
+    if used > 0:
+        lines.append(rl_paragraph.makeCJKParaLine(chars[start:], max_width, used, max_width - used, False, False))
+    return rl_paragraph.ParaLines(kind=1, lines=lines)
+
+
+class KinsokuParagraph(Paragraph):
+    """所有段落都用 kinsoku_split 换行（reportlab 对只有一种字体的段落另用一套，也不管标点）。"""
+
+    def breakLinesCJK(self, maxWidths):
+        if not self.frags:
+            return super().breakLinesCJK(maxWidths)
+        self.height = 0
+        return kinsoku_split(self.frags, list(maxWidths) if isinstance(maxWidths, (list, tuple)) else [maxWidths])
+
+
+def paragraph(value, paragraph_style, width):
+    """排好一段，再逐行检查换行规则（排不开就报错，不印出来）。"""
+    block = KinsokuParagraph(markup(value), paragraph_style)
     _, height = block.wrap(width, H)
+    for line in block.blPara.lines:
+        shown = ''.join(getattr(word, 'text', '') for word in getattr(line, 'words', [])).strip()
+        if shown and (shown[0] in NO_LINE_START or shown[-1] in NO_LINE_END):
+            raise ValueError(f'第 {len(page_bottoms)+1} 页换行不对：{shown}')
+    return block, height
+
+
+def style(size, leading, color=DARK, name='body'):
+    return ParagraphStyle(name, fontName='KUAILE', fontSize=size, leading=leading, textColor=color, wordWrap='CJK')
+
+
+def text(c, value, x, top, width, size=10.5, leading=18, color=DARK):
+    block, height = paragraph(value, style(size, leading, color), width)
     bottom = top - height
     if bottom < LOWEST_CONTENT:
         raise ValueError(f'第 {len(page_bottoms)+1} 页低于页脚安全线：{bottom:.1f}')
@@ -77,14 +172,14 @@ def para(c, value, y, gap=13, size=10.5, leading=18):
 def heading(c, label, top):
     c.setFillColor(RED)
     c.roundRect(48, top-25, 5, 23, 2, stroke=0, fill=1)
-    text(c, label, 63, top, W-111, 14, 22, DARK, True)
+    text(c, label, 63, top, W-111, 14, 22, DARK)
     return top-40
 
 
 def start(c, title, subtitle=None):
     y = heading(c, title, H-61)
     if subtitle:
-        y = para(c, subtitle, y, 18, 10, 17)
+        y = para(c, subtitle, y, 16, 10, 17)
     return y
 
 
@@ -92,7 +187,7 @@ def finish(c, page, bottom):
     page_bottoms.append(round(bottom, 1))
     c.setStrokeColor(LINE)
     c.line(48, 47, W-48, 47)
-    c.setFont('MSYH', 8)
+    c.setFont('KUAILE', 8)
     c.setFillColor(MUTED)
     suffix = ' · 文稿预览' if args.draft else ''
     c.drawString(48, 30, f'红黑破锁 · {VERSION} · {RELEASE_DATE}{suffix}')
@@ -102,80 +197,82 @@ def finish(c, page, bottom):
 
 
 def note(c, label, value, y):
-    style = ParagraphStyle('note', fontName='MSYH', fontSize=10, leading=17, textColor=DARK, wordWrap='CJK')
-    block = Paragraph(value, style)
-    _, height = block.wrap(W-202, H)
+    block, height = paragraph(value, style(10, 17, name='note'), W-202)
     box_height = max(50, height+26)
     bottom = y-box_height
     if bottom < LOWEST_CONTENT:
         raise ValueError(f'第 {len(page_bottoms)+1} 页提示框溢出：{bottom:.1f}')
     c.setFillColor(PALE)
     c.roundRect(48, bottom, W-96, box_height, 7, stroke=0, fill=1)
-    text(c, label, 62, y-12, 80, 10, 17, RED, True)
+    text(c, label, 62, y-12, 80, 10, 17, RED)
     block.drawOn(c, 137, y-12-height)
     return bottom-16
 
 
-def screenshot(c, key, caption, y, height=185):
-    source = SCREENSHOTS.get(key)
-    if not source:
-        if not args.draft:
-            return y
-        if y-height-35 < LOWEST_CONTENT:
-            raise ValueError(f'第 {len(page_bottoms)+1} 页截图预留区域溢出')
-        c.setStrokeColor(LINE)
-        c.setFillColor(HexColor('#FBF8F9'))
-        c.roundRect(48, y-height, W-96, height, 7, stroke=1, fill=1)
-        text(c, '实际界面截图预留', 64, y-22, W-128, 10, 17, MUTED)
-        text(c, f'截图键：{escape(key)}', 64, y-46, W-128, 9, 16, MUTED)
-    else:
-        path = Path(source)
-        if not path.is_file():
-            raise FileNotFoundError(f'实际截图不存在：{path}')
-        if y-height-35 < LOWEST_CONTENT:
-            raise ValueError(f'第 {len(page_bottoms)+1} 页截图区域溢出')
-        image = ImageReader(str(path))
-        iw, ih = image.getSize()
-        crop = SCREENSHOT_CROPS.get(key, (0, 0, iw, ih))
-        left, top, right, lower = crop
-        if not 0 <= left < right <= iw or not 0 <= top < lower <= ih:
-            raise ValueError(f'截图裁取范围无效：{key} {crop}，原图 {iw} × {ih}')
-        cw, ch = right-left, lower-top
-        scale = min((W-96)/cw, height/ch)
-        dw, dh = cw*scale, ch*scale
-        c.setFillColor(HexColor('#F1ECEF'))
-        c.roundRect(48, y-height, W-96, height, 7, stroke=0, fill=1)
-        x, bottom = 48+(W-96-dw)/2, y-height+(height-dh)/2
-        # 以浅灰棋盘格标明真正 alpha 空隙，不给直播插件添背景。
-        if key in {'overview', 'count', 'cage'}:
-            tile = 10
-            c.saveState()
-            clip = c.beginPath(); clip.rect(x, bottom, dw, dh); c.clipPath(clip, stroke=0, fill=0)
-            for col in range(int(dw/tile)+1):
-                for row in range(int(dh/tile)+1):
-                    if (col+row) % 2 == 0:
-                        c.setFillColor(HexColor('#E6E2E5'))
-                        c.rect(x+col*tile, bottom+row*tile, tile, tile, stroke=0, fill=1)
-            c.restoreState()
-        c.saveState()
-        clip = c.beginPath(); clip.rect(x, bottom, dw, dh); c.clipPath(clip, stroke=0, fill=0)
-        c.drawImage(image, x-left*scale, bottom-(ih-lower)*scale, iw*scale, ih*scale, mask='auto')
-        c.restoreState()
+def checker(c, x, bottom, width, height, tile=10):
+    """直播画面是透明底：用浅灰棋盘格标出透明的地方，不给插件添背景。"""
+    c.saveState()
+    clip = c.beginPath()
+    clip.rect(x, bottom, width, height)
+    c.clipPath(clip, stroke=0, fill=0)
+    c.setFillColor(HexColor('#F6F3F5'))
+    c.rect(x, bottom, width, height, stroke=0, fill=1)
+    c.setFillColor(HexColor('#E4DFE3'))
+    for col in range(int(width/tile)+1):
+        for row in range(int(height/tile)+1):
+            if (col+row) % 2 == 0:
+                c.rect(x+col*tile, bottom+row*tile, tile, tile, stroke=0, fill=1)
+    c.restoreState()
+
+
+def place(c, key, x, top, width, height):
+    """把一张截图等比缩放、居中放进 (x, top, width, height) 的框里。"""
+    path = Path(SCREENSHOTS.get(key, ''))
+    if not path.is_file():
+        raise FileNotFoundError(f'截图不存在：{key} → {path}')
+    if top-height < LOWEST_CONTENT:
+        raise ValueError(f'第 {len(page_bottoms)+1} 页截图区域溢出：{key}')
+    image = ImageReader(str(path))
+    iw, ih = image.getSize()
+    scale = min(width/iw, height/ih)
+    dw, dh = iw*scale, ih*scale
+    dx, bottom = x+(width-dw)/2, top-height+(height-dh)/2
+    if key.startswith('stage_'):
+        checker(c, dx, bottom, dw, dh)
+    c.drawImage(image, dx, bottom, dw, dh, mask='auto')
+
+
+def screenshot(c, key, caption, y, height):
+    c.setFillColor(HexColor('#F1ECEF'))
+    c.roundRect(48, y-height, W-96, height, 7, stroke=0, fill=1)
+    place(c, key, 52, y-4, W-104, height-8)
     return text(c, caption, 48, y-height-8, W-96, 9, 15, MUTED)-18
 
 
-def table(c, headers, rows, widths, y):
+def grid(c, items, y, cell_height, cols=2, gap=12):
+    """几张图排成格子，每张上面一行小标题。"""
+    cell_width = (W-96-gap*(cols-1))/cols
+    for start_index in range(0, len(items), cols):
+        row = items[start_index:start_index+cols]
+        for col, (key, label) in enumerate(row):
+            x = 48+col*(cell_width+gap)
+            text(c, label, x, y, cell_width, 10, 16, RED)
+            c.setFillColor(HexColor('#F1ECEF'))
+            c.roundRect(x, y-20-cell_height, cell_width, cell_height, 6, stroke=0, fill=1)
+            place(c, key, x+3, y-23, cell_width-6, cell_height-6)
+        y -= 20+cell_height+gap
+    return y-8
+
+
+def table(c, headers, rows, widths, y, size=10, leading=17, pad=18):
     x0 = 48
     for index, row in enumerate([headers]+rows):
-        fonts = ['MSYH-BOLD']*len(row) if index == 0 else ['MSYH']*len(row)
-        blocks = []
-        heights = []
-        for value, width, font in zip(row, widths, fonts):
-            style = ParagraphStyle('cell', fontName=font, fontSize=10, leading=17, textColor=DARK, wordWrap='CJK')
-            block = Paragraph(value, style)
-            _, height = block.wrap(width-20, H)
-            blocks.append(block); heights.append(height)
-        row_height = max(heights)+20
+        blocks, heights = [], []
+        for value, width in zip(row, widths):
+            block, height = paragraph(value, style(size, leading, name='cell'), width-20)
+            blocks.append(block)
+            heights.append(height)
+        row_height = max(heights)+pad
         if y-row_height < LOWEST_CONTENT:
             raise ValueError(f'第 {len(page_bottoms)+1} 页表格溢出')
         c.setFillColor(PALE if index == 0 else HexColor('#FFFFFF'))
@@ -184,126 +281,186 @@ def table(c, headers, rows, widths, y):
         c.line(x0, y-row_height, x0+sum(widths), y-row_height)
         x = x0
         for block, height, width in zip(blocks, heights, widths):
-            block.drawOn(c, x+10, y-10-height)
+            block.drawOn(c, x+10, y-pad/2-height)
             x += width
         y -= row_height
-    return y-20
+    return y-18
 
 
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 c = canvas.Canvas(str(OUTPUT), pagesize=A4)
 c.setTitle(f'红黑破锁 {VERSION} 使用说明')
 c.setAuthor('红黑破锁')
-c.setSubject('透明直播互动：每条礼物直接设置固定值或随机范围、锁链与牢笼、累计计数')
+c.setSubject('透明直播互动：观众送礼加挑战，主播连按一个键解开；两种玩法（进度条 / 次数）× 两种画面（锁链 / 牢笼）')
 
-# 1: introduction
-y=start(c,'红黑破锁 V2.3.3','三模式独立设置 · 九套原创双开门牢笼 · 啃锁与拍门反馈')
-y=para(c,'观众送礼增加挑战，主播连按指定单键解除。菜单分为「多条进度」「牢笼拍门」「累计次数」三种独立模式：每种模式各自保存规则、主题、按键、画面大小和音效选项。',y)
-y=heading(c,'第一次使用',y)
-y=para(c,'1. 在菘蓝自定义插件里加载包内「红黑破锁-1.html」，或独立打开 HTML。<br/>2. 双击画面打开设置，在「玩法」顶部选择模式。<br/>3. 到「进度礼物 / 关笼礼物 / 次数礼物」编辑当前模式的规则，用该行「测试」演练。<br/>4. 关闭设置后连按画面提示的键。长按不会计数。',y)
-y=screenshot(c,'overview','鼠鼠主题锁链模式；透明区域用于叠加直播画面。',y,240)
-y=note(c,'只需两个文件','交付 ZIP 只有 HTML 与本说明书。图片、字体、脚本内置 HTML，可离线显示；收到真实礼物仍需本机菘蓝服务或宿主 SDK。',y)
-finish(c,1,y)
+# 1 介绍
+y = start(c, '红黑破锁 V2.4', '观众送礼加挑战，你一下一下连按一个键解开 · 两种玩法 × 两种画面，随便搭')
+y = para(c, '观众送礼物，你要按的就变多；你一下一下地按同一个键，把锁链或者笼子解开。观众也能送礼捣乱（翻倍、按键失灵），或者送礼帮你（帮按、减半、马上全部解开）。设置只有一页，从上往下照着编号填就行。', y)
+y = heading(c, '第一次使用', y)
+y = para(c, '1. 把包里的「红黑破锁-1.html」导入白曜或菘蓝（白曜里还要把它设成交互对象才能按键，见第 11 页）。<br/>'
+            '2. 双击插件画面，打开设置。<br/>'
+            '3. 在 ① 选玩法，在 ② 选画面。<br/>'
+            '4. 在 ③ ④ ⑤ 填礼物：礼物名要和抖音里的一模一样；每一行点 ▶ 试一下。<br/>'
+            '5. 关掉设置，一下一下地按空格（或者在 ⑥ 换的键）。按住不放不算。', y)
+y = screenshot(c, 'stage_bar_lock', '直播画面：进度条 × 锁链，默认的样子「暗黑恐怖 · 红黑」。灰白格子是透明的地方，直播时露出后面的画面。', y, 255)
+y = note(c, '包里两个文件', '「红黑破锁-1.html」和这份说明。图片、字体、声音都在 HTML 里，不联网也能显示；要收到观众的礼物，得在白曜或菘蓝里用。', y)
+finish(c, 1, y)
 
-y=start(c,'先选模式，再编辑它的菜单')
-y=screenshot(c,'modes','玩法顶部的三张模式卡片，只有一张启用。',y,140)
-y=table(c,['模式','画面与计数'],[
- ['多条进度','填满一条消一条。×N 是剩余条数；每条按几次只设置这一条的难度，可设置停手回落。'],
- ['牢笼拍门','九主题双开门，锁头与信息板居中。逐层拍门逃离，按道解除封锁。'],
- ['累计次数','没有层数。礼物不断增加剩余次数，每次有效按键减 1，降到 0 完成本轮。停手不回落。'],
-], [80,W-176],y)
-y=para(c,'「玩法」、当前模式的礼物页与「试玩」都只编辑当前启用模式。切走再回来会保留这一模式的设置；收到礼物只匹配当前模式的规则，不会同时触发其他两套规则。',y)
-y=note(c,'挑战中不能切','还有挑战或按键禁用未结束时，模式卡会提示先在「试玩」清空或等待结束。不会偷偷清除观众送来的挑战。导入另一种活动模式也受此保护。',y)
-finish(c,2,y)
+# 2 一页设置
+y = start(c, '设置只有一页', '双击插件画面打开。改了马上生效，自动保存，不用点保存。')
+y = screenshot(c, 'menu_top', '设置的最上面：一行字说连没连上直播间；下面是 ① 玩法、② 画面，选中的卡片是粉色边。', y, 290)
+y = table(c, ['从上往下', '管什么'], [
+    ['① 玩法', '进度条 / 次数：观众送礼以后怎么算，停手会不会往回掉'],
+    ['② 画面', '锁链 / 牢笼：长什么样，和玩法随便搭'],
+    ['③ 加进度条 / 加次数礼物', '送了会让你要按的变多；① 选哪种玩法，这里就是哪张表'],
+    ['④ 捣乱礼物', '让你更难：剩下的翻倍、按键失灵几秒'],
+    ['⑤ 帮忙礼物', '帮你：帮按几下、剩下的减半、马上全部解开'],
+    ['⑥ 用哪个键', '换成你顺手的键'],
+    ['⑦ 样子', '九种颜色和画风，画面大小'],
+    ['⑧ 声音', '总音量'],
+    ['最下面', '「清空现在的挑战」「解除按键失灵」，还有收起来的「高级设置（不懂就别动）」'],
+], [190, W-286], y, 9.5, 15, 10)
+finish(c, 2, y)
 
-y=start(c,'多条进度与牢笼拍门：按条 / 道设置')
-y=para(c,'选「多条进度」后进入「进度礼物」，填加几条进度、每条按几次；选「牢笼拍门」后进入「关笼礼物」，填加几道封锁、每道拍门几次。每行下方显示送 1 个礼物的效果。上下限相同固定，不同随机；改完自动保存。',y)
-y=table(c,['效果','规则'],[
- ['加进度 / 加封锁','进度条数 / 封锁道数 1–20000；每条按键 / 每道拍门 1–99999 次；次数倍率 1–1000。'],
- ['加固 / 翻倍','剩余次数乘倍率，保留已按与永久援助；可设置重复次数。每层有效目标上限 10 亿。'],
- ['援助 / 减次','直接抵扣，超出当前层继续用于后续层；超出全部挑战的余点不留给未来。'],
- ['释放 / 清空','清除当前、排队挑战和禁用状态，不伪造主播按键。'],
- ['禁用按键','每份秒数乘礼物份数，总剩余禁用最多 1 小时。'],
-], [105,W-201],y)
-y=screenshot(c,'layer_rules','关笼礼物：设置封锁与拍门次数，下方直接读出送礼效果。',y,160)
-y=note(c,'随机怎样抽','数量每次消息抽一次，再乘礼物份数；倍率整批共用；每层基础次数独立抽取。已收到的挑战保存快照，改规则和刷新都不会重抽。',y)
-finish(c,3,y)
+# 3 玩法
+y = start(c, '① 玩法：进度条还是次数', '两种玩法只差在「观众送礼以后怎么算」。长什么样在 ② 单独选。')
+y = table(c, ['', '进度条', '次数'], [
+    ['观众送礼', '加几条进度条，每条要按几下是设好的', '往一个总数上加几次，不会多出一条'],
+    ['你按一下', '这一条往前走一格，按满一条破一条', '总数少 1'],
+    ['停手', '往回掉（快慢在下面选）', '不会往回掉'],
+    ['画面上', '进度条，右边的「×N」是还剩几条', '「还需 N 次」'],
+    ['什么时候出来', '所有进度条都按完', '减到 0'],
+], [92, (W-188)/2, (W-188)/2], y)
+y = grid(c, [('stage_bar_lock', '进度条：玫瑰 = 加 1 条，每条按 120 下'), ('stage_count_lock', '次数：玫瑰 = 加 120 次')], y, 140)
+y = heading(c, '停手以后往回掉（只有进度条有）', y)
+y = para(c, '在 ① 下面选：不掉 / 慢 / 正常（默认）/ 快。下面一行小字会告诉你停手多久开始掉、按满的一条大约几秒掉光。想调得更细，到「高级设置」里填每秒掉多少、停手几秒以后才开始掉。', y)
+y = note(c, '换玩法', '正在玩的时候换不了：先点最下面的「清空现在的挑战」，再换。两种玩法各有一张礼物表，换过去以后 ③ 变成那一张；原来那张还在，换回来就回来了。', y)
+finish(c, 3, y)
 
-y=start(c,'累计次数：只有一个剩余总数')
-y=para(c,'主数字是「还需 N 次」，小字是「已按 M 次」；鼠鼠写「已啃 M 次」。礼物继续往剩余数相加，每按一下减一。进度按已按 ÷（已按 + 剩余）计算；新礼物加进来后比例可能下降，这是总工作量增加的结果。',y)
-y=table(c,['效果','次数模式含义'],[
- ['增加剩余次数','每份次数抽一次，再乘礼物份数。在「次数礼物」中填写增加多少次，没有层数或每层目标。'],
- ['剩余次数翻倍','将剩余数乘以倍率，已经按过的数保留。'],
- ['减少剩余次数','直接减少剩余数，已按数不增加。'],
- ['清空 / 禁用','清掉本轮与禁用，或暂时让按键不计数。'],
-], [100,W-196],y)
-y=screenshot(c,'count_rules','次数模式的规则卡片只显示适用的参数。',y,140)
-y=para(c,'本轮降到零后破锁退场并清零历史；退场期间收到加次数礼物，会立即开启新一轮，旧退场计时不会把新挑战隐藏。次数使用安全整数，达到上限时会明确提示。',y)
-y=note(c,'旧倍率可见','旧版规则迁移成每份层数 × 每层次数的范围。若原规则还有非 1 倍率，会显示「原规则次数乘几倍」，保留原礼物强度；改为 1 后隐藏该额外项。',y)
-finish(c,4,y)
+# 4 画面
+y = start(c, '② 画面：锁链还是牢笼', '画面只管长什么样，和玩法随便搭，四种搭配都能用。')
+y = grid(c, [('stage_bar_lock', '进度条 × 锁链'), ('stage_bar_cage', '进度条 × 牢笼'),
+             ('stage_count_lock', '次数 × 锁链'), ('stage_count_cage', '次数 × 牢笼')], y, 138)
+y = table(c, ['', '锁链', '牢笼'], [
+    ['画面', '锁头加四根锁链', '关进笼子，门上挂着锁'],
+    ['按一下', '锁头被敲得一扁一弹，锁链跟着绷紧', '两扇门往外鼓一下再弹回来，锁哐啷晃'],
+    ['菜单里的说法', '按、帮你按掉、马上全部解开', '拍、帮你拍掉、马上开门'],
+], [92, (W-188)/2, (W-188)/2], y)
+y = note(c, '正在玩也能换', '换了画面，那一局接着玩，按到哪里还在哪里。礼物表也不用重新填，锁链和牢笼用同一张。', y)
+finish(c, 4, y)
 
-y=start(c,'双开门牢笼：按一次，拍一次门')
-y=para(c,'锁头水平居中，中心约在画面三分之二高度；短链左右对称，信息板仍在锁下方。横屏或较矮画布会自动缩小，竖屏优先保留文字大小、调整锁头尺寸，避免面板出界。框架、栏杆、双门、链条和锁依次关上；逃脱时锁掉落、链条滑落、门向两边打开、栏杆收起。',y)
-y=screenshot(c,'cage','鼠鼠主题粉蓝仓鼠笼；横屏和竖屏均保持中线对齐。',y,270)
-y=para(c,'每次有效点按，两扇门向外鼓一下再弹回，锁与短链哐啷晃动，门缝附近出现随机冲击波纹。鼠鼠额外闪现小爪印，声音是软拍加吱声；其他主题分别使用各自的金属、纸张、像素或电子质感拍门声。',y)
-y=note(c,'九套独立素材','鼠鼠粉蓝、暗红铸铁、赛博能量、旧黄铜墨绿、钢笔线稿、像素、粉笔、绿色荧光线框、奶油糖果。均为原创透明图组件，按头、中段、尾拼接，复用当前主题的锁链。',y)
-finish(c,5,y)
+# 5 加进度条礼物
+y = start(c, '③ 加进度条礼物', '填「送了会让你要按的变多」的礼物。玩法是进度条的时候，③ 就是这张表。')
+y = heading(c, '加一个礼物', y)
+y = para(c, '1. 点表下面的「＋ 添加一个加进度条礼物」，多出一行。<br/>'
+            '2. 在左边的框里写礼物名，要和抖音里的一模一样，比如「小心心」。<br/>'
+            '3. 填「加几条，每条按几下」。两个框一样就是固定数，不一样就每次在中间随机。<br/>'
+            '4. 点 ▶ 试一下：就当有人送了 1 个，画面上真的会加上；试完点最下面的「清空现在的挑战」。<br/>'
+            '5. 这一行不要了，点 ✕。', y)
+y = screenshot(c, 'gift_bar', '进度条玩法：送 1 个玫瑰 → 加 1 条，每条按 120 下。', y, 270)
+y = note(c, '一次送好几个', '观众一次送 3 个就是 3 倍：比如「加 1～2 条」抽到 2，就加 6 条。每条按几下是每一条单独随机。同一个礼物在 ③ ④ ⑤ 里只能填一行，填重了那一行会提示。', y)
+finish(c, 5, y)
 
-y=start(c,'啃锁反馈与动画偏好')
-y=para(c,'锁链和次数模式每次点按都有约 120 ms 的压扁、回弹和小角度晃动，链条跟着绷紧。快速连点重启动画，不叠加成乱抖。牢笼用约 150 ms 的拍门动作代替。',y)
-y=screenshot(c,'bites','鼠鼠锁身边缘的牙印随进度变化，鼠耳与锁梁保持完整。',y,235)
-y=para(c,'鼠鼠在 20%、40%、60%、80%、95% 进度依次留下五个牙印；回落时牙印退回，新层换回完整锁。每次啃都掉奶油色与奶酪黄碎屑，进度轨道上的小老鼠做咀嚼点头。次数按整轮进度显示牙印；牢笼只拍门，不啃锁。',y)
-y=note(c,'动画关闭','不播放位移、形变和新粒子，只保留轻微亮度反馈；进度和牙印仍静态显示。自定义锁图或替换内置材质的锁体结构未知，因此不挖牙印，以免切掉耳朵或其他装饰；仍保留受击与按键反馈。',y)
-finish(c,6,y)
+# 6 加次数礼物
+y = start(c, '③ 加次数礼物', '玩法换成「次数」以后，③ 就变成这张表。它和进度条那张各存各的，换回去那张也还在。')
+y = para(c, '每一行只填「加几次」：两个框一样就是固定数，不一样就每次在中间随机。观众送的次数都加到同一个总数上，画面上只有一个「还需 N 次」。添加一行、点 ▶ 试一下、点 ✕ 删掉，都和进度条那张一样。', y)
+y = screenshot(c, 'gift_count', '次数玩法：送 1 个玫瑰 → 加 120 次。', y, 255)
+y = heading(c, '次数玩法里，④ ⑤ 的说法也跟着变', y)
+y = table(c, ['进度条玩法', '次数玩法'], [
+    ['剩下要按的 × 几 / ÷ 几', '剩下的次数 × 几 / ÷ 几'],
+    ['「＋ 帮按礼物」：帮你按掉几下', '「＋ 减次数礼物」：帮你减掉几次'],
+    ['「＋ 全部解开礼物」：马上全部解开', '「＋ 清零礼物」：次数直接清零'],
+], [(W-96)/2, (W-96)/2], y)
+finish(c, 6, y)
 
-y=start(c,'主题、上传素材、单键与声音')
-y=para(c,'九张主题卡片有锁头和链条预览，鼠鼠仍排第一，已去掉「新」标。桌面三列、窄屏两列，可点选或用方向键与 Home / End 选择。选主题会使用其原配素材，但该主题自定义上传仍优先。',y)
-y=table(c,['选项','用法'],[
- ['单键录入','点击「录入按键」再按单个键，即可保存。支持字母、数字、方向、功能、小键盘等浏览器能收到的键。纯修饰键、组合键和输入法选词不录入。'],
- ['上传素材与示例','每主题分别保存锁、链，以及栏杆、上下横梁、门框横梁、门扣。牢笼组件在可展开区；各项都有透明 PNG 示例下载。单图最大5 MB、4096×4096，全部图片合计90 MB；失败保旧。'],
- ['音效','当前模式分别选默认 / 自定义 / 关闭与音量。自定义音频最大 3 MB、10 秒。上传失败保留旧音效。'],
- ['个人素材','自定义图片和音频字节由浏览器共享保存；各模式的主题、材质、音效选项独立。通过设置备份携带到另一台电脑。'],
-], [100,W-196],y)
-y=screenshot(c,'asset_example','素材菜单可查看示例并下载透明 PNG；上传、预览和恢复默认在同一行。',y,165)
-y=note(c,'当前挑战的键','按键设置用于新挑战；进行中的挑战保留收到时的按键。菜单内输入不参与破锁，长按和迟到的重复按键不算新点击。音频需浏览器允许播放，首次用户交互前可能静音。',y)
-finish(c,7,y)
+# 7 捣乱礼物
+y = start(c, '④ 捣乱礼物', '让你更难的礼物。点表下面的按钮加一行，写礼物名、填数字；▶ 试一下，✕ 删掉。')
+y = table(c, ['表下面的按钮', '观众送 1 个会怎样'], [
+    ['「＋ 翻倍礼物」', '剩下要按的 × 几，所有没按完的进度条都乘（次数玩法乘剩下的次数）。送 2 个就乘两次。只对正在玩的挑战有用。'],
+    ['「＋ 按键失灵礼物」', '几秒内按了不算。送 2 个秒数翻倍，接着上一次往后加，最多 1 小时。'],
+], [128, W-224], y)
+y = screenshot(c, 'gift_mess', '例子：人气票 → 剩下要按的 × 2；大啤酒 → 按键失灵 10 秒。', y, 195)
+y = para(c, '按键失灵的时候，画面上写着「按键失灵 · 还剩 N 秒」。想马上恢复，点设置最下面的「解除按键失灵」；⑤ 里的全部解开礼物也会一起解除。', y)
+finish(c, 7, y)
 
-y=start(c,'画面大小与直播连接')
-y=table(c,['画面大小','用途'],[
- ['标准','原有紧凑大小，适合空间有限的画面。'],
- ['大（默认）','锁、链条和信息板一起放大，便于手机观众看清。'],
- ['特大','更醒目的数字与按键提示。小窗口自动缩放，保留受击动作和装饰的边距。'],
-], [110,W-206],y)
-y=para(c,'在菘蓝里加载时优先使用 SDK；设置的连接状态显示「菘蓝 SDK」。独立运行先连接 ws://127.0.0.1:9910，失败再尝试兼容通道 ws://localhost:10030。无需把文件复制进菘蓝安装目录。',y)
-y=note(c,'未连接','先检查菘蓝本机服务。断线按 3、6、12、24、30 秒逐步退避，恢复后自动重连。插件不额外刷错误日志；浏览器自身可能留下少量连接失败记录。未连接时仍可用试玩与单行测试。',y)
-y=para(c,'OBS 使用方式沿用浏览器来源加载本地 HTML，透明区域能叠在直播画面上。本轮按用户要求没有启动或操作 OBS；模拟宿主的浏览器测试不能替代真实直播环境验收。',y)
-finish(c,8,y)
+# 8 帮忙礼物
+y = start(c, '⑤ 帮忙礼物', '帮你的礼物，添加一行、试一下、删掉都和 ④ 一样。牢笼里「按」都说成「拍」。')
+y = table(c, ['表下面的按钮', '观众送 1 个会怎样'], [
+    ['「＋ 帮按礼物」', '帮你按掉几下，先抵前面的进度条，多的接着抵后面的。'],
+    ['「＋ 减半礼物」', '剩下要按的 ÷ 几，除不尽往上取，至少留 1 下。送 2 个就除两次。'],
+    ['「＋ 全部解开礼物」', '马上全部解开，按键失灵也一起解除。牢笼里叫「开门礼物」。'],
+], [128, W-224], y)
+y = screenshot(c, 'gift_help', '例子：破锁钥匙 → 帮你按掉 60 下；比心兔兔 → 剩下要按的 ÷ 2；跑车 → 马上全部解开。', y, 265)
+y = note(c, '记得改名', '⑤ 里自带的「破锁钥匙」抖音里没有，只是个例子，换成你要用的礼物名。帮忙、翻倍、减半的礼物只在有挑战的时候才有用。', y)
+finish(c, 8, y)
 
-y=start(c,'升级、备份与三代存档迁移')
-y=para(c,'升级前先保留旧 HTML 和旧 ZIP，并导出一份设置；再用 V2.3 HTML 替换工作副本，刷新宿主。文件名仍是「红黑破锁-1.html」。浏览器位置和宿主不同，存储也可能不同；跨环境请导出再导入。',y)
-y=table(c,['旧设置','迁移结果'],[
- ['累计次数 count','迁移到次数模式，正在进行的所有剩余工作量折算为一个总数；保留可证明的已按次数。'],
- ['锁链 / 牢笼 + bar','迁移到对应模式，层数、进度、已抽目标和队列快照保留。'],
- ['旧礼物规则','复制到锁链和牢笼；次数模式按层数范围 × 每层次数范围折算，原倍率保留。'],
- ['未抽的排队盲盒','旧记录若没有随机种子，使用稳定的首次迁移序列结算并保存，避免每次刷新重抽；已有种子的序列保持。'],
-], [110,W-206],y)
-y=para(c,'新版导出包含三个模式的全部设置和规则、自定义素材与音频。导入先预览、确认后应用；取消不覆盖。当前挑战不会被设置导入清除或重抽，进行中也不能导入成另一活动模式。',y)
-y=note(c,'异常恢复','若三模式存档损坏，只能从当前模式镜像恢复可证明的数据；缺失的其他模式规则留空并提示从备份恢复，避免编造规则。无法安全折算的旧挑战保留为不回落的分层挑战，完成或清空后再切换。',y)
-finish(c,9,y)
+# 9 按键和样子
+y = start(c, '⑥ 用哪个键和 ⑦ 样子')
+y = para(c, '<b>换键</b>：点「换一个键」，再按一下想用的键，「现在用」就变成它；不想换了点「不换了」。常用的空格、F、J、回车可以直接点。要一下一下按，按住不放不算。', y)
+y = screenshot(c, 'sec_key', '⑥ 用哪个键：现在用空格。', y, 110)
+y = para(c, '换了键以后，已经加上的进度条还用原来的键，新加的才用新键；次数玩法是这一轮用原来的键，下一轮才用新键。画面上一直写着现在要按哪个键。', y)
+y = para(c, '<b>样子</b>：九种颜色和画风，锁头、锁链、笼子和面板一起变，默认是「暗黑恐怖 · 红黑」。画面大小有标准、大（默认，手机上看得清）、特大；窗口小了会自己缩。', y)
+y = screenshot(c, 'sec_look', '⑦ 样子：点一张卡片就换。', y, 230)
+finish(c, 9, y)
 
-y=start(c,'版本记录、验收与许可证')
-y=para(c,'V2.3.3：模式更名为多条进度、牢笼拍门、累计次数；明确 ×N 是剩余条数，累计次数没有层数。<br/>V2.3.2：三种玩法使用各自的礼物名称与字段，每行显示送礼效果，明确独立保存。<br/>V2.3.1：笼锁统一下移、自动避让底部；增加笼子自定义组件和菜单示例下载，支持备份恢复。<br/>V2.3：三模式与独立规则；次数总量挑战；九主题双开门牢笼；啃锁牙印、奶酪碎屑、咀嚼；每次拍门、随机波纹、鼠爪和九种拍门声；主题去新标。V2.2 的 9910、三档大小与鼠鼠主题继续保留。',y)
-y=heading(c,'测试范围',y)
-y=para(c,'自动测试通过数字、跳过项目和失败记录请看交付回复及自测目录的报告。最终检查从 ZIP 解出 HTML，运行已有回归与新增模式、迁移、牙印、拍门和双门几何测试。真实 OBS 与抖音直播未操作、未实测。',y)
-y=heading(c,'素材与字体',y)
-y=para(c,'牢笼九主题和鼠鼠锁链为原创生成，未使用主播肖像。生成提示、透明度与轮廓 QA 保存在 assets/cage/prompts.json 及 assets/themes/prompts.json。图片已内嵌 HTML，源码目录原图用于维护，不需要单独安装。',y)
-y=para(c,'鼠鼠面板使用站酷快乐体 ZCOOL KuaiLe 的固定字形子集（约 14 KB）；缺字回退系统微软雅黑。PDF 使用同一字体。Copyright 2018 The ZCOOL KuaiLe Project Authors，许可证 SIL Open Font License 1.1；完整许可证随 HTML 内嵌，并作为此 PDF 的附件。系统回退字体仅引用，不分发。',y)
-y=note(c,'保留旧版本','本次交付不删除、不移动 V2.2 / V2.1 ZIP 与 V1.8.2 文件夹，不向菘蓝安装目录放文件。旧存档/旧包可供回退，升级前仍请自己保留工作副本与设置备份。',y)
-finish(c,10,y)
+# 10 声音、清空、高级设置
+y = start(c, '⑧ 声音、清空和高级设置')
+y = screenshot(c, 'sound_tools', '⑧ 声音，和设置最下面的两个按钮。', y, 120)
+y = para(c, '<b>声音</b>：⑧ 只有一个总音量，拉到 0 就没声音。想单独换、单独关某一种声音，到「高级设置」里的「每种声音」。', y)
+y = para(c, '<b>清空现在的挑战</b>：正在玩的和排队的全部清掉。要点两下：第一下按钮会变成「再点一次就清空」，防止手滑。<b>解除按键失灵</b>：马上就能按。', y)
+y = heading(c, '高级设置（不懂就别动）', y)
+y = table(c, ['里面有什么', '用来干什么'], [
+    ['停手往回掉（细调）', '每秒掉多少（满格算 100，0 = 不掉），停手几秒以后才开始掉。<br/>只有进度条玩法有。'],
+    ['动画', '开 / 跟随系统 / 关。关了以后不晃、不弹、不冒粒子，进度照样显示。'],
+    ['锁链、锁头、笼子的图片', '跟着样子走，或者固定用四套图里的一套。也能换成自己的透明 PNG（每张 5 MB、4096 像素以内）：自己的图优先，点「恢复默认」就回去。'],
+    ['每种声音', '每种声音用默认的、换成自己的（3 MB、10 秒以内），或者关掉。'],
+    ['自由试玩', '不看礼物表直接试：加几条、× 几、÷ 几、帮按几下、失灵几秒。'],
+    ['备份', '「导出设置」存成一个文件；到别的电脑、OBS、白曜、菘蓝里点「导入设置」，先看一眼再点「确认导入」。旧版导出的文件也能导入。'],
+    ['直播连接', '现在连没连上直播间，设置存在哪里。'],
+], [130, W-226], y)
+finish(c, 10, y)
+
+# 11 在哪用、从旧版换过来
+y = start(c, '在白曜、菘蓝、OBS 里用', '白曜和菘蓝都会把导入的插件另存一份，所以换新版要重新导入。')
+y = table(c, ['在哪用', '怎么做'], [
+    ['白曜', '「导入插件」选「红黑破锁-1.html」，礼物会自己接上。要能按键：画布 →「鼠标与键盘交互对象」→ 选中红黑破锁 →「将所选插件设为交互对象」，看到「正在接收交互」就行。'],
+    ['菘蓝', '在「自定义插件」里加载「红黑破锁-1.html」，礼物会自己接上。<br/>按键前先点一下插件画面。'],
+    ['OBS 浏览器来源', '也可以直接打开这个 HTML：它会去连本机开着的白曜或菘蓝（先 9910，再 10030），断了自己重连。要按键，在 OBS 里右键这个来源，点「交互」，在弹出的窗口里按。'],
+], [100, W-196], y)
+y = heading(c, '从旧版换成 V2.4', y)
+y = para(c, '1. 在白曜或菘蓝里重新导入新的「红黑破锁-1.html」，换掉旧的。<br/>'
+            '2. 打开设置看一眼：旧的设置第一次打开时会自己换过来（见下表）。<br/>'
+            '3. 点几行 ▶ 试一下，再点「清空现在的挑战」。', y)
+y = table(c, ['旧版里的', '到 V2.4 以后'], [
+    ['礼物（V1.8.2，或者 V2.3 的「多条进度」）', '③ 加进度条礼物；帮忙、禁用、清空的礼物分到 ④ ⑤'],
+    ['V2.3 当时正在用「牢笼拍门」', '③ 用牢笼那张礼物表，② 画面是牢笼'],
+    ['V2.3 的「累计次数」', '③ 加次数礼物（换到次数玩法就能看到）'],
+    ['按键、样子、声音', '用当时正在用的那一份'],
+    ['正在玩的那一局', '接着玩'],
+], [175, W-271], y)
+y = note(c, '旧版不会被改', 'V2.4 的设置存在新的地方，旧版的一个字都不动。想退回旧版，重新导入旧的 HTML，它还是原来的样子。V2.3 里多条进度和牢笼拍门各有一张礼物表，V2.4 的进度条只有一张：没在用的那张不会带过来，还留在旧版里。', y)
+finish(c, 11, y)
+
+# 12 版本记录、测试、许可证
+y = start(c, '版本记录、测试和许可证')
+y = para(c, '<b>V2.4（2026-10-30）</b><br/>'
+            '1. 设置重做成一页：① 玩法 ② 画面 ③ 加礼物 ④ 捣乱 ⑤ 帮忙 ⑥ 按键 ⑦ 样子 ⑧ 声音，说法都改成大白话。<br/>'
+            '2. 玩法（进度条 / 次数）和画面（锁链 / 牢笼）分开选，四种搭配都能用；正在玩也能换画面。<br/>'
+            '3. 每个礼物一行「送 1 个 → …」，点 ▶ 就能试。<br/>'
+            '4. 新增「减半礼物」：剩下要按的 ÷ 几。<br/>'
+            '5. 设置存到新的地方，旧版的设置不受影响，随时能退回去。', y)
+y = para(c, '<b>V2.3.3 和更早</b>：三种模式（多条进度、牢笼拍门、累计次数），九套牢笼，啃锁和拍门的反馈，连 9910，三档画面大小，鼠鼠主题。详细的看旧版的说明。', y)
+y = heading(c, '测试', y)
+y = para(c, '这一版用自动测试点过：四种搭配都实际玩了一遍（送礼、按键、停手往回掉、每种礼物的 ▶、减半、导出导入），也试了从 V1.8.2、V2.3.3 换过来再换回去。礼物是用模拟的礼物消息送的；真的白曜、菘蓝、OBS 和抖音直播还没有试过。', y)
+y = heading(c, '素材和字体', y)
+y = para(c, '锁链、锁头、九套牢笼和鼠鼠主题的图都是原创生成的，没有用主播的形象。鼠鼠面板的字体是站酷快乐体（ZCOOL KuaiLe，SIL Open Font License 1.1），许可证全文在 HTML 里，也作为附件放在这份 PDF 里。这份说明的正文也用这个字体；①～⑧、▶、✕、→ 这几个符号用的是 DejaVu Sans，许可证同样附在 PDF 里。', y)
+y = note(c, '礼物没反应', '先看设置最上面那一行，有没有连上直播间；再看礼物名是不是和抖音里的一模一样。帮忙、翻倍、减半的礼物只在有挑战的时候才有用。还不行就到「高级设置 → 自由试玩」点一下，看画面有没有反应。', y)
+finish(c, 12, y)
 c.save()
-from pypdf import PdfReader,PdfWriter
-from io import BytesIO
-writer=PdfWriter(clone_from=PdfReader(BytesIO(OUTPUT.read_bytes())))
-writer.add_attachment('ZCOOLKuaiLe-OFL.txt',(ROOT/'assets/fonts/ZCOOLKuaiLe-OFL.txt').read_bytes())
-with OUTPUT.open('wb') as target:writer.write(target)
+
+writer = PdfWriter(clone_from=PdfReader(BytesIO(OUTPUT.read_bytes())))
+writer.add_attachment('ZCOOLKuaiLe-OFL.txt', FONT_LICENSE.read_bytes())
+writer.add_attachment('DejaVu-LICENSE.txt', SYMBOL_LICENSE.read_bytes())
+with OUTPUT.open('wb') as target:
+    writer.write(target)
 print(f'Created {OUTPUT} ({OUTPUT.stat().st_size:,} bytes); {PAGES} pages; content bottoms: {page_bottoms}')

@@ -2,11 +2,11 @@
   'use strict';
   const $=id=>document.getElementById(id);
   const themes=new Set(['fufu','horror','cyber','typewriter','notebook','pixel','chalk','terminal','cream']);
-  const soundEvents=[['lock','上锁'],['hit','每次连点'],['layer','破掉一层'],['clear','全部破除']];
-  const soundModes=[['default','默认'],['custom','自定义'],['off','关闭']];
+  const soundEvents=[['lock','加锁的时候'],['hit','每按一下'],['layer','破掉一条'],['clear','全部破开']];
+  const soundModes=[['default','默认'],['custom','自己的'],['off','关掉']];
   const MAX_SOUND_BYTES=3*1024*1024,MAX_SOUND_SECONDS=10,DEFAULT_TARGET=60,FREEZE_MAX_SECONDS=3600;
   const defaultSound=()=>({master:80,events:Object.fromEntries(soundEvents.map(([key])=>[key,{mode:'default',volume:100}]))});
-  const defaults={mode:'lock',theme:'horror',key:'Space',motion:'on',decayRate:35,decayDelay:0.25,sceneMode:'lock',challengeMode:'bar',materialId:'theme',displaySize:'large'};
+  const defaults={theme:'horror',key:'Space',motion:'on',decayRate:35,decayDelay:0.25,sceneMode:'lock',challengeMode:'bar',materialId:'theme',displaySize:'large'};
   const defaultTargetPool=()=>[
     {id:'light',name:'轻锁',min:30,max:60,percent:60,enabled:true,look:'normal'},
     {id:'heavy',name:'重锁',min:61,max:120,percent:30,enabled:true,look:'rare'},
@@ -22,7 +22,10 @@
   let temporary=false,settings=freshSettings(),rules=LockGiftRules.normalizeInlineRules(defaultRules,{});
   let state=null,waiting=[],frozenUntil=0,cleared=0,settingsOpen=false,viewSequence=0,toastTimer=0,clearArmTimer=0,keyRecording=false,keyComposing=false,lastRoundHits=0;
   let configuration=null,countState=null,roundId=0;
-  const isCount=()=>settings.mode==='count';
+  // 两种玩法 × 两种画面，互不相干：
+  //   玩法 challengeMode：'bar' 进度条（每条要按几下设好，停手往回掉，礼物加进度条）/ 'count' 次数（礼物只往一个总数上加，不回落）
+  //   画面 sceneMode：'lock' 锁链 / 'cage' 牢笼
+  const isCount=()=>settings.challengeMode==='count',isCage=()=>settings.sceneMode==='cage';
   const challengeActive=()=>isCount()?!!countState?.remaining:!!state?.layers||waiting.length>0;
   const activeKey=()=>isCount()?countState?.key:state?.key;
   const clone=value=>JSON.parse(JSON.stringify(value));
@@ -33,12 +36,17 @@
     del(key){try{localStorage.removeItem(prefix+key);return true;}catch{storageWarning();return false;}}
   };
   function freshSettings(){return {...defaults,sound:defaultSound(),targetPool:defaultTargetPool(),multipliers:[]};}
-  function storageWarning(){temporary=true;$('storage-status').textContent='浏览器存储不可用，本页临时运行';$('settings-storage-status').textContent='浏览器存储不可用：本页可临时运行，关闭或刷新后无法恢复。';$('settings-storage-status').style.color='#ffadba';}
+  function storageWarning(){temporary=true;$('storage-status').textContent='浏览器存不了设置，关掉就丢';$('settings-storage-status').textContent='这个浏览器存不了东西：现在能玩，但关掉或刷新以后，设置和进度都会丢。';$('settings-storage-status').style.setProperty('color','#ffadba','important');}
   function toast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3500);}
-  const customArt=LockCustomArt.create({getTheme:()=>settings.theme,getMode:()=>settings.mode,overlay:$('typing-lock-overlay'),holder:$('custom-art'),notify:toast,onStorageError:storageWarning});
+  const customArt=LockCustomArt.create({getTheme:()=>settings.theme,getMode:()=>settings.sceneMode,overlay:$('typing-lock-overlay'),holder:$('custom-art'),notify:toast,onStorageError:storageWarning});
   const presentation=LockPresentation.create({getSettings:()=>settings,overlay:$('typing-lock-overlay')});
   const feedback=LockHitFeedback.create({getSettings:()=>settings,overlay:$('typing-lock-overlay'),spawn:(...args)=>fxSpawn(...args)});
   const scenes=LockScenes.create({getSettings:()=>settings,overlay:$('typing-lock-overlay'),notify:toast});
+  const giftTables=LockGiftTables.create({holders:{lock:$('gift-lock'),mess:$('gift-mess'),help:$('gift-help')},api:{
+    rules:()=>rules,save:next=>{if(!persistRules(next))return false;rules=next;return true;},clean:rule=>cleanRules([rule])?.[0]||null,
+    play:()=>settings.challengeMode,scene:()=>settings.sceneMode,test:rule=>testRule(rule),toast}});
+  // 进度条玩法按「条」算、次数玩法按「次」算；锁链说「按」、牢笼说「拍」
+  const unitWord=()=>isCount()?'次':'条',pressWord=()=>isCage()?'拍':'按';
   function cleanMultipliers(value){if(!Array.isArray(value)||value.length>1000)return null;const ids=new Set(),out=[];for(const item of value){if(!item||typeof item.id!=='string'||!/^[A-Za-z0-9_-]{1,40}$/.test(item.id)||ids.has(item.id)||typeof item.name!=='string'||!item.name.trim()||item.name.trim().length>40||!Number.isSafeInteger(Number(item.factor))||String(item.factor).trim()===''||Number(item.factor)<1||Number(item.factor)>1000)return null;ids.add(item.id);out.push({id:item.id,name:item.name.trim(),factor:Number(item.factor)});}return out;}
   function applyMaterial(){const overlay=$('typing-lock-overlay'),entry=window.LockMaterialBank?.[settings.materialId];for(const prop of ['--typing-lock-chain','--typing-lock-padlock','--lock-chain-ratio-x','--lock-chain-ratio-y','--lock-chain-offset','--lock-art-split','--lock-art-bottom'])overlay.style.removeProperty(prop);delete overlay.dataset.material;
     if(entry){overlay.dataset.material=settings.materialId;overlay.style.setProperty('--typing-lock-chain','url("'+entry.chain+'")');overlay.style.setProperty('--typing-lock-padlock','url("'+entry.padlock+'")');overlay.style.setProperty('--lock-chain-ratio-x',entry.chainRatioX);overlay.style.setProperty('--lock-chain-ratio-y',entry.chainRatioY);overlay.style.setProperty('--lock-chain-offset',entry.chainOffset);overlay.style.setProperty('--lock-art-split','100%');overlay.style.setProperty('--lock-art-bottom','0%');}
@@ -52,7 +60,7 @@
   function audioContext(){const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx)return null;const ctx=audioContext.ctx||(audioContext.ctx=new Ctx());if(ctx.state==='suspended')ctx.resume().catch(()=>{});return ctx;}
   function eventGain(kind){const conf=settings.sound.events[kind];return (settings.sound.master/100)*(conf.volume/100);}
   function synth(ctx,kind,gainScale){
-    if(settings.mode==='cage'&&kind==='hit'){feedback.synthDoor(ctx,gainScale);return;}
+    if(isCage()&&kind==='hit'){feedback.synthDoor(ctx,gainScale);return;}
     if(settings.theme==='fufu'){presentation.synth(ctx,kind,gainScale);return;}
     const start=ctx.currentTime,notes={clear:[560,830,1180],lock:[130,100],layer:[420,640,900],hit:[340,500]}[kind];
     for(const [index,freq] of notes.entries()){const o=ctx.createOscillator(),g=ctx.createGain(),t=start+index*(kind==='layer'?.06:.08),peak=Math.max(.0011,.055*gainScale);o.type=kind==='lock'?'sawtooth':'triangle';o.frequency.setValueAtTime(freq,t);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(peak,t+.015);g.gain.exponentialRampToValueAtTime(.001,t+.15);o.connect(g).connect(ctx.destination);o.start(t);o.stop(t+.16);}
@@ -93,31 +101,29 @@
   }
   async function uploadSound(kind,file){
     if(!file)return;
-    const originMode=settings.mode;
     // 先校验再占用上传序号：被拒绝的文件不会顶掉正在处理的有效上传。
-    if(file.size>MAX_SOUND_BYTES){toast('音频不能超过 3 MB');return;}
-    if(file.type&&!file.type.startsWith('audio/')){toast('请选择音频文件（MP3、WAV、OGG 等）');return;}
+    if(file.size>MAX_SOUND_BYTES){toast('声音文件不能超过 3 MB');return;}
+    if(file.type&&!file.type.startsWith('audio/')){toast('要选声音文件（MP3、WAV、OGG 都行）');return;}
     const token=(uploadToken[kind]||0)+1;uploadToken[kind]=token;
     let bytes,buffer;
-    try{bytes=await file.arrayBuffer();buffer=await decode(bytes);}catch{if(uploadToken[kind]===token)toast('无法解码这个音频文件，已保留原音效');return;}
+    try{bytes=await file.arrayBuffer();buffer=await decode(bytes);}catch{if(uploadToken[kind]===token)toast('这个声音文件放不出来，还用原来的');return;}
     if(uploadToken[kind]!==token)return;
-    if(buffer.duration>MAX_SOUND_SECONDS){toast('音效请控制在 '+MAX_SOUND_SECONDS+' 秒以内，已保留原音效');return;}
+    if(buffer.duration>MAX_SOUND_SECONDS){toast('声音要在 '+MAX_SOUND_SECONDS+' 秒以内，还用原来的');return;}
     const name=String(file.name||'自定义音频').slice(0,60);
     let saved=true;try{await soundDb.put(kind,{name,type:file.type,data:bytes});}catch{saved=false;}
     if(uploadToken[kind]!==token)return;
-    if(!saved){storageWarning();toast('音效未能保存，已保留原音效');return;}
+    if(!saved){storageWarning();toast('浏览器没能存下这个声音，还用原来的');return;}
     customSounds.set(kind,{name,buffer,bytes,type:file.type||''});
-    const next=activeConfiguration();next.profiles[originMode].settings.sound.events[kind].mode='custom';
-    const configured=persistConfiguration(next);if(configured&&settings.mode===originMode)settings.sound.events[kind].mode='custom';renderSounds();
-    toast(configured?'已为'+{lock:'多条进度',cage:'牢笼拍门',count:'累计次数'}[originMode]+'模式换成「'+name+'」':'音频已保存到素材库，但启用选项未能保存');if(settings.mode===originMode)sound(kind,true);
+    const next=activeConfiguration();next.settings.sound.events[kind].mode='custom';
+    const configured=persistConfiguration(next);if(configured)settings.sound.events[kind].mode='custom';renderSounds();
+    toast(configured?'换成了「'+name+'」':'声音存下了，但没能切换过去，请再点一次「自己的」');sound(kind,true);
   }
   async function removeSound(kind){
-    const originMode=settings.mode;
     uploadToken[kind]=(uploadToken[kind]||0)+1;
     let removed=true;try{await soundDb.del(kind);}catch{removed=false;}
-    stopSound(kind);customSounds.delete(kind);const next=activeConfiguration();if(next.profiles[originMode].settings.sound.events[kind].mode==='custom')next.profiles[originMode].settings.sound.events[kind].mode='default';
-    if(persistConfiguration(next)&&settings.mode===originMode)settings.sound.events[kind].mode=next.profiles[originMode].settings.sound.events[kind].mode;renderSounds();
-    toast(removed?'已移除自定义音频，恢复默认音效':'本页已恢复默认音效，但浏览器没能删除存档里的音频，刷新后可能还会列出');
+    stopSound(kind);customSounds.delete(kind);const next=activeConfiguration();if(next.settings.sound.events[kind].mode==='custom')next.settings.sound.events[kind].mode='default';
+    if(persistConfiguration(next))settings.sound.events[kind].mode=next.settings.sound.events[kind].mode;renderSounds();
+    toast(removed?'删掉了，换回默认声音':'这里换回默认声音了，但浏览器没删掉存着的那个，刷新后可能还在');
   }
   function renderSounds(){
     const holder=$('sounds');if(!holder)return;holder.replaceChildren();
@@ -127,7 +133,7 @@
       const conf=settings.sound.events[kind],custom=customSounds.get(kind);
       const row=document.createElement('div');row.className='sound-row';row.dataset.sound=kind;
       const head=document.createElement('div');head.className='sound-head';
-      const title=document.createElement('strong');title.textContent=kind==='hit'&&settings.mode==='cage'?'每次拍门':kind==='lock'&&isCount()?'增加次数':label;
+      const title=document.createElement('strong');title.textContent=kind==='lock'?(isCount()?'加次数的时候':isCage()?'关笼的时候':label):kind==='hit'&&isCage()?'每拍一下':kind==='clear'&&isCage()?'门开了':label;
       const mode=createChoice(soundModes,conf.mode==='custom'&&!custom?'default':conf.mode,label+'音效');
       mode.querySelector('button[data-value=custom]').disabled=!custom;
       mode.addEventListener('click',event=>{const b=event.target.closest('button[data-value]');if(!b||b.disabled)return;const live=settings.sound.events[kind];live.mode=b.dataset.value;saveSettingsObject();renderSounds();if(live.mode!=='off')sound(kind);});
@@ -139,13 +145,13 @@
       vol.addEventListener('change',()=>{settings.sound.events[kind].volume=Math.max(0,Math.min(100,Math.round(Number(vol.value)/5)*5));saveSettingsObject();sound(kind,true);});
       const file=document.createElement('input');file.type='file';file.accept='audio/*';file.hidden=true;
       file.addEventListener('change',()=>{const f=file.files?.[0];file.value='';uploadSound(kind,f);});
-      const upload=document.createElement('button');upload.type='button';upload.className='secondary small';upload.textContent=custom?'更换音频':'上传音频';upload.onclick=()=>file.click();
+      const upload=document.createElement('button');upload.type='button';upload.className='secondary small';upload.textContent=custom?'换一个':'换成自己的';upload.onclick=()=>file.click();
       const test=document.createElement('button');test.type='button';test.className='secondary small';test.textContent='试听';test.onclick=()=>sound(kind,true);
       tools.append(vol,volText,upload,test);
-      if(custom){const remove=document.createElement('button');remove.type='button';remove.className='secondary small';remove.textContent='移除';remove.onclick=()=>removeSound(kind);tools.append(remove);}
+      if(custom){const remove=document.createElement('button');remove.type='button';remove.className='secondary small';remove.textContent='删掉自己的';remove.onclick=()=>removeSound(kind);tools.append(remove);}
       tools.append(file);
       const note=document.createElement('div');note.className='sound-note';
-      note.textContent=custom?'自定义：'+custom.name:conf.mode==='custom'?'自定义音频未能读取，暂用默认音效':'未上传自定义音频';
+      note.textContent=custom?'自己的：'+custom.name:conf.mode==='custom'?'自己的声音读不出来，先用默认的':'用的是默认声音';
       row.append(head,tools,note);holder.append(row);
     }
   }
@@ -161,10 +167,12 @@
   function cleanSettings(value){
     const result=freshSettings();
     if(value&&typeof value==='object'){
-      if(['lock','cage','count'].includes(value.mode))result.mode=value.mode;else result.mode=value.challengeMode==='count'?'count':value.sceneMode==='cage'?'cage':'lock';
-      if(value.demo&&typeof value.demo==='object')result.demo=Object.fromEntries(Object.entries(value.demo).filter(([key,n])=>['amount','layers','target','factor','points','seconds'].includes(key)&&Number.isSafeInteger(n)&&n>=1&&n<=10000000));
+      const legacy=['lock','cage','count'].includes(value.mode)?value.mode:null; // V2.3 的多条进度 / 牢笼拍门 / 累计次数
+      result.sceneMode=['lock','cage'].includes(value.sceneMode)?value.sceneMode:legacy==='cage'?'cage':'lock';
+      result.challengeMode=['bar','count'].includes(value.challengeMode)?value.challengeMode:legacy==='count'?'count':'bar';
+      if(value.demo&&typeof value.demo==='object')result.demo=Object.fromEntries(Object.entries(value.demo).filter(([key,n])=>['amount','layers','target','factor','divisor','points','seconds'].includes(key)&&Number.isSafeInteger(n)&&n>=1&&n<=10000000));
       if(themes.has(value.theme))result.theme=value.theme;if(TypingLockModel.keyValid(value.key))result.key=value.key;if(['on','auto','off'].includes(value.motion))result.motion=value.motion;
-      if(['lock','cage'].includes(value.sceneMode))result.sceneMode=value.sceneMode;if(['bar','count'].includes(value.challengeMode))result.challengeMode=value.challengeMode;if(['theme','forged-steel','antique-brass','arcane-anime','candy-toon'].includes(value.materialId))result.materialId=value.materialId;
+      if(['theme','forged-steel','antique-brass','arcane-anime','candy-toon'].includes(value.materialId))result.materialId=value.materialId;
       if(['standard','large','xlarge'].includes(value.displaySize))result.displaySize=value.displaySize;
       if(value.multipliers!==undefined){const levels=cleanMultipliers(value.multipliers);if(levels)result.multipliers=levels;}
       if(Array.isArray(value.tiers))result.tiers=value.tiers.slice(0,1000).filter(tier=>tier&&typeof tier.id==='string'&&TypingLockModel.target(tier.target)!==null).map(tier=>({...tier,target:TypingLockModel.target(tier.target)}));
@@ -175,7 +183,6 @@
       if(value.decayRate!==undefined&&value.decayRate!==null&&value.decayRate!==''&&Number.isFinite(rateOk)&&rateOk>=0&&rateOk<=500)result.decayRate=Math.round(rateOk);
       if(value.decayDelay!==undefined&&value.decayDelay!==null&&value.decayDelay!==''&&Number.isFinite(delayOk)&&delayOk>=0&&delayOk<=10)result.decayDelay=Math.round(delayOk*100)/100;
     }
-    result.sceneMode=result.mode==='cage'?'cage':'lock';result.challengeMode=result.mode==='count'?'count':'bar';
     return result;
   }
   function applyDecay(){TypingLockModel.setDecay({rate:settings.decayRate/100,graceMs:settings.decayDelay*1000});}
@@ -194,41 +201,58 @@
       if(next.target===undefined&&next.targetMin===undefined&&legacy)next.target=Object.hasOwn(legacy,next.tier)?legacy[next.tier]:DEFAULT_TARGET;
       return next;
     });
-    return sourceSettings?.mode==='count'?LockModes.normalizeCountRules(prepared):LockGiftRules.normalizeInlineRules(prepared,sourceSettings);
+    return sourceSettings?.challengeMode==='count'?LockModes.normalizeCountRules(prepared):LockGiftRules.normalizeInlineRules(prepared,sourceSettings);
   }
+  // 存档第 25 版（插件 V2.4）：一份设置 + 两张礼物表（进度条一张、次数一张）。画面单独选，不跟礼物表绑在一起。
+  // 老版本的存档（V2.3 的 config-v23、V2.4 测试版的 config-v24）只读不写：第一次打开时换算过来，老版本照样用它自己那一份。
+  const CONFIG_KEY='config-v25',STATE_KEY='state-v25',PLAYS=['bar','count'],OLD_MODES=['lock','cage','count'];
+  // V2.3 以前的礼物格式：只有累计次数是按次数，多条进度和牢笼拍门都是一条条的
+  const v23Shape=st=>({...(st||{}),challengeMode:st?.mode==='count'?'count':'bar'});
   function normalizeConfiguration(raw){
-    if(!raw||raw.version!==23||!['lock','cage','count'].includes(raw.mode))return null;
-    const profiles={};for(const mode of ['lock','cage','count']){const p=raw.profiles?.[mode];if(!p)return null;const st=cleanSettings({...p.settings,mode}),rr=cleanRules(p.rules,legacyTargets(p.settings),st);if(!rr)return null;profiles[mode]={settings:st,rules:rr};}return {version:23,mode:raw.mode,profiles};
+    if(!raw||raw.version!==25||!raw.settings||!raw.rules)return null;
+    const st=cleanSettings(raw.settings),legacy=legacyTargets(raw.settings);
+    const bar=cleanRules(raw.rules.bar,legacy,{...st,challengeMode:'bar'}),count=cleanRules(raw.rules.count,legacy,{...st,challengeMode:'count'});
+    return bar&&count?{version:25,settings:st,rules:{bar,count}}:null;
   }
-  function activeConfiguration(st=settings,rr=rules){const next=clone(configuration);next.mode=st.mode;next.profiles[st.mode]={settings:clone(st),rules:clone(rr)};return next;}
+  // 三种玩法各存一份的老存档 → 现在：设置用当时正在用的那一份；进度条礼物用「多条进度」的（当时用牢笼拍门就用它的），次数礼物用「累计次数」的。
+  // V2.4 测试版里牢笼拍门是按次数的，所以它的礼物算进次数那张表。
+  function fromProfiles(raw,active=raw?.mode){
+    if(!raw||![23,24].includes(raw.version)||!raw.profiles||!OLD_MODES.includes(active))return null;
+    const playOf=mode=>mode==='count'||raw.version===24&&mode==='cage'?'count':'bar';
+    const rulesOf=mode=>{const p=raw.profiles[mode];return p?cleanRules(p.rules,legacyTargets(p.settings),{...cleanSettings(p.settings),challengeMode:playOf(mode)}):null;};
+    const p=raw.profiles[active],play=playOf(active);if(!p)return null;
+    const st=cleanSettings({...p.settings,sceneMode:active==='cage'?'cage':'lock',challengeMode:play});
+    const bar=rulesOf(play==='bar'?active:'lock'),count=rulesOf(play==='count'?active:'count');
+    return bar&&count?{version:25,settings:st,rules:{bar,count}}:null;
+  }
+  function activeConfiguration(st=settings,rr=rules){const next=clone(configuration);next.settings=clone(st);next.rules[st.challengeMode]=clone(rr);return next;}
   function persistConfiguration(next){
-    // One authoritative profile envelope, with compatibility mirrors. Roll back a refused write.
-    const profile=next.profiles[next.mode],changedRules=configuration?.mode!==next.mode||JSON.stringify(configuration?.profiles[next.mode]?.rules)!==JSON.stringify(profile.rules),writes=[['settings',JSON.stringify(profile.settings)],...(changedRules?[['rules',JSON.stringify(profile.rules)]]:[]),['config-v23',JSON.stringify(next)]],before=writes.map(([key])=>store.get(key));
-    for(let i=0;i<writes.length;i++){if(!store.set(...writes[i])){for(let j=i-1;j>=0;j--){if(before[j]===null)store.del(writes[j][0]);else store.set(writes[j][0],before[j]);}return false;}}
+    // 只写自己的 config-v25，老版本的存档一个都不写
+    if(!store.set(CONFIG_KEY,JSON.stringify(next)))return false;
     configuration=clone(next);return true;
   }
   function persistRules(next){return persistConfiguration(activeConfiguration(settings,next));}
   function restore(){
     const readRecord=key=>{try{return JSON.parse(store.get(key)||'null');}catch{toast('部分旧存档无法读取，正在保留可用记录');return null;}};
-    let raw=readRecord('settings'),saved=readRecord('state'),storedConfig=readRecord('config-v23');
-    settings=cleanSettings(raw);let legacyRules=LockGiftRules.normalizeInlineRules(defaultRules,{});
-    try{const value=JSON.parse(store.get('rules')||'null');if(value!==null){const migrated=cleanRules(value,legacyTargets(raw),raw||{});if(migrated)legacyRules=migrated;else toast('礼物规则存档无效，保留旧存档并暂用默认规则');}}catch{toast('礼物规则存档读取失败，保留旧存档');}
-    configuration=normalizeConfiguration(storedConfig);if(storedConfig&&!configuration)toast('三模式存档损坏，已从当前模式镜像恢复；其他模式缺失的规则请从备份导入');
-    configuration=configuration||normalizeConfiguration(LockModes.migrateConfig(raw||defaults,legacyRules));
-    if(!configuration)configuration=normalizeConfiguration(LockModes.migrateConfig(defaults,defaultRules));
-    if(saved?.version===23&&['lock','cage','count'].includes(saved.mode)&&(saved.lock?.layers||saved.count?.remaining))configuration.mode=saved.mode;
-    settings=clone(configuration.profiles[configuration.mode].settings);rules=clone(configuration.profiles[configuration.mode].rules);applyDecay();
-    try{if(saved&&[1,23].includes(saved.version)){
+    const raw=readRecord('settings'),saved=readRecord(STATE_KEY)||readRecord('state-v24')||readRecord('state'),stored=readRecord(CONFIG_KEY);
+    let legacyRules=LockGiftRules.normalizeInlineRules(defaultRules,{});
+    try{const value=JSON.parse(store.get('rules')||'null');if(value!==null){const migrated=cleanRules(value,legacyTargets(raw),v23Shape(raw));if(migrated)legacyRules=migrated;else toast('礼物规则存档无效，保留旧存档并暂用默认规则');}}catch{toast('礼物规则存档读取失败，保留旧存档');}
+    // 老存档里正在玩的那局用的是哪一份，换算时就用那一份的设置
+    const oldActive=[23,24].includes(saved?.version)&&(saved.lock?.layers||saved.count?.remaining)&&OLD_MODES.includes(saved.mode)?saved.mode:undefined;
+    configuration=normalizeConfiguration(stored);
+    if(stored&&!configuration)toast('设置存档坏了，先用旧版的设置；可以从备份导入');
+    configuration=configuration||fromProfiles(readRecord('config-v24'),oldActive)||fromProfiles(readRecord('config-v23'),oldActive)||fromProfiles(LockModes.migrateConfig(raw||defaults,legacyRules))||fromProfiles(LockModes.migrateConfig(defaults,defaultRules));
+    // 正在玩的那局是什么玩法就接着用什么玩法（换玩法要先清空，平常不会对不上）
+    if(saved?.count?.remaining)configuration.settings.challengeMode='count';else if(saved?.lock?.layers)configuration.settings.challengeMode='bar';
+    settings=clone(configuration.settings);rules=clone(configuration.rules[settings.challengeMode]);applyDecay();
+    try{if(saved&&[1,23,24,25].includes(saved.version)){
       cleared=Number.isSafeInteger(saved.cleared)&&saved.cleared>=0?saved.cleared:0;frozenUntil=Number.isFinite(saved.frozenUntil)?Math.min(saved.frozenUntil,Date.now()+FREEZE_MAX_SECONDS*1000):0;
-      if(isCount()&&saved.version===23)countState=LockModes.restoreCount(saved.count);
-      else {state=TypingLockModel.restore(saved.lock,Date.now());state=state?.layers?state:null;waiting=cleanWaiting(saved.waiting);
-        if(isCount()){const total=LockModes.legacyRemaining(state,waiting);if(total){if(total.remaining){countState=LockModes.createCount(total.remaining,{key:state?.key||settings.key,source:state?.source||'旧挑战'});if(countState)countState.pressed=state?.totalHits||0;if(total.seededMissing)toast('旧排队盲盒尚未抽取，已按固定迁移序列结算并保存');}state=null;waiting=[];if(total.seededMissing){persistConfiguration(configuration);save();}}else{configuration.mode=raw?.sceneMode==='cage'?'cage':'lock';settings=clone(configuration.profiles[configuration.mode].settings);settings.decayRate=0;rules=clone(configuration.profiles[configuration.mode].rules);if(state){state.challengeMode='bar';for(const q of state.queue)q.challengeMode='bar';}for(const q of waiting)q.challengeMode='bar';applyDecay();toast('旧挑战无法安全折算，已按不回落分层挑战保留；请完成或清空后切换次数模式');}}
-        else if(waiting.length)pourWaiting(Date.now());
-      }
+      if(isCount())countState=saved.count?LockModes.restoreCount(saved.count):null;
+      else{state=TypingLockModel.restore(saved.lock,Date.now());state=state?.layers?state:null;waiting=cleanWaiting(saved.waiting);if(waiting.length)pourWaiting(Date.now());}
     }}catch{toast('挑战存档读取失败，原始存档仍保留');}
   }
-  function save(){store.set('state',JSON.stringify({version:23,mode:settings.mode,lock:state?.layers?state:null,count:countState?.remaining?countState:null,waiting,frozenUntil:frozenLeft()>0?frozenUntil:0,cleared}));}
-  function saveSettingsObject(){const previous=configuration.profiles[settings.mode].settings;if(persistConfiguration(activeConfiguration()))return true;settings=clone(previous);toast('设置未能保存，已保留原配置');return false;}
+  function save(){store.set(STATE_KEY,JSON.stringify({version:25,play:settings.challengeMode,lock:state?.layers?state:null,count:countState?.remaining?countState:null,waiting,frozenUntil:frozenLeft()>0?frozenUntil:0,cleared}));}
+  function saveSettingsObject(){const previous=configuration.settings;if(persistConfiguration(activeConfiguration()))return true;settings=clone(previous);toast('设置未能保存，已保留原配置');return false;}
   function saveRules(){return persistRules(rules);}
   function motionEnabled(){return settings.motion==='on'||settings.motion==='auto'&&!matchMedia('(prefers-reduced-motion: reduce)').matches;}
   function refreshMotion(){const overlay=$('typing-lock-overlay');overlay.dataset.motion=motionEnabled()?'on':'off';}
@@ -236,10 +260,10 @@
 
   /* ---------- 画面 ---------- */
   function render(){
-    const locked=challengeActive(),overlay=$('typing-lock-overlay');overlay.dataset.mode=settings.mode;
+    const locked=challengeActive(),overlay=$('typing-lock-overlay');overlay.dataset.mode=settings.sceneMode;
     if(isCount()){renderCount();return;}
     overlay.dataset.challenge=state?.challengeMode||settings.challengeMode;
-    $('lock-action').textContent=settings.mode==='cage'?'拍开门':settings.theme==='fufu'?'啃开锁':'破锁';
+    $('lock-action').textContent=isCage()?'拍开门':settings.theme==='fufu'?'啃开锁':'破锁';
     presentation.fit();
     $('lock-counter').hidden=true;$('typing-lock-layers').hidden=false;$('typing-lock-meter').hidden=false;
     if($('clear-locks')?.dataset.armed==='true'){if(locked)clearLabel();else disarmClear();}
@@ -251,7 +275,7 @@
     $('typing-lock-layers').textContent='×'+totalLayers().toLocaleString();$('typing-lock-fill').style.transform='scaleX('+ratio+')';presentation.updateProgress(Math.min(1,total/state.target));feedback.update(Math.min(1,total/state.target),roundId+':'+cleared);$('typing-lock-relief').style.transform='scaleX('+(state.relief/state.target)+')';$('typing-lock-progress').textContent=Math.floor(total)+' / '+state.target;
     $('lock-total-hits').textContent=(state.totalHits||0).toLocaleString();$('lock-remaining-hits').textContent=remaining.toLocaleString();
     const meter=$('typing-lock-meter');meter.setAttribute('aria-valuenow',String(Math.round(ratio*100)));meter.setAttribute('aria-valuetext',Math.floor(total)+' / '+state.target+'，剩余'+state.layers+'层');
-    $('typing-lock-support').textContent=(state.source?'当前来自 '+String(state.source):'')+(state.relief?' · 永久援助 '+Math.floor(state.relief)+' 次':'');
+    $('typing-lock-support').textContent=(state.source?'来自 '+String(state.source):'')+(state.relief?' · 已帮'+pressWord()+' '+Math.floor(state.relief)+' 下':'');
     const queue=state.queue.slice(0,6).map(batch=>batch.tierName+'×'+batch.layers.toLocaleString());if(state.queue.length>6)queue.push('另 '+(state.queue.length-6)+' 批');$('typing-lock-queue').replaceChildren(...queue.map(label=>{const span=document.createElement('span');span.textContent=label;return span;}));
     scenes.render(state,{motion:motionEnabled(),totalLayers:totalLayers(),totalHits:state.totalHits||0,remaining});
   }
@@ -281,10 +305,10 @@
       fxRun(chain,[{translate:'0 0'},{translate:`0 ${d}px`},{translate:`0 ${-d*.7}px`},{translate:`0 ${d*.35}px`},{translate:'0 0'}],{duration,easing:'ease-out'});
     }
   }
-  function fxHit(){if(motionEnabled()&&settings.theme!=='fufu'&&settings.mode!=='cage')fxSparks(7,90,420);}
+  function fxHit(){if(motionEnabled()&&settings.theme!=='fufu'&&!isCage())fxSparks(7,90,420);}
   function fxBreak(big=false){
     if(!motionEnabled())return;
-    if(settings.theme==='fufu'){if(settings.mode!=='cage')presentation.layerBreak();presentation.effects(big?'clear':'layer',fxSpawn);return;}
+    if(settings.theme==='fufu'){if(!isCage())presentation.layerBreak();presentation.effects(big?'clear':'layer',fxSpawn);return;}
     fxSpawn('fx-flash',[{transform:'scale(.3)',opacity:1},{transform:`scale(${big?1.9:1.25})`,opacity:.85,offset:.35},{transform:`scale(${big?2.3:1.5})`,opacity:0}],{duration:big?650:420,easing:'ease-out'});
     fxSpawn('fx-ring',[{transform:'scale(.3)',opacity:1},{transform:`scale(${big?3.2:2.1})`,opacity:0}],{duration:big?750:520,easing:'cubic-bezier(.1,.7,.3,1)'});
     fxSparks(big?34:18,big?300:200,big?850:600);
@@ -313,13 +337,13 @@
     if(!box)return;box.hidden=!(left>0);
     if(left>0){$('typing-lock-freeze-left').textContent=left>=10000?Math.ceil(left/1000):(left/1000).toFixed(1);}
   }
-  function freezeKeys(seconds,source='模拟'){
-    if(!Number.isSafeInteger(seconds)||seconds<1){toast('禁用秒数需为正整数');return false;}
+  function freezeKeys(seconds,source='试玩'){
+    if(!Number.isSafeInteger(seconds)||seconds<1){toast('失灵几秒要填正整数');return false;}
     const now=Date.now(),base=Math.max(now,frozenUntil),until=Math.min(base+seconds*1000,now+FREEZE_MAX_SECONDS*1000),added=Math.round((until-base)/1000);
     frozenUntil=until;save();
     const label=String(source||'礼物').slice(0,80),total=Math.ceil(frozenLeft()/1000);
-    $('last-event').textContent=label+' · 禁用破锁键 '+added+' 秒（共剩 '+total+' 秒）';
-    toast(label+' 禁用了破锁键 '+added+' 秒，还剩 '+total+' 秒'+(added<seconds?'（已到 1 小时上限）':''));
+    $('last-event').textContent=label+' · 按键失灵 '+added+' 秒（还剩 '+total+' 秒）';
+    toast(label+'：按键失灵 '+added+' 秒，还剩 '+total+' 秒'+(added<seconds?'（最多失灵 1 小时）':''));
     if(challengeActive()){render();fxFreeze();}
     sound('lock');return true;
   }
@@ -368,12 +392,12 @@
     }
     return poured;
   }
-  function addLock(layers,target,source='模拟',targetPool,multiplier=1){
+  function addLock(layers,target,source='试玩',targetPool,multiplier=1){
     if(isCount())return addCount(layers,source);
-    if(!Number.isSafeInteger(layers)||layers<1||layers>WAITING_MAX_LAYERS){toast('锁层需为 1–'+WAITING_MAX_LAYERS.toLocaleString());return false;}
-    if(TypingLockModel.target(target)===null){toast('每层连点次数需为 '+TypingLockModel.TARGET_MIN+'–'+TypingLockModel.TARGET_MAX);return false;}
+    if(!Number.isSafeInteger(layers)||layers<1||layers>WAITING_MAX_LAYERS){toast('一次加的'+unitWord()+'数要在 1～'+WAITING_MAX_LAYERS.toLocaleString()+' 之间');return false;}
+    if(TypingLockModel.target(target)===null){toast('每条'+pressWord()+'几下要填 '+TypingLockModel.TARGET_MIN+'～'+TypingLockModel.TARGET_MAX);return false;}
     const pool=targetPool?LockGiftRules.cleanTargetPool(targetPool):null;
-    if(targetPool&&!pool){toast('次数盲盒档位无效，本次未加锁');return false;}
+    if(targetPool&&!pool){toast('旧版概率设置坏了，这次没加上');return false;}
     const label=String(source||'礼物').slice(0,80),now=Date.now(),entry={tier:'gift',tierName:label.slice(0,40).trim()||'礼物',look:'normal',key:settings.key,target,source:label,multiplier,challengeMode:settings.challengeMode,...(pool?{targetPool:pool}:{})};
     // 已有排队的礼物时，新礼物也排在它们后面，保持先来先破。
     const room=waiting.length?0:Math.max(0,ACTIVE_CAP-(state?.layers||0)),direct=Math.min(layers,room);
@@ -387,17 +411,20 @@
     }
     const wasLocked=!!state?.layers;
     if(direct){if(state){if(!TypingLockModel.add(state,direct,now,entry))return false;}else{state=TypingLockModel.create(direct,entry,now);if(!state)return false;}}
-    if(!direct&&!rest){toast('排队锁链已达上限，本次礼物未加入');return false;}
+    if(!direct&&!rest){toast('排队的太多了，这次没加上');return false;}
     if(wasLocked){render();fxAdd();scenes.add();}else showEntrance();
-    const difficulty=(pool?'每层独立抽取次数档位':'每层连点 '+Math.min(1000000000,target*multiplier)+' 次')+(multiplier!==1?' · ×'+multiplier:'');
-    save();$('last-event').textContent=label+' · 加锁 +'+(direct+rest)+' 层（'+difficulty+'）';
-    toast(label+' 加锁 '+(direct+rest).toLocaleString()+' 层，'+difficulty+(rest?'（'+rest.toLocaleString()+' 层排在后面，破到 2 万层以下自动补上）':'')+(dropped?'；超出上限的 '+dropped.toLocaleString()+' 层未加入':''));
+    // 每条按几下填了范围时，rules.js 会把它变成只有一档的 inline_range；真正的旧版概率才有好几档
+    const unit=unitWord(),each='每条'+pressWord(),scaled=n=>Math.min(1000000000,n*multiplier).toLocaleString();
+    const ranged=pool?.length===1&&pool[0].id==='inline_range',difficulty=!pool?each+' '+scaled(target)+' 下':ranged?each+' '+scaled(pool[0].min)+'～'+scaled(pool[0].max)+' 下（每条随机）':each+'几下按旧版概率抽';
+    save();$('last-event').textContent=label+' · 加 '+(direct+rest).toLocaleString()+' '+unit+'（'+difficulty+'）';
+    toast(label+'：加 '+(direct+rest).toLocaleString()+' '+unit+'，'+difficulty+(rest?'（'+rest.toLocaleString()+' '+unit+'先排队，前面的破掉就补上）':'')+(dropped?'；排不下的 '+dropped.toLocaleString()+' '+unit+'没加上':''));
     sound('lock');return true;
   }
-  function relieve(points,source='模拟'){
+  function relieve(points,source='试玩'){
     if(isCount())return changeCount('relief',points,1,source);
-    if(!Number.isSafeInteger(points)||points<1||points>10000000){toast('减链点数需为 1–10000000');return false;}
-    if(!state?.layers){toast('当前没有锁链，本次减链未生效');return false;}
+    const press=pressWord();
+    if(!Number.isSafeInteger(points)||points<1||points>10000000){toast('帮'+press+'几下要填 1～10000000');return false;}
+    if(!state?.layers){toast(source+'：现在没有锁，这次帮'+press+'没用上');return false;}
     const before=totalLayers(),now=Date.now();let unused=points,applied=0,clearedLayers=0;
     // 抵扣完当前层数后，排队的锁补进来，剩余点数继续抵扣。
     while(unused>0&&state?.layers){
@@ -406,65 +433,88 @@
       if(!pourWaiting(now))break;
     }
     if(!applied)return false;
-    cleared+=before-totalLayers();$('last-event').textContent=source+' · 减链 '+applied+' 点';toast('减链 '+applied+' 点，破除 '+clearedLayers+' 层'+(unused?'，多余点数不留存':''));
+    cleared+=before-totalLayers();$('last-event').textContent=source+' · 帮'+press+' '+applied.toLocaleString()+' 下';toast(source+'：帮你'+press+'掉 '+applied.toLocaleString()+' 下'+(clearedLayers?'，破掉 '+clearedLayers.toLocaleString()+' '+unitWord():'')+(unused?'（多出来的不留）':''));
     if(!state.layers){lastRoundHits=state.totalHits||0;state=null;showExit();fxBreak(true);sound('clear');}else{if(clearedLayers){sound('layer');fxBreak();}render();}
     save();return true;
   }
-  function multiplyLocks(factor,repetitions=1,source='模拟加固'){
+  function multiplyLocks(factor,repetitions=1,source='试玩'){
     if(isCount())return changeCount('multiply',factor,repetitions,source);
-    if(!state?.layers){toast('当前没有锁链或牢笼，本次加固未生效');return false;}
+    if(!state?.layers){toast(source+'：现在没有锁，这次翻倍没用上');return false;}
     const changed=TypingLockModel.multiplyRemaining(state,factor,Date.now(),repetitions);let waitingChanged=false;
     if(factor>1){for(const item of waiting){let next=item.multiplier||1,turns=repetitions;while(turns-->0&&next<1000000000)next=Math.min(1000000000,next*factor);if(next!==(item.multiplier||1)){item.multiplier=next;waitingChanged=true;}}}
-    if(!changed&&!waitingChanged){toast('剩余次数未改变（倍率为 1 或已达上限）');return false;}
-    save();render();scenes.add();fxAdd();sound('lock');$('last-event').textContent=source+' · 剩余次数 ×'+factor+(repetitions>1?'，重复 '+repetitions+' 次':'');toast('已加固：剩余次数 ×'+factor+'，保留已按次数与永久援助；每层最多 10 亿次');return true;
+    if(!changed&&!waitingChanged){toast(source+'：剩下的没变（乘的是 1，或者已经到上限了）');return false;}
+    const remain='剩下要'+pressWord()+'的',times=repetitions>1?'，连乘 '+repetitions+' 次':'';
+    save();render();scenes.add();fxAdd();sound('lock');$('last-event').textContent=source+' · '+remain+' ×'+factor+times;toast(source+'：'+remain+' ×'+factor+times);return true;
   }
-  function hit(){if(isCount()){hitCount();return;}if(!state?.layers)return;const before=state.layers,now=Date.now();TypingLockModel.press(state,now);const broke=before-state.layers;feedback.update(broke?1:Math.min(1,(state.progress+state.relief)/state.target),roundId+':'+cleared);feedback.hit();if(settings.mode==='cage')sound('hit');lastRoundHits=state.totalHits||0;$('lock-total-hits').textContent=(state.totalHits||0).toLocaleString();cleared+=broke;if(broke){pourWaiting(now);scenes.layerBreak();}if(!state.layers){state=null;showExit();fxBreak(true);sound('clear');$('last-event').textContent='全部锁链已破除';}else{if(broke||settings.mode!=='cage')sound(broke?'layer':'hit');render();if(broke)fxBreak();else fxHit();}save();}
+  // ④ 减半：剩下要按的总数 ÷ N（向上取整，至少留 1 下，不会直接放出来）；送几份就连除几次
+  function shrink(total,factor,repetitions){let next=total;for(let i=0;i<repetitions&&next>1;i++)next=Math.ceil(next/factor);return next;}
+  function divideLocks(factor,repetitions=1,source='试玩'){
+    if(!Number.isSafeInteger(factor)||factor<1||factor>1000){toast('除以几要填 1～1000 的整数');return false;}
+    if(isCount())return changeCount('divide',factor,repetitions,source);
+    if(!state?.layers){toast(source+'：现在没有锁，这次减半没用上');return false;}
+    const now=Date.now();TypingLockModel.tick(state,now);
+    const total=LockModes.legacyRemaining(state,waiting),before=total?.remaining||0,after=shrink(before,factor,repetitions);
+    if(!total||after>=before){toast(source+'：剩下的没变（除的是 1，或者只剩 1 下了）');return false;}
+    // 多条进度从最前面的进度条开始扣，和帮按一样；扣完正在按的这批，排队的补进来继续扣
+    const beforeLayers=totalLayers();let unused=before-after,clearedLayers=0;
+    while(unused>0&&state?.layers){
+      const result=TypingLockModel.relieve(state,unused,now);if(!result||!result.applied)break;
+      unused=result.unused;clearedLayers+=result.clearedLayers;
+      if(!pourWaiting(now))break;
+    }
+    cleared+=beforeLayers-totalLayers();
+    const press=pressWord(),text='剩下要'+press+'的 ÷'+factor+(repetitions>1?'，连除 '+repetitions+' 次':'')+'（'+before.toLocaleString()+' 下 → '+after.toLocaleString()+' 下）';
+    $('last-event').textContent=source+' · '+text;toast(source+'：'+text);
+    if(!state.layers){lastRoundHits=state.totalHits||0;state=null;showExit();fxBreak(true);sound('clear');}else{sound(clearedLayers?'layer':'hit');fxBreak();render();}
+    save();return true;
+  }
+  function hit(){if(isCount()){hitCount();return;}if(!state?.layers)return;const before=state.layers,now=Date.now();TypingLockModel.press(state,now);const broke=before-state.layers;feedback.update(broke?1:Math.min(1,(state.progress+state.relief)/state.target),roundId+':'+cleared);feedback.hit();if(isCage())sound('hit');lastRoundHits=state.totalHits||0;$('lock-total-hits').textContent=(state.totalHits||0).toLocaleString();cleared+=broke;if(broke){pourWaiting(now);scenes.layerBreak();}if(!state.layers){state=null;showExit();fxBreak(true);sound('clear');$('last-event').textContent='全部锁链已破除';}else{if(broke||!isCage())sound(broke?'layer':'hit');render();if(broke)fxBreak();else fxHit();}save();}
   // 观众送「清空」礼物：立刻清掉当前和排队的全部锁链，按全部破除的特效和音效退场（不计入已破除层数）。
   function clearByGift(label){
     if(isCount())return clearCount(label);
-    if(!state?.layers&&!waiting.length&&frozenLeft()>0){frozenUntil=0;save();render();toast(label+'：已解除禁用');return true;}
-    if(!state?.layers&&!waiting.length){toast(label+'：当前没有锁链，本次清空未生效');return false;}
+    if(!state?.layers&&!waiting.length&&frozenLeft()>0){frozenUntil=0;save();render();toast(label+'：按键恢复了');return true;}
+    if(!state?.layers&&!waiting.length){toast(label+'：现在没有锁，这次没用上');return false;}
     const count=totalLayers();lastRoundHits=state?.totalHits||0;disarmClear();state=null;waiting=[];frozenUntil=0;save();showExit();fxBreak(true);sound('clear');
-    $('last-event').textContent=label+' · 清空全部锁链（'+count.toLocaleString()+' 层）';toast(label+' 清空了全部锁链（'+count.toLocaleString()+' 层）');return true;
+    $('last-event').textContent=label+' · 全部解开（'+count.toLocaleString()+' '+unitWord()+'）';toast(label+'：'+(isCage()?'门开了':'全部解开了')+'（'+count.toLocaleString()+' '+unitWord()+'）');return true;
   }
   function clearAll(){
     disarmClear();
     if(isCount()){clearCount('手动清空');return;}
-    if(!state?.layers&&!waiting.length&&frozenLeft()>0){frozenUntil=0;save();render();toast('已清空禁用挑战');return;}
-    if(!state?.layers&&!waiting.length){toast('当前没有锁链');return;}
-    const count=totalLayers();lastRoundHits=state?.totalHits||0;state=null;waiting=[];frozenUntil=0;save();showExit();$('last-event').textContent='手动清空 '+count.toLocaleString()+' 层锁链';toast('已清空全部锁链（'+count.toLocaleString()+' 层）');
+    if(!state?.layers&&!waiting.length&&frozenLeft()>0){frozenUntil=0;save();render();toast('按键恢复了');return;}
+    if(!state?.layers&&!waiting.length){toast('现在没有挑战');return;}
+    const count=totalLayers();lastRoundHits=state?.totalHits||0;state=null;waiting=[];frozenUntil=0;save();showExit();$('last-event').textContent='手动清空了 '+count.toLocaleString()+' '+unitWord();toast('清空了（'+count.toLocaleString()+' '+unitWord()+'）');
   }
   // 清空要两次单独点击：第二次须在 0.4–3 秒之间，双击不会直接清空；按钮上实时显示将要清掉的层数。
   let clearArmedAt=0;
-  function clearLabel(){const b=$('clear-locks');if(b?.dataset.armed==='true')b.textContent='再点一次确认清空（'+(isCount()?(countState?.remaining||0).toLocaleString()+' 次':totalLayers().toLocaleString()+' 层')+'）';}
-  function disarmClear(){clearTimeout(clearArmTimer);const b=$('clear-locks');if(b){b.dataset.armed='false';b.textContent=isCount()?'清空全部次数':'清空全部锁链';}}
+  function clearLabel(){const b=$('clear-locks');if(b?.dataset.armed==='true')b.textContent='再点一次就清空（'+(isCount()?(countState?.remaining||0).toLocaleString():totalLayers().toLocaleString())+' '+unitWord()+'）';}
+  function disarmClear(){clearTimeout(clearArmTimer);const b=$('clear-locks');if(b){b.dataset.armed='false';b.textContent='清空现在的挑战';}}
   function armClear(event){
     const b=$('clear-locks');
     if(b.dataset.armed==='true'){if(event?.detail>1||Date.now()-clearArmedAt<400)return;clearAll();return;}
     if(event?.detail>1)return;
-    if(!challengeActive()&&frozenLeft()<=0){toast('当前没有挑战');return;}
+    if(!challengeActive()&&frozenLeft()<=0){toast('现在没有挑战');return;}
     b.dataset.armed='true';clearArmedAt=Date.now();clearLabel();clearTimeout(clearArmTimer);clearArmTimer=setTimeout(disarmClear,3000);
   }
 
   function renderCount(){
     const o=$('typing-lock-overlay'),live=!!countState?.remaining;o.dataset.mode='count';o.dataset.challenge='count';
     $('lock-counter').hidden=false;$('typing-lock-layers').hidden=true;$('typing-lock-meter').hidden=true;$('typing-lock-layers').textContent='';$('typing-lock-queue').replaceChildren();
-    $('lock-action').textContent=settings.mode==='cage'?'拍开门':settings.theme==='fufu'?'啃开锁':'破锁';$('count-done-label').textContent=settings.theme==='fufu'?'已啃':'已按';
+    $('lock-action').textContent=isCage()?'拍开门':settings.theme==='fufu'?'啃开锁':'破锁';$('count-done-label').textContent=isCage()?'已拍':settings.theme==='fufu'?'已啃':'已按';
     if(live){$('lock-remaining-hits').textContent=countState.remaining.toLocaleString();$('lock-total-hits').textContent=countState.pressed.toLocaleString();$('typing-lock-key').textContent=TypingLockModel.keyLabel(countState.key);$('typing-lock-grade').textContent=countState.source||'次数挑战';$('typing-lock-support').textContent='';renderFreeze(o);const ratio=LockModes.countProgress(countState);presentation.updateProgress(ratio);feedback.update(ratio,'count:'+roundId);}
     $('total-cleared').textContent='次数挑战';$('arena-state').textContent=live?'还需 '+countState.remaining.toLocaleString()+' 次':'等待观众加次数';
-    presentation.fit();scenes.render(null,{motion:motionEnabled(),totalLayers:0,totalHits:countState?.pressed||0,remaining:countState?.remaining||0});
+    presentation.fit();scenes.render(null,{motion:motionEnabled(),totalLayers:live?1:0,totalHits:countState?.pressed||0,remaining:countState?.remaining||0});
     if($('clear-locks').dataset.armed==='true')clearLabel();
   }
   function addCount(amount,source='礼物',giftCapped=false){
-    if(!Number.isSafeInteger(amount)||amount<1){toast('增加次数需为正整数');return false;}
+    if(!Number.isSafeInteger(amount)||amount<1){toast('加几次要填正整数');return false;}
     const wasLocked=!!countState?.remaining;let result;
     if(wasLocked)result=LockModes.addCount(countState,amount,{key:settings.key,source});else{countState=LockModes.createCount(amount,{key:settings.key,source});result={changed:!!countState,capped:amount>LockModes.MAX_COUNT};}
-    if(!countState)return false;if(wasLocked){render();fxAdd();}else showEntrance();save();sound('lock');$('last-event').textContent=source+' · 增加 '+amount.toLocaleString()+' 次';toast(source+' 增加 '+amount.toLocaleString()+' 次'+(result.capped||giftCapped?'（已达安全上限）':''));return true;
+    if(!countState)return false;if(wasLocked){render();fxAdd();if(isCage())scenes.add();}else showEntrance();save();sound('lock');$('last-event').textContent=source+' · 加 '+amount.toLocaleString()+' '+unitWord();toast(source+'：加 '+amount.toLocaleString()+' '+unitWord()+(result.capped||giftCapped?'（到上限了）':''));return true;
   }
   function finishCount(){countState=null;save();showCountExit();fxBreak(true);sound('clear');}
   function hitCount(){if(!countState?.remaining)return;const previous=countState.pressed;const result=LockModes.pressCount(countState);lastRoundHits=previous+1;feedback.update(result.completed?1:LockModes.countProgress(countState),'count:'+roundId);feedback.hit();if(result.completed){finishCount();$('last-event').textContent='本轮次数已完成';}else{render();sound('hit');fxHit();save();}}
-  function changeCount(kind,value,repetitions,source){if(!countState?.remaining){toast('当前没有次数挑战');return false;}const hits=countState.pressed;const result=kind==='relief'?LockModes.relieveCount(countState,value):LockModes.multiplyCount(countState,value,repetitions);if(!result?.changed)return false;lastRoundHits=hits;if(result.completed)finishCount();else{render();save();if(kind==='multiply'){fxAdd();sound('lock');}}toast(source+(kind==='relief'?' 减少次数':' 加固剩余次数')+(result.capped?'（已达安全上限）':''));return true;}
-  function clearCount(source){if(!countState?.remaining&&frozenLeft()<=0)return false;lastRoundHits=countState?.pressed||0;countState=null;frozenUntil=0;disarmClear();save();showCountExit();fxBreak(true);sound('clear');toast(source+'：本轮次数已清空');return true;}
+  function changeCount(kind,value,repetitions,source){if(!countState?.remaining){toast(source+'：现在没有挑战，这次没用上');return false;}const hits=countState.pressed,before=countState.remaining;const result=kind==='relief'?LockModes.relieveCount(countState,value):kind==='divide'?LockModes.relieveCount(countState,before-shrink(before,value,repetitions)):LockModes.multiplyCount(countState,value,repetitions);if(!result?.changed){if(kind!=='relief')toast(source+'：剩下的没变（'+(kind==='divide'?'除的是 1，或者只剩 1 '+unitWord()+'了':'乘的是 1，或者已经到上限了')+'）');return false;}lastRoundHits=hits;if(result.completed)finishCount();else{render();save();if(kind==='multiply'){fxAdd();sound('lock');if(isCage())scenes.add();}if(kind==='divide')fxBreak();}const w=LockGiftTables.words(settings.challengeMode,settings.sceneMode);toast(source+(kind==='relief'?'：'+w.relief+' '+result.applied.toLocaleString()+' '+unitWord():kind==='divide'?'：'+w.remain+' ÷'+value+(repetitions>1?'，连除 '+repetitions+' 次':'')+'（'+before.toLocaleString()+' → '+countState.remaining.toLocaleString()+' '+unitWord()+'）':'：'+w.remain+' ×'+value+(repetitions>1?'，连乘 '+repetitions+' 次':''))+(result.capped?'（到上限了）':''));return true;}
+  function clearCount(source){if(!countState?.remaining&&frozenLeft()<=0){toast(source+'：现在没有挑战，这次没用上');return false;}lastRoundHits=countState?.pressed||0;countState=null;frozenUntil=0;disarmClear();save();showCountExit();fxBreak(true);sound('clear');toast(source+(isCage()?'：门开了':'：次数清零了'));return true;}
   function showCountExit(){const o=$('typing-lock-overlay'),sequence=++viewSequence;$('lock-remaining-hits').textContent='0';$('lock-total-hits').textContent=String(lastRoundHits);presentation.updateProgress(1);o.className='';refreshMotion();const duration=scenes.exit({totalHits:lastRoundHits});if(motionEnabled()){o.classList.add('lock-opening');setTimeout(()=>{if(sequence===viewSequence&&!challengeActive()){o.hidden=true;o.className='';$('idle-screen').hidden=false;feedback.reset();$('lock-total-hits').textContent='0';}},duration||950);}else{o.hidden=true;$('idle-screen').hidden=false;feedback.reset();$('lock-total-hits').textContent='0';}render();}
 
   /* ---------- 连点识别：只认一下一下的点按，长按（含 OBS 成对转发的自动重复）不计数 ---------- */
@@ -489,152 +539,80 @@
   function releaseTap(code,event){const tap=tapOf(code);tap.down=false;tap.upAt=eventTime(event);}
 
 
-  /* ---------- 停手回落速度 ---------- */
-  const decayPresets=[[0,'不回落'],[15,'慢'],[35,'默认'],[80,'快']];
+  /* ---------- 停手以后进度往回掉 ---------- */
   function renderDecay(){
     $('decay-rate').value=settings.decayRate;$('decay-delay').value=settings.decayDelay;
-    for(const b of $('decay-presets').querySelectorAll('button[data-value]'))b.setAttribute('aria-pressed',String(Number(b.dataset.value)===settings.decayRate));
-    const secs=settings.decayRate?Math.round(100/settings.decayRate*10)/10:0;
-    $('decay-hint').textContent=settings.decayRate?'停手 '+settings.decayDelay+' 秒后开始回落，填满的一层约 '+secs+' 秒掉光（每秒掉 '+settings.decayRate+'%）。':'停手后进度保持不动，不会回落。';
+    let preset=false;
+    for(const b of $('decay-presets').querySelectorAll('button[data-value]')){const on=Number(b.dataset.value)===settings.decayRate;preset||=on;b.setAttribute('aria-pressed',String(on));}
+    const secs=settings.decayRate?Math.round(100/settings.decayRate*10)/10:0,full='按满的一条';
+    $('decay-hint').textContent=!settings.decayRate?'停手以后进度不动，不会往回掉。':(preset?'':'高级设置里自己调过：')+'停手 '+settings.decayDelay+' 秒后开始往回掉，'+full+'大约 '+secs+' 秒掉光。';
   }
   function commitDecay(rate,delay){
     const r=Number(rate),d=Number(delay);
-    if(!Number.isFinite(r)||r<0||r>500||!Number.isInteger(r)){toast('回落速度填 0–500 的整数（每秒掉一层的百分之几，0 = 不回落）');renderDecay();return;}
-    if(!Number.isFinite(d)||d<0||d>10){toast('开始回落前的等待填 0–10 秒');renderDecay();return;}
+    if(!Number.isFinite(r)||r<0||r>500||!Number.isInteger(r)){toast('每秒掉多少要填 0～500 的整数（0 = 不掉）');renderDecay();return;}
+    if(!Number.isFinite(d)||d<0||d>10){toast('停手几秒以后开始掉，要填 0～10');renderDecay();return;}
     if(state?.layers)TypingLockModel.tick(state,Date.now()); // 先按旧速度结算到现在，再换新速度
     settings.decayRate=r;settings.decayDelay=Math.round(d*100)/100;saveSettingsObject();applyDecay();renderDecay();if(state?.layers){render();save();}
   }
 
-  /* ---------- 设置面板 ---------- */
+  /* ---------- 设置面板：一页从上往下。① 玩法 ②③④ 礼物表 ⑤ 按键 ⑥ 样子 ⑦ 声音，其余收在「高级设置」 ---------- */
   function openSettings(){if(settingsOpen)return;settingsOpen=true;document.body.classList.add('settings-visible');$('settings').hidden=false;$('settings-backdrop').hidden=false;$('settings-close').focus();}
-  function closeSettings(){if(!settingsOpen)return;LockMenu.close();cancelKeyRecording();settingsOpen=false;disarmClear();document.body.classList.remove('settings-visible');$('settings').hidden=true;$('settings-backdrop').hidden=true;$('arena').focus({preventScroll:true});}
+  function closeSettings(){if(!settingsOpen)return;cancelKeyRecording();settingsOpen=false;disarmClear();document.body.classList.remove('settings-visible');$('settings').hidden=true;$('settings-backdrop').hidden=true;$('arena').focus({preventScroll:true});}
   function setChoiceNode(box,value){const button=[...box.querySelectorAll('button[data-value]')].find(item=>item.dataset.value===value);if(!button&&box.id!=='lock-key')return false;box.dataset.value=value;for(const item of box.querySelectorAll('button[data-value]'))item.setAttribute('aria-pressed',String(item===button));return true;}
   function setChoice(id,value){return setChoiceNode($(id),value);}
   function choice(id){return $(id).dataset.value;}
   function bindChoice(id,onChange){$(id).addEventListener('click',event=>{const button=event.target.closest('button[data-value]');if(!button||!$(id).contains(button))return;setChoice(id,button.dataset.value);onChange?.();});}
-  const giftMenuCopy={
-    lock:{name:'多条进度',tab:'进度礼物',title:'多条进度 · 填满一条消一条',description:'礼物增加进度条，逐条填满后破锁。×N 表示剩余条数；每条按几次只决定这一条的难度。',add:'增加进度条',multiply:'增加破锁难度',relief:'抵扣破锁次数',clear:'解开全部锁',freeze:'暂停破锁按键',value:'每份礼物加几条进度',unit:'条',target:'每条进度按几次',factor:'新进度条难度乘几倍',repeat:'每份连续加固几次',reliefField:'每份抵扣多少次按键'},
-    cage:{name:'牢笼拍门',tab:'关笼礼物',title:'礼物关笼 · 拍开封锁逃出去',description:'观众送礼给笼门加封锁，主播拍门解除；所有封锁解除后，双门打开。',add:'给笼门加封锁',multiply:'加固笼门',relief:'抵扣拍门次数',clear:'开门放主播出来',freeze:'暂停拍门',value:'每份礼物加几道封锁',unit:'道',target:'每道封锁拍门几次',factor:'新封锁拍门次数乘几倍',repeat:'每份连续加固几次',reliefField:'每份抵扣多少次拍门'},
-    count:{name:'累计次数',tab:'次数礼物',title:'累计次数 · 没有层数，按到 0 结束',description:'礼物不断往剩余次数里加，主播按一下减 1，减到 0 就破锁。停手不会回落。',add:'增加剩余次数',multiply:'剩余次数翻倍',relief:'减少剩余次数',clear:'清空本轮次数',freeze:'暂停倒数按键',value:'每份礼物增加多少次',unit:'次',target:'',factor:'原规则次数乘几倍',repeat:'每份连续翻倍几次',reliefField:'每份减少多少次'}
-  };
+  // 空闲页和「自由试玩」的说法：跟着玩法（进度条 / 次数）和画面（按 / 拍）走
+  function playCopy(){
+    const cage=isCage(),press=pressWord();
+    if(isCount())return {idle:cage?'笼门尚未关闭':'等待次数挑战',say:'观众送礼把要'+press+'的次数一直往上加，只有一个总数；'+press+'一下少一次，到 0 '+(cage?'门就开':'就出来')+'。',quick:'试一下：加 60 次',unit:'次',each:'',factor:'剩下的次数 ×',points:'帮你减掉',pointsUnit:'次'};
+    return {idle:cage?'笼门尚未关闭':'锁链尚未降临',say:'观众送礼给你加进度条，'+press+'满一条破一条，全部'+press+'完'+(cage?'门才开':'才出来')+'；停手会往回掉。',quick:'试一下：加一条进度',unit:'条，',each:'每条'+press,factor:'剩下要'+press+'的 ×',points:'帮你'+press+'掉',pointsUnit:'下'};
+  }
   function syncModeMenu(){
-    const count=isCount(),copy=giftMenuCopy[settings.mode];
-    for(const b of $('mode').querySelectorAll('button')){const on=b.dataset.value===settings.mode;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1;}
-    $('decay-settings').hidden=count;$('mode-description').textContent=copy.description;
-    $('gift-menu').dataset.mode=settings.mode;$('rules-title').textContent=copy.title;
-    $('rules-scope').textContent='当前启用：'+copy.name+'模式 · 只修改本模式的礼物';
-    $('rules-description').textContent=copy.description;
-    $('menu-nav').querySelector('[data-menu-tab=gifts]').textContent=copy.tab;
-    $('add-rule').textContent='＋ 添加'+copy.name+'模式的礼物';
-    $('rules-random-help').textContent=count?'增加、减少次数：范围先抽一次，再乘礼物份数。翻倍只作用于剩余次数。':'增加数量：范围先抽一次，再乘礼物份数。'+(settings.mode==='cage'?'每道封锁的拍门次数':'每条进度的按键次数')+'独立抽取；同批礼物共用一次倍率抽取。';
-    $('simulate-amount-label').textContent=count?'增加次数':settings.mode==='cage'?'增加几道封锁':'增加几条进度';
-    $('simulate-target-label').hidden=count;$('simulate-target-label').firstChild.textContent=copy.target;
-    $('simulate-lock').textContent=count?'模拟加次数':settings.mode==='cage'?'模拟关笼':'模拟加锁';
-    $('simulate-relief').textContent=count?'模拟援助':'模拟减链';
-    $('quick-lock').textContent=count?'模拟增加 60 次':settings.mode==='cage'?'模拟一道笼门封锁':'模拟增加一条进度';
-    $('idle-screen').querySelector('h1').textContent=count?'等待次数挑战':settings.mode==='cage'?'笼门尚未关闭':'锁链尚未降临';
-    $('idle-screen').querySelector('p').textContent=copy.description;disarmClear();
+    const count=isCount(),copy=playCopy();
+    for(const [id,value] of [['play',settings.challengeMode],['scene',settings.sceneMode]])for(const b of $(id).querySelectorAll('button')){const on=b.dataset.value===value;b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1;}
+    $('decay-settings').hidden=count;$('decay-fine').hidden=count;
+    $('simulate-unit').textContent=copy.unit;$('simulate-target-label').hidden=count;$('simulate-each').textContent=copy.each;
+    $('simulate-factor-label').textContent=copy.factor;$('simulate-divide-label').textContent=copy.factor.replace('×','÷');$('simulate-points-label').textContent=copy.points;$('simulate-points-unit').textContent=copy.pointsUnit;
+    $('quick-lock').textContent=copy.quick;$('key-note').textContent='要一下一下按，按住不放不算。'+keyChangeNote();
+    $('idle-screen').querySelector('h1').textContent=copy.idle;$('idle-screen').querySelector('p').textContent=copy.say;disarmClear();
   }
-  // Explain the saved rule without sampling randomness or changing its gameplay.
-  function giftOutcome(rule){
-    const copy=giftMenuCopy[settings.mode],range=(lo,hi)=>lo===hi?String(lo):'随机 '+lo+'～'+hi;
-    const value=range(rule.valueMin,rule.valueMax),factor=range(rule.multiplierMin,rule.multiplierMax);
-    const multiplied=rule.multiplierMin!==1||rule.multiplierMax!==1;
-    let effect='';
-    if(rule.kind==='lock'){
-      if(isCount())effect='增加 '+value+' 次'+(multiplied?'，再乘 '+factor+' 倍':'')+'；主播每按一下减 1';
-      else{
-        const cage=settings.mode==='cage',target=rule.targetMode==='blindbox'?'按旧版概率抽取':range(rule.targetMin,rule.targetMax)+' 次';
-        effect='增加 '+value+(cage?' 道封锁；每道拍门':' 条进度；每条按键')+' '+target+(multiplied?'，次数再乘 '+factor+' 倍':'');
-      }
-    }else if(rule.kind==='multiply')effect=(isCount()?'剩余次数':settings.mode==='cage'?'现有封锁的拍门难度':'现有锁的破锁难度')+' × '+factor+' 倍，连续执行 '+value+' 次（无挑战时不生效）';
-    else if(rule.kind==='relief')effect=isCount()?'剩余次数减少 '+value+' 次':'抵扣 '+value+' 次'+(settings.mode==='cage'?'拍门':'破锁按键');
-    else if(rule.kind==='clear')effect=copy.clear;
-    else effect='暂停主播按键 '+value+' 秒';
-    return '送 1 个「'+rule.name+'」 → '+effect+'。';
+  function fillSettings(){setChoice('theme',settings.theme);presentation.syncCards();setChoice('display-size',settings.displaySize);syncLockKey();setChoice('motion',settings.motion);setChoice('material-choice',settings.materialId);syncModeMenu();const demo=settings.demo||{};for(const [id,key,fallback] of [['simulate-layers',isCount()?'amount':'layers',isCount()?60:1],['simulate-target','target',60],['simulate-factor','factor',2],['simulate-divisor','divisor',2],['simulate-points','points',60],['simulate-seconds','seconds',10]])$(id).value=demo[key]||fallback;giftTables.render();renderSounds();renderDecay();applyMaterial();}
+  // 换玩法：两种玩法算法不一样，正在玩的时候不能换；礼物表跟着换成这个玩法的那张
+  function switchPlay(play){
+    if(play===settings.challengeMode||!PLAYS.includes(play))return;
+    if(challengeActive()||frozenLeft()>0){toast('正在玩，换不了玩法：先点下面的「清空现在的挑战」，或者等它结束');return;}
+    const next=activeConfiguration();next.settings.challengeMode=play;
+    if(!persistConfiguration(next)){toast('没能保存，还是原来的玩法');return;}
+    settings=clone(configuration.settings);rules=clone(configuration.rules[play]);state=null;countState=null;waiting=[];roundId++;viewSequence++;feedback.reset();presentation.stop();$('typing-lock-overlay').hidden=true;$('idle-screen').hidden=false;applyDecay();refreshMotion();fillSettings();render();save();
   }
-  function fillSettings(){setChoice('theme',settings.theme);presentation.syncCards();setChoice('display-size',settings.displaySize);syncLockKey();setChoice('motion',settings.motion);setChoice('material-choice',settings.materialId);syncModeMenu();const demo=settings.demo||{};for(const [id,key,fallback] of [['simulate-layers',isCount()?'amount':'layers',isCount()?60:1],['simulate-target','target',60],['simulate-factor','factor',2],['simulate-points','points',60],['simulate-seconds','seconds',10]])$(id).value=demo[key]||fallback;renderRules();renderSounds();renderDecay();applyMaterial();}
-  function switchMode(mode){if(mode===settings.mode||!['lock','cage','count'].includes(mode))return;if(challengeActive()||frozenLeft()>0){toast('当前还有挑战，先在试玩页清空，或者等它结束');return;}const next=activeConfiguration();next.mode=mode;if(!persistConfiguration(next)){toast('模式未能保存，保留当前模式');return;}settings=clone(configuration.profiles[mode].settings);rules=clone(configuration.profiles[mode].rules);state=null;countState=null;waiting=[];roundId++;viewSequence++;feedback.reset();presentation.stop();$('typing-lock-overlay').hidden=true;$('idle-screen').hidden=false;document.documentElement.dataset.theme=settings.theme;applyDecay();refreshMotion();fillSettings();render();save();}
+  // 换画面：只换样子，礼物表和正在玩的那局都不动
+  function switchScene(scene){
+    if(scene===settings.sceneMode||!['lock','cage'].includes(scene))return;
+    settings.sceneMode=scene;if(!saveSettingsObject())return;
+    presentation.stop();feedback.reset();$('lock-fx').replaceChildren();fillSettings();render();
+  }
   function saveBasics(){const before=clone(settings),themeChanged=settings.theme!==choice('theme');settings.theme=choice('theme');settings.displaySize=choice('display-size');if(themeChanged){setChoice('material-choice','theme');presentation.stop();feedback.reset();$('lock-fx').replaceChildren();}settings.motion=choice('motion');settings.materialId=choice('material-choice');settings=cleanSettings(settings);if(!saveSettingsObject())settings=before;document.documentElement.dataset.theme=settings.theme;presentation.syncCards();refreshMotion();applyMaterial();render();}
-  function syncLockKey(){setChoice('lock-key',settings.key);$('lock-key').dataset.placeholder='快捷选择 · 当前 '+TypingLockModel.keyLabel(settings.key);$('lock-key-current').textContent=TypingLockModel.keyLabel(settings.key);$('record-lock-key').textContent=keyRecording?'等待按键…':'录入按键';$('record-lock-key').setAttribute('aria-pressed',String(keyRecording));$('cancel-lock-key').hidden=!keyRecording;}
-  function cancelKeyRecording(message){const active=keyRecording;keyRecording=false;syncLockKey();if(active||message)$('lock-key-status').textContent=message||'已取消录入，保留当前按键。';}
+  function syncLockKey(){setChoice('lock-key',settings.key);$('lock-key-current').textContent=TypingLockModel.keyLabel(settings.key);$('record-lock-key').textContent=keyRecording?'现在按一下想用的键…':'换一个键';$('record-lock-key').setAttribute('aria-pressed',String(keyRecording));$('cancel-lock-key').hidden=!keyRecording;}
+  function cancelKeyRecording(message){const active=keyRecording;keyRecording=false;syncLockKey();if(active||message)$('lock-key-status').textContent=message||'没换，还用原来的键。';}
+  function keyChangeNote(){return isCount()?'换了键以后，正在玩的这一轮还用原来的键，下一轮才用新键。':'换了键以后，已经加上的锁还用原来的键，新加的锁才用新键。';}
   function commitLockKey(code){
     if(!TypingLockModel.keyValid(code))return false;
-    if(!persistConfiguration(activeConfiguration({...settings,key:code},rules))){cancelKeyRecording('按键未能保存，已保留原按键。');toast('按键未能保存，已保留原按键');return false;}
-    settings.key=code;keyRecording=false;syncLockKey();$('lock-key-status').textContent='已保存「'+TypingLockModel.keyLabel(code)+'」，用于随后新增的锁链。';toast('破锁键已设为「'+TypingLockModel.keyLabel(code)+'」');return true;
+    if(!persistConfiguration(activeConfiguration({...settings,key:code},rules))){cancelKeyRecording('没能保存，还用原来的键。');toast('没能保存，还用原来的键');return false;}
+    settings.key=code;keyRecording=false;syncLockKey();$('lock-key-status').textContent='换成「'+TypingLockModel.keyLabel(code)+'」了。'+keyChangeNote();toast('破锁键换成「'+TypingLockModel.keyLabel(code)+'」了');return true;
   }
-  function startKeyRecording(){keyRecording=true;syncLockKey();$('lock-key-status').textContent='等待按键：按一下想用的单键；取消请点“取消录入”。';}
+  function startKeyRecording(){keyRecording=true;syncLockKey();$('lock-key-status').textContent='现在按一下想用的键（只能一个键）。不想换了就点「不换了」。';}
   function recordLockKey(event){
     event.preventDefault();event.stopImmediatePropagation();
-    if(keyComposing||event.isComposing||event.keyCode===229||event.key==='Process'){$('lock-key-status').textContent='中文选词不参与录入，请结束选词后按单键。';return;}
+    if(keyComposing||event.isComposing||event.keyCode===229||event.key==='Process'){$('lock-key-status').textContent='先把输入法的选字关掉，再按一下想用的键。';return;}
     const code=breakKeyCode(event);
-    if(event.ctrlKey||event.altKey||event.metaKey||!code){$('lock-key-status').textContent='请按独立的字母、数字、方向或其他单键，组合键和修饰键不录入。';return;}
-    if(event.repeat||!acceptTap(code,event)){$('lock-key-status').textContent='请先松开，再按一下想用的键。';return;}
+    if(event.ctrlKey||event.altKey||event.metaKey||!code){$('lock-key-status').textContent='只能用一个键，不能用 Ctrl、Alt 这种组合键。';return;}
+    if(event.repeat||!acceptTap(code,event)){$('lock-key-status').textContent='先松开，再按一下。';return;}
     commitLockKey(code);
   }
-  function createChoice(options,current,label){const box=document.createElement('div');box.className='choice-grid rule-choice';box.setAttribute('role','group');box.setAttribute('aria-label',label);for(const [value,text] of options){const button=document.createElement('button');button.type='button';button.dataset.value=value;button.textContent=text;box.append(button);}setChoiceNode(box,current);return box;}
-  function renderRules(){
-    const holder=$('rules'),copy=giftMenuCopy[settings.mode];holder.replaceChildren();
-    rules.forEach((rule,index)=>{
-      const row=document.createElement('div');row.className='rule-row simple-rule';row.dataset.index=index;
-      const main=document.createElement('div');main.className='rule-main rule-main-v15';
-      const name=document.createElement('input');name.className='gift-name';name.value=rule.name;name.maxLength=80;name.setAttribute('aria-label','礼物名称');
-      const nameLabel=document.createElement('label');nameLabel.className='rule-name-wrap';nameLabel.append('礼物名称',name);
-      const kind=createChoice([['lock',copy.add],['multiply',copy.multiply],['relief',copy.relief],['clear',copy.clear],['freeze',copy.freeze]],rule.kind,'互动效果');
-      const kindLabel=document.createElement('div');kindLabel.className='rule-effect-wrap';const caption=document.createElement('span');caption.textContent='收到礼物后做什么';kindLabel.append(caption,kind);
-      const tools=document.createElement('div');tools.className='rule-tools';
-      const test=document.createElement('button');test.type='button';test.className='secondary rule-test';test.textContent='测试';test.onclick=()=>testRule(rule);
-      const remove=document.createElement('button');remove.type='button';remove.className='secondary rule-delete';remove.textContent='删除';remove.onclick=event=>{if(event.detail>1)return;const at=rules.indexOf(rule);if(at>=0){const next=rules.filter(item=>item!==rule);if(!persistRules(next)){toast('删除未能保存，已保留原规则');return;}rules=next;renderRules();}};
-      tools.append(test,remove);main.append(nameLabel,kindLabel,tools);
-      const params=document.createElement('div');params.className='simple-rule-params';
-      const makeRange=(key,label,unit,max,minValue,maxValue)=>{
-        const wrap=document.createElement('div');wrap.className='inline-range rule-'+key+'-range';const title=document.createElement('label');title.textContent=label;
-        const pair=document.createElement('div');pair.className='range-pair';const inputs=[];
-        for(const [side,value] of [['min',minValue],['max',maxValue]]){const input=document.createElement('input');input.type='number';input.min='1';input.max=String(max);input.step='1';input.value=value;input.className='rule-'+key+'-'+side;input.setAttribute('aria-label',label+(side==='min'?'下限':'上限'));inputs.push(input);if(side==='max'){const to=document.createElement('span');to.textContent='～';pair.append(to);}pair.append(input);}
-        const suffix=document.createElement('span');suffix.className='range-unit';suffix.textContent=unit;pair.append(suffix);title.append(pair);wrap.append(title);params.append(wrap);return {wrap,title,pair,min:inputs[0],max:inputs[1],suffix};
-      };
-      const limits={lock:isCount()?LockModes.MAX_COUNT:20000,relief:isCount()?LockModes.MAX_COUNT:10000000,freeze:3600,multiply:99,clear:1};
-      const value=makeRange('value','增加层数','层',limits[rule.kind],rule.valueMin,rule.valueMax);
-      const target=makeRange('target','每层按键次数','次',99999,rule.targetMin,rule.targetMax);
-      const factor=makeRange('factor','倍率','倍',1000,rule.multiplierMin,rule.multiplierMax);
-      const status=document.createElement('p');status.className='rule-save-status';status.setAttribute('role','status');status.textContent='改完自动保存 · 两端相同固定，不同随机。';
-      const outcome=document.createElement('p');outcome.className='rule-outcome';outcome.setAttribute('aria-live','polite');
-      const legacy=document.createElement('details');legacy.className='legacy-pool-editor';
-      const summary=document.createElement('summary');summary.textContent='旧版多档抽取（原概率已保留）';legacy.append(summary);
-      if(rule.targetMode==='blindbox'&&rule.targetPool){
-        for(const tier of rule.targetPool){if(!tier.enabled)continue;const text=document.createElement('p');text.textContent=tier.name+'：'+tier.min+'～'+tier.max+' 次，'+tier.percent+'%';legacy.append(text);}
-        const note=document.createElement('p');note.textContent='这条礼物沿用旧概率。点下面按钮可改成普通次数范围（等概率），其他礼物不受影响。';legacy.append(note);
-        const simple=document.createElement('button');simple.type='button';simple.className='secondary use-simple-range';simple.textContent='改用简单次数范围';simple.onclick=()=>{const next={...rule};delete next.targetMode;delete next.targetPool;const cleaned=cleanRules([next]);if(cleaned&&persistRules(rules.map(item=>item===rule?cleaned[0]:item))){Object.assign(rule,cleaned[0]);delete rule.targetMode;delete rule.targetPool;renderRules();}};legacy.append(simple);
-      }
-      const show=()=>{
-        const labels={lock:[copy.value,copy.unit],relief:[copy.reliefField,'次'],freeze:['每份暂停多少秒','秒'],multiply:[copy.repeat,'次'],clear:['','']},current=labels[rule.kind];
-        const labelRange=(field,label)=>{field.title.firstChild.textContent=label;field.min.setAttribute('aria-label',label+'下限');field.max.setAttribute('aria-label',label+'上限');};
-        labelRange(value,current[0]);value.suffix.textContent=current[1];value.min.max=value.max.max=String(limits[rule.kind]);value.wrap.hidden=rule.kind==='clear';
-        labelRange(target,copy.target);target.wrap.hidden=isCount()||rule.kind!=='lock'||rule.targetMode==='blindbox';
-        factor.wrap.hidden=isCount()?!(rule.kind==='multiply'||rule.kind==='lock'&&(rule.multiplierMin!==1||rule.multiplierMax!==1)):!['lock','multiply'].includes(rule.kind);
-        labelRange(factor,rule.kind==='multiply'?'每次乘几倍':copy.factor);
-        legacy.hidden=isCount()||rule.kind!=='lock'||rule.targetMode!=='blindbox';
-        params.dataset.fields=String([value,target,factor].filter(field=>!field.wrap.hidden).length);
-        outcome.textContent=giftOutcome(rule);
-
-      };
-      const update=(event)=>{
-        const nextKind=kind.dataset.value;
-        if(nextKind!==rule.kind){const fixed={lock:1,relief:60,freeze:10,multiply:1,clear:1}[nextKind];value.min.value=value.max.value=fixed;if(nextKind==='multiply'&&Number(factor.min.value)===1&&Number(factor.max.value)===1)factor.min.value=factor.max.value=2;}
-        for(const range of [value,target,factor]){if(event?.target===range.min&&Number(range.min.value)>Number(range.max.value))range.max.value=range.min.value;}
-        const next={...rule,name:name.value.trim(),kind:nextKind,value:Number(value.min.value),valueMin:value.min.value,valueMax:value.max.value,target:Number(target.min.value),targetMin:target.min.value,targetMax:target.max.value,multiplier:Number(factor.min.value),multiplierMin:factor.min.value,multiplierMax:factor.max.value};
-        const cleaned=cleanRules([next]);
-        if(!cleaned){setChoiceNode(kind,rule.kind);status.textContent='未保存：请填完整名称与合法范围，下限不能大于上限。';status.classList.add('unsaved');return;}
-        const candidate=rules.map(item=>item===rule?cleaned[0]:item);
-        if(!persistRules(candidate)){status.textContent='未保存：浏览器拒绝存储，当前效果仍使用原设置。';status.classList.add('unsaved');return;}
-        Object.assign(rule,cleaned[0]);name.value=rule.name;status.textContent='已保存 · 数值相同是固定值，不同是随机范围。';status.classList.remove('unsaved');show();
-      };
-      for(const input of [name,value.min,value.max,target.min,target.max,factor.min,factor.max])input.addEventListener('change',update);
-      kind.addEventListener('click',event=>{const option=event.target.closest('button[data-value]');if(option){setChoiceNode(kind,option.dataset.value);update(event);}});
-      row.append(main,params,legacy,outcome,status);holder.append(row);show();
-    });
-  }
-  function testRule(rule){const at=rules.indexOf(rule);if(at<0)return;const pending=$('rules').children[at]?.querySelector('.rule-save-status.unsaved');if(pending){toast('这一行还有未保存的值，请先修正再测试');return;}applyGiftRoute((isCount()?LockModes.routeCountGift:LockGiftRules.routeGift)([rule],{giftName:rule.name,count:1}),'测试：'+rule.name);}
+  function createChoice(options,current,label){const box=document.createElement('div');box.className='seg sound-choice';box.setAttribute('role','group');box.setAttribute('aria-label',label);for(const [value,text] of options){const button=document.createElement('button');button.type='button';button.dataset.value=value;button.textContent=text;box.append(button);}setChoiceNode(box,current);return box;}
+  // ▶：当作有人送了 1 个这条礼物，和真礼物走同一套效果
+  function testRule(rule){applyGiftRoute((isCount()?LockModes.routeCountGift:LockGiftRules.routeGift)([rule],{giftName:rule.name,count:1}),'试玩：'+rule.name);}
 
   /* ---------- 设置备份：导出成文件带到别的电脑/软件，导入前先预览确认 ---------- */
   const BACKUP_APP='red-black-lock',BACKUP_FORMAT=1,MAX_BACKUP_BYTES=140*1024*1024;
@@ -647,23 +625,23 @@
     const blob=new Blob([JSON.stringify(payload)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
     const d=new Date(),stamp=d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');
     a.href=url;a.download='红黑破锁设置-'+stamp+'.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
-    const count=Object.keys(sounds).length;toast('已导出：'+rules.length+' 条礼物规则及各行数值范围、'+payload.customArt.items.length+' 张自定义素材'+(count?'、'+count+' 个自定义音效':'')+'。在别处点「导入设置」即可');
+    const count=Object.keys(sounds).length;toast('导出好了：'+rules.length+' 个礼物、'+payload.customArt.items.length+' 张自己的图片'+(count?'、'+count+' 个自己的声音':'')+'。到别处点「导入设置」就行');
   }
   function hideImportPreview(){customArt.discardImport(pendingImport?.customArt);pendingImport=null;$('import-preview').hidden=true;$('import-summary').textContent='';}
   async function readBackup(file){
     const token=++importToken;hideImportPreview();
     if(!file)return;
-    if(file.size>MAX_BACKUP_BYTES){toast('设置文件太大，不是本插件导出的文件');return;}
-    let data;try{data=JSON.parse(await file.text());}catch{if(token===importToken)toast('无法读取：请选择本插件导出的 .json 设置文件');return;}
+    if(file.size>MAX_BACKUP_BYTES){toast('文件太大了，不是红黑破锁导出的设置');return;}
+    let data;try{data=JSON.parse(await file.text());}catch{if(token===importToken)toast('读不出来：要选红黑破锁「导出设置」存下的 .json 文件');return;}
     if(token!==importToken)return;
-    if(!data||data.app!==BACKUP_APP||data.format!==BACKUP_FORMAT){toast('这不是红黑破锁导出的设置文件，未导入');return;}
-    const migrated=data.modes?normalizeConfiguration(data.modes):normalizeConfiguration(LockModes.migrateConfig(data.settings||defaults,cleanRules(data.rules,legacyTargets(data.settings),data.settings||{})));
-    if(!migrated){toast('三模式设置无效，未导入');return;}const nextSettings=migrated.profiles[migrated.mode].settings,nextRules=migrated.profiles[migrated.mode].rules;
-    if(!nextRules){toast('设置文件里的礼物规则无效，未导入');return;}
+    if(!data||data.app!==BACKUP_APP||data.format!==BACKUP_FORMAT){toast('这不是红黑破锁导出的设置，没导入');return;}
+    const migrated=data.modes?(data.modes.version===25?normalizeConfiguration(data.modes):fromProfiles(data.modes)):fromProfiles(LockModes.migrateConfig(data.settings||defaults,cleanRules(data.rules,legacyTargets(data.settings),v23Shape(data.settings))));
+    if(!migrated){toast('文件里的设置坏了，没导入');return;}const nextSettings=migrated.settings,nextRules=migrated.rules[nextSettings.challengeMode];
+    if(!nextRules){toast('文件里的礼物表坏了，没导入');return;}
     
     
-    if(data.settings?.targetPool!==undefined&&!LockGiftRules.cleanTargetPool(data.settings.targetPool)){toast('设置文件里的次数盲盒无效，未导入');return;}
-    let nextArt;try{nextArt=await customArt.validateImport(data.customArt||{version:1,items:[]});}catch{if(token===importToken)toast('设置文件里的自定义素材无效，未导入');return;}
+    if(data.settings?.targetPool!==undefined&&!LockGiftRules.cleanTargetPool(data.settings.targetPool)){toast('文件里的旧版概率设置坏了，没导入');return;}
+    let nextArt;try{nextArt=await customArt.validateImport(data.customArt||{version:1,items:[]});}catch{if(token===importToken)toast('文件里自己的图片坏了，没导入');return;}
     if(token!==importToken){customArt.discardImport(nextArt);return;}
     const sounds={},failed=[];
     for(const [kind,label] of soundEvents){
@@ -675,24 +653,23 @@
     for(const [kind] of soundEvents)if(nextSettings.sound.events[kind].mode==='custom'&&!sounds[kind])nextSettings.sound.events[kind].mode='default';
     pendingImport={token,modes:migrated,settings:nextSettings,rules:nextRules,sounds,customArt:nextArt};
     const themeName=$('theme').querySelector(`button[data-value="${nextSettings.theme}"]`)?.textContent||nextSettings.theme;
-    const rangeText=(min,max)=>min===max?String(min):min+'～'+max;
-    const names=nextRules.slice(0,5).map(rule=>rule.name+(rule.kind==='lock'?(nextSettings.mode==='count'?'（增加 '+rangeText(rule.valueMin,rule.valueMax)+' 次）':'（加 '+rangeText(rule.valueMin,rule.valueMax)+' 层，每层 '+(rule.targetMode==='blindbox'?'保留旧概率':rangeText(rule.targetMin,rule.targetMax)+' 次')+'）'):rule.kind==='clear'?'（清空）':rule.kind==='freeze'?'（禁用 '+rangeText(rule.valueMin,rule.valueMax)+' 秒）':rule.kind==='multiply'?'（加固 ×'+rangeText(rule.multiplierMin,rule.multiplierMax)+'）':'（减 '+rangeText(rule.valueMin,rule.valueMax)+' 次）')).join('、');
-    $('import-summary').textContent='将替换三种模式的全部设置；当前预览 '+{lock:'多条进度',cage:'牢笼拍门',count:'累计次数'}[migrated.mode]+'，主题「'+themeName+'」，破锁键「'+TypingLockModel.keyLabel(nextSettings.key)+'」，礼物规则 '+nextRules.length+' 条（'+(names||'无')+(nextRules.length>5?' 等':'')+'），自定义音效 '+Object.keys(sounds).length+' 个、自定义素材 '+(data.customArt?.items?.length||0)+' 张。规则数值直接保存在各行；当前与排队的挑战不受影响。'+(failed.length?'音效 '+failed.join('、')+' 无法读取，将用默认音效。':'');
+    const names=nextRules.slice(0,5).map(rule=>rule.name+'：'+LockGiftTables.describe(rule,nextSettings.challengeMode,nextSettings.sceneMode)).join('；');
+    $('import-summary').textContent='导入以后，设置和两张礼物表都会换成文件里的。文件里：玩法「'+(nextSettings.challengeMode==='count'?'次数':'进度条')+'」，画面「'+(nextSettings.sceneMode==='cage'?'牢笼':'锁链')+'」，样子「'+themeName+'」，按键「'+TypingLockModel.keyLabel(nextSettings.key)+'」，这个玩法的礼物 '+nextRules.length+' 个（'+(names||'没有')+(nextRules.length>5?' 等':'')+'），自己的声音 '+Object.keys(sounds).length+' 个、图片 '+(data.customArt?.items?.length||0)+' 张。正在玩的挑战不受影响。'+(failed.length?'声音「'+failed.join('、')+'」读不出来，会用默认的。':'');
     $('import-preview').hidden=false;
   }
   async function applyImport(){
     const pending=pendingImport;if(!pending||pending.token!==importToken){hideImportPreview();return;}
-    if((challengeActive()||frozenLeft()>0)&&pending.modes.mode!==settings.mode){toast('当前还有挑战，先在试玩页清空，或者等它结束');return;}const previousConfig=activeConfiguration(),previousArt=customArt.exportAssets();
+    if((challengeActive()||frozenLeft()>0)&&pending.modes.settings.challengeMode!==settings.challengeMode){toast('正在玩，先点「清空现在的挑战」，或者等它结束再导入');return;}const previousConfig=activeConfiguration(),previousArt=customArt.exportAssets();
     $('import-confirm').disabled=true;$('import-cancel').disabled=true;
-    try{await customArt.importAssets(pending.customArt,()=>pending.token===importToken);}catch{toast('素材未能保存，未导入设置，已保留原配置');$('import-confirm').disabled=false;$('import-cancel').disabled=false;return;}
+    try{await customArt.importAssets(pending.customArt,()=>pending.token===importToken);}catch{toast('图片没能存下，没导入，还是原来的设置');$('import-confirm').disabled=false;$('import-cancel').disabled=false;return;}
     if(pending.token!==importToken){$('import-confirm').disabled=false;$('import-cancel').disabled=false;return;}
     // Gifts can arrive while IndexedDB is saving artwork. Re-check after the await.
-    if((challengeActive()||frozenLeft()>0)&&pending.modes.mode!==settings.mode){
+    if((challengeActive()||frozenLeft()>0)&&pending.modes.settings.challengeMode!==settings.challengeMode){
       try{const previous=await customArt.validateImport(previousArt);await customArt.importAssets(previous);}catch{storageWarning();}
       hideImportPreview();$('import-confirm').disabled=false;$('import-cancel').disabled=false;
-      toast('当前还有挑战，先在试玩页清空，或者等它结束；本次跨模式导入已取消');return;
+      toast('正在玩，先点「清空现在的挑战」，或者等它结束再导入（这次没导入）');return;
     }
-    if(!persistConfiguration(pending.modes)){try{const old=await customArt.validateImport(previousArt);await customArt.importAssets(old);}catch{}toast('设置未能保存，已保留原配置');$('import-confirm').disabled=false;$('import-cancel').disabled=false;return;}
+    if(!persistConfiguration(pending.modes)){try{const old=await customArt.validateImport(previousArt);await customArt.importAssets(old);}catch{}toast('没能保存，还是原来的设置');$('import-confirm').disabled=false;$('import-cancel').disabled=false;return;}
     pendingImport=null;settings=clone(pending.settings);rules=clone(pending.rules);feedback.reset();
     let unsaved=0;
     for(const [kind] of soundEvents){
@@ -702,19 +679,22 @@
       else{customSounds.delete(kind);try{await soundDb.del(kind);}catch{}}
     }
     applyDecay();saveSettingsObject();saveRules();document.documentElement.dataset.theme=settings.theme;refreshMotion();fillSettings();hideImportPreview();
-    $('import-confirm').disabled=false;$('import-cancel').disabled=false;toast('设置已导入'+(unsaved?'；有 '+unsaved+' 个音效浏览器没能保存，刷新后恢复默认':''));
+    $('import-confirm').disabled=false;$('import-cancel').disabled=false;toast('导入好了'+(unsaved?'；有 '+unsaved+' 个声音浏览器没能存下，刷新后会变回默认':''));
   }
 
   /* ---------- 礼物连接 ---------- */
-  function applyGiftRoute(routed,source){if(!routed)return false;if(isCount()&&routed.kind==='lock')return addCount(routed.value,source,routed.capped);if(routed.kind==='lock')return addLock(routed.value,routed.target,source,routed.targetPool,routed.multiplier||1);if(routed.kind==='multiply')return multiplyLocks(routed.multiplier,routed.value,source);if(routed.kind==='clear')return clearByGift(source);if(routed.kind==='freeze')return freezeKeys(routed.value,source);return relieve(routed.value,source);}
+  function applyGiftRoute(routed,source){if(!routed)return false;if(isCount()&&routed.kind==='lock')return addCount(routed.value,source,routed.capped);if(routed.kind==='lock')return addLock(routed.value,routed.target,source,routed.targetPool,routed.multiplier||1);if(routed.kind==='multiply')return multiplyLocks(routed.multiplier,routed.value,source);if(routed.kind==='divide')return divideLocks(routed.multiplier,routed.value,source);if(routed.kind==='clear')return clearByGift(source);if(routed.kind==='freeze')return freezeKeys(routed.value,source);return relieve(routed.value,source);}
   function gift(name,count=1){return applyGiftRoute((isCount()?LockModes.routeCountGift:LockGiftRules.routeGift)(rules,{giftName:name,count}),String(name).slice(0,80));}
   function extractGift(message){if(!message||typeof message!=='object')return null;const type=String(message.type??message.msgType??message.method??'gift').toLowerCase();if(!type.includes('gift')&&type!=='2')return null;const data=message.data||{},g=message.gift||data.gift||data;const name=message.giftName||g.giftName||g.name||data.giftName||data.name;if(!name)return null;const count=message.giftCount??message.count??message.comboCount??message.repeatCount??g.giftCount??g.count??g.comboCount??g.repeatCount??1;const id=message.eventId??message.event_id??message.msgId??data.eventId;return {name:String(name),count:Number(count),id};}
-  function connectionStatus(value){$('connection').textContent=value;$('settings-connection').textContent=value;}
+  function connectionStatus(value){
+    $('connection').textContent=value;$('settings-connection').textContent=value;
+    const on=value!=='未连接',line=$('settings-live');line.dataset.state=on?'on':'off';
+    line.textContent=on?'已连上直播间（'+(value==='菘蓝 SDK'?'白曜 / 菘蓝':value)+'），观众送礼马上生效。':'还没连上直播间：在白曜或菘蓝里导入这个插件就会自动连上。没连上也能点每行的 ▶ 试。';
+  }
   const giftChannel=LockGiftChannel.create({getSdk:()=>window.SonglanPlugin,onStatus:connectionStatus,onGift:data=>{const g=extractGift(data);if(g&&!dedupe(g.id))gift(g.name,g.count);}});
   function breakKeyCode(event){return TypingLockModel.keyFromEvent(event);}
   function init(){
     restore();document.documentElement.dataset.theme=settings.theme;fillSettings();position();refreshMotion();
-    LockMenu.init({onMenuKey:event=>{if(settingsOpen&&!event.isComposing&&event.keyCode!==229){const code=breakKeyCode(event);if(TypingLockModel.keyValid(code))acceptTap(code,event);}}});
     $('typing-lock-overlay').hidden=!challengeActive();$('idle-screen').hidden=challengeActive();
     if(challengeActive())$('typing-lock-overlay').classList.add('lock-held');render();
     $('settings-open').onclick=openSettings;$('settings-close').onclick=closeSettings;$('settings-backdrop').onclick=closeSettings;
@@ -741,25 +721,30 @@
     document.addEventListener('compositionstart',()=>{keyComposing=true;});document.addEventListener('compositionend',()=>{keyComposing=false;});
     window.addEventListener('blur',()=>{for(const tap of taps.values())tap.down=false;keyComposing=false;cancelKeyRecording();save();});window.addEventListener('pagehide',save);window.addEventListener('resize',position);
     matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change',refreshMotion);
-    presentation.bindCards();$('mode').addEventListener('click',e=>{const b=e.target.closest('button[data-value]');if(b)switchMode(b.dataset.value);});$('mode').addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const buttons=[...$('mode').querySelectorAll('button')],i=buttons.indexOf(e.target);const n=e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3;buttons[n].focus();buttons[n].click();});
+    presentation.bindCards();
+    for(const [id,pick] of [['play',switchPlay],['scene',switchScene]]){
+      $(id).addEventListener('click',e=>{const b=e.target.closest('button[data-value]');if(b)pick(b.dataset.value);});
+      $(id).addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const buttons=[...$(id).querySelectorAll('button')],i=Math.max(0,buttons.indexOf(e.target)),n=e.key==='Home'?0:e.key==='End'?buttons.length-1:(i+(e.key==='ArrowRight'?1:buttons.length-1))%buttons.length;buttons[n].focus();buttons[n].click();});
+    }
     bindChoice('theme',()=>{setChoice('material-choice','theme');saveBasics();});
     for(const id of ['motion','material-choice','display-size'])bindChoice(id,saveBasics);
     $('lock-key').addEventListener('click',event=>{const b=event.target.closest('button[data-value]');if(b&&$('lock-key').contains(b))commitLockKey(b.dataset.value);});
     $('record-lock-key').onclick=startKeyRecording;$('cancel-lock-key').onclick=()=>cancelKeyRecording();
-    $('add-rule').onclick=()=>{if(rules.length>=50){toast('最多设置 50 条礼物规则');return;}const next=[...rules,cleanRules([{name:'新礼物'+(rules.length+1),kind:'lock',value:isCount()?60:1,target:DEFAULT_TARGET}])[0]];if(!persistRules(next)){toast('新增未能保存，已保留原规则');return;}rules=next;renderRules();};
+    $('settings').addEventListener('focusin',event=>{if(keyRecording&&!event.target.closest('#record-lock-key,#cancel-lock-key'))cancelKeyRecording();});
     $('sound-master').addEventListener('input',()=>{$('sound-master-value').textContent=$('sound-master').value+'%';});
     $('sound-master').addEventListener('change',()=>{settings.sound.master=Math.max(0,Math.min(100,Math.round(Number($('sound-master').value))));saveSettingsObject();sound('hit',true);});
-    $('quick-lock').onclick=()=>addLock(isCount()?60:1,DEFAULT_TARGET,'本地模拟');
-    $('simulate-lock').onclick=()=>{const raw=String($('simulate-layers').value).trim(),n=/^\d+$/.test(raw)?Number(raw):NaN;if(!Number.isSafeInteger(n)||n<1||n>100000){toast('模拟层数必须是 1–100000 的整数');return;}const t=TypingLockModel.target($('simulate-target').value);if(t===null){toast('每层连点次数必须是 '+TypingLockModel.TARGET_MIN+'–'+TypingLockModel.TARGET_MAX+' 的整数');return;}addLock(n,t,'本地模拟');};
-    $('simulate-multiply').onclick=()=>{const factor=Number($('simulate-factor').value);if(!Number.isSafeInteger(factor)||factor<1||factor>1000){toast('加固倍率需为 1–1000 的整数');return;}multiplyLocks(factor,1,'模拟加固');};
-    $('simulate-relief').onclick=()=>{const n=Number($('simulate-points').value);if(!Number.isSafeInteger(n)||n<1||n>10000000){toast('模拟减链点数必须是 1–10000000 的整数');return;}relieve(n,'本地模拟');};
-    for(const [id,key] of [['simulate-layers','amount'],['simulate-target','target'],['simulate-factor','factor'],['simulate-points','points'],['simulate-seconds','seconds']])$(id).addEventListener('change',()=>{const n=Number($(id).value);if(Number.isSafeInteger(n)&&n>=1&&n<=10000000){settings.demo={...settings.demo,[id==='simulate-layers'&&!isCount()?'layers':key]:n};saveSettingsObject();}});
+    $('quick-lock').onclick=()=>addLock(isCount()?60:1,DEFAULT_TARGET,'试玩');
+    $('simulate-lock').onclick=()=>{const raw=String($('simulate-layers').value).trim(),n=/^\d+$/.test(raw)?Number(raw):NaN;if(!Number.isSafeInteger(n)||n<1||n>100000){toast('加多少要填 1～100000 的整数');return;}const t=TypingLockModel.target($('simulate-target').value);if(t===null){toast('每条'+pressWord()+'几下要填 '+TypingLockModel.TARGET_MIN+'～'+TypingLockModel.TARGET_MAX+' 的整数');return;}addLock(n,t,'试玩');};
+    $('simulate-multiply').onclick=()=>{const factor=Number($('simulate-factor').value);if(!Number.isSafeInteger(factor)||factor<1||factor>1000){toast('乘几倍要填 1～1000 的整数');return;}multiplyLocks(factor,1,'试玩');};
+    $('simulate-divide').onclick=()=>{const factor=Number($('simulate-divisor').value);if(!Number.isSafeInteger(factor)||factor<1||factor>1000){toast('除以几要填 1～1000 的整数');return;}divideLocks(factor,1,'试玩');};
+    $('simulate-relief').onclick=()=>{const n=Number($('simulate-points').value);if(!Number.isSafeInteger(n)||n<1||n>10000000){toast('帮多少下要填 1～10000000 的整数');return;}relieve(n,'试玩');};
+    for(const [id,key] of [['simulate-layers','amount'],['simulate-target','target'],['simulate-factor','factor'],['simulate-divisor','divisor'],['simulate-points','points'],['simulate-seconds','seconds']])$(id).addEventListener('change',()=>{const n=Number($(id).value);if(Number.isSafeInteger(n)&&n>=1&&n<=10000000){settings.demo={...settings.demo,[id==='simulate-layers'&&!isCount()?'layers':key]:n};saveSettingsObject();}});
     $('clear-locks').onclick=armClear;
     $('decay-presets').addEventListener('click',event=>{const b=event.target.closest('button[data-value]');if(b)commitDecay(b.dataset.value,settings.decayDelay);});
     $('decay-rate').addEventListener('change',()=>commitDecay($('decay-rate').value,settings.decayDelay));
     $('decay-delay').addEventListener('change',()=>commitDecay(settings.decayRate,$('decay-delay').value));
-    $('simulate-freeze').onclick=()=>{const raw=String($('simulate-seconds').value).trim(),n=/^\d+$/.test(raw)?Number(raw):NaN;if(!Number.isSafeInteger(n)||n<1||n>FREEZE_MAX_SECONDS){toast('禁用秒数必须是 1–'+FREEZE_MAX_SECONDS+' 的整数');return;}freezeKeys(n,'本地模拟');};
-    $('unfreeze').onclick=()=>{if(frozenLeft()<=0){toast('破锁键没有被禁用');return;}frozenUntil=0;save();render();toast('已解除按键禁用');};
+    $('simulate-freeze').onclick=()=>{const raw=String($('simulate-seconds').value).trim(),n=/^\d+$/.test(raw)?Number(raw):NaN;if(!Number.isSafeInteger(n)||n<1||n>FREEZE_MAX_SECONDS){toast('失灵几秒要填 1～'+FREEZE_MAX_SECONDS+' 的整数');return;}freezeKeys(n,'试玩');};
+    $('unfreeze').onclick=()=>{if(frozenLeft()<=0){toast('按键没有失灵');return;}frozenUntil=0;save();render();toast('按键恢复了');};
     $('export-settings').onclick=exportSettings;
     $('import-settings').onclick=()=>$('import-file').click();
     $('import-file').addEventListener('change',()=>{const f=$('import-file').files?.[0];$('import-file').value='';readBackup(f);});

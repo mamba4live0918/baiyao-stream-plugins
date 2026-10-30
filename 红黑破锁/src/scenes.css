@@ -95,3 +95,5 @@ html[data-theme=pixel] .scene-cage{image-rendering:pixelated}
 
 /* Realistic metal keeps a local physical shadow; anime/toon art keeps colored light. */
 #typing-lock-overlay:is([data-material=forged-steel],[data-material=antique-brass]) .lock-art{filter:drop-shadow(0 5px 7px #0009)!important}#typing-lock-overlay:is([data-material=forged-steel],[data-material=antique-brass]) .lock-emblem::after{opacity:.10!important;background:radial-gradient(circle,#ccd4da50,transparent 66%)!important}#typing-lock-overlay[data-material=arcane-anime]{--theme-glow:#9876e9}#typing-lock-overlay[data-material=candy-toon]{--theme-glow:#e8a7bd}
+/* V2.4 牢笼按次数：上面「逃离累计 N 次」已经是拍了几下，下面那行「已拍 N 次」就不重复了 */
+#typing-lock-overlay[data-scene=cage][data-mode=count] .counter-readout small{display:none!important}

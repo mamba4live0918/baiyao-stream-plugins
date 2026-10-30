@@ -133,8 +133,8 @@
       const current=syncTheme();if(!holder)return;
       const expanded=new Set([...holder.querySelectorAll('details[open]')].map(d=>d.id||d.dataset.exampleKind));
       holder.replaceChildren();holder.classList.add('custom-art-panel');holder.dataset.theme=current;
-      const label=document.createElement('p');label.className='custom-art-theme';label.textContent='当前主题：'+THEME_NAMES[current]+' · 素材独立保存';holder.append(label);
-      let cageHolder=null;if(getMode()==='cage'){cageHolder=document.createElement('details');cageHolder.id='cage-custom-settings';cageHolder.open=expanded.has(cageHolder.id);const summary=document.createElement('summary');summary.textContent='更换笼子外框与栏杆（可选）';cageHolder.append(summary);const hint=document.createElement('p');hint.textContent='每项上传一张组件图，不是整座笼子。参考下方示例制作，程序自动拆成头、中段、尾拼接，保留双开门和拍门动画。';cageHolder.append(hint);}
+      const label=document.createElement('p');label.className='custom-art-theme';label.textContent='现在的样子：'+THEME_NAMES[current]+'（每种样子的图各存各的）';holder.append(label);
+      let cageHolder=null;if(getMode()==='cage'){cageHolder=document.createElement('details');cageHolder.id='cage-custom-settings';cageHolder.open=expanded.has(cageHolder.id);const summary=document.createElement('summary');summary.textContent='换笼子的栏杆和门（可选）';cageHolder.append(summary);const hint=document.createElement('p');hint.textContent='每一项传一张零件图，不是整个笼子。照着下面的示例做，会自己拼起来，开门和拍门的动画照常。';cageHolder.append(hint);}
       for(const [kind,title] of Object.entries(KINDS)){
         if(CAGE[kind]&&!cageHolder)continue;
         const key=keyFor(current,kind),record=records.get(key),busy=pending.has(key)||importing;
@@ -144,7 +144,7 @@
         preview.style.setProperty('--custom-art-preview-image',record?`url("${record.url}")`:getComputedStyle(overlay).getPropertyValue(builtin)||'none');
         const text=document.createElement('div');text.className='custom-art-details';
         const heading=document.createElement('strong');heading.textContent=title;
-        const note=document.createElement('span');note.className='custom-art-name';note.textContent=busy?'正在读取或保存…':record?'自定义：'+record.name+'（'+record.width+' × '+record.height+'）':'使用本主题默认素材';
+        const note=document.createElement('span');note.className='custom-art-name';note.textContent=busy?'正在读取或保存…':record?'自定义：'+record.name+'（'+record.width+' × '+record.height+'）':'用的是这个样子自带的图';
         const controls=document.createElement('div');controls.className='custom-art-actions';
         const file=document.createElement('input');file.type='file';file.accept='image/png,image/jpeg,image/webp';file.hidden=true;file.disabled=busy;
         file.setAttribute('aria-label','上传'+title+'图片');
@@ -161,7 +161,7 @@
         controls.append(choose,restore,file);text.append(heading,note,controls,example);row.append(preview,text);(CAGE[kind]?cageHolder:holder).append(row);
       }
       if(cageHolder)holder.append(cageHolder);
-      const help=document.createElement('p');help.className='custom-art-help';help.textContent='PNG / JPEG / WebP，单张不超过 5 MB，宽高各不超过 4096。推荐透明 PNG / WebP；锁链用横向链段，锁头用完整图案。图片会去掉透明留白，锁链横向重复、锁头等比显示。上传素材保存在当前浏览器；导出设置可携带各主题图片。';holder.append(help);
+      const help=document.createElement('p');help.className='custom-art-help';help.textContent='PNG / JPG / WebP，一张不超过 5 MB、长宽不超过 4096。最好用透明底：锁链传横着的一小段（会自己接成一长条），锁头传完整的一个。图片存在这个浏览器里，「导出设置」会把它们一起带走。';holder.append(help);
     }
     function begin(kind){
       const current=syncTheme(),key=keyFor(current,kind),token=(tokens.get(key)||0)+1;

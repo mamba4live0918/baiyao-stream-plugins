@@ -7,7 +7,7 @@ const LockGiftRules=(()=>{
   const normalized=value=>String(value??'').normalize('NFKC').trim().toLocaleLowerCase();
   const positive=(value,max)=>Number.isSafeInteger(Number(value))&&String(value).trim()!==''&&Number(value)>=1&&Number(value)<=max;
   const own=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
-  const valueLimits=Object.freeze({lock:20000,relief:10000000,clear:10000000,freeze:3600,multiply:99});
+  const valueLimits=Object.freeze({lock:20000,relief:10000000,clear:10000000,freeze:3600,multiply:99,divide:99});
   function integer(value,max){if(!['number','string'].includes(typeof value)||String(value).trim()==='')return null;const number=Number(value);return Number.isSafeInteger(number)&&number>=1&&number<=max?number:null;}
   function hasRange(rule,prefix){return own(rule,prefix+'Min')||own(rule,prefix+'Max');}
   function range(rule,prefix,fallback,max){
@@ -63,11 +63,12 @@ const LockGiftRules=(()=>{
     let perShare,multiplier;try{perShare=drawRange(values,rng);multiplier=drawRange(multipliers,rng);}catch{return null;}
     if(perShare===null||multiplier===null)return null;
     const value=perShare*Number(message.count);
-    if(!Number.isSafeInteger(value)||value>(rule.kind==='multiply'?99000000:10000000))return null;
+    if(!Number.isSafeInteger(value)||value>(rule.kind==='multiply'||rule.kind==='divide'?99000000:10000000))return null;
     if(rule.kind==='lock'){
       return {kind:'lock',target:targets.min,value,name,...(pool?{targetMode:'blindbox',targetPool:pool}:{}),...(multiplier!==1?{multiplier}:{})}; // 超过 2 万层的部分由插件排队，不在这里丢弃
     }
     if(rule.kind==='multiply')return {kind:'multiply',value,multiplier,name};
+    if(rule.kind==='divide')return {kind:'divide',value,multiplier,name}; // 剩下的 ÷ multiplier，礼物几份就连除几次
     if(rule.kind==='relief')return {kind:'relief',value,name};
     if(rule.kind==='clear')return {kind:'clear',name}; // 送一份即清空全部锁链，数量不影响效果
     if(rule.kind==='freeze')return {kind:'freeze',value,name}; // 禁用破锁键的秒数，礼物数量相乘，插件里总时长封顶

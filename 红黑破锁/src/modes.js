@@ -53,7 +53,7 @@ const LockModes=(()=>{
     if(!Array.isArray(raw)||raw.length>50)return null;
     try{return Array.from(raw,rule=>{
       if(!rule||typeof rule!=='object')throw Error('Invalid count rule');
-      const limit={lock:MAX_COUNT,relief:MAX_COUNT,multiply:99,freeze:3600,clear:MAX_COUNT}[rule.kind];
+      const limit={lock:MAX_COUNT,relief:MAX_COUNT,multiply:99,divide:99,freeze:3600,clear:MAX_COUNT}[rule.kind];
       if(!limit)throw Error('Invalid kind');
       const values=bounds(rule,'value',rule.value??(rule.kind==='clear'?1:undefined),limit);if(!values)throw Error('Invalid count bounds');
       // Reuse established names, kinds, multiplier validation; count has no target pool.
@@ -77,7 +77,7 @@ const LockModes=(()=>{
     let total=BigInt(value)*BigInt(Number(message.count));if(rule.kind==='lock')total*=BigInt(multiplier);
     const capped=total>MAX_BIG,result={kind:rule.kind,value:Number(capped?MAX_BIG:total),name};
     if(rule.kind==='clear')return {kind:'clear',name};
-    if(rule.kind==='multiply')result.multiplier=multiplier;
+    if(rule.kind==='multiply'||rule.kind==='divide')result.multiplier=multiplier;
     if(rule.kind==='lock'||rule.kind==='relief')result.capped=capped;
     return result;
   }

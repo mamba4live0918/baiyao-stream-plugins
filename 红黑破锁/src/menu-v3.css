@@ -1,0 +1,87 @@
+/* V2.4 一页式菜单：① 玩法 ② 加锁礼物 ③ 捣乱礼物 ④ 帮忙礼物 ⑤ 按键 ⑥ 样子 ⑦ 声音，其余收进「高级设置」。 */
+#settings{--m-card:#20262c;--m-line:#46505a;--m-input:#161b20;--m-ink:#f1f3f5;--m-soft:#c4cad0;--m-faint:#9ea7b1;--m-accent:#ef6b84;--m-pick:#5e2634}
+#settings .settings-head{padding-bottom:8px}
+#settings .settings-sub{margin:6px 0 0!important;font-size:16px!important;color:var(--m-faint)!important}
+#settings .live-line{margin:12px 0 0!important;padding:10px 14px;border-radius:8px;background:#2a2125;border:1px solid #6b4652;color:#f2d6de!important}
+#settings .live-line[data-state=on]{background:#1b2a22;border-color:#3f7a5a;color:#cdeedb!important}
+#settings .settings-scroll section{padding:24px 0}
+#settings h3{font-size:24px;margin:0 0 10px}
+#settings h4{font-size:18px;margin:28px 0 10px;color:var(--m-ink)}
+#settings .say{margin:0 0 14px!important;color:#dfe3e7!important;font-size:17px!important}
+#settings .note{margin:10px 0 0!important;font-size:15px!important;color:var(--m-faint)!important;line-height:1.65!important}
+#settings .field-line{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;margin:18px 0 0}
+#settings .field-line>.note{flex-basis:100%;margin-top:0!important}
+#settings .field-name{font-size:17px;color:var(--m-ink)}
+
+/* 分段按钮：几个选项一眼看全，点哪个亮哪个 */
+#settings .seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--m-line);border-radius:8px;overflow:hidden;background:var(--m-input)}
+#settings .seg button{margin:0;border:0;border-right:1px solid var(--m-line);border-radius:0;background:transparent;box-shadow:none;color:var(--m-soft);min-height:42px;padding:8px 18px;font-size:17px}
+#settings .seg button:last-child{border-right:0}
+#settings .seg button[aria-pressed=true]{background:var(--m-pick);color:#fff;box-shadow:inset 0 -3px 0 var(--m-accent)}
+#settings .seg button:disabled{opacity:.4}
+#settings .seg.wrap{display:flex;gap:8px;border:0;background:none;overflow:visible}
+#settings .seg.wrap button{border:1px solid var(--m-line);border-radius:8px;background:var(--m-input)}
+#settings .seg.wrap button[aria-pressed=true]{background:var(--m-pick)}
+
+/* 礼物表：一行 = 礼物名 → 送 1 个会怎样 → ▶ / ✕ */
+#settings .gift-sec{--gift-accent:#ef9caa}
+#settings .gift-sec[data-mode=cage]{--gift-accent:#9dd4ed}
+#settings .gift-sec[data-mode=count]{--gift-accent:#f4d18b}
+#settings .gift-row{display:grid;grid-template-columns:minmax(110px,150px) minmax(0,1fr) auto;gap:10px 14px;align-items:center;padding:12px 14px;margin:8px 0;background:var(--m-card);border:1px solid var(--m-line);border-left:4px solid var(--gift-accent);border-radius:10px}
+#settings .gift-row.dup{border-color:#c98a3c}
+#settings .gift-row.dup .gift-does{opacity:.55}
+#settings input.gift-name{height:44px!important}
+#settings .gift-does{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;font-size:17px;color:var(--m-ink);line-height:1.4}
+#settings .gift-chunk{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+#settings .gift-does b{font-weight:700;color:#fff}
+#settings .gift-send{color:var(--m-faint);white-space:nowrap}
+#settings .gift-range{display:inline-flex;align-items:center;gap:3px}
+#settings .gift-range i{font-style:normal;color:var(--m-faint)}
+#settings input.gift-num{width:calc(4ch + 22px);min-width:0;height:40px!important;padding:6px 6px!important;font-size:17px!important;text-align:center;-moz-appearance:textfield}
+#settings input.gift-num::-webkit-inner-spin-button,#settings input.gift-num::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+#settings .gift-chunk-wrap{white-space:normal;flex-wrap:wrap}
+#settings .gift-tools{display:flex;gap:6px}
+#settings .gift-tools button{min-width:44px;min-height:40px;padding:6px 10px;font-size:16px}
+#settings .gift-del{background:#2b1722;border-color:#75404d}
+#settings .gift-warn{grid-column:1/-1;margin:0!important;color:#f0b46c!important;font-size:15px!important}
+#settings .gift-empty{margin:4px 0 10px!important;padding:12px 14px;border:1px dashed var(--m-line);border-radius:10px;color:var(--m-faint)!important}
+#settings .gift-adds{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}
+#settings .gift-legacy{min-height:36px;padding:4px 10px;font-size:15px}
+
+/* ⑤ 按键 */
+#settings .key-line{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:18px;color:var(--m-ink)}
+#settings .key-line strong{font-size:24px;color:#fff;margin-left:4px}
+#settings #record-lock-key[aria-pressed=true]{outline:2px solid #f896ae;background:#812a40}
+
+/* 清空 / 解除失灵 */
+#settings .tool-row{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 0}
+
+/* 高级设置（默认收起） */
+#settings .advanced{margin:26px 0 0;border-top:1px dashed var(--m-line);padding-top:16px}
+#settings .advanced>summary{cursor:pointer;font-size:18px;font-weight:700;color:var(--m-soft);padding:6px 0}
+#settings .advanced[open]>summary{color:var(--m-ink)}
+#settings .advanced .form-grid{margin:10px 0}
+#settings .sim-line{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0;font-size:17px;color:var(--m-ink)}
+#settings .sim-line input{width:110px;height:42px!important}
+#settings .sim-line span{white-space:nowrap}
+#settings #simulate-target-label{display:inline-flex;align-items:center;gap:8px}
+#settings .sound-choice button{padding:6px 14px;min-height:38px;font-size:16px}
+#settings .sound-head strong{font-size:17px;color:var(--m-ink)}
+
+@media(max-width:650px){
+  #settings .gift-row{grid-template-columns:minmax(0,1fr) auto;padding:10px}
+  #settings .gift-does{grid-column:1/-1;grid-row:2}
+  #settings .seg button{padding:8px 12px;font-size:16px}
+  #settings h3{font-size:22px}
+}
+
+/* ① 玩法 / ② 画面：两个各选一个，互不相干 */
+#settings .mode-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:12px}
+#settings .mode-cards button{display:flex;flex-direction:column;gap:8px;min-height:96px;padding:16px 14px;background:#252830;color:#f3edf1;border:2px solid #5c616b;box-shadow:none}
+#settings .mode-cards strong{font-size:22px}
+#settings .mode-cards span{font-size:15px;line-height:1.5;color:#cfd4d9}
+#settings .mode-cards [aria-checked=true]{border-color:#eaa3bb;background:#4b2c3b}
+#settings .mode-cards [aria-checked=true] span{color:#f3e3ea}
+#settings .mode-cards button:focus-visible{outline:3px solid #a9d8f5;outline-offset:3px}
+#settings #sec-look #theme{margin-top:4px}
+@media(max-width:650px){#settings .mode-cards{gap:8px}#settings .mode-cards button{padding:12px 8px;min-height:0}#settings .mode-cards strong{font-size:19px}#settings .mode-cards span{font-size:13px}}
